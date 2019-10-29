@@ -1,0 +1,70 @@
+object fmMain: TfmMain
+  Left = 0
+  Top = 0
+  Align = alClient
+  Caption = 'fmMain'
+  ClientHeight = 410
+  ClientWidth = 666
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlOrders: TPanel
+    Left = 481
+    Top = 0
+    Width = 185
+    Height = 410
+    Align = alRight
+    Caption = 'pnlOrders'
+    TabOrder = 0
+    object sbOrders: TScrollBar
+      Left = 1
+      Top = 1
+      Width = 183
+      Height = 408
+      Align = alClient
+      BiDiMode = bdRightToLeft
+      PageSize = 0
+      ParentBiDiMode = False
+      TabOrder = 0
+    end
+  end
+  object pnlDrivers: TPanel
+    Left = 0
+    Top = 0
+    Width = 481
+    Height = 410
+    Align = alClient
+    Caption = 'pnlDrivers'
+    TabOrder = 1
+    object sbStatus: TScrollBar
+      Left = 304
+      Top = 1
+      Width = 176
+      Height = 408
+      Align = alRight
+      BiDiMode = bdRightToLeft
+      PageSize = 0
+      ParentBiDiMode = False
+      TabOrder = 0
+    end
+    object sbDrivers: TScrollBar
+      Left = 1
+      Top = 1
+      Width = 303
+      Height = 408
+      Align = alClient
+      BiDiMode = bdRightToLeft
+      PageSize = 0
+      ParentBiDiMode = False
+      TabOrder = 1
+    end
+  end
+end
