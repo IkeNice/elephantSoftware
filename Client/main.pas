@@ -17,6 +17,8 @@ type
     lbDrivers: TLabel;
     lbStatus: TLabel;
     lbOrders: TLabel;
+    pnlControl: TPanel;
+    btnAddOrder: TButton;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
@@ -43,6 +45,7 @@ begin
   lbDrivers.Left := (pnlHeader.Width div 3) - ((pnlHeader.Width div 3) div 2) - lbDrivers.Width;
   lbStatus.Left := (pnlHeader.Width div 3) + ((pnlHeader.Width div 3) div 2) - lbStatus.Width;
   lbOrders.Left := (pnlHeader.Width div 3) + 3*((pnlHeader.Width div 3) div 2) - lbOrders.Width;
+  btnAddOrder.Left :=  (pnlControl.Width div 3) + 3*((pnlControl.Width div 3) div 2) - btnAddOrder.Width div 2;
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);

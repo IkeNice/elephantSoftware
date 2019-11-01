@@ -3,8 +3,8 @@ object fmMain: TfmMain
   Top = 0
   Align = alClient
   Caption = 'fmMain'
-  ClientHeight = 461
-  ClientWidth = 758
+  ClientHeight = 525
+  ClientWidth = 787
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,72 +17,74 @@ object fmMain: TfmMain
   PixelsPerInch = 96
   TextHeight = 13
   object pnlOrders: TPanel
-    Left = 573
+    Left = 602
     Top = 41
     Width = 185
-    Height = 420
+    Height = 414
     Align = alRight
     TabOrder = 0
-    ExplicitLeft = 482
-    ExplicitTop = 48
-    ExplicitHeight = 410
+    ExplicitLeft = 573
+    ExplicitHeight = 420
     object sbOrders: TScrollBar
       Left = 1
       Top = 1
       Width = 183
-      Height = 418
+      Height = 412
       Align = alClient
       BiDiMode = bdRightToLeft
       PageSize = 0
       ParentBiDiMode = False
       TabOrder = 0
-      ExplicitLeft = 5
-      ExplicitWidth = 179
+      ExplicitLeft = -135
+      ExplicitTop = 169
     end
   end
   object pnlDrivers: TPanel
     Left = 0
     Top = 41
-    Width = 573
-    Height = 420
+    Width = 602
+    Height = 414
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 393
+    ExplicitWidth = 573
+    ExplicitHeight = 420
     object sbStatus: TScrollBar
-      Left = 312
+      Left = 344
       Top = 1
-      Width = 260
-      Height = 418
+      Width = 257
+      Height = 412
       Align = alRight
       BiDiMode = bdRightToLeft
       PageSize = 0
       ParentBiDiMode = False
       TabOrder = 0
+      ExplicitLeft = 371
+      ExplicitTop = 97
     end
     object sbDrivers: TScrollBar
       Left = 1
       Top = 1
-      Width = 311
-      Height = 418
+      Width = 343
+      Height = 412
       Align = alClient
       BiDiMode = bdRightToLeft
       PageSize = 0
       ParentBiDiMode = False
       TabOrder = 1
-      ExplicitLeft = -5
-      ExplicitTop = 6
+      ExplicitLeft = 137
+      ExplicitTop = 161
     end
   end
   object pnlHeader: TPanel
     Left = 0
     Top = 0
-    Width = 758
+    Width = 787
     Height = 41
     Align = alTop
     TabOrder = 2
-    ExplicitLeft = 232
-    ExplicitTop = 16
-    ExplicitWidth = 185
+    ExplicitLeft = 1
+    ExplicitTop = -5
+    ExplicitWidth = 758
     object lbDrivers: TLabel
       Left = 88
       Top = 14
@@ -121,6 +123,28 @@ object fmMain: TfmMain
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+  end
+  object pnlControl: TPanel
+    Left = 0
+    Top = 455
+    Width = 787
+    Height = 70
+    Align = alBottom
+    BorderWidth = 5
+    BorderStyle = bsSingle
+    ParentBackground = False
+    TabOrder = 3
+    ExplicitLeft = 1
+    ExplicitTop = 416
+    ExplicitWidth = 758
+    object btnAddOrder: TButton
+      Left = 616
+      Top = 19
+      Width = 137
+      Height = 38
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
+      TabOrder = 0
     end
   end
 end
