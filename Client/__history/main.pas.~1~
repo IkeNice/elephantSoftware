@@ -13,10 +13,6 @@ type
     sbOrders: TScrollBar;
     sbStatus: TScrollBar;
     sbDrivers: TScrollBar;
-    pnlHeader: TPanel;
-    lbDrivers: TLabel;
-    lbStatus: TLabel;
-    lbOrders: TLabel;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
   private
@@ -40,9 +36,6 @@ begin
   sbDrivers.Width := pnlDrivers.Width div 2;
   sbOrders.Width := pnlOrders.Width;
   sbOrders.Height := pnlOrders.Height;
-  lbDrivers.Left := (pnlHeader.Width div 3) - ((pnlHeader.Width div 3) div 2) - lbDrivers.l;
-  lbStatus.Left := (pnlHeader.Width div 3) + ((pnlHeader.Width div 3) div 2);
-  lbOrders.Left := (pnlHeader.Width div 3) + 2*((pnlHeader.Width div 3) div 2);
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);
