@@ -3,8 +3,8 @@ object fmMain: TfmMain
   Top = 0
   Align = alClient
   Caption = 'fmMain'
-  ClientHeight = 436
-  ClientWidth = 766
+  ClientHeight = 394
+  ClientWidth = 811
   Color = clBtnFace
   DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
@@ -14,95 +14,102 @@ object fmMain: TfmMain
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  WindowState = wsMaximized
   OnActivate = FormActivate
-  OnDragDrop = FormDragDrop
-  OnDragOver = FormDragOver
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object pnlOrders: TPanel
-    Left = 581
+    Left = 626
     Top = 41
     Width = 185
-    Height = 325
+    Height = 289
     Align = alRight
-    DragMode = dmAutomatic
+    DockSite = True
     TabOrder = 0
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
-    ExplicitLeft = 602
-    ExplicitHeight = 414
-    object sbOrders: TScrollBar
+    ExplicitLeft = 581
+    ExplicitHeight = 325
+    object sboxOrders: TScrollBox
       Left = 1
       Top = 1
       Width = 183
-      Height = 323
+      Height = 287
+      HorzScrollBar.Visible = False
       Align = alClient
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
+      DockSite = True
       TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
+      OnMouseWheelDown = sboxOrdersMouseWheelDown
       ExplicitLeft = 5
-      ExplicitWidth = 179
-      ExplicitHeight = 338
-    end
-    object Panel1: TPanel
-      Left = 16
-      Top = 24
-      Width = 185
-      Height = 41
-      Caption = 'Panel1'
-      DragMode = dmAutomatic
-      TabOrder = 1
-      OnDragDrop = Panel1DragDrop
-      OnDragOver = Panel1DragOver
+      ExplicitTop = -2
+      object Panel1: TPanel
+        Left = 3
+        Top = 16
+        Width = 185
+        Height = 41
+        Caption = 'Panel1'
+        DragMode = dmAutomatic
+        ParentBackground = False
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 32
+        Top = 160
+        Width = 57
+        Height = 169
+        Caption = 'Panel2'
+        DragMode = dmAutomatic
+        TabOrder = 1
+      end
     end
   end
   object pnlDrivers: TPanel
     Left = 0
     Top = 41
-    Width = 581
-    Height = 325
+    Width = 626
+    Height = 289
     Align = alClient
+    DockSite = True
     TabOrder = 1
-    ExplicitWidth = 602
-    ExplicitHeight = 414
-    object sbStatus: TScrollBar
-      Left = 323
-      Top = 1
-      Width = 257
-      Height = 323
-      Align = alRight
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
-      TabOrder = 0
-      ExplicitLeft = 322
-      ExplicitTop = -2
-      ExplicitHeight = 338
-    end
-    object sbDrivers: TScrollBar
+    OnDragDrop = pnlOrdersDragDrop
+    OnDragOver = pnlOrdersDragOver
+    object sboxDrivers: TScrollBox
       Left = 1
       Top = 1
-      Width = 322
-      Height = 323
+      Width = 295
+      Height = 287
+      HorzScrollBar.Visible = False
       Align = alClient
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
+      DockSite = True
+      TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
+      ExplicitWidth = 320
+    end
+    object sboxStatus: TScrollBox
+      Left = 296
+      Top = 1
+      Width = 329
+      Height = 287
+      HorzScrollBar.Visible = False
+      Align = alRight
+      DockSite = True
       TabOrder = 1
-      ExplicitWidth = 343
-      ExplicitHeight = 412
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
     end
   end
   object pnlHeader: TPanel
     Left = 0
     Top = 0
-    Width = 766
+    Width = 811
     Height = 41
     Align = alTop
     TabOrder = 2
-    ExplicitWidth = 787
+    ExplicitWidth = 766
     object lbDrivers: TLabel
       Left = 88
       Top = 14
@@ -145,19 +152,19 @@ object fmMain: TfmMain
   end
   object pnlControl: TPanel
     Left = 0
-    Top = 366
-    Width = 766
-    Height = 70
+    Top = 330
+    Width = 811
+    Height = 64
     Align = alBottom
     BorderWidth = 5
     BorderStyle = bsSingle
     ParentBackground = False
     TabOrder = 3
-    ExplicitTop = 455
-    ExplicitWidth = 787
+    ExplicitTop = 381
+    ExplicitWidth = 790
     object btnAddOrder: TButton
-      Left = 616
-      Top = 19
+      Left = 619
+      Top = 11
       Width = 137
       Height = 38
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
