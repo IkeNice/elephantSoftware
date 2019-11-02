@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.853,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Client.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.960,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.199,=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Client.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.853,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2019.11.01 14:52:04.960,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
-    <Transaction>2019.11.01 14:52:20.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
-    <Transaction>2019.11.01 14:52:20.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

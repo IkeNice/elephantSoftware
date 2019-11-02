@@ -7,11 +7,10 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
 
 type
-  TForm1 = class(TForm)
-    Label1: TLabel;
-    ComboBoxEx1: TComboBoxEx;
-    Button1: TButton;
-    Label2: TLabel;
+  TfmOrder = class(TForm)
+    lbAddres: TLabel;
+    cbAddres: TComboBoxEx;
+    btnAddAddres: TButton;
   private
     { Private declarations }
   public
@@ -19,7 +18,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  fmOrder: TfmOrder;
 
 implementation
 
