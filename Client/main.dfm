@@ -3,86 +3,112 @@ object fmMain: TfmMain
   Top = 0
   Align = alClient
   Caption = 'fmMain'
-  ClientHeight = 461
-  ClientWidth = 758
+  ClientHeight = 394
+  ClientWidth = 811
   Color = clBtnFace
+  DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
+  WindowState = wsMaximized
   OnActivate = FormActivate
   OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 13
   object pnlOrders: TPanel
-    Left = 573
+    Left = 626
     Top = 41
     Width = 185
-    Height = 420
+    Height = 289
     Align = alRight
+    DockSite = True
     TabOrder = 0
-    ExplicitLeft = 482
-    ExplicitTop = 48
-    ExplicitHeight = 410
-    object sbOrders: TScrollBar
+    OnDragDrop = pnlOrdersDragDrop
+    OnDragOver = pnlOrdersDragOver
+    object sboxOrders: TScrollBox
       Left = 1
       Top = 1
       Width = 183
-      Height = 418
+      Height = 287
+      HorzScrollBar.Visible = False
       Align = alClient
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
+      DockSite = True
       TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
+      OnMouseWheelDown = sboxOrdersMouseWheelDown
+      OnMouseWheelUp = ScrollBox1MouseWheelUp
       ExplicitLeft = 5
-      ExplicitWidth = 179
+      ExplicitTop = -2
+      object Panel1: TPanel
+        Left = -5
+        Top = 144
+        Width = 185
+        Height = 41
+        Caption = 'Panel1'
+        DragMode = dmAutomatic
+        ParentBackground = False
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 3
+        Top = 223
+        Width = 57
+        Height = 169
+        Caption = 'Panel2'
+        DragMode = dmAutomatic
+        TabOrder = 1
+      end
     end
   end
   object pnlDrivers: TPanel
     Left = 0
     Top = 41
-    Width = 573
-    Height = 420
+    Width = 626
+    Height = 289
     Align = alClient
+    DockSite = True
     TabOrder = 1
-    ExplicitWidth = 393
-    object sbStatus: TScrollBar
-      Left = 312
-      Top = 1
-      Width = 260
-      Height = 418
-      Align = alRight
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
-      TabOrder = 0
-    end
-    object sbDrivers: TScrollBar
+    OnDragDrop = pnlOrdersDragDrop
+    OnDragOver = pnlOrdersDragOver
+    object sboxDrivers: TScrollBox
       Left = 1
       Top = 1
-      Width = 311
-      Height = 418
+      Width = 295
+      Height = 287
+      HorzScrollBar.Visible = False
       Align = alClient
-      BiDiMode = bdRightToLeft
-      PageSize = 0
-      ParentBiDiMode = False
+      DockSite = True
+      TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
+    end
+    object sboxStatus: TScrollBox
+      Left = 296
+      Top = 1
+      Width = 329
+      Height = 287
+      HorzScrollBar.Visible = False
+      Align = alRight
+      DockSite = True
       TabOrder = 1
-      ExplicitLeft = -5
-      ExplicitTop = 6
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
+      ExplicitLeft = 297
+      ExplicitTop = -2
     end
   end
   object pnlHeader: TPanel
     Left = 0
     Top = 0
-    Width = 758
+    Width = 811
     Height = 41
     Align = alTop
     TabOrder = 2
-    ExplicitLeft = 232
-    ExplicitTop = 16
-    ExplicitWidth = 185
     object lbDrivers: TLabel
       Left = 88
       Top = 14
@@ -121,6 +147,39 @@ object fmMain: TfmMain
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+  end
+  object pnlControl: TPanel
+    Left = 0
+    Top = 330
+    Width = 811
+    Height = 64
+    Align = alBottom
+    BorderWidth = 5
+    BorderStyle = bsSingle
+    ParentBackground = False
+    TabOrder = 3
+    object btnAddOrder: TButton
+      Left = 619
+      Top = 11
+      Width = 137
+      Height = 38
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
+      TabOrder = 0
+      OnClick = btnAddOrderClick
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 88
+    Top = 89
+    object N1: TMenuItem
+      Caption = #1048#1089#1087#1086#1083#1085#1103#1077#1084#1099#1077
+    end
+    object N2: TMenuItem
+      Caption = #1048#1089#1087#1086#1083#1085#1077#1085#1085#1099#1077
+    end
+    object N3: TMenuItem
+      Caption = #1054#1090#1084#1077#1085#1077#1085#1085#1099#1077
     end
   end
 end
