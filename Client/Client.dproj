@@ -108,6 +108,10 @@
             <Form>fmOrder</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="test.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

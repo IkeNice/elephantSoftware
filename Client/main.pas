@@ -85,9 +85,9 @@ procedure TfmMain.pnlOrdersDragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
 //  (Source as TPanel).Parent:=(Sender as TScrollBar);   // для TScrollBar
 //  (Source as TPanel).Parent:=(Sender as TPanel);  // для TPanel
-  (Source as TPanel).Parent:=(Sender as TScrollBox);  // для ScrollBox
-  (Source as TPanel).Left:=X;
-  (Source as TPanel).Top:=Y;
+  TPanel(Source).Parent := TScrollBox(Sender);  // для ScrollBox
+  TPanel(Source).Left:=X;
+  TPanel(Source).Top:=Y;
 end;
 
 procedure TfmMain.pnlOrdersDragOver(Sender, Source: TObject; X, Y: Integer;

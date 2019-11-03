@@ -36,4 +36,13 @@ object fmOrder: TfmOrder
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1072#1076#1088#1077#1089
     TabOrder = 1
   end
+  object btnAdd: TButton
+    Left = 350
+    Top = 143
+    Width = 75
+    Height = 25
+    Caption = #1043#1086#1090#1086#1074#1086
+    TabOrder = 2
+    OnClick = btnAddClick
+  end
 end

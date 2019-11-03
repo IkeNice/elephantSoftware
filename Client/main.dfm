@@ -29,8 +29,6 @@ object fmMain: TfmMain
     TabOrder = 0
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
-    ExplicitLeft = 581
-    ExplicitHeight = 325
     object sboxOrders: TScrollBox
       Left = 1
       Top = 1
@@ -43,11 +41,12 @@ object fmMain: TfmMain
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
       OnMouseWheelDown = sboxOrdersMouseWheelDown
+      OnMouseWheelUp = ScrollBox1MouseWheelUp
       ExplicitLeft = 5
       ExplicitTop = -2
       object Panel1: TPanel
-        Left = 3
-        Top = 16
+        Left = -5
+        Top = 144
         Width = 185
         Height = 41
         Caption = 'Panel1'
@@ -56,8 +55,8 @@ object fmMain: TfmMain
         TabOrder = 0
       end
       object Panel2: TPanel
-        Left = 32
-        Top = 160
+        Left = 3
+        Top = 223
         Width = 57
         Height = 169
         Caption = 'Panel2'
@@ -87,7 +86,6 @@ object fmMain: TfmMain
       TabOrder = 0
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
-      ExplicitWidth = 320
     end
     object sboxStatus: TScrollBox
       Left = 296
@@ -100,6 +98,8 @@ object fmMain: TfmMain
       TabOrder = 1
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
+      ExplicitLeft = 297
+      ExplicitTop = -2
     end
   end
   object pnlHeader: TPanel
@@ -109,7 +109,6 @@ object fmMain: TfmMain
     Height = 41
     Align = alTop
     TabOrder = 2
-    ExplicitWidth = 766
     object lbDrivers: TLabel
       Left = 88
       Top = 14
@@ -160,8 +159,6 @@ object fmMain: TfmMain
     BorderStyle = bsSingle
     ParentBackground = False
     TabOrder = 3
-    ExplicitTop = 381
-    ExplicitWidth = 790
     object btnAddOrder: TButton
       Left = 619
       Top = 11
