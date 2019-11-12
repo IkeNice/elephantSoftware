@@ -55,7 +55,7 @@ procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
-
+//================== ‘Œ–Ã»–Œ¬¿Õ»≈ Œ Õ¿ ==================//
 procedure TfmMain.FormActivate(Sender: TObject);
 begin
   pnlOrders.Width := fmMain.ClientWidth div 3;
@@ -79,8 +79,8 @@ begin
   sboxOrders.Width := pnlOrders.Width;
   sboxOrders.Height := pnlOrders.Height;
 end;
-
-//================== DRAG-AND-DROP ==================//
+//*******************************************************//
+//==================== DRAG-AND-DROP ====================//
 procedure TfmMain.pnlOrdersDragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
 //  (Source as TPanel).Parent:=(Sender as TScrollBar);   // ‰Îˇ TScrollBar

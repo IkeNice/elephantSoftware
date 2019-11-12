@@ -42,11 +42,9 @@ object fmMain: TfmMain
       OnDragOver = pnlOrdersDragOver
       OnMouseWheelDown = sboxOrdersMouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
-      ExplicitLeft = 5
-      ExplicitTop = -2
       object Panel1: TPanel
-        Left = -5
-        Top = 144
+        Left = 3
+        Top = 88
         Width = 185
         Height = 41
         Caption = 'Panel1'
@@ -98,8 +96,6 @@ object fmMain: TfmMain
       TabOrder = 1
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
-      ExplicitLeft = 297
-      ExplicitTop = -2
     end
   end
   object pnlHeader: TPanel
