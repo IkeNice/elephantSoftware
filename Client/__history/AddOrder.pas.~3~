@@ -1,0 +1,48 @@
+unit AddOrder;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfmOrder = class(TForm)
+    lbAddres: TLabel;
+    cbAddres: TComboBoxEx;
+    btnAddAddres: TButton;
+    btnAdd: TButton;
+    procedure btnAddClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmOrder: TfmOrder;
+  x :integer = 0;
+  y :integer = 0;
+
+implementation
+uses main;
+{$R *.dfm}
+
+
+procedure TfmOrder.btnAddClick(Sender: TObject);
+var
+  Button: TButton;
+//  x,y: integer;
+begin
+//  x:=50;
+//  y:=50;
+  Button:=TButton.Create(fmMain.sboxOrders);
+  Button.Parent:=fmMain.sboxOrders;
+//  Button.Left:=x+100;
+  Button.Top:=y+10;
+  Button.Width:=fmMain.sboxOrders.Width;
+  Button.Height:=50;
+  fmOrder.Close;
+end;
+
+end.
