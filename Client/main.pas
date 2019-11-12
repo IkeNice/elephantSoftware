@@ -86,8 +86,9 @@ begin
 //  (Source as TPanel).Parent:=(Sender as TScrollBar);   // для TScrollBar
 //  (Source as TPanel).Parent:=(Sender as TPanel);  // для TPanel
   TPanel(Source).Parent := TScrollBox(Sender);  // для ScrollBox
-  TPanel(Source).Left:=X;
-  TPanel(Source).Top:=Y;
+  Tpanel(Source).Alignment := alTop;
+  //TPanel(Source).Left:=0;
+  //TPanel(Source).Top:=Y;
 end;
 
 procedure TfmMain.pnlOrdersDragOver(Sender, Source: TObject; X, Y: Integer;
