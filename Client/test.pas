@@ -75,7 +75,7 @@ begin
   Panel2.Left := fmTest.Width;
   Panel2.Width := fmTest.Width div 2;
 end;
-
+//==================== DRAG-AND-DROP ====================//
 procedure TfmTest.Panel2DragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
   TPanel(Source).Parent := TScrollBox(Sender);  // ‰Îˇ ScrollBox
@@ -88,7 +88,8 @@ procedure TfmTest.Panel2DragOver(Sender, Source: TObject; X, Y: Integer;
 begin
  Accept:=true;
 end;
-
+//*******************************************************//
+//=======  œ–Œ –”“ ¿ SCROLLBOX — œŒÃŒŸ‹ﬁ  ŒÀ≈—» ¿ =======//
 procedure TfmTest.ScrollBox1MouseWheelDown(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
@@ -102,7 +103,7 @@ begin
     with ScrollBox1.VertScrollBar do
     Position:= Position - 15;
 end;
-
+//*******************************************************//
 procedure TfmTest.ClickPanel(Sender: TObject);
 begin
   fmTest1.ShowModal;

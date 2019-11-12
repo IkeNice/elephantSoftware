@@ -13,8 +13,8 @@ object dmMy: TdmMy
     LoginPrompt = False
     DefaultTransaction = IBTransaction1
     ServerType = 'IBServer'
-    Left = 72
-    Top = 56
+    Left = 120
+    Top = 48
   end
   object IBTransaction1: TIBTransaction
     DefaultDatabase = IBDatabase1

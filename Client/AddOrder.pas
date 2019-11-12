@@ -51,7 +51,7 @@ begin
   end;
 
 end;
-
+//========= днаюбкемхе оюмекх он мюфюрхч ймнойх =========//
 procedure TfmOrder.btnOkClick(Sender: TObject);
 var
   Panel: Tpanel;
@@ -66,7 +66,7 @@ begin
   Panel.DragMode:= dmAutomatic;
   fmOrder.Close;
 end;
-
+//*******************************************************//
 
 procedure TfmOrder.btnShowMenuClick(Sender: TObject);
 begin

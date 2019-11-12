@@ -13,4 +13,17 @@ object fmTest1: TfmTest1
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object dbgInfo: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 447
+    Height = 201
+    Align = alClient
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
 end
