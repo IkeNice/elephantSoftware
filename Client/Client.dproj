@@ -109,11 +109,24 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="test.pas">
-            <Form>Form1</Form>
+            <Form>fmTest</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="addAddres.pas">
-            <Form>fmAddAddres</Form>
+        <DCCReference Include="addAddress.pas">
+            <Form>fmAddAddress</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="dm.pas">
+            <Form>dmMy</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Menu.pas">
+            <Form>fmMenu</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="test1.pas">
+            <Form>fmTest1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

@@ -1,0 +1,65 @@
+unit AddOrder;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfmOrder = class(TForm)
+    lbAddres: TLabel;
+    cbAddres: TComboBoxEx;
+    btnAddAddres: TButton;
+    btnAdd: TButton;
+    eOrderer: TEdit;
+    lbOrderer: TLabel;
+    dbgProducts: TDBGrid;
+    addProduct: TButton;
+    dsProducts: TDataSource;
+    procedure btnAddClick(Sender: TObject);
+    procedure btnAddAddresClick(Sender: TObject);
+    procedure addProductClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmOrder: TfmOrder;
+  orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
+
+implementation
+uses main, addAddres;
+{$R *.dfm}
+
+// создание новой Button на sboxOrders по нажатию кнопки "Готово"
+procedure TfmOrder.btnAddAddresClick(Sender: TObject);
+begin
+  fmAddAddres.ShowModal;
+end;
+
+procedure TfmOrder.btnAddClick(Sender: TObject);
+var
+  Panel: Tpanel;
+begin
+  orderNum:= orderNum+1;
+  Panel:= TPanel.Create(fmMain.sboxOrders);
+  Panel.Parent:= fmMain.sboxOrders;
+  Panel.Align:= alTop;
+  Panel.Width:= fmMain.sboxOrders.Width;
+  Panel.Height:= 50;
+  Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
+  Panel.DragMode:= dmAutomatic;
+  fmOrder.Close;
+end;
+
+procedure TfmOrder.addProductClick(Sender: TObject);
+begin
+  // показать меню выбора продуктов
+  // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
+end;
+
+end.

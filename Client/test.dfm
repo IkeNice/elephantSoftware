@@ -1,9 +1,9 @@
-object Form1: TForm1
+object fmTest: TfmTest
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'fmTest'
   ClientHeight = 426
-  ClientWidth = 745
+  ClientWidth = 726
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,39 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Panel2: TPanel
+    Left = 369
+    Top = 0
+    Width = 357
+    Height = 426
+    Align = alClient
+    Caption = 'Panel2'
+    DockSite = True
+    TabOrder = 1
+    OnDragDrop = Panel2DragDrop
+    OnDragOver = Panel2DragOver
+    ExplicitWidth = 376
+    object ScrollBox1: TScrollBox
+      Left = 1
+      Top = 1
+      Width = 355
+      Height = 424
+      Align = alClient
+      TabOrder = 0
+      OnMouseWheelDown = ScrollBox1MouseWheelDown
+      OnMouseWheelUp = ScrollBox1MouseWheelUp
+      ExplicitLeft = 6
+      ExplicitTop = 0
+      object Panel3: TPanel
+        Left = 23
+        Top = 336
+        Width = 185
+        Height = 41
+        Caption = 'Panel3'
+        TabOrder = 0
+      end
+    end
+  end
   object Panel1: TPanel
     Left = 0
     Top = 0
@@ -24,7 +57,10 @@ object Form1: TForm1
     Caption = 'Panel1'
     DockSite = True
     TabOrder = 0
+    OnDragDrop = Panel2DragDrop
+    OnDragOver = Panel2DragOver
     OnResize = Panel1Resize
+    ExplicitLeft = -5
     object Button1: TButton
       Left = 0
       Top = 27
@@ -41,26 +77,6 @@ object Form1: TForm1
       Height = 21
       TabOrder = 1
       Text = 'Edit2'
-    end
-  end
-  object Panel2: TPanel
-    Left = 369
-    Top = 0
-    Width = 376
-    Height = 426
-    Align = alClient
-    Caption = 'Panel2'
-    DockSite = True
-    TabOrder = 1
-    ExplicitLeft = 225
-    ExplicitWidth = 394
-    object Edit1: TEdit
-      Left = 0
-      Top = 0
-      Width = 121
-      Height = 21
-      TabOrder = 0
-      Text = 'Edit1'
     end
   end
 end

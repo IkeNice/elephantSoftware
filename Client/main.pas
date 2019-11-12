@@ -21,10 +21,9 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     sboxOrders: TScrollBox;
-    Panel1: TPanel;
-    Panel2: TPanel;
     sboxDrivers: TScrollBox;
     sboxStatus: TScrollBox;
+    Button1: TButton;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddOrderClick(Sender: TObject);
@@ -35,6 +34,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
+    procedure Button1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -49,12 +49,19 @@ implementation
 
 {$R *.dfm}
 
-uses AddOrder;
+uses AddOrder, test;
 
 procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
+//=================== ПОТОМ УБРАТЬ!!! ===================//
+procedure TfmMain.Button1Click(Sender: TObject);
+begin
+  fmTest.ShowModal;
+end;
+//*******************************************************//
+
 //================== ФОРМИРОВАНИЕ ОКНА ==================//
 procedure TfmMain.FormActivate(Sender: TObject);
 begin
@@ -80,13 +87,14 @@ begin
   sboxOrders.Height := pnlOrders.Height;
 end;
 //*******************************************************//
+
 //==================== DRAG-AND-DROP ====================//
 procedure TfmMain.pnlOrdersDragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
 //  (Source as TPanel).Parent:=(Sender as TScrollBar);   // для TScrollBar
 //  (Source as TPanel).Parent:=(Sender as TPanel);  // для TPanel
   TPanel(Source).Parent := TScrollBox(Sender);  // для ScrollBox
-  Tpanel(Source).Alignment := alTop;
+  Tpanel(Source).Align := alTop; // позиция вскегда сверху
   //TPanel(Source).Left:=0;
   //TPanel(Source).Top:=Y;
 end;

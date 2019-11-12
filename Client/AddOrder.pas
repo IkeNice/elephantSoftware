@@ -4,16 +4,24 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
 
 type
   TfmOrder = class(TForm)
     lbAddres: TLabel;
     cbAddres: TComboBoxEx;
-    btnAddAddres: TButton;
-    btnAdd: TButton;
-    procedure btnAddClick(Sender: TObject);
-    procedure btnAddAddresClick(Sender: TObject);
+    btnAddAddress: TButton;
+    eOrderer: TEdit;
+    lbOrderer: TLabel;
+    dbgProducts: TDBGrid;
+    btnShowMenu: TButton;
+    dsProducts: TDataSource;
+    btnCancel: TBitBtn;
+    btnOk: TBitBtn;
+    procedure btnOkClick(Sender: TObject);
+    procedure btnAddAddressClick(Sender: TObject);
+    procedure btnShowMenuClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,34 +30,49 @@ type
 
 var
   fmOrder: TfmOrder;
-  y :integer = 0; // координаты верха для создаваемой кнопки
   orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
 
 implementation
-uses main, addAddres;
+uses main, addAddress, Menu;
 {$R *.dfm}
 
 // создание новой Button на sboxOrders по нажатию кнопки "Готово"
-procedure TfmOrder.btnAddAddresClick(Sender: TObject);
+procedure TfmOrder.btnAddAddressClick(Sender: TObject);
 begin
-  fmAddAddres.ShowModal;
+  fmAddAddress.ShowModal;
+  // если нажата Ок, то пытаемся добавить адрес в бд
+  if fmAddAddress.ModalResult = mrOk then begin
+    try
+
+    // иначе выводим ошибку
+    except
+//      MessageDlg('Ошибка записи в БД',[mbOk],0)
+    end;
+  end;
+
 end;
 
-procedure TfmOrder.btnAddClick(Sender: TObject);
+procedure TfmOrder.btnOkClick(Sender: TObject);
 var
-  Button: TButton;
   Panel: Tpanel;
 begin
   orderNum:= orderNum+1;
-  Button:= TButton.Create(fmMain.sboxOrders);
-  Button.Parent:= fmMain.sboxOrders;
-  Button.Top:=y;
-  Button.Width:= fmMain.sboxOrders.Width;
-  Button.Height:= 50;
-  Button.Caption:= 'Заказ № ' + IntToStr(orderNum);
-  Button.DragMode:= dmAutomatic;
+  Panel:= TPanel.Create(fmMain.sboxOrders);
+  Panel.Parent:= fmMain.sboxOrders;
+  Panel.Align:= alTop;
+  Panel.Width:= fmMain.sboxOrders.Width;
+  Panel.Height:= 50;
+  Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
+  Panel.DragMode:= dmAutomatic;
   fmOrder.Close;
-  y:=y+50;
+end;
+
+
+procedure TfmOrder.btnShowMenuClick(Sender: TObject);
+begin
+  // показать меню выбора продуктов
+  // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
+  fmMenu.ShowModal;
 end;
 
 end.
