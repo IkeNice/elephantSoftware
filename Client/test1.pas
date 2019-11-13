@@ -9,6 +9,7 @@ uses
 type
   TfmTest1 = class(TForm)
     dbgInfo: TDBGrid;
+    DataSource1: TDataSource;
   private
     { Private declarations }
   public

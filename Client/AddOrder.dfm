@@ -1,6 +1,6 @@
 object fmOrder: TfmOrder
-  Left = 0
-  Top = 0
+  Left = 500
+  Top = 150
   BorderStyle = bsSingle
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
   ClientHeight = 282
@@ -12,6 +12,7 @@ object fmOrder: TfmOrder
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   PixelsPerInch = 96
   TextHeight = 13
   object lbAddres: TLabel

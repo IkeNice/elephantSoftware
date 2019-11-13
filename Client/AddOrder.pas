@@ -36,7 +36,7 @@ implementation
 uses main, addAddress, Menu;
 {$R *.dfm}
 
-// создание новой Button на sboxOrders по нажатию кнопки "Готово"
+//================== ДОБАВЛЕНИЕ АДРЕСА ==================//
 procedure TfmOrder.btnAddAddressClick(Sender: TObject);
 begin
   fmAddAddress.ShowModal;
@@ -51,6 +51,8 @@ begin
   end;
 
 end;
+//*******************************************************//
+
 //========= ДОБАВЛЕНИЕ ПАНЕЛИ ПО НАЖАТИЮ КНОПКИ =========//
 procedure TfmOrder.btnOkClick(Sender: TObject);
 var
@@ -68,11 +70,12 @@ begin
 end;
 //*******************************************************//
 
+//==================== ПОКАЗАТЬ МЕНЮ ====================//
 procedure TfmOrder.btnShowMenuClick(Sender: TObject);
 begin
   // показать меню выбора продуктов
   // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
   fmMenu.ShowModal;
 end;
-
+//*******************************************************//
 end.

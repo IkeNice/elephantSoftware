@@ -19,11 +19,16 @@ object fmTest1: TfmTest1
     Width = 447
     Height = 201
     Align = alClient
+    DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+  end
+  object DataSource1: TDataSource
+    Left = 256
+    Top = 64
   end
 end

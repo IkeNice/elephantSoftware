@@ -11,7 +11,6 @@ object fmTest: TfmTest
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  WindowState = wsMaximized
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -26,7 +25,6 @@ object fmTest: TfmTest
     TabOrder = 1
     OnDragDrop = Panel2DragDrop
     OnDragOver = Panel2DragOver
-    ExplicitWidth = 376
     object ScrollBox1: TScrollBox
       Left = 1
       Top = 1
@@ -34,10 +32,10 @@ object fmTest: TfmTest
       Height = 424
       Align = alClient
       TabOrder = 0
+      OnDragDrop = Panel2DragDrop
+      OnDragOver = Panel2DragOver
       OnMouseWheelDown = ScrollBox1MouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
-      ExplicitLeft = 6
-      ExplicitTop = 0
       object Panel3: TPanel
         Left = 23
         Top = 336
@@ -60,10 +58,9 @@ object fmTest: TfmTest
     OnDragDrop = Panel2DragDrop
     OnDragOver = Panel2DragOver
     OnResize = Panel1Resize
-    ExplicitLeft = -5
     object Button1: TButton
-      Left = 0
-      Top = 27
+      Left = 127
+      Top = 366
       Width = 75
       Height = 25
       Caption = 'Button1'
@@ -72,7 +69,7 @@ object fmTest: TfmTest
     end
     object Edit2: TEdit
       Left = 0
-      Top = 0
+      Top = 368
       Width = 121
       Height = 21
       TabOrder = 1

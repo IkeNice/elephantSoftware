@@ -24,6 +24,9 @@ type
     sboxDrivers: TScrollBox;
     sboxStatus: TScrollBox;
     Button1: TButton;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    miAddAddress: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddOrderClick(Sender: TObject);
@@ -35,6 +38,7 @@ type
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
     procedure Button1Click(Sender: TObject);
+    procedure miAddAddressClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -49,12 +53,18 @@ implementation
 
 {$R *.dfm}
 
-uses AddOrder, test;
+uses AddOrder, test, addAddress;
 
 procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
+
+procedure TfmMain.miAddAddressClick(Sender: TObject);
+begin
+  fmAddAddress.ShowModal;
+end;
+
 //=================== œŒ“ŒÃ ”¡–¿“‹!!! ===================//
 procedure TfmMain.Button1Click(Sender: TObject);
 begin
@@ -86,6 +96,7 @@ begin
   sboxOrders.Width := pnlOrders.Width;
   sboxOrders.Height := pnlOrders.Height;
 end;
+
 //*******************************************************//
 
 //==================== DRAG-AND-DROP ====================//
