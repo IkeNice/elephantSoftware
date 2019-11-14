@@ -53,7 +53,7 @@ uses test1;
 procedure TfmTest.Button1Click(Sender: TObject);
 var
   Panel: TPanel;
-  Button: TMouseButton;
+  Button: TButton;
 begin
   orderNum:= orderNum+1;
   Panel:= TPanel.Create(fmTest.ScrollBox1);
@@ -63,12 +63,6 @@ begin
   Panel.Height:= 50;
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;
-  if not dragflag then
-    Edit2.Text := 'false';
-    if Button = mbRight then
-      Panel.OnMouseDown := ClickPanel
-  else
-    Edit2.Text := 'true';
 end;
 
 procedure TfmTest.FormCreate(Sender: TObject);

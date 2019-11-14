@@ -158,6 +158,10 @@ object fmMain: TfmMain
       object N5: TMenuItem
         Caption = #1054#1073#1085#1086#1074#1080#1090#1100
       end
+      object miAddOrder: TMenuItem
+        Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
+        OnClick = miAddOrderClick
+      end
       object miAddAddress: TMenuItem
         Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1072#1076#1088#1077#1089
         OnClick = miAddAddressClick
@@ -171,6 +175,10 @@ object fmMain: TfmMain
     end
     object N3: TMenuItem
       Caption = #1054#1090#1084#1077#1085#1077#1085#1085#1099#1077
+    end
+    object miClose: TMenuItem
+      Caption = #1042#1099#1093#1086#1076
+      OnClick = miCloseClick
     end
   end
 end

@@ -27,6 +27,8 @@ type
     N4: TMenuItem;
     N5: TMenuItem;
     miAddAddress: TMenuItem;
+    miAddOrder: TMenuItem;
+    miClose: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddOrderClick(Sender: TObject);
@@ -39,6 +41,8 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure Button1Click(Sender: TObject);
     procedure miAddAddressClick(Sender: TObject);
+    procedure miCloseClick(Sender: TObject);
+    procedure miAddOrderClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -63,6 +67,16 @@ end;
 procedure TfmMain.miAddAddressClick(Sender: TObject);
 begin
   fmAddAddress.ShowModal;
+end;
+
+procedure TfmMain.miAddOrderClick(Sender: TObject);
+begin
+  fmOrder.ShowModal;
+end;
+
+procedure TfmMain.miCloseClick(Sender: TObject);
+begin
+  Close;
 end;
 
 //=================== œŒ“ŒÃ ”¡–¿“‹!!! ===================//

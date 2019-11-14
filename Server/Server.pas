@@ -46,11 +46,11 @@ begin
      Memo.Text:=  ARequestInfo.Params.Text;     //хранит инфо которая пришла от клиентского приложения
      if ARequestInfo.Params.Values['command']='userLogin' then
         begin
-           if UserLogin(ARequestInfo.Params.Values['login'],
-           ARequestInfo.Params.Values['password']) then
-            AResponseInfo.ContentText:= 'result_OK'
-              else
-            AResponseInfo.ContentText:= 'result_Error';
+//           if UserLogin(ARequestInfo.Params.Values['login'],
+//           ARequestInfo.Params.Values['password']) then
+//            AResponseInfo.ContentText:= 'result_OK'
+//              else
+//            AResponseInfo.ContentText:= 'result_Error';
 
         end;
 
