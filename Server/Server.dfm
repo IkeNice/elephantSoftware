@@ -22,14 +22,22 @@ object Form1: TForm1
       'Memo')
     TabOrder = 0
   end
-  object Button1: TButton
+  object StartButton: TButton
     Left = 160
     Top = 200
     Width = 75
     Height = 25
-    Caption = 'Button1'
+    Caption = #1057#1090#1072#1088#1090
     TabOrder = 1
-    OnClick = Button1Click
+    OnClick = StartButtonClick
+  end
+  object StopButton: TButton
+    Left = 304
+    Top = 200
+    Width = 75
+    Height = 25
+    Caption = #1057#1090#1086#1087
+    TabOrder = 2
   end
   object IBDatabase1: TIBDatabase
     ServerType = 'IBServer'

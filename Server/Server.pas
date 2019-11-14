@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdContext, IdCustomHTTPServer,
   Vcl.StdCtrls, IdBaseComponent, IdComponent, IdCustomTCPServer, IdHTTPServer,
-  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP;
+  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP, web.win.sockets;
 
 type
   TForm1 = class(TForm)
@@ -14,10 +14,11 @@ type
     MyServer: TIdHTTPServer;
     Memo: TMemo;
     MyClient: TIdHTTP;
-    Button1: TButton;
+    StartButton: TButton;
+    StopButton: TButton;
     procedure MyServerCommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
-    procedure Button1Click(Sender: TObject);
+    procedure StartButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,7 +32,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.StartButtonClick(Sender: TObject);
 begin
     MyClient.Get('http://127.0.0.1:56001/?command=test&m1=value1&'
     +'param2=value2');

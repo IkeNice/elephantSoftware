@@ -2,7 +2,8 @@ program ProjectServer;
 
 uses
   Vcl.Forms,
-  Server in 'Server.pas' {Form1};
+  Server in 'Server.pas' {Form1},
+  Configure in 'Configure.pas';
 
 {$R *.res}
 
