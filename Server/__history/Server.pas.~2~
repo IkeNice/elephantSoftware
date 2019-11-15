@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdContext, IdCustomHTTPServer,
   Vcl.StdCtrls, IdBaseComponent, IdComponent, IdCustomTCPServer, IdHTTPServer,
-  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP{, web.win.sockets};
+  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP, web.win.sockets;
 
 type
   TForm1 = class(TForm)
@@ -45,15 +45,15 @@ procedure TForm1.MyServerCommandGet(AContext: TIdContext;
 begin
      AResponseInfo.ContentText:= 'unknow_Command';          //результат который сервер должен вернуть
      Memo.Text:=  ARequestInfo.Params.Text;     //хранит инфо которая пришла от клиентского приложения
-//     if ARequestInfo.Params.Values['command']='userLogin' then
-//        begin
-//           if UserLogin(ARequestInfo.Params.Values['login'],
-//           ARequestInfo.Params.Values['password']) then
-//            AResponseInfo.ContentText:= 'result_OK'
-//              else
-//            AResponseInfo.ContentText:= 'result_Error';
-//
-//        end;
+     if ARequestInfo.Params.Values['command']='userLogin' then
+        begin
+           if UserLogin(ARequestInfo.Params.Values['login'],
+           ARequestInfo.Params.Values['password']) then
+            AResponseInfo.ContentText:= 'result_OK'
+              else
+            AResponseInfo.ContentText:= 'result_Error';
+
+        end;
 
 end;
 

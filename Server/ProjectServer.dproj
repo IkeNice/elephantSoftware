@@ -104,6 +104,7 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Configure.pas"/>
         <DCCReference Include="TestServer.pas">
             <Form>fmTestServer</Form>
             <FormType>dfm</FormType>
