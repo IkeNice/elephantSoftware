@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdContext, IdCustomHTTPServer,
   Vcl.StdCtrls, IdBaseComponent, IdComponent, IdCustomTCPServer, IdHTTPServer,
-  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP{, web.win.sockets};
+  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP, web.win.sockets;
 
 type
   TForm1 = class(TForm)
@@ -36,15 +36,15 @@ procedure TForm1.StartButtonClick(Sender: TObject);
 begin
     MyClient.Get('http://127.0.0.1:56001/?command=test&m1=value1&'
     +'param2=value2');
-    //в первых ковычках IP адрес и порт сервера
+    //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IP пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     //
 end;
 
 procedure TForm1.MyServerCommandGet(AContext: TIdContext;
   ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
 begin
-     AResponseInfo.ContentText:= 'unknow_Command';          //результат который сервер должен вернуть
-     Memo.Text:=  ARequestInfo.Params.Text;     //хранит инфо которая пришла от клиентского приложения
+     AResponseInfo.ContentText:= 'unknow_Command';          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     Memo.Text:=  ARequestInfo.Params.Text;     //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //     if ARequestInfo.Params.Values['command']='userLogin' then
 //        begin
 //           if UserLogin(ARequestInfo.Params.Values['login'],

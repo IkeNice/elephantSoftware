@@ -1,18 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.667,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.pas=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.dfm=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.625,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.759,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\TestServer.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.261,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\ProjectServer.dproj=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.759,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\TestServer.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.dfm=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.667,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.172,C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Configure.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.583,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019.11.15 10:25:52.389,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.pas</Transaction>
-    <Transaction>2019.11.15 10:26:22.828,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\PostGetServer.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.dfm</Transaction>
-    <Transaction>2019.11.15 10:26:22.828,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\PostGetServer.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\Unit2.pas</Transaction>
-    <Transaction>2019.11.15 10:40:25.977,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\PostGetServer.pas=</Transaction>
-    <Transaction>2019.11.15 10:52:42.586,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\TestServer.pas</Transaction>
   </Transactions>
 </BorlandProject>
