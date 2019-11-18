@@ -6,16 +6,16 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdContext, IdCustomHTTPServer,
   Vcl.StdCtrls, IdBaseComponent, IdComponent, IdCustomTCPServer, IdHTTPServer,
-  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP, System.Win.ScktComp;// web.win.sockets;
+  Data.DB, IBX.IBDatabase, IdTCPConnection, IdTCPClient, IdHTTP, web.win.sockets;
 
 type
   TForm1 = class(TForm)
+    IBDatabase1: TIBDatabase;
     MyServer: TIdHTTPServer;
     Memo: TMemo;
     MyClient: TIdHTTP;
     StartButton: TButton;
     StopButton: TButton;
-    IBDatabase1: TIBDatabase;
     procedure MyServerCommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
     procedure StartButtonClick(Sender: TObject);
