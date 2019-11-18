@@ -16,9 +16,9 @@ type
     StartButton: TButton;
     StopButton: TButton;
     IBDatabase1: TIBDatabase;
-    procedure MyServerCommandGet(AContext: TIdContext;
-      ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
-    procedure StartButtonClick(Sender: TObject);
+//    procedure MyServerCommandGet(AContext: TIdContext;
+//      ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
+    //procedure StartButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,15 +31,15 @@ var
 implementation
 
 {$R *.dfm}
-
+{
 procedure TForm1.StartButtonClick(Sender: TObject);
 begin
     MyClient.Get('http://127.0.0.1:56001/?command=test&m1=value1&'
     +'param2=value2');
     //в первых ковычках IP адрес и порт сервера
     //
-end;
-
+end;             }
+{
 procedure TForm1.MyServerCommandGet(AContext: TIdContext;
   ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
 begin
@@ -55,6 +55,6 @@ begin
 
         end;
 
-end;
+end;   }
 
 end.

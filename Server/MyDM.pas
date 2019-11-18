@@ -55,7 +55,6 @@ type
           safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
-    procedure DeleteOrderInfo(OrderID, ProductID: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
 
   public
@@ -151,7 +150,7 @@ procedure TMyServer.smDeleteOrder(ID: Integer);
 begin
   if ibspDeleteOrder.Transaction.InTransaction then
     ibspDeleteOrder.Transaction.Commit;
-  ibspDeleteOrder.Params[0] := ID;
+  ibspDeleteOrder.Params[0].Value := ID;
   ibspDeleteOrder.ExecProc;
   if ibspDeleteOrder.Transaction.InTransaction then
     ibspDeleteOrder.Transaction.Commit;

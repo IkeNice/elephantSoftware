@@ -244,7 +244,7 @@ object MyServer: TMyServer
     Top = 408
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INID                           '
         ParamType = ptUnknown
       end>

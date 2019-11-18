@@ -29,7 +29,6 @@ object Form1: TForm1
     Height = 25
     Caption = #1057#1090#1072#1088#1090
     TabOrder = 1
-    OnClick = StartButtonClick
   end
   object StopButton: TButton
     Left = 304
@@ -42,7 +41,6 @@ object Form1: TForm1
   object MyServer: TIdHTTPServer
     Active = True
     Bindings = <>
-    OnCommandGet = MyServerCommandGet
     Left = 168
     Top = 48
   end
