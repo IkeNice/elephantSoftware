@@ -3,7 +3,11 @@ program ProjectServer;
 uses
   Vcl.Forms,
   Server in 'Server.pas' {Form1},
-  Configure in 'Configure.pas';
+  Configure in 'Configure.pas',
+  ProjectServer_TLB in 'ProjectServer_TLB.pas',
+  MyDM in 'MyDM.pas' {MyServer: TRemoteDataModule} {MyServer: CoClass};
+
+{$R *.TLB}
 
 {$R *.res}
 

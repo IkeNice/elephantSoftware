@@ -18,7 +18,7 @@ type
     IBDatabase1: TIBDatabase;
 //    procedure MyServerCommandGet(AContext: TIdContext;
 //      ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
-    //procedure StartButtonClick(Sender: TObject);
+    procedure StartButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,24 +36,24 @@ procedure TForm1.StartButtonClick(Sender: TObject);
 begin
     MyClient.Get('http://127.0.0.1:56001/?command=test&m1=value1&'
     +'param2=value2');
-    //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IP пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //в первых ковычках IP адрес и порт сервера
     //
 end;             }
 {
 procedure TForm1.MyServerCommandGet(AContext: TIdContext;
   ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
 begin
-     AResponseInfo.ContentText:= 'unknow_Command';          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-     Memo.Text:=  ARequestInfo.Params.Text;     //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-//     if ARequestInfo.Params.Values['command']='userLogin' then
-//        begin
-//           if UserLogin(ARequestInfo.Params.Values['login'],
-//           ARequestInfo.Params.Values['password']) then
-//            AResponseInfo.ContentText:= 'result_OK'
-//              else
-//            AResponseInfo.ContentText:= 'result_Error';
-//
-//        end;
+     AResponseInfo.ContentText:= 'unknow_Command';          //результат который сервер должен вернуть
+     Memo.Text:=  ARequestInfo.Params.Text;     //хранит инфо которая пришла от клиентского приложения
+     if ARequestInfo.Params.Values['command']='userLogin' then
+        begin
+           if UserLogin(ARequestInfo.Params.Values['login'],
+           ARequestInfo.Params.Values['password']) then
+            AResponseInfo.ContentText:= 'result_OK'
+              else
+            AResponseInfo.ContentText:= 'result_Error';
+
+        end;
 
 end;   }
 
