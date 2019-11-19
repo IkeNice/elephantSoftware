@@ -13,6 +13,8 @@ type
     cdsOrdersInfo: TClientDataSet;
     cdsAddresses: TClientDataSet;
     cdsMenu: TClientDataSet;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,5 +29,20 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TdmMy.DataModuleCreate(Sender: TObject);
+begin
+  cdsOrders.Open;
+  cdsOrdersInfo.Open;
+  cdsAddresses.Open;
+  cdsMenu.Open;
+  DCOMConnection1.AppServer.smUpdateProduct(0, 'Борщ', 1, 100);
+  //DCOMConnection1.AppServer.smDeleteProduct(0);
+end;
+
+procedure TdmMy.DataModuleDestroy(Sender: TObject);
+begin
+  DCOMConnection1.Close;
+end;
 
 end.

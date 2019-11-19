@@ -36,7 +36,7 @@ begin
   cdsOrdersInfo.Open;
   cdsAddresses.Open;
   cdsMenu.Open;
-  DCOMConnection1.AppServer.smUpdateProduct(0, 'Борщ', 1, 100);
+  //DCOMConnection1.AppServer.smUpdateProduct(0, 'Борщ', 1, 100);
   //DCOMConnection1.AppServer.smDeleteProduct(0);
 end;
 
