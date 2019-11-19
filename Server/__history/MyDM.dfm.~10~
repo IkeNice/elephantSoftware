@@ -3,7 +3,6 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
-    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -98,7 +97,6 @@ object MyServer: TMyServer
     Top = 280
   end
   object IBDatabase1: TIBDatabase
-    Connected = True
     DatabaseName = 
       'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
       'ARE.FDB'
@@ -156,19 +154,19 @@ object MyServer: TMyServer
     Top = 344
     ParamData = <
       item
-        DataType = ftInteger
+        DataType = ftUnknown
         Name = 'INID'
-        ParamType = ptInput
+        ParamType = ptUnknown
       end
       item
-        DataType = ftWideString
+        DataType = ftString
         Name = 'INNAME'
-        ParamType = ptInput
+        ParamType = ptUnknown
       end
       item
         DataType = ftInteger
         Name = 'INCATEGORY'
-        ParamType = ptInput
+        ParamType = ptUnknown
       end
       item
         DataType = ftInteger
@@ -184,8 +182,8 @@ object MyServer: TMyServer
     Top = 344
     ParamData = <
       item
-        DataType = ftInteger
-        Name = 'INID'
+        DataType = ftUnknown
+        Name = 'INID                           '
         ParamType = ptUnknown
       end>
   end

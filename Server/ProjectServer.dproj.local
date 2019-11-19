@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.583,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.911,=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer.ridl</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.951,E:\General\Документы\GitHub\Unity\elephantSoftware\Server\MyDM.pas=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.195,=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.pas=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.667,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.172,C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Configure.pas=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.583,=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.dfm=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.172,C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Configure.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,=C:\Users\Sofia\Desktop\Новая папка\elephantSoftware\Server\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.951,E:\General\Документы\GitHub\Unity\elephantSoftware\Server\Unit1.pas=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\MyDM.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.951,E:\General\Документы\GitHub\Unity\elephantSoftware\Server\Unit1.dfm=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\MyDM.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.917,=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer_TLB.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.951,E:\General\Документы\GitHub\Unity\elephantSoftware\Server\MyDM.dfm=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.962,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Server.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.261,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\ProjectServer.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.911,=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer.ridl</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.261,C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\ProjectServer.dproj=C:\Users\Sofia\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.106,=E:\General\Документы\GitHub\Unity\elephantSoftware\Server\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
