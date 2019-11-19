@@ -97,7 +97,6 @@ object MyServer: TMyServer
     Top = 280
   end
   object IBDatabase1: TIBDatabase
-    Connected = True
     DatabaseName = 
       'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
       'ARE.FDB'
@@ -155,24 +154,24 @@ object MyServer: TMyServer
     Top = 344
     ParamData = <
       item
-        DataType = ftInteger
-        Name = 'INID                           '
-        ParamType = ptInput
+        DataType = ftUnknown
+        Name = 'INID'
+        ParamType = ptUnknown
       end
       item
         DataType = ftString
-        Name = 'INNAME                         '
+        Name = 'INNAME'
         ParamType = ptUnknown
       end
       item
         DataType = ftInteger
-        Name = 'INCATEGORY                     '
+        Name = 'INCATEGORY'
         ParamType = ptUnknown
       end
       item
         DataType = ftInteger
-        Name = 'INPRICE                        '
-        ParamType = ptUnknown
+        Name = 'INPRICE'
+        ParamType = ptInput
       end>
   end
   object ibspDeleteProduct: TIBStoredProc

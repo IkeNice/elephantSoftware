@@ -1,33 +1,47 @@
 object dmMy: TdmMy
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 298
   Width = 413
-  object IBDatabase1: TIBDatabase
-    DatabaseName = 
-      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\Authen' +
-      'tication\ELEPHANTSOFTWARE.FDB'
-    Params.Strings = (
-      'user_name=SYSDBA'
-      'password=masterkey'
-      'lc_ctype=WIN1251')
-    LoginPrompt = False
-    DefaultTransaction = IBTransaction1
-    ServerType = 'IBServer'
-    Left = 120
-    Top = 48
+  object DCOMConnection1: TDCOMConnection
+    Connected = True
+    ServerGUID = '{A7EF958A-E1E9-45EB-9930-E3FBB4AC38DA}'
+    ServerName = 'MyServer'
+    ComputerName = 'localhost'
+    Left = 40
+    Top = 16
   end
-  object IBTransaction1: TIBTransaction
-    DefaultDatabase = IBDatabase1
-    Left = 80
-    Top = 136
+  object cdsOrders: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspOrders'
+    RemoteServer = DCOMConnection1
+    Left = 32
+    Top = 104
   end
-  object IBQuery1: TIBQuery
-    Database = IBDatabase1
-    Transaction = IBTransaction1
-    BufferChunks = 1000
-    CachedUpdates = False
-    ParamCheck = True
-    Left = 176
-    Top = 128
+  object cdsOrdersInfo: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspOrderInfo'
+    RemoteServer = DCOMConnection1
+    Left = 136
+    Top = 104
+  end
+  object cdsAddresses: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAddresses'
+    RemoteServer = DCOMConnection1
+    Left = 240
+    Top = 104
+  end
+  object cdsMenu: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspMenu'
+    RemoteServer = DCOMConnection1
+    Left = 336
+    Top = 104
   end
 end
