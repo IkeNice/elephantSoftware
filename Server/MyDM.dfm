@@ -3,6 +3,7 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -156,23 +157,23 @@ object MyServer: TMyServer
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INID                           '
+        Name = 'INID'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INNAME                         '
-        ParamType = ptUnknown
+        DataType = ftWideString
+        Name = 'INNAME'
+        ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INCATEGORY                     '
-        ParamType = ptUnknown
+        Name = 'INCATEGORY'
+        ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INPRICE                        '
-        ParamType = ptUnknown
+        Name = 'INPRICE'
+        ParamType = ptInput
       end>
   end
   object ibspDeleteProduct: TIBStoredProc
@@ -183,8 +184,8 @@ object MyServer: TMyServer
     Top = 344
     ParamData = <
       item
-        DataType = ftUnknown
-        Name = 'INID                           '
+        DataType = ftInteger
+        Name = 'INID'
         ParamType = ptUnknown
       end>
   end
