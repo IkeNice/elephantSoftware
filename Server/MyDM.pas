@@ -48,7 +48,8 @@ type
     procedure smUpdateProduct(ID: Integer; const Name: WideString; Category, Price: Integer);
           safecall;
     procedure smDeleteProduct(ID: Integer); safecall;
-    procedure smUpdateAddress(ID: Integer; const Street, Building: WideString); safecall;
+    procedure smUpdateAddress(ID: Integer; const Street, Building: WideString; Apartment: Integer);
+          safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; AddressID,
           CourierID, OperatorID: Integer; Date: TDateTime; TotalPrice: Integer);
@@ -104,14 +105,15 @@ begin
     ibspDeleteProduct.Transaction.Commit;
 end;
 
-procedure TMyServer.smUpdateAddress(ID: Integer; const Street, Building: WideString);
-
+procedure TMyServer.smUpdateAddress(ID: Integer; const Street, Building: WideString;
+          Apartment: Integer);
 begin
   if ibspUpdateAddress.Transaction.InTransaction then
     ibspUpdateAddress.Transaction.Commit;
   ibspUpdateAddress.Params[0].Value := ID;
   ibspUpdateAddress.Params[1].Value := Street;
   ibspUpdateAddress.Params[2].Value := Building;
+  ibspUpdateAddress.Params[3].Value := Apartment;
   ibspUpdateAddress.ExecProc;
   if ibspUpdateAddress.Transaction.InTransaction then
     ibspUpdateAddress.Transaction.Commit;

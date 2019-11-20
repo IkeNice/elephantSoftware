@@ -38,6 +38,7 @@ begin
   cdsMenu.Open;
   //DCOMConnection1.AppServer.smUpdateProduct(0, 'Борщ', 1, 100);
   //DCOMConnection1.AppServer.smDeleteProduct(0);
+  //DCOMConnection1.AppServer.smUpdateAddress(0, 'Красная', '3/4', 43);
 end;
 
 procedure TdmMy.DataModuleDestroy(Sender: TObject);

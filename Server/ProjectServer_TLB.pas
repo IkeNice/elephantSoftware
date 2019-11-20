@@ -12,7 +12,7 @@ unit ProjectServer_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 19.11.2019 11:45:08 from Type Library described below.
+// File generated on 20.11.2019 12:07:27 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer (1)
@@ -77,7 +77,8 @@ type
     ['{15A67D19-211E-441D-954E-2753EA2BB780}']
     procedure smUpdateProduct(ID: Integer; const Name: WideString; Category: Integer; Price: Integer); safecall;
     procedure smDeleteProduct(ID: Integer); safecall;
-    procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString); safecall;
+    procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString;
+                              Apartment: Integer); safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
                             AddressID: Integer; CourierID: Integer; OperatorID: Integer;
@@ -96,7 +97,8 @@ type
     ['{15A67D19-211E-441D-954E-2753EA2BB780}']
     procedure smUpdateProduct(ID: Integer; const Name: WideString; Category: Integer; Price: Integer); dispid 301;
     procedure smDeleteProduct(ID: Integer); dispid 302;
-    procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString); dispid 303;
+    procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString;
+                              Apartment: Integer); dispid 303;
     procedure smDeleteAddress(ID: Integer); dispid 304;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
                             AddressID: Integer; CourierID: Integer; OperatorID: Integer;
