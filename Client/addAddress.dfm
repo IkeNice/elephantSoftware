@@ -12,11 +12,12 @@ object fmAddAddress: TfmAddAddress
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
+  object lbStreet: TLabel
     Left = 40
-    Top = 16
+    Top = 23
     Width = 44
     Height = 19
     Caption = #1059#1083#1080#1094#1072
@@ -27,11 +28,11 @@ object fmAddAddress: TfmAddAddress
     Font.Style = []
     ParentFont = False
   end
-  object Label2: TLabel
+  object lbBuilding: TLabel
     Left = 54
-    Top = 49
+    Top = 48
     Width = 30
-    Height = 21
+    Height = 19
     Caption = #1044#1086#1084
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -40,25 +41,41 @@ object fmAddAddress: TfmAddAddress
     Font.Style = []
     ParentFont = False
   end
-  object Edit1: TEdit
+  object lbFlat: TLabel
+    Left = 15
+    Top = 74
+    Width = 69
+    Height = 19
+    Caption = #1050#1074#1072#1088#1090#1080#1088#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object eStreet: TEdit
     Left = 104
     Top = 18
     Width = 209
     Height = 21
     TabStop = False
     TabOrder = 0
+    OnChange = eStreetChange
   end
-  object Edit2: TEdit
+  object eBuilding: TEdit
     Left = 104
     Top = 45
     Width = 209
     Height = 21
     TabStop = False
     TabOrder = 1
+    OnChange = eStreetChange
+    OnKeyPress = eFlatKeyPress
   end
   object btnOk: TBitBtn
     Left = 104
-    Top = 96
+    Top = 116
     Width = 75
     Height = 25
     Caption = #1054#1082
@@ -66,15 +83,25 @@ object fmAddAddress: TfmAddAddress
     NumGlyphs = 2
     TabOrder = 2
     TabStop = False
+    OnClick = btnOkClick
   end
   object btnCancel: TBitBtn
     Left = 238
-    Top = 96
+    Top = 116
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072
     Kind = bkCancel
     NumGlyphs = 2
     TabOrder = 3
+  end
+  object eFlat: TEdit
+    Left = 104
+    Top = 72
+    Width = 209
+    Height = 21
+    TabOrder = 4
+    OnChange = eStreetChange
+    OnKeyPress = eFlatKeyPress
   end
 end

@@ -57,7 +57,7 @@ implementation
 
 {$R *.dfm}
 
-uses AddOrder, test, addAddress;
+uses AddOrder, test, addAddress, dm;
 
 procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
@@ -65,8 +65,25 @@ begin
 end;
 
 procedure TfmMain.miAddAddressClick(Sender: TObject);
+var i: integer;
 begin
-  fmAddAddress.ShowModal;
+//  fmAddAddress.ShowModal;
+  with fmAddAddress do begin  
+    for i := 0 to ComponentCount - 1 do
+      if Components[i] is TEdit then
+        (Components[i] as TEdit).Text := '';
+    ShowModal;
+    if ModalResult = mrOk then begin
+      try
+//        dmMy.DCOMConnection1.MyServer.
+      finally
+        
+      end;
+    end;
+
+      
+      
+  end;
 end;
 
 procedure TfmMain.miAddOrderClick(Sender: TObject);

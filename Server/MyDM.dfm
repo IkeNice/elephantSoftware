@@ -42,20 +42,111 @@ object MyServer: TMyServer
     Transaction = IBTransaction1
     BufferChunks = 1000
     CachedUpdates = False
+    FieldDefs = <
+      item
+        Name = 'PRODUCT_ID'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'NAME'
+        DataType = ftWideString
+        Size = 128
+      end
+      item
+        Name = 'CATEGORY_ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'PRICE'
+        DataType = ftInteger
+      end>
+    IndexDefs = <
+      item
+        Name = 'PK_MENU'
+        Fields = 'PRODUCT_ID'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'FK_MENU_CATEGORIES'
+        Fields = 'CATEGORY_ID'
+      end>
+    StoreDefs = True
     TableName = 'MENU'
     UniDirectional = False
     Left = 240
     Top = 88
+    object ibtMenuPRODUCT_ID: TIntegerField
+      DisplayLabel = #8470
+      FieldName = 'PRODUCT_ID'
+      Required = True
+    end
+    object ibtMenuNAME: TIBStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      FieldName = 'NAME'
+      Size = 128
+    end
+    object ibtMenuCATEGORY_ID: TIntegerField
+      DisplayLabel = #1050#1072#1090#1077#1075#1086#1088#1080#1103
+      FieldName = 'CATEGORY_ID'
+    end
+    object ibtMenuPRICE: TIntegerField
+      DisplayLabel = #1062#1077#1085#1072
+      FieldName = 'PRICE'
+    end
   end
   object ibtAddresses: TIBTable
     Database = IBDatabase1
     Transaction = IBTransaction1
+    Active = True
     BufferChunks = 1000
     CachedUpdates = False
+    FieldDefs = <
+      item
+        Name = 'ADDRESS_ID'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'STREET'
+        DataType = ftWideString
+        Size = 128
+      end
+      item
+        Name = 'BUILDING'
+        DataType = ftWideString
+        Size = 32
+      end
+      item
+        Name = 'APARTMENT'
+        DataType = ftInteger
+      end>
+    IndexDefs = <
+      item
+        Name = 'PK_ADDRESSES'
+        Fields = 'ADDRESS_ID'
+        Options = [ixUnique]
+      end>
+    StoreDefs = True
     TableName = 'ADDRESSES'
     UniDirectional = False
     Left = 344
     Top = 88
+    object ibtAddressesADDRESS_ID: TIntegerField
+      FieldName = 'ADDRESS_ID'
+      Required = True
+    end
+    object ibtAddressesSTREET: TIBStringField
+      FieldName = 'STREET'
+      Size = 128
+    end
+    object ibtAddressesBUILDING: TIBStringField
+      FieldName = 'BUILDING'
+      Size = 32
+    end
+    object ibtAddressesAPARTMENT: TIntegerField
+      FieldName = 'APARTMENT'
+    end
   end
   object ibtSchedules: TIBTable
     Database = IBDatabase1
@@ -100,8 +191,8 @@ object MyServer: TMyServer
   object IBDatabase1: TIBDatabase
     Connected = True
     DatabaseName = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE.FDB'
+      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
+      'NTSOFTWARE (1).FDB'
     Params.Strings = (
       'lc_ctype=WIN1251'
       'user_name=SYSDBA'

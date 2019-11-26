@@ -151,8 +151,8 @@ object fmMain: TfmMain
     end
   end
   object MainMenu1: TMainMenu
-    Left = 88
-    Top = 89
+    Left = 8
+    Top = 9
     object N4: TMenuItem
       Caption = #1044#1072#1085#1085#1099#1077
       object N5: TMenuItem

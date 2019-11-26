@@ -41,6 +41,14 @@ type
     dspEmployees: TDataSetProvider;
     dspStatuses: TDataSetProvider;
     dspQuery: TDataSetProvider;
+    ibtMenuPRODUCT_ID: TIntegerField;
+    ibtMenuNAME: TIBStringField;
+    ibtMenuCATEGORY_ID: TIntegerField;
+    ibtMenuPRICE: TIntegerField;
+    ibtAddressesADDRESS_ID: TIntegerField;
+    ibtAddressesSTREET: TIBStringField;
+    ibtAddressesBUILDING: TIBStringField;
+    ibtAddressesAPARTMENT: TIntegerField;
   private
     { Private declarations }
   protected

@@ -43,6 +43,7 @@ object fmTest: TfmTest
         Height = 41
         Caption = 'Panel3'
         TabOrder = 0
+        OnMouseDown = Panel3MouseDown
       end
     end
   end

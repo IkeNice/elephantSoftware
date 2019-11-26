@@ -33,7 +33,7 @@ var
   orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
 
 implementation
-uses main, addAddress, Menu;
+uses main, addAddress, Menu, dm;
 {$R *.dfm}
 
 //================== ДОБАВЛЕНИЕ АДРЕСА ==================//
@@ -43,11 +43,15 @@ begin
   // если нажата Ок, то пытаемся добавить адрес в бд
   if fmAddAddress.ModalResult = mrOk then begin
     try
-
+        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+        fmAddAddress.eStreet.Text,
+        fmAddAddress.eBuilding.Text,
+        StrToInt(fmAddAddress.eFlat.Text));
     // иначе выводим ошибку
     except
-//      MessageDlg('Ошибка записи в БД',[mbOk],0)
+      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
     end;
+    dmMy.cdsAddresses.Refresh;
   end;
 
 end;

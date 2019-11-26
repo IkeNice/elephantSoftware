@@ -108,7 +108,7 @@ object fmOrder: TfmOrder
     OnClick = btnOkClick
   end
   object dsProducts: TDataSource
-    Left = 232
+    Left = 152
     Top = 104
   end
 end

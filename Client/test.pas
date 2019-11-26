@@ -24,6 +24,8 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
+    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
 //    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
 //      Shift: TShiftState; X, Y: Integer);
   private
@@ -60,7 +62,7 @@ begin
   Panel.Parent:= fmTest.ScrollBox1;
   Panel.Align:= alTop;
   Panel.Width:= fmTest.ScrollBox1.Width;
-  Panel.Height:= 50;
+  Panel.Height:= 100;
   Panel.Caption:= '«‡Í‡Á π ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;
 end;
@@ -85,20 +87,27 @@ begin
   TPanel(Source).Left:=X;
   TPanel(Source).Top:=Y;
   dragflag := false;
+//  TPanel(Sender).Text := TPanel(Source).Text;
+  TPanel(Sender).SetFocus;
+//  TPanel(Sender).SelectAll;
 end;
 
 procedure TfmTest.Panel2DragOver(Sender, Source: TObject; X, Y: Integer;
   State: TDragState; var Accept: Boolean);
 begin
- Accept:=true;
- dragflag:= true;
+   if Source is TPanel then
+    Accept := True
+  else
+    Accept := False;
 end;
 
-//procedure TfmTest.Panel3MouseDown(Sender: TObject; Button: TMouseButton;
-//  Shift: TShiftState; X, Y: Integer);
-//begin
-//  if Button=mbRight then fmTest1.ShowModal;
-//end;
+
+procedure TfmTest.Panel3MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if Button=mbLeft then
+    TPanel(Sender).BeginDrag(True);
+end;
 
 //*******************************************************//
 //=======  œ–Œ –”“ ¿ SCROLLBOX — œŒÃŒŸ‹ﬁ  ŒÀ≈—» ¿ =======//

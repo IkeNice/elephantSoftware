@@ -12,11 +12,11 @@ unit ProjectServer_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 19.11.2019 11:45:08 from Type Library described below.
+// File generated on 19.11.2019 19:38:54 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer (1)
-// LIBID: {08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A}
+// Type Lib: C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\ProjectServer (1)
+// LIBID: {9B1470E4-3EF0-4A46-9340-125033C45785}
 // LCID: 0
 // Helpfile:
 // HelpString:
@@ -49,7 +49,7 @@ const
   ProjectServerMajorVersion = 1;
   ProjectServerMinorVersion = 0;
 
-  LIBID_ProjectServer: TGUID = '{08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A}';
+  LIBID_ProjectServer: TGUID = '{9B1470E4-3EF0-4A46-9340-125033C45785}';
 
   IID_IMyServer: TGUID = '{15A67D19-211E-441D-954E-2753EA2BB780}';
   CLASS_MyServer: TGUID = '{A7EF958A-E1E9-45EB-9930-E3FBB4AC38DA}';
