@@ -11,6 +11,7 @@ object fmTest: TfmTest
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -59,6 +60,7 @@ object fmTest: TfmTest
     OnDragDrop = Panel2DragDrop
     OnDragOver = Panel2DragOver
     OnResize = Panel1Resize
+    ExplicitLeft = -5
     object Button1: TButton
       Left = 127
       Top = 366
@@ -76,5 +78,31 @@ object fmTest: TfmTest
       TabOrder = 1
       Text = 'Edit2'
     end
+    object ComboBox1: TComboBox
+      Left = 24
+      Top = 16
+      Width = 145
+      Height = 21
+      TabOrder = 2
+      Text = 'ComboBox1'
+    end
+    object DBComboBox1: TDBComboBox
+      Left = 24
+      Top = 128
+      Width = 145
+      Height = 21
+      DataSource = DataSource1
+      TabOrder = 3
+    end
+  end
+  object DataSource1: TDataSource
+    Left = 184
+    Top = 16
+  end
+  object ADOQuery1: TADOQuery
+    DataSource = DataSource1
+    Parameters = <>
+    Left = 216
+    Top = 136
   end
 end

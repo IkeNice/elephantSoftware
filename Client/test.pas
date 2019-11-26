@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids,
+  Data.DB, Vcl.DBCtrls, Data.Win.ADODB;
 
 type
   TfmTest = class(TForm)
@@ -14,6 +15,10 @@ type
     Edit2: TEdit;
     Panel3: TPanel;
     ScrollBox1: TScrollBox;
+    ComboBox1: TComboBox;
+    DBComboBox1: TDBComboBox;
+    DataSource1: TDataSource;
+    ADOQuery1: TADOQuery;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -26,6 +31,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormActivate(Sender: TObject);
 //    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
 //      Shift: TShiftState; X, Y: Integer);
   private
@@ -43,7 +49,7 @@ var
 implementation
 {$R *.dfm}
 
-uses test1;
+uses test1, dm;
 
 {====================
 
@@ -65,6 +71,24 @@ begin
   Panel.Height:= 100;
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;
+end;
+
+procedure TfmTest.FormActivate(Sender: TObject);
+var i: integer;
+begin
+//  DataSource1.DataSet:= dmMy.cdsAddresses;
+//  DBComboBox1.Items.Clear;
+//  fmTest.ADOQuery1.Close;
+//  fmTest.ADOQuery1.SQL.Clear;
+//  fmTest.ADOQuery1.SQL.Add('select STREET, BUILDING, APARTAMENT from ADDRESSES');
+//  fmTest.ADOQuery1.Open;
+//  fmTest.ADOQuery1.First;
+//  for  i := 0 to fmTest.ADOQuery1.RecordCount - 1 do begin
+//     DBComboBox1.Items.Add(fmTest.ADOQuery1.FieldByName('STREET').AsString);
+//     fmTest.ADOQuery1.Next;
+//  end;
+//  fmTest.ADOQuery1.Close;
+  ShowMessage(dmMy.cdsAddresses.FieldByName('STREET').AsVariant)
 end;
 
 procedure TfmTest.FormCreate(Sender: TObject);
@@ -135,5 +159,7 @@ begin
     if Button=mbRight then
       fmTest1.ShowModal;
 end;
+
+
 
 end.

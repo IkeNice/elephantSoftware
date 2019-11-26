@@ -5,12 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Data.Win.ADODB;
 
 type
   TfmOrder = class(TForm)
     lbAddres: TLabel;
-    cbAddres: TComboBoxEx;
     btnAddAddress: TButton;
     eOrderer: TEdit;
     lbOrderer: TLabel;
@@ -19,9 +18,11 @@ type
     dsProducts: TDataSource;
     btnCancel: TBitBtn;
     btnOk: TBitBtn;
+    cbAddress: TComboBox;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,7 +54,6 @@ begin
     end;
     dmMy.cdsAddresses.Refresh;
   end;
-
 end;
 //*******************************************************//
 
@@ -81,5 +81,24 @@ begin
   // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
   fmMenu.ShowModal;
 end;
+
+
+procedure TfmOrder.FormCreate(Sender: TObject);
+var i: integer;
+begin
+//   cbAddress.Items.Clear;
+//   fmOrder.ADOQuery1.Close;
+//   fmOrder.ADOQuery1.SQL.Clear;
+//   fmOrder.ADOQuery1.SQL.Add('select STREET, BUILDING, APARTAMENT from ADDRESSES');
+//   fmOrder.ADOQuery1.Open;
+//   fmOrder.ADOQuery1.First;
+//   for  i := 0 to fmOrder.ADOQuery1.RecordCount - 1 do
+//   begin
+//      cbAddress.Items.Add(fmOrder.ADOQuery1.FieldByName('STREET').AsString);
+//      fmOrder.ADOQuery1.Next;
+//   end;
+//   fmOrder.ADOQuery1.Close;
+end;
+
 //*******************************************************//
 end.
