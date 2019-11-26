@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 26.11.2019 9:01:30 (- $Rev: 12980 $, 925575656).
+// File generated on 20.11.2019 12:11:34 (- $Rev: 12980 $, 586244750).
 
 [
   uuid(9B1470E4-3EF0-4A46-9340-125033C45785),
@@ -36,7 +36,7 @@ library ProjectServer
     [id(0x0000012E)]
     HRESULT _stdcall smDeleteProduct([in] long ID);
     [id(0x0000012F)]
-    HRESULT _stdcall smUpdateAddress([in] long ID, [in] BSTR Street, [in] BSTR Building);
+    HRESULT _stdcall smUpdateAddress([in] long ID, [in] BSTR Street, [in] BSTR Building, [in] long Apartment);
     [id(0x00000130)]
     HRESULT _stdcall smDeleteAddress([in] long ID);
     [id(0x00000131)]

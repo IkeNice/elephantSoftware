@@ -56,9 +56,9 @@ begin
   cdsOrdersInfo.Open;
   cdsAddresses.Open;
   cdsMenu.Open;
-//  DCOMConnection1.AppServer.smUpdateProduct(0, 'первая пара ужассс', 1, 100);
-//  DCOMConnection1.AppServer.smDeleteProduct(0);
-//  DCOMConnection1.AppServer.smUpdateAddress(0, 'ставропольская', 55);
+  //DCOMConnection1.AppServer.smUpdateProduct(0, 'пїЅпїЅпїЅпїЅ', 1, 100);
+  //DCOMConnection1.AppServer.smDeleteProduct(0);
+  //DCOMConnection1.AppServer.smUpdateAddress(0, 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '3/4', 43);
 end;
 
 procedure TdmMy.DataModuleDestroy(Sender: TObject);

@@ -212,17 +212,22 @@ object MyServer: TMyServer
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INID                           '
+        Name = 'INID'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INSTREET                       '
+        DataType = ftWideString
+        Name = 'INSTREET'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INBUILDING                     '
+        DataType = ftWideString
+        Name = 'INBUILDING'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INAPARTMENT'
         ParamType = ptInput
       end>
   end
