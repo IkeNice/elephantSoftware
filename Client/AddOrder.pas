@@ -83,9 +83,12 @@ begin
 end;
 
 
+
 procedure TfmOrder.FormCreate(Sender: TObject);
 var i: integer;
 begin
+//============ днаюбкемхе гюмвемхи б COMBOBOX ===========//
+
 //   cbAddress.Items.Clear;
 //   fmOrder.ADOQuery1.Close;
 //   fmOrder.ADOQuery1.SQL.Clear;
@@ -98,6 +101,8 @@ begin
 //      fmOrder.ADOQuery1.Next;
 //   end;
 //   fmOrder.ADOQuery1.Close;
+
+
 end;
 
 //*******************************************************//

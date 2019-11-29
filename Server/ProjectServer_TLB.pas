@@ -1,4 +1,4 @@
-unit ProjectServer_TLB;
+﻿unit ProjectServer_TLB;
 
 // ************************************************************************ //
 // WARNING
@@ -12,10 +12,10 @@ unit ProjectServer_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 20.11.2019 12:07:27 from Type Library described below.
+// File generated on 29.11.2019 16:29:31 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\Users\hieut\OneDrive\���������\GitHub\elephantSoftware\Server\ProjectServer (1)
+// Type Lib: C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\ProjectServer (1)
 // LIBID: {9B1470E4-3EF0-4A46-9340-125033C45785}
 // LCID: 0
 // Helpfile:

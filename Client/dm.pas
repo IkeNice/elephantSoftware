@@ -1,4 +1,4 @@
-unit dm;
+﻿unit dm;
 
 interface
 
@@ -58,7 +58,7 @@ begin
   cdsMenu.Open;
   //DCOMConnection1.AppServer.smUpdateProduct(0, '����', 1, 100);
   //DCOMConnection1.AppServer.smDeleteProduct(0);
-  //DCOMConnection1.AppServer.smUpdateAddress(0, '�������', '3/4', 43);
+//  DCOMConnection1.AppServer.smUpdateAddress(0, 'street', '3/4', 'null');
 end;
 
 procedure TdmMy.DataModuleDestroy(Sender: TObject);

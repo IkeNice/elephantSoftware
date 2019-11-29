@@ -101,7 +101,6 @@ object fmAddAddress: TfmAddAddress
     Width = 209
     Height = 21
     TabOrder = 4
-    OnChange = eStreetChange
     OnKeyPress = eFlatKeyPress
   end
 end

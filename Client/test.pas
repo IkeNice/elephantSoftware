@@ -17,8 +17,6 @@ type
     ScrollBox1: TScrollBox;
     ComboBox1: TComboBox;
     DBComboBox1: TDBComboBox;
-    DataSource1: TDataSource;
-    ADOQuery1: TADOQuery;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -31,9 +29,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure FormActivate(Sender: TObject);
-//    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
-//      Shift: TShiftState; X, Y: Integer);
+
   private
     { Private declarations }
     procedure ClickPanel(Sender: TObject; Button: TMouseButton;
@@ -73,29 +69,25 @@ begin
   Panel.DragMode:= dmAutomatic;
 end;
 
-procedure TfmTest.FormActivate(Sender: TObject);
-var i: integer;
-begin
-//  DataSource1.DataSet:= dmMy.cdsAddresses;
-//  DBComboBox1.Items.Clear;
-//  fmTest.ADOQuery1.Close;
-//  fmTest.ADOQuery1.SQL.Clear;
-//  fmTest.ADOQuery1.SQL.Add('select STREET, BUILDING, APARTAMENT from ADDRESSES');
-//  fmTest.ADOQuery1.Open;
-//  fmTest.ADOQuery1.First;
-//  for  i := 0 to fmTest.ADOQuery1.RecordCount - 1 do begin
-//     DBComboBox1.Items.Add(fmTest.ADOQuery1.FieldByName('STREET').AsString);
-//     fmTest.ADOQuery1.Next;
-//  end;
-//  fmTest.ADOQuery1.Close;
-  ShowMessage(dmMy.cdsAddresses.FieldByName('STREET').AsVariant)
-end;
+
 
 procedure TfmTest.FormCreate(Sender: TObject);
 begin
   Panel2.Width := fmTest.Width div 2;
   Panel1.Width := fmTest.Width div 2;
   Panel3.OnMouseDown := ClickPanel;
+//
+////  ShowMessage(dmMy.cdsAddresses.FieldByName('STREET').AsVariant);
+//
+//  dmMy.DCOMConnection1.AppServer.ibtAddresses.Refresh;
+//  fmTest.ComboBox1.Clear;
+//  dmMy.DCOMConnection1.AppServer.ibtAddresses.First;
+//  While not dmMy.DCOMConnection1.AppServer.ibtAddresses.EOF do begin
+//    fmTest.ComboBox1.Items.Add(
+//      dmMy.DCOMConnection1.AppServer.ibtAddresses.FieldByName('STREET').AsString);
+//    dmMy.DCOMConnection1.AppServer.ibtAddresses.Next;
+//  end;
+
 end;
 
 procedure TfmTest.Panel1Resize(Sender: TObject);

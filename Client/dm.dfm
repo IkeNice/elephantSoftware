@@ -103,13 +103,16 @@ object dmMy: TdmMy
       Required = True
     end
     object cdsMenuNAME: TWideStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
       FieldName = 'NAME'
       Size = 50
     end
     object cdsMenuCATEGORY_ID: TIntegerField
+      DisplayLabel = #1050#1072#1090#1077#1075#1086#1088#1080#1103
       FieldName = 'CATEGORY_ID'
     end
     object cdsMenuPRICE: TIntegerField
+      DisplayLabel = #1062#1077#1085#1072
       FieldName = 'PRICE'
     end
   end

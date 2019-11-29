@@ -10,6 +10,7 @@ type
   TfmTest1 = class(TForm)
     dbgInfo: TDBGrid;
     DataSource1: TDataSource;
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -22,5 +23,12 @@ var
 implementation
 
 {$R *.dfm}
+
+uses dm;
+
+procedure TfmTest1.FormActivate(Sender: TObject);
+begin
+  DataSource1.DataSet := dmMy.cdsAddresses;
+end;
 
 end.

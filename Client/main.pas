@@ -63,29 +63,31 @@ procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
-
+//================== ДОБАВЛЕНИЕ АДРЕСА ==================//
 procedure TfmMain.miAddAddressClick(Sender: TObject);
 var i: integer;
 begin
-//  fmAddAddress.ShowModal;
-  with fmAddAddress do begin  
-    for i := 0 to ComponentCount - 1 do
-      if Components[i] is TEdit then
-        (Components[i] as TEdit).Text := '';
-    ShowModal;
-    if ModalResult = mrOk then begin
-      try
-//        dmMy.DCOMConnection1.MyServer.
-      finally
-        
-      end;
+  fmAddAddress.ShowModal;
+  // если нажата Ок, то пытаемся добавить адрес в бд
+  if fmAddAddress.ModalResult = mrOk then begin
+    try
+        if (fmAddAddress.eFlat.Text <> '') then
+          dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+          fmAddAddress.eStreet.Text,
+          fmAddAddress.eBuilding.Text,
+          StrToInt(fmAddAddress.eFlat.Text))
+        else
+          dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+          fmAddAddress.eStreet.Text,
+          fmAddAddress.eBuilding.Text,0);
+    // иначе выводим ошибку
+    except
+      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
     end;
-
-      
-      
+    dmMy.cdsAddresses.Refresh;
   end;
 end;
-
+//*******************************************************//
 procedure TfmMain.miAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;

@@ -11,6 +11,7 @@ object fmTest1: TfmTest1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object dbgInfo: TDBGrid

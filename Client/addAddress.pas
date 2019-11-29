@@ -64,12 +64,10 @@ end;
 procedure TfmAddAddress.FormActivate(Sender: TObject);
 var i : integer;
 begin
-  for I := 0 to ComponentCount - 1 do
+  for i := 0 to ComponentCount - 1 do
     if Components[i] is TEdit then
       (Components[i] as TEdit).Text :='';
     btnOk.Enabled := False;
-
-
 end;
 
 end.
