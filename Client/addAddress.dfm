@@ -83,7 +83,6 @@ object fmAddAddress: TfmAddAddress
     NumGlyphs = 2
     TabOrder = 2
     TabStop = False
-    OnClick = btnOkClick
   end
   object btnCancel: TBitBtn
     Left = 238

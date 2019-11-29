@@ -44,10 +44,15 @@ begin
   // если нажата Ок, то пытаемся добавить адрес в бд
   if fmAddAddress.ModalResult = mrOk then begin
     try
+      if (fmAddAddress.eFlat.Text <> '') then
         dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
         fmAddAddress.eStreet.Text,
         fmAddAddress.eBuilding.Text,
-        StrToInt(fmAddAddress.eFlat.Text));
+        StrToInt(fmAddAddress.eFlat.Text))
+      else
+        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+        fmAddAddress.eStreet.Text,
+        fmAddAddress.eBuilding.Text,0);
     // иначе выводим ошибку
     except
       MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
