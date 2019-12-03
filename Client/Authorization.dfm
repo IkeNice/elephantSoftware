@@ -110,8 +110,6 @@ object Form2: TForm2
     ConnectionName = 'IBConnection'
     DriverName = 'Firebird'
     Params.Strings = (
-      'User_Name=sysdba'
-      'Password=masterkey'
       'DriverUnit=Data.DBXFirebird'
       
         'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver260.' +
@@ -133,21 +131,24 @@ object Form2: TForm2
       'VendorLib=fbclient.dll'
       'VendorLibWin64=fbclient.dll'
       'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'Role=RoleName'
+      'MaxBlobSize=-1'
+      'TrimChar=False'
+      'DriverName=Interbase'
       
         'Database=D:\'#1057#1080#1089#1090#1077#1084#1085#1072#1103'\Desktop\elephantSoftware\Authentication\EL' +
         'EPHANTSOFTWARE.FDB'
-      'Role=RoleName'
-      'MaxBlobSize=-1'
-      'LocaleCode=0000'
-      'IsolationLevel=ReadCommitted'
-      'SQLDialect=3'
-      'CommitRetain=False'
-      'WaitOnLocks=True'
-      'TrimChar=False'
-      'BlobSize=-1'
-      'ErrorResourceFile='
       'RoleName=RoleName'
       'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
       'Trim Char=False')
     Connected = True
     Left = 336

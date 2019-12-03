@@ -57,7 +57,7 @@ with SQLConnection1 do
     fmMain.ShowModal;
   except
     Screen.Cursor := crDefault;
-    MessageDlg('Неверно указана база данных, '+'логин или пароль',mtError,[mbOk],0);
+    MessageDlg('Неверно указан '+'логин или пароль. Попробуйте ещё раз',mtError,[mbOk],0);
     Edit1.SetFocus;
   end;
 end;
