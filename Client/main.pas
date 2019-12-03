@@ -24,10 +24,6 @@ type
     sboxDrivers: TScrollBox;
     sboxStatus: TScrollBox;
     Button1: TButton;
-    N4: TMenuItem;
-    N5: TMenuItem;
-    miAddAddress: TMenuItem;
-    miAddOrder: TMenuItem;
     miClose: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);

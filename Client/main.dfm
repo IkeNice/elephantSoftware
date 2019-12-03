@@ -153,20 +153,6 @@ object fmMain: TfmMain
   object MainMenu1: TMainMenu
     Left = 8
     Top = 9
-    object N4: TMenuItem
-      Caption = #1044#1072#1085#1085#1099#1077
-      object N5: TMenuItem
-        Caption = #1054#1073#1085#1086#1074#1080#1090#1100
-      end
-      object miAddOrder: TMenuItem
-        Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
-        OnClick = miAddOrderClick
-      end
-      object miAddAddress: TMenuItem
-        Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1072#1076#1088#1077#1089
-        OnClick = miAddAddressClick
-      end
-    end
     object N1: TMenuItem
       Caption = #1048#1089#1087#1086#1083#1085#1103#1077#1084#1099#1077
     end

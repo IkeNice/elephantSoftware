@@ -1,0 +1,163 @@
+    
+	 new HTTP_OrdersList().execute(User.getServerIP(), jsonParam.toString());
+           
+		   
+	class HTTP_OrdersList extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+
+            showProgress("");
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String res;
+            try {
+                String POST_String = params[1];
+                //Thread.sleep(2000);
+                // Defined URL  where to send data
+                URL url = new URL("http://" + params[0] + ":14871");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setUseCaches(false);
+                conn.setConnectTimeout(10000);
+                conn.setReadTimeout(10000);
+                conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setRequestProperty("Accept-Language", "rus");
+                conn.setRequestProperty("Accept-Charset", "utf-8");
+                conn.setRequestProperty("Accept-Encoding", "utf-8");
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                conn.connect();
+
+                OutputStream ops = conn.getOutputStream();
+                OutputStreamWriter os = new OutputStreamWriter(ops, "windows-1251");
+                // Send POST data request
+                os.write(POST_String);
+                //os.flush();
+                os.close();
+
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder buf = new StringBuilder();
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    buf.append(line + " ");
+                }
+                res = buf.toString();
+                if (reader != null) {
+                    reader.close();
+                }
+                // Get the server response
+                if (conn.getResponseCode() != 200)
+                    res = "";
+                //  else res=conn.getResponseMessage();
+
+                conn.disconnect();
+            } catch (Exception ex) {
+                res = "";//ex.toString();
+            } finally {
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            orders.clear();
+            hideProgress();
+            Long count = (long) -1;
+            if ((result.equals(""))) {
+                Toast.makeText(getApplicationContext(), "Нет JSON ответа сервера (102)!", Toast.LENGTH_SHORT).show();
+            }
+           else {
+
+                try {
+                    JSONObject obj = new JSONObject(result);
+                    double d = obj.getDouble("debts");
+                    ((TextView) findViewById(R.id.tv_debts)).setText("ДОЛГ :  " + d);
+                    count = obj.getLong("count");
+                    if (count == 0)
+                        Toast.makeText(getApplicationContext(), "Нет назначенных заказов", Toast.LENGTH_SHORT).show();
+                    else {
+                        JSONArray arr = obj.getJSONArray("items");
+                        for (int i = 0; i < arr.length(); i++) {
+                            JSONObject jo = arr.getJSONObject(i);
+                            String GetDTS;
+                            try {
+                                GetDTS = jo.getString("gettime");
+                            }
+                            catch (Exception ex) {
+                                GetDTS="";
+                            }
+                            String DueDTS;
+                            try {
+                                DueDTS = jo.getString("duetime");
+                            }
+                            catch (Exception ex) {
+                                DueDTS="";
+                            }
+
+
+                            orders.add(new order_short(
+                                    jo.getLong("orderid"),
+                                    jo.getString("from"),
+                                    jo.getString("toadress"),
+                                    jo.getLong("addressid"),
+                                    jo.getLong("state"),
+                                    GetDTS, DueDTS));
+                        }
+                   }
+                } catch (Exception ex) {
+                    Toast.makeText(getApplicationContext(), "Неверный JSON ответ (102)!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (olAdapter != null) {
+                olAdapter.notifyDataSetChanged();
+            }
+            else{
+                olAdapter = new OrdersListAdapter(MainActivity.this, orders);
+                ListView lvMain = (ListView) findViewById(R.id.lvMain);
+                lvMain.setAdapter(olAdapter);
+                lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    // обработка нажатия на панель заказа
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+                    {
+                        // при нвжатии на заказе
+                        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                        intent.putExtra("courier", User);
+                        intent.putExtra("orderid", ((order_short) orders.get(position)).getOrderID());
+                        startActivity(intent);
+                    }
+                });
+
+                lvMain.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    public void onScrollStateChanged(AbsListView view, int scrollState) {
+                        switch (scrollState){
+                            case SCROLL_STATE_IDLE : {
+                                if (PredListItem==0 && ((ListView) view).getFirstVisiblePosition()==PredListItem){
+                                    UpdateOrders();
+                                }
+                                PredListItem=((ListView) view).getFirstVisiblePosition();
+                            }
+                        }
+
+
+                    }
+
+                    public void onScroll(AbsListView view, int firstVisibleItem,
+                                         int visibleItemCount, int totalItemCount) {
+                    }
+                });
+            }
+
+            if (orders.size()==0){
+                Toast.makeText(getApplicationContext(), "НЕТ НАЗНАЧЕННЫХ ЗАКАЗОВ", Toast.LENGTH_LONG).show();
+            }
+        }
+   }
+   
+   
+   

@@ -38,8 +38,8 @@ uses dm;
 procedure TfmAddAddress.eFlatKeyPress(Sender: TObject; var Key: Char);
 const Digit: set of Char=['0'..'9'];
 begin
-  if (not(Key in Digit))
-       then Key:=#0;
+  if (not(Key in Digit) and (Key <> #8)) then
+    Key:=#0;
 end;
 
 procedure TfmAddAddress.eStreetChange(Sender: TObject);

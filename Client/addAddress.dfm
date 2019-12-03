@@ -71,7 +71,6 @@ object fmAddAddress: TfmAddAddress
     TabStop = False
     TabOrder = 1
     OnChange = eStreetChange
-    OnKeyPress = eFlatKeyPress
   end
   object btnOk: TBitBtn
     Left = 104
@@ -100,6 +99,7 @@ object fmAddAddress: TfmAddAddress
     Width = 209
     Height = 21
     TabOrder = 4
+    OnChange = eStreetChange
     OnKeyPress = eFlatKeyPress
   end
 end
