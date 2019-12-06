@@ -3,7 +3,7 @@ object fmMain: TfmMain
   Top = 0
   Align = alClient
   Caption = 'fmMain'
-  ClientHeight = 394
+  ClientHeight = 397
   ClientWidth = 811
   Color = clBtnFace
   DragMode = dmAutomatic
@@ -23,55 +23,60 @@ object fmMain: TfmMain
     Left = 626
     Top = 41
     Width = 185
-    Height = 289
+    Height = 292
     Align = alRight
     DockSite = True
     TabOrder = 0
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
+    ExplicitHeight = 289
     object sboxOrders: TScrollBox
       Left = 1
       Top = 1
       Width = 183
-      Height = 287
+      Height = 290
       HorzScrollBar.Visible = False
       Align = alClient
       DockSite = True
       TabOrder = 0
       OnMouseWheelDown = sboxOrdersMouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
+      ExplicitHeight = 287
     end
   end
   object pnlDrivers: TPanel
     Left = 0
     Top = 41
     Width = 626
-    Height = 289
+    Height = 292
     Align = alClient
     DockSite = True
     TabOrder = 1
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
+    ExplicitHeight = 289
     object sboxDrivers: TScrollBox
       Left = 1
       Top = 1
       Width = 295
-      Height = 287
+      Height = 290
       HorzScrollBar.Visible = False
       Align = alClient
       TabOrder = 0
+      ExplicitHeight = 287
     end
     object sboxStatus: TScrollBox
       Left = 296
       Top = 1
       Width = 329
-      Height = 287
+      Height = 290
       HorzScrollBar.Visible = False
       Align = alRight
       DockSite = True
       TabOrder = 1
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
+      ExplicitHeight = 287
     end
   end
   object pnlHeader: TPanel
@@ -123,7 +128,7 @@ object fmMain: TfmMain
   end
   object pnlControl: TPanel
     Left = 0
-    Top = 330
+    Top = 333
     Width = 811
     Height = 64
     Align = alBottom
@@ -131,6 +136,7 @@ object fmMain: TfmMain
     BorderStyle = bsSingle
     ParentBackground = False
     TabOrder = 3
+    ExplicitTop = 330
     object btnAddOrder: TButton
       Left = 619
       Top = 11

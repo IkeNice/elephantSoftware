@@ -38,29 +38,8 @@ object fmMain: TfmMain
       Align = alClient
       DockSite = True
       TabOrder = 0
-      OnDragDrop = pnlOrdersDragDrop
-      OnDragOver = pnlOrdersDragOver
       OnMouseWheelDown = sboxOrdersMouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
-      object Panel1: TPanel
-        Left = -5
-        Top = 144
-        Width = 185
-        Height = 41
-        Caption = 'Panel1'
-        DragMode = dmAutomatic
-        ParentBackground = False
-        TabOrder = 0
-      end
-      object Panel2: TPanel
-        Left = 3
-        Top = 223
-        Width = 57
-        Height = 169
-        Caption = 'Panel2'
-        DragMode = dmAutomatic
-        TabOrder = 1
-      end
     end
   end
   object pnlDrivers: TPanel
@@ -80,10 +59,7 @@ object fmMain: TfmMain
       Height = 287
       HorzScrollBar.Visible = False
       Align = alClient
-      DockSite = True
       TabOrder = 0
-      OnDragDrop = pnlOrdersDragDrop
-      OnDragOver = pnlOrdersDragOver
     end
     object sboxStatus: TScrollBox
       Left = 296
@@ -164,10 +140,19 @@ object fmMain: TfmMain
       TabOrder = 0
       OnClick = btnAddOrderClick
     end
+    object Button1: TButton
+      Left = 504
+      Top = 4
+      Width = 75
+      Height = 36
+      Caption = 'test'
+      TabOrder = 1
+      OnClick = Button1Click
+    end
   end
   object MainMenu1: TMainMenu
-    Left = 88
-    Top = 89
+    Left = 8
+    Top = 9
     object N1: TMenuItem
       Caption = #1048#1089#1087#1086#1083#1085#1103#1077#1084#1099#1077
     end
@@ -176,6 +161,10 @@ object fmMain: TfmMain
     end
     object N3: TMenuItem
       Caption = #1054#1090#1084#1077#1085#1077#1085#1085#1099#1077
+    end
+    object miClose: TMenuItem
+      Caption = #1042#1099#1093#1086#1076
+      OnClick = miCloseClick
     end
   end
 end
