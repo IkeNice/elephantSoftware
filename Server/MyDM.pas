@@ -65,6 +65,10 @@ type
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
+    procedure smSQLClear; safecall;
+    procedure smSQLAddString(const s: WideString); safecall;
+    procedure smSQLExecute; safecall;
+
 
   public
     { Public declarations }
@@ -187,6 +191,26 @@ begin
   ibspDeleteOrderInfo.ExecProc;
   if ibspDeleteOrderInfo.Transaction.InTransaction then
     ibspDeleteOrderInfo.Transaction.Commit;
+end;
+
+procedure TMyServer.smSQLClear;
+begin
+  if IBQuery1.Transaction.InTransaction then
+    IBQuery1.Transaction.Commit;
+  IBQuery1.Close;
+  IBQuery1.SQL.Clear;
+end;
+
+procedure TMyServer.smSQLAddString(const s: WideString);
+begin
+  IBQuery1.SQL.Add(s);
+end;
+
+procedure TMyServer.smSQLExecute;
+begin
+  IBQuery1.Open;
+  if IBQuery1.Transaction.InTransaction then
+    IBQuery1.Transaction.Commit;
 end;
 
 initialization

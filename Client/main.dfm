@@ -29,7 +29,6 @@ object fmMain: TfmMain
     TabOrder = 0
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
-    ExplicitHeight = 289
     object sboxOrders: TScrollBox
       Left = 1
       Top = 1
@@ -41,7 +40,6 @@ object fmMain: TfmMain
       TabOrder = 0
       OnMouseWheelDown = sboxOrdersMouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
-      ExplicitHeight = 287
     end
   end
   object pnlDrivers: TPanel
@@ -54,7 +52,6 @@ object fmMain: TfmMain
     TabOrder = 1
     OnDragDrop = pnlOrdersDragDrop
     OnDragOver = pnlOrdersDragOver
-    ExplicitHeight = 289
     object sboxDrivers: TScrollBox
       Left = 1
       Top = 1
@@ -63,7 +60,6 @@ object fmMain: TfmMain
       HorzScrollBar.Visible = False
       Align = alClient
       TabOrder = 0
-      ExplicitHeight = 287
     end
     object sboxStatus: TScrollBox
       Left = 296
@@ -76,7 +72,6 @@ object fmMain: TfmMain
       TabOrder = 1
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
-      ExplicitHeight = 287
     end
   end
   object pnlHeader: TPanel
@@ -136,7 +131,6 @@ object fmMain: TfmMain
     BorderStyle = bsSingle
     ParentBackground = False
     TabOrder = 3
-    ExplicitTop = 330
     object btnAddOrder: TButton
       Left = 619
       Top = 11

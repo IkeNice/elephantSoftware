@@ -21,7 +21,7 @@ object fmMenu: TfmMenu
     Left = 0
     Top = 0
     Width = 574
-    Height = 194
+    Height = 176
     Align = alClient
     DataSource = dsMenu
     ReadOnly = True
@@ -34,40 +34,71 @@ object fmMenu: TfmMenu
   end
   object Panel1: TPanel
     Left = 0
-    Top = 194
+    Top = 176
     Width = 574
-    Height = 41
+    Height = 59
     Align = alBottom
     BorderWidth = 15
     BorderStyle = bsSingle
     TabOrder = 1
-    ExplicitTop = 207
-    ExplicitWidth = 456
+    object lbQuantity: TLabel
+      Left = 132
+      Top = 16
+      Width = 86
+      Height = 19
+      Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object btnChoose: TButton
       Left = 480
-      Top = 4
+      Top = 12
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 0
     end
+    object edQuantity: TEdit
+      Left = 240
+      Top = 16
+      Width = 121
+      Height = 21
+      TabOrder = 1
+      OnChange = edQuantityChange
+    end
   end
   object dsMenu: TDataSource
     Left = 200
-    Top = 72
+    Top = 56
   end
   object MainMenu1: TMainMenu
+    object miAllMenu: TMenuItem
+      Caption = #1042#1089#1077' '#1052#1077#1085#1102
+      OnClick = miAllMenuClick
+    end
     object miFirstCourse: TMenuItem
+      Tag = 1
       Caption = #1055#1077#1088#1074#1086#1077'  '#1073#1083#1102#1076#1086
+      OnClick = miAllMenuClick
     end
     object miSecondCourse: TMenuItem
+      Tag = 2
       Caption = #1042#1090#1086#1088#1086#1077' '#1073#1083#1102#1076#1086
+      OnClick = miAllMenuClick
     end
     object miDesserts: TMenuItem
+      Tag = 3
       Caption = #1044#1077#1089#1077#1088#1090#1099
+      OnClick = miAllMenuClick
     end
     object miDrinks: TMenuItem
+      Tag = 4
       Caption = #1053#1072#1087#1080#1090#1082#1080
+      OnClick = miAllMenuClick
     end
   end
 end

@@ -4,7 +4,7 @@ object fmOrder: TfmOrder
   BorderStyle = bsSingle
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
   ClientHeight = 282
-  ClientWidth = 419
+  ClientWidth = 457
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,22 +17,47 @@ object fmOrder: TfmOrder
   PixelsPerInch = 96
   TextHeight = 13
   object lbAddres: TLabel
-    Left = 32
-    Top = 40
-    Width = 31
-    Height = 13
+    Left = 46
+    Top = 67
+    Width = 44
+    Height = 19
     Caption = #1040#1076#1088#1077#1089
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object lbOrderer: TLabel
-    Left = 32
-    Top = 13
-    Width = 47
-    Height = 13
+    Left = 24
+    Top = 8
+    Width = 66
+    Height = 19
     Caption = #1047#1072#1082#1072#1079#1095#1080#1082
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbNumber: TLabel
+    Left = 8
+    Top = 37
+    Width = 123
+    Height = 19
+    Caption = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object btnAddAddress: TButton
-    Left = 305
-    Top = 34
+    Left = 320
+    Top = 61
     Width = 106
     Height = 25
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1072#1076#1088#1077#1089
@@ -41,7 +66,7 @@ object fmOrder: TfmOrder
     OnClick = btnAddAddressClick
   end
   object eOrderer: TEdit
-    Left = 112
+    Left = 137
     Top = 10
     Width = 177
     Height = 21
@@ -49,9 +74,9 @@ object fmOrder: TfmOrder
     TabOrder = 1
   end
   object dbgProducts: TDBGrid
-    Left = 8
-    Top = 65
-    Width = 401
+    Left = 10
+    Top = 92
+    Width = 416
     Height = 120
     TabStop = False
     BiDiMode = bdLeftToRight
@@ -67,8 +92,8 @@ object fmOrder: TfmOrder
     TitleFont.Style = []
   end
   object btnShowMenu: TButton
-    Left = 306
-    Top = 191
+    Left = 321
+    Top = 218
     Width = 105
     Height = 25
     Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1084#1077#1085#1102
@@ -77,8 +102,8 @@ object fmOrder: TfmOrder
     OnClick = btnShowMenuClick
   end
   object btnCancel: TBitBtn
-    Left = 336
-    Top = 238
+    Left = 351
+    Top = 249
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072
@@ -88,7 +113,7 @@ object fmOrder: TfmOrder
   end
   object btnOk: TBitBtn
     Left = 232
-    Top = 238
+    Top = 249
     Width = 75
     Height = 25
     Caption = #1043#1086#1090#1086#1074#1086
@@ -99,15 +124,22 @@ object fmOrder: TfmOrder
     OnClick = btnOkClick
   end
   object cbAddress: TComboBox
-    Left = 112
-    Top = 38
+    Left = 137
+    Top = 62
     Width = 177
     Height = 21
     TabOrder = 6
     Text = #1085#1077' '#1074#1099#1073#1088#1072#1085#1086
   end
+  object Edit1: TEdit
+    Left = 137
+    Top = 37
+    Width = 177
+    Height = 21
+    TabOrder = 7
+  end
   object dsProducts: TDataSource
-    Left = 152
-    Top = 104
+    Left = 96
+    Top = 120
   end
 end

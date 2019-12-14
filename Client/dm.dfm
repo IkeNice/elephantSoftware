@@ -5,7 +5,6 @@ object dmMy: TdmMy
   Height = 298
   Width = 413
   object DCOMConnection1: TDCOMConnection
-    Connected = True
     ServerGUID = '{A7EF958A-E1E9-45EB-9930-E3FBB4AC38DA}'
     ServerName = 'MyServer'
     ComputerName = 'localhost'

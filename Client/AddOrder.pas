@@ -19,6 +19,8 @@ type
     btnCancel: TBitBtn;
     btnOk: TBitBtn;
     cbAddress: TComboBox;
+    lbNumber: TLabel;
+    Edit1: TEdit;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
@@ -85,6 +87,7 @@ begin
   // показать меню выбора продуктов
   // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
   fmMenu.ShowModal;
+  fmMenu.btnChoose.Enabled := false;
 end;
 
 

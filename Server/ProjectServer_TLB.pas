@@ -12,7 +12,7 @@
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 29.11.2019 16:29:31 from Type Library described below.
+// File generated on 14.12.2019 15:49:50 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\ProjectServer (1)
@@ -86,6 +86,9 @@ type
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); safecall;
+    procedure smSQLClear; safecall;
+    procedure smSQLAddString(const s: WideString); safecall;
+    procedure smSQLExecute; safecall;
   end;
 
 // *********************************************************************//
@@ -106,6 +109,9 @@ type
     procedure smDeleteOrder(ID: Integer); dispid 306;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); dispid 307;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); dispid 308;
+    procedure smSQLClear; dispid 309;
+    procedure smSQLAddString(const s: WideString); dispid 310;
+    procedure smSQLExecute; dispid 311;
     function AS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: SYSINT;
                              out ErrorCount: SYSINT; var OwnerData: OleVariant): OleVariant; dispid 20000000;
     function AS_GetRecords(const ProviderName: WideString; Count: SYSINT; out RecsOut: SYSINT;

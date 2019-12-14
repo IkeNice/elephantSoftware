@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 29.11.2019 16:29:32 (- $Rev: 12980 $, 1211657156).
+// File generated on 14.12.2019 17:04:05 (- $Rev: 12980 $, 112178265).
 
 [
   uuid(9B1470E4-3EF0-4A46-9340-125033C45785),
@@ -47,6 +47,12 @@ library ProjectServer
     HRESULT _stdcall smUpdateOrderInfo([in] long OrderID, [in] long ProductID, [in] long Quantity);
     [id(0x00000134)]
     HRESULT _stdcall smDeleteOrderInfo([in] long OrderID, [in] long ProductID);
+    [id(0x00000135)]
+    HRESULT _stdcall smSQLClear(void);
+    [id(0x00000136)]
+    HRESULT _stdcall smSQLAddString([in] BSTR s);
+    [id(0x00000137)]
+    HRESULT _stdcall smSQLExecute(void);
   };
 
   [

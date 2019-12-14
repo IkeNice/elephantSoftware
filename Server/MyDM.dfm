@@ -3,7 +3,6 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
-    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -188,7 +187,6 @@ object MyServer: TMyServer
     Top = 280
   end
   object IBDatabase1: TIBDatabase
-    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'

@@ -36,7 +36,6 @@ type
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
     procedure Button1Click(Sender: TObject);
-    procedure miAddAddressClick(Sender: TObject);
     procedure miCloseClick(Sender: TObject);
     procedure miAddOrderClick(Sender: TObject);
 
@@ -59,31 +58,7 @@ procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
-//================== ДОБАВЛЕНИЕ АДРЕСА ==================//
-procedure TfmMain.miAddAddressClick(Sender: TObject);
-var i: integer;
-begin
-  fmAddAddress.ShowModal;
-  // если нажата Ок, то пытаемся добавить адрес в бд
-  if fmAddAddress.ModalResult = mrOk then begin
-    try
-        if (fmAddAddress.eFlat.Text <> '') then
-          dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-          fmAddAddress.eStreet.Text,
-          fmAddAddress.eBuilding.Text,
-          StrToInt(fmAddAddress.eFlat.Text))
-        else
-          dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-          fmAddAddress.eStreet.Text,
-          fmAddAddress.eBuilding.Text,0);
-    // иначе выводим ошибку
-    except
-      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
-    end;
-    dmMy.cdsAddresses.Refresh;
-  end;
-end;
-//*******************************************************//
+
 procedure TfmMain.miAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
