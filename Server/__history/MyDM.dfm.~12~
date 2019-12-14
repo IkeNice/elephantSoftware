@@ -3,6 +3,7 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -111,53 +112,189 @@ object MyServer: TMyServer
     Left = 40
     Top = 16
   end
-  object IBStoredProc1: TIBStoredProc
+  object ibspUpdateAddress: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_ADDRESS'
     Left = 40
     Top = 344
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INSTREET'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INBUILDING'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INAPARTMENT'
+        ParamType = ptInput
+      end>
   end
-  object IBStoredProc2: TIBStoredProc
+  object ibspDeleteAddress: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
+    StoredProcName = 'DELETE_ADDRESS'
     Left = 144
     Top = 344
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID                           '
+        ParamType = ptInput
+      end>
   end
-  object IBStoredProc3: TIBStoredProc
+  object ibspUpdateProduct: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 240
+    StoredProcName = 'UPDATE_PRODUCT'
+    Left = 248
     Top = 344
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INCATEGORY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INPRICE'
+        ParamType = ptInput
+      end>
   end
-  object IBStoredProc4: TIBStoredProc
+  object ibspDeleteProduct: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 344
+    StoredProcName = 'DELETE_PRODUCT'
+    Left = 352
     Top = 344
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptUnknown
+      end>
   end
-  object IBStoredProc5: TIBStoredProc
+  object ibspUpdateOrder: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 456
+    StoredProcName = 'UPDATE_ORDER'
+    Left = 464
     Top = 344
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INSTATUSID                     '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INADDRESSID                    '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INCOURIERID                    '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INOPERATORID                   '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INDATE                         '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INTIME                         '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INTOTALPRICE                   '
+        ParamType = ptUnknown
+      end>
   end
-  object IBStoredProc6: TIBStoredProc
+  object ibspDeleteOrder: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
+    StoredProcName = 'DELETE_ORDER'
     Left = 40
     Top = 408
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end>
   end
-  object IBStoredProc7: TIBStoredProc
+  object ibspUpdateOrderInfo: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_ORDERINFO'
     Left = 144
     Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPRODUCTID                    '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INQUANTITY                     '
+        ParamType = ptUnknown
+      end>
   end
-  object IBStoredProc8: TIBStoredProc
+  object ibspDeleteOrderInfo: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
-    Left = 240
+    StoredProcName = 'DELETE_ORDERINFO'
+    Left = 248
     Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPRODUCTID                    '
+        ParamType = ptUnknown
+      end>
   end
   object IBTable6: TIBTable
     Database = IBDatabase1

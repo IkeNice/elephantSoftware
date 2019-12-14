@@ -12,7 +12,7 @@ unit ProjectServer_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 14.12.2019 17:21:14 from Type Library described below.
+// File generated on 14.12.2019 17:06:32 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer (1)
@@ -89,9 +89,6 @@ type
     procedure smUpdateOrderStatus(OrderID: Integer; StatusID: Integer); safecall;
     procedure smUpdateDriversInfo(EmpID: Integer; const TokenDev: WideString;
                                   const Keyword: WideString); safecall;
-    procedure smSQLClear; safecall;
-    procedure smSQLAddString(const s: WideString); safecall;
-    procedure smSQLExecute; safecall;
   end;
 
 // *********************************************************************//
@@ -115,9 +112,6 @@ type
     procedure smUpdateOrderStatus(OrderID: Integer; StatusID: Integer); dispid 309;
     procedure smUpdateDriversInfo(EmpID: Integer; const TokenDev: WideString;
                                   const Keyword: WideString); dispid 310;
-    procedure smSQLClear; dispid 311;
-    procedure smSQLAddString(const s: WideString); dispid 312;
-    procedure smSQLExecute; dispid 313;
     function AS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: SYSINT;
                              out ErrorCount: SYSINT; var OwnerData: OleVariant): OleVariant; dispid 20000000;
     function AS_GetRecords(const ProviderName: WideString; Count: SYSINT; out RecsOut: SYSINT;

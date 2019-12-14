@@ -3,6 +3,7 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -13,7 +14,7 @@ object MyServer: TMyServer
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True
-    Left = 456
+    Left = 464
     Top = 152
   end
   object ibtOrders: TIBTable
@@ -78,7 +79,6 @@ object MyServer: TMyServer
   end
   object dspMenu: TDataSetProvider
     DataSet = ibtMenu
-    AfterApplyUpdates = dspMenuAfterApplyUpdates
     Left = 240
     Top = 216
   end
@@ -121,17 +121,22 @@ object MyServer: TMyServer
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INID                           '
+        Name = 'INID'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INSTREET                       '
+        DataType = ftWideString
+        Name = 'INSTREET'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INBUILDING                     '
+        DataType = ftWideString
+        Name = 'INBUILDING'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INAPARTMENT'
         ParamType = ptInput
       end>
   end
@@ -157,23 +162,23 @@ object MyServer: TMyServer
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INID                           '
+        Name = 'INID'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INNAME                         '
-        ParamType = ptUnknown
+        DataType = ftWideString
+        Name = 'INNAME'
+        ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INCATEGORY                     '
-        ParamType = ptUnknown
+        Name = 'INCATEGORY'
+        ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INPRICE                        '
-        ParamType = ptUnknown
+        Name = 'INPRICE'
+        ParamType = ptInput
       end>
   end
   object ibspDeleteProduct: TIBStoredProc
@@ -184,8 +189,8 @@ object MyServer: TMyServer
     Top = 344
     ParamData = <
       item
-        DataType = ftUnknown
-        Name = 'INID                           '
+        DataType = ftInteger
+        Name = 'INID'
         ParamType = ptUnknown
       end>
   end
