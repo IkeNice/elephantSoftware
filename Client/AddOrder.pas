@@ -18,9 +18,10 @@ type
     dsProducts: TDataSource;
     btnCancel: TBitBtn;
     btnOk: TBitBtn;
-    cbAddress: TComboBox;
     lbNumber: TLabel;
     Edit1: TEdit;
+    Label1: TLabel;
+    Panel1: TPanel;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
@@ -36,31 +37,32 @@ var
   orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
 
 implementation
-uses main, addAddress, Menu, dm;
+uses main, addAddress, Menu, dm, ChooseAddress;
 {$R *.dfm}
 
 //================== ДОБАВЛЕНИЕ АДРЕСА ==================//
 procedure TfmOrder.btnAddAddressClick(Sender: TObject);
 begin
-  fmAddAddress.ShowModal;
+//  fmAddAddress.ShowModal;
+  fmChooseAddress.ShowModal;
   // если нажата Ок, то пытаемся добавить адрес в бд
-  if fmAddAddress.ModalResult = mrOk then begin
-    try
-      if (fmAddAddress.eFlat.Text <> '') then
-        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-        fmAddAddress.eStreet.Text,
-        fmAddAddress.eBuilding.Text,
-        StrToInt(fmAddAddress.eFlat.Text))
-      else
-        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-        fmAddAddress.eStreet.Text,
-        fmAddAddress.eBuilding.Text,0);
-    // иначе выводим ошибку
-    except
-      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
-    end;
-    dmMy.cdsAddresses.Refresh;
-  end;
+//  if fmAddAddress.ModalResult = mrOk then begin
+//    try
+//      if (fmAddAddress.eFlat.Text <> '') then
+//        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+//        fmAddAddress.eStreet.Text,
+//        fmAddAddress.eBuilding.Text,
+//        StrToInt(fmAddAddress.eFlat.Text))
+//      else
+//        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+//        fmAddAddress.eStreet.Text,
+//        fmAddAddress.eBuilding.Text,0);
+//    // иначе выводим ошибку
+//    except
+//      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
+//    end;
+//    dmMy.cdsAddresses.Refresh;
+//  end;
 end;
 //*******************************************************//
 

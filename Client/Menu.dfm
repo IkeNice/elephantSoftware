@@ -60,6 +60,7 @@ object fmMenu: TfmMenu
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
+      Enabled = False
       TabOrder = 0
     end
     object edQuantity: TEdit

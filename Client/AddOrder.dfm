@@ -3,8 +3,8 @@ object fmOrder: TfmOrder
   Top = 150
   BorderStyle = bsSingle
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
-  ClientHeight = 282
-  ClientWidth = 457
+  ClientHeight = 365
+  ClientWidth = 445
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object fmOrder: TfmOrder
   TextHeight = 13
   object lbAddres: TLabel
     Left = 46
-    Top = 67
+    Top = 107
     Width = 44
     Height = 19
     Caption = #1040#1076#1088#1077#1089
@@ -30,7 +30,7 @@ object fmOrder: TfmOrder
     ParentFont = False
   end
   object lbOrderer: TLabel
-    Left = 24
+    Left = 32
     Top = 8
     Width = 66
     Height = 19
@@ -44,7 +44,7 @@ object fmOrder: TfmOrder
   end
   object lbNumber: TLabel
     Left = 8
-    Top = 37
+    Top = 68
     Width = 123
     Height = 19
     Caption = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
@@ -55,12 +55,25 @@ object fmOrder: TfmOrder
     Font.Style = []
     ParentFont = False
   end
+  object Label1: TLabel
+    Left = 137
+    Top = 46
+    Width = 177
+    Height = 16
+    Caption = #1055#1088#1080#1084#1077#1088' '#1085#1086#1084#1077#1088#1072': 9181234567'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object btnAddAddress: TButton
     Left = 320
-    Top = 61
+    Top = 107
     Width = 106
     Height = 25
-    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1072#1076#1088#1077#1089
+    Caption = #1042#1099#1073#1088#1072#1090#1100' '#1072#1076#1088#1077#1089
     TabOrder = 0
     TabStop = False
     OnClick = btnAddAddressClick
@@ -74,8 +87,8 @@ object fmOrder: TfmOrder
     TabOrder = 1
   end
   object dbgProducts: TDBGrid
-    Left = 10
-    Top = 92
+    Left = 8
+    Top = 156
     Width = 416
     Height = 120
     TabStop = False
@@ -93,7 +106,7 @@ object fmOrder: TfmOrder
   end
   object btnShowMenu: TButton
     Left = 321
-    Top = 218
+    Top = 290
     Width = 105
     Height = 25
     Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1084#1077#1085#1102
@@ -103,7 +116,7 @@ object fmOrder: TfmOrder
   end
   object btnCancel: TBitBtn
     Left = 351
-    Top = 249
+    Top = 329
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072
@@ -112,8 +125,8 @@ object fmOrder: TfmOrder
     TabOrder = 4
   end
   object btnOk: TBitBtn
-    Left = 232
-    Top = 249
+    Left = 239
+    Top = 329
     Width = 75
     Height = 25
     Caption = #1043#1086#1090#1086#1074#1086
@@ -123,23 +136,24 @@ object fmOrder: TfmOrder
     TabStop = False
     OnClick = btnOkClick
   end
-  object cbAddress: TComboBox
+  object Edit1: TEdit
     Left = 137
-    Top = 62
+    Top = 70
     Width = 177
     Height = 21
     TabOrder = 6
-    Text = #1085#1077' '#1074#1099#1073#1088#1072#1085#1086
   end
-  object Edit1: TEdit
+  object Panel1: TPanel
     Left = 137
-    Top = 37
+    Top = 109
     Width = 177
-    Height = 21
+    Height = 23
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 7
   end
   object dsProducts: TDataSource
-    Left = 96
-    Top = 120
+    Left = 128
+    Top = 200
   end
 end

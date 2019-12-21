@@ -42,12 +42,16 @@ uses dm;
 
 procedure TfmMenu.edQuantityChange(Sender: TObject);
 begin
-  try
-    StrToFloat(edQuantity.Text);
-    btnChoose.Enabled := true;
-  except
-    btnChoose.Enabled := false;
-  end;
+  if edQuantity.Text <> '' then
+  begin
+    try
+      StrToInt(edQuantity.Text);
+      btnChoose.Enabled := (edQuantity.Text <> '');
+    except
+      btnChoose.Enabled := false;
+    end;
+  end
+  else btnChoose.Enabled := false;
 end;
 
 procedure TfmMenu.FormActivate(Sender: TObject);

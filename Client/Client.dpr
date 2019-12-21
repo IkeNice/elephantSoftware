@@ -8,7 +8,8 @@ uses
   addAddress in 'addAddress.pas' {fmAddAddress},
   dm in 'dm.pas' {dmMy: TDataModule},
   Menu in 'Menu.pas' {fmMenu},
-  test1 in 'test1.pas' {fmTest1};
+  test1 in 'test1.pas' {fmTest1},
+  ChooseAddress in 'ChooseAddress.pas' {fmChooseAddress};
 
 {$R *.res}
 
@@ -22,5 +23,6 @@ begin
   Application.CreateForm(TdmMy, dmMy);
   Application.CreateForm(TfmMenu, fmMenu);
   Application.CreateForm(TfmTest1, fmTest1);
+  Application.CreateForm(TfmChooseAddress, fmChooseAddress);
   Application.Run;
 end.
