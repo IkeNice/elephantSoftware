@@ -6,10 +6,10 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 20.11.2019 12:11:34 (- $Rev: 12980 $, 586244750).
+// File generated on 14.12.2019 15:48:36 (- $Rev: 12980 $, 162430796).
 
 [
-  uuid(9B1470E4-3EF0-4A46-9340-125033C45785),
+  uuid(08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A),
   version(1.0)
 
 ]
@@ -40,7 +40,7 @@ library ProjectServer
     [id(0x00000130)]
     HRESULT _stdcall smDeleteAddress([in] long ID);
     [id(0x00000131)]
-    HRESULT _stdcall smUpdateOrder([in] long ID, [in] long StatusID, [in] BSTR Client, [in] long AddressID, [in] long CourierID, [in] long OperatorID, [in] DATE Date, [in] long TotalPrice);
+    HRESULT _stdcall smUpdateOrder([in] long ID, [in] long StatusID, [in] BSTR Client, [in] long AddressID, [in] long CourierID, [in] long OperatorID, [in] DATE Date, [in] BSTR TimeOfDelivery, [in] long TotalPrice);
     [id(0x00000132)]
     HRESULT _stdcall smDeleteOrder([in] long ID);
     [id(0x00000133)]

@@ -1,4 +1,4 @@
-ï»¿unit ProjectServer_TLB;
+unit ProjectServer_TLB;
 
 // ************************************************************************ //
 // WARNING
@@ -12,11 +12,11 @@
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 29.11.2019 16:29:31 from Type Library described below.
+// File generated on 14.12.2019 15:48:34 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\Users\hieut\OneDrive\Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹\GitHub\elephantSoftware\Server\ProjectServer (1)
-// LIBID: {9B1470E4-3EF0-4A46-9340-125033C45785}
+// Type Lib: E:\General\Äîêóìåíòû\GitHub\Unity\elephantSoftware\Server\ProjectServer (1)
+// LIBID: {08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A}
 // LCID: 0
 // Helpfile:
 // HelpString:
@@ -49,7 +49,7 @@ const
   ProjectServerMajorVersion = 1;
   ProjectServerMinorVersion = 0;
 
-  LIBID_ProjectServer: TGUID = '{9B1470E4-3EF0-4A46-9340-125033C45785}';
+  LIBID_ProjectServer: TGUID = '{08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A}';
 
   IID_IMyServer: TGUID = '{15A67D19-211E-441D-954E-2753EA2BB780}';
   CLASS_MyServer: TGUID = '{A7EF958A-E1E9-45EB-9930-E3FBB4AC38DA}';
@@ -82,7 +82,7 @@ type
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
                             AddressID: Integer; CourierID: Integer; OperatorID: Integer;
-                            Date: TDateTime; TotalPrice: Integer); safecall;
+                            Date: TDateTime; const TimeOfDelivery: WideString; TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); safecall;
@@ -102,7 +102,7 @@ type
     procedure smDeleteAddress(ID: Integer); dispid 304;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
                             AddressID: Integer; CourierID: Integer; OperatorID: Integer;
-                            Date: TDateTime; TotalPrice: Integer); dispid 305;
+                            Date: TDateTime; const TimeOfDelivery: WideString; TotalPrice: Integer); dispid 305;
     procedure smDeleteOrder(ID: Integer); dispid 306;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); dispid 307;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); dispid 308;

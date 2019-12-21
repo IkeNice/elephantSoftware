@@ -3,6 +3,7 @@ object MyServer: TMyServer
   Height = 483
   Width = 735
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase1
     Left = 144
     Top = 16
@@ -13,7 +14,7 @@ object MyServer: TMyServer
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True
-    Left = 456
+    Left = 464
     Top = 152
   end
   object ibtOrders: TIBTable
@@ -442,5 +443,23 @@ object MyServer: TMyServer
     DataSet = IBQuery1
     Left = 456
     Top = 280
+  end
+  object ibspUpdateOrderStatus: TIBStoredProc
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_ORDERS_STATUS'
+    Left = 360
+    Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INNEWSTATUS                    '
+        ParamType = ptUnknown
+      end>
   end
 end

@@ -12,7 +12,7 @@
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 14.12.2019 15:49:50 from Type Library described below.
+// File generated on 21.12.2019 15:03:57 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Server\ProjectServer (1)
@@ -81,11 +81,15 @@ type
                               Apartment: Integer); safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
-                            AddressID: Integer; CourierID: Integer; OperatorID: Integer;
-                            Date: TDateTime; TotalPrice: Integer); safecall;
+                            Phone: Integer; AddressID: Integer; CourierID: Integer;
+                            OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+                            TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); safecall;
+    procedure smUpdateOrderStatus(OrderID: Integer; StatusID: Integer); safecall;
+    procedure smUpdateDriversInfo(EmpID: Integer; const TokenDev: WideString;
+                                  const Keyword: WideString); safecall;
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
     procedure smSQLExecute; safecall;
@@ -104,14 +108,18 @@ type
                               Apartment: Integer); dispid 303;
     procedure smDeleteAddress(ID: Integer); dispid 304;
     procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
-                            AddressID: Integer; CourierID: Integer; OperatorID: Integer;
-                            Date: TDateTime; TotalPrice: Integer); dispid 305;
+                            Phone: Integer; AddressID: Integer; CourierID: Integer;
+                            OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+                            TotalPrice: Integer); dispid 305;
     procedure smDeleteOrder(ID: Integer); dispid 306;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); dispid 307;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); dispid 308;
-    procedure smSQLClear; dispid 309;
-    procedure smSQLAddString(const s: WideString); dispid 310;
-    procedure smSQLExecute; dispid 311;
+    procedure smUpdateOrderStatus(OrderID: Integer; StatusID: Integer); dispid 309;
+    procedure smUpdateDriversInfo(EmpID: Integer; const TokenDev: WideString;
+                                  const Keyword: WideString); dispid 310;
+    procedure smSQLClear; dispid 311;
+    procedure smSQLAddString(const s: WideString); dispid 312;
+    procedure smSQLExecute; dispid 313;
     function AS_ApplyUpdates(const ProviderName: WideString; Delta: OleVariant; MaxErrors: SYSINT;
                              out ErrorCount: SYSINT; var OwnerData: OleVariant): OleVariant; dispid 20000000;
     function AS_GetRecords(const ProviderName: WideString; Count: SYSINT; out RecsOut: SYSINT;

@@ -41,6 +41,9 @@ type
     dspEmployees: TDataSetProvider;
     dspStatuses: TDataSetProvider;
     dspQuery: TDataSetProvider;
+    ibspUpdateOrderStatus: TIBStoredProc;
+    ibtClients: TIBTable;
+    dspClients: TDataSetProvider;
   private
     { Private declarations }
   protected
@@ -48,14 +51,16 @@ type
     procedure smUpdateProduct(ID: Integer; const Name: WideString; Category, Price: Integer);
           safecall;
     procedure smDeleteProduct(ID: Integer); safecall;
-    procedure smUpdateAddress(ID: Integer; const Street, Building: WideString); safecall;
+    procedure smUpdateAddress(ID: Integer; const Street, Building: WideString; Apartment: Integer);
+          safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; AddressID,
-          CourierID, OperatorID: Integer; Date: TDateTime; TotalPrice: Integer);
-          safecall;
+          CourierID, OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+          TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
+    procedure smUpdateOrderStatus(OrderID, StatusID: Integer); safecall;
 
   public
     { Public declarations }
@@ -104,14 +109,15 @@ begin
     ibspDeleteProduct.Transaction.Commit;
 end;
 
-procedure TMyServer.smUpdateAddress(ID: Integer; const Street, Building: WideString);
-
+procedure TMyServer.smUpdateAddress(ID: Integer; const Street, Building: WideString;
+          Apartment: Integer);
 begin
   if ibspUpdateAddress.Transaction.InTransaction then
     ibspUpdateAddress.Transaction.Commit;
   ibspUpdateAddress.Params[0].Value := ID;
   ibspUpdateAddress.Params[1].Value := Street;
   ibspUpdateAddress.Params[2].Value := Building;
+  ibspUpdateAddress.Params[3].Value := Apartment;
   ibspUpdateAddress.ExecProc;
   if ibspUpdateAddress.Transaction.InTransaction then
     ibspUpdateAddress.Transaction.Commit;
@@ -129,7 +135,7 @@ end;
 
 procedure TMyServer.smUpdateOrder(ID, StatusID: Integer; const Client: WideString;
           AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
-          TotalPrice: Integer);
+          const TimeOfDelivery: WideString; TotalPrice: Integer);
 begin
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
@@ -140,7 +146,8 @@ begin
   ibspUpdateOrder.Params[4].Value := CourierID;
   ibspUpdateOrder.Params[5].Value := OperatorID;
   ibspUpdateOrder.Params[6].Value := Date;
-  ibspUpdateOrder.Params[7].Value := TotalPrice;
+  ibspUpdateOrder.Params[7].Value := TimeOfDelivery;
+  ibspUpdateOrder.Params[8].Value := TotalPrice;
   ibspUpdateOrder.ExecProc;
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
@@ -177,6 +184,17 @@ begin
   ibspDeleteOrderInfo.ExecProc;
   if ibspDeleteOrderInfo.Transaction.InTransaction then
     ibspDeleteOrderInfo.Transaction.Commit;
+end;
+
+procedure TMyServer.smUpdateOrderStatus(OrderID, StatusID: Integer);
+begin
+  if ibspUpdateOrderStatus.Transaction.InTransaction then
+    ibspUpdateOrderStatus.Transaction.Commit;
+  ibspUpdateOrderStatus.Params[0].Value := OrderID;
+  ibspUpdateOrderStatus.Params[1].Value := StatusID;
+  ibspUpdateOrderStatus.ExecProc;
+  if ibspUpdateOrderStatus.Transaction.InTransaction then
+    ibspUpdateOrderStatus.Transaction.Commit;
 end;
 
 initialization

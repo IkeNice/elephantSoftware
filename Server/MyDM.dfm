@@ -13,7 +13,7 @@ object MyServer: TMyServer
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True
-    Left = 456
+    Left = 448
     Top = 152
   end
   object ibtOrders: TIBTable
@@ -153,7 +153,7 @@ object MyServer: TMyServer
     CachedUpdates = False
     TableName = 'SCHEDULES'
     UniDirectional = False
-    Left = 456
+    Left = 448
     Top = 88
   end
   object dspOrders: TDataSetProvider
@@ -286,7 +286,7 @@ object MyServer: TMyServer
     Database = IBDatabase1
     Transaction = IBTransaction1
     StoredProcName = 'UPDATE_ORDER'
-    Left = 464
+    Left = 488
     Top = 344
     ParamData = <
       item
@@ -442,5 +442,84 @@ object MyServer: TMyServer
     DataSet = IBQuery1
     Left = 456
     Top = 280
+  end
+  object ibspUpdateOrderStatus: TIBStoredProc
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_ORDERS_STATUS'
+    Left = 360
+    Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INNEWSTATUS                    '
+        ParamType = ptUnknown
+      end>
+  end
+  object ibtClients: TIBTable
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    BufferChunks = 1000
+    CachedUpdates = False
+    TableName = 'CLIENTS'
+    UniDirectional = False
+    Left = 536
+    Top = 88
+  end
+  object dspClients: TDataSetProvider
+    DataSet = ibtClients
+    Left = 544
+    Top = 216
+  end
+  object ibspUpdateClient: TIBStoredProc
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_CLIENT'
+    Left = 488
+    Top = 408
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INNAME                         '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPHONE                        '
+        ParamType = ptUnknown
+      end>
+  end
+  object ibspUpdateDriversInfo: TIBStoredProc
+    Database = IBDatabase1
+    Transaction = IBTransaction1
+    StoredProcName = 'UPDATE_DRIVERSINFO'
+    Left = 600
+    Top = 344
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INEMPID                        '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INTOKEN_DEVICE                 '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INKEYWORD                      '
+        ParamType = ptUnknown
+      end>
   end
 end

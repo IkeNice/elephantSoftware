@@ -41,14 +41,7 @@ type
     dspEmployees: TDataSetProvider;
     dspStatuses: TDataSetProvider;
     dspQuery: TDataSetProvider;
-    ibtMenuPRODUCT_ID: TIntegerField;
-    ibtMenuNAME: TIBStringField;
-    ibtMenuCATEGORY_ID: TIntegerField;
-    ibtMenuPRICE: TIntegerField;
-    ibtAddressesADDRESS_ID: TIntegerField;
-    ibtAddressesSTREET: TIBStringField;
-    ibtAddressesBUILDING: TIBStringField;
-    ibtAddressesAPARTMENT: TIntegerField;
+    ibspUpdateOrderStatus: TIBStoredProc;
   private
     { Private declarations }
   protected
@@ -60,11 +53,12 @@ type
           safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
     procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; AddressID,
-          CourierID, OperatorID: Integer; Date: TDateTime; TotalPrice: Integer);
-          safecall;
+          CourierID, OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+          TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
+    procedure smUpdateOrderStatus(OrderID, StatusID: Integer); safecall;
 
   public
     { Public declarations }
@@ -139,7 +133,7 @@ end;
 
 procedure TMyServer.smUpdateOrder(ID, StatusID: Integer; const Client: WideString;
           AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
-          TotalPrice: Integer);
+          const TimeOfDelivery: WideString; TotalPrice: Integer);
 begin
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
@@ -150,7 +144,8 @@ begin
   ibspUpdateOrder.Params[4].Value := CourierID;
   ibspUpdateOrder.Params[5].Value := OperatorID;
   ibspUpdateOrder.Params[6].Value := Date;
-  ibspUpdateOrder.Params[7].Value := TotalPrice;
+  ibspUpdateOrder.Params[7].Value := TimeOfDelivery;
+  ibspUpdateOrder.Params[8].Value := TotalPrice;
   ibspUpdateOrder.ExecProc;
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
@@ -187,6 +182,11 @@ begin
   ibspDeleteOrderInfo.ExecProc;
   if ibspDeleteOrderInfo.Transaction.InTransaction then
     ibspDeleteOrderInfo.Transaction.Commit;
+end;
+
+procedure TMyServer.smUpdateOrderStatus(OrderID, StatusID: Integer);
+begin
+  irf
 end;
 
 initialization
