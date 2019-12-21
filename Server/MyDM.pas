@@ -56,9 +56,9 @@ type
     procedure smUpdateAddress(ID: Integer; const Street, Building: WideString; Apartment: Integer);
           safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
-    procedure smUpdateOrder(ID, StatusID, ClientID, AddressID, CourierID, OperatorID: Integer;
-          Date: TDateTime; const TimeOfDelivery: WideString; TotalPrice: Integer);
-          safecall;
+    procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; Phone, AddressID,
+          CourierID, OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+          TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
@@ -140,21 +140,22 @@ begin
     ibspDeleteAddress.Transaction.Commit;
 end;
 
-procedure TMyServer.smUpdateOrder(ID, StatusID, ClientID, AddressID, CourierID, OperatorID: Integer;
-          Date: TDateTime; const TimeOfDelivery: WideString; TotalPrice: Integer);
-
+procedure TMyServer.smUpdateOrder(ID, StatusID: Integer; const Client: WideString;
+          Phone, AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+          const TimeOfDelivery: WideString; TotalPrice: Integer);
 begin
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
   ibspUpdateOrder.Params[0].Value := ID;
   ibspUpdateOrder.Params[1].Value := StatusID;
-  ibspUpdateOrder.Params[2].Value := ClientID;
-  ibspUpdateOrder.Params[3].Value := AddressID;
-  ibspUpdateOrder.Params[4].Value := CourierID;
-  ibspUpdateOrder.Params[5].Value := OperatorID;
-  ibspUpdateOrder.Params[6].Value := Date;
-  ibspUpdateOrder.Params[7].Value := TimeOfDelivery;
-  ibspUpdateOrder.Params[8].Value := TotalPrice;
+  ibspUpdateOrder.Params[2].Value := Client;
+  ibspUpdateOrder.Params[3].Value := Phone;
+  ibspUpdateOrder.Params[4].Value := AddressID;
+  ibspUpdateOrder.Params[5].Value := CourierID;
+  ibspUpdateOrder.Params[6].Value := OperatorID;
+  ibspUpdateOrder.Params[7].Value := Date;
+  ibspUpdateOrder.Params[8].Value := TimeOfDelivery;
+  ibspUpdateOrder.Params[9].Value := TotalPrice;
   ibspUpdateOrder.ExecProc;
   if ibspUpdateOrder.Transaction.InTransaction then
     ibspUpdateOrder.Transaction.Commit;
