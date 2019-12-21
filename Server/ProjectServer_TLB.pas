@@ -12,7 +12,7 @@ unit ProjectServer_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 14.12.2019 17:21:14 from Type Library described below.
+// File generated on 21.12.2019 15:03:57 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: E:\General\Документы\GitHub\Unity\elephantSoftware\Server\ProjectServer (1)
@@ -80,9 +80,10 @@ type
     procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString;
                               Apartment: Integer); safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
-    procedure smUpdateOrder(ID: Integer; StatusID: Integer; ClientID: Integer; AddressID: Integer;
-                            CourierID: Integer; OperatorID: Integer; Date: TDateTime;
-                            const TimeOfDelivery: WideString; TotalPrice: Integer); safecall;
+    procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
+                            Phone: Integer; AddressID: Integer; CourierID: Integer;
+                            OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+                            TotalPrice: Integer); safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); safecall;
@@ -106,9 +107,10 @@ type
     procedure smUpdateAddress(ID: Integer; const Street: WideString; const Building: WideString;
                               Apartment: Integer); dispid 303;
     procedure smDeleteAddress(ID: Integer); dispid 304;
-    procedure smUpdateOrder(ID: Integer; StatusID: Integer; ClientID: Integer; AddressID: Integer;
-                            CourierID: Integer; OperatorID: Integer; Date: TDateTime;
-                            const TimeOfDelivery: WideString; TotalPrice: Integer); dispid 305;
+    procedure smUpdateOrder(ID: Integer; StatusID: Integer; const Client: WideString;
+                            Phone: Integer; AddressID: Integer; CourierID: Integer;
+                            OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+                            TotalPrice: Integer); dispid 305;
     procedure smDeleteOrder(ID: Integer); dispid 306;
     procedure smUpdateOrderInfo(OrderID: Integer; ProductID: Integer; Quantity: Integer); dispid 307;
     procedure smDeleteOrderInfo(OrderID: Integer; ProductID: Integer); dispid 308;

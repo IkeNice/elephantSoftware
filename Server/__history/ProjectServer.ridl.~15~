@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 18.11.2019 17:04:17 (- $Rev: 12980 $, 431007875).
+// File generated on 14.12.2019 17:21:15 (- $Rev: 12980 $, 167989234).
 
 [
   uuid(08C46DBA-1C7D-4B3F-BAEE-955BFF359F6A),
@@ -36,17 +36,27 @@ library ProjectServer
     [id(0x0000012E)]
     HRESULT _stdcall smDeleteProduct([in] long ID);
     [id(0x0000012F)]
-    HRESULT _stdcall smUpdateAddress([in] long ID, [in] BSTR Street, [in] BSTR Building);
+    HRESULT _stdcall smUpdateAddress([in] long ID, [in] BSTR Street, [in] BSTR Building, [in] long Apartment);
     [id(0x00000130)]
     HRESULT _stdcall smDeleteAddress([in] long ID);
     [id(0x00000131)]
-    HRESULT _stdcall smUpdateOrder([in] long ID, [in] long StatusID, [in] BSTR Client, [in] long AddressID, [in] long CourierID, [in] long OperatorID, [in] DATE Date, [in] long TotalPrice);
+    HRESULT _stdcall smUpdateOrder([in] long ID, [in] long StatusID, [in] long ClientID, [in] long AddressID, [in] long CourierID, [in] long OperatorID, [in] DATE Date, [in] BSTR TimeOfDelivery, [in] long TotalPrice);
     [id(0x00000132)]
     HRESULT _stdcall smDeleteOrder([in] long ID);
     [id(0x00000133)]
     HRESULT _stdcall smUpdateOrderInfo([in] long OrderID, [in] long ProductID, [in] long Quantity);
     [id(0x00000134)]
     HRESULT _stdcall smDeleteOrderInfo([in] long OrderID, [in] long ProductID);
+    [id(0x00000135)]
+    HRESULT _stdcall smUpdateOrderStatus([in] long OrderID, [in] long StatusID);
+    [id(0x00000136)]
+    HRESULT _stdcall smUpdateDriversInfo([in] long EmpID, [in] BSTR TokenDev, [in] BSTR Keyword);
+    [id(0x00000137)]
+    HRESULT _stdcall smSQLClear(void);
+    [id(0x00000138)]
+    HRESULT _stdcall smSQLAddString([in] BSTR s);
+    [id(0x00000139)]
+    HRESULT _stdcall smSQLExecute(void);
   };
 
   [
