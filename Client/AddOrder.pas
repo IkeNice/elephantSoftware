@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.ExtCtrls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Data.Win.ADODB;
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, Data.Win.ADODB, Vcl.WinXPickers, DateUtils;
 
 type
   TfmOrder = class(TForm)
@@ -22,10 +22,14 @@ type
     Edit1: TEdit;
     Label1: TLabel;
     Panel1: TPanel;
+    tmTimeOfDelivery: TTimePicker;
+    cbTimeOfDelivery: TCheckBox;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure cbTimeOfDeliveryClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,26 +47,7 @@ uses main, addAddress, Menu, dm, ChooseAddress;
 //================== ДОБАВЛЕНИЕ АДРЕСА ==================//
 procedure TfmOrder.btnAddAddressClick(Sender: TObject);
 begin
-//  fmAddAddress.ShowModal;
   fmChooseAddress.ShowModal;
-  // если нажата Ок, то пытаемся добавить адрес в бд
-//  if fmAddAddress.ModalResult = mrOk then begin
-//    try
-//      if (fmAddAddress.eFlat.Text <> '') then
-//        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-//        fmAddAddress.eStreet.Text,
-//        fmAddAddress.eBuilding.Text,
-//        StrToInt(fmAddAddress.eFlat.Text))
-//      else
-//        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
-//        fmAddAddress.eStreet.Text,
-//        fmAddAddress.eBuilding.Text,0);
-//    // иначе выводим ошибку
-//    except
-//      MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
-//    end;
-//    dmMy.cdsAddresses.Refresh;
-//  end;
 end;
 //*******************************************************//
 
@@ -94,6 +79,20 @@ end;
 
 
 
+procedure TfmOrder.cbTimeOfDeliveryClick(Sender: TObject);
+begin
+  tmTimeOfDelivery.Enabled := cbTimeOfDelivery.Checked;
+end;
+
+procedure TfmOrder.FormActivate(Sender: TObject);
+begin
+  if cbTimeOfDelivery.Checked = true then begin
+    tmTimeOfDelivery.Time := IncHour(Now);
+    tmTimeOfDelivery.Enabled := false;
+  end
+  else tmTimeOfDelivery.Enabled := true;
+end;
+
 procedure TfmOrder.FormCreate(Sender: TObject);
 var i: integer;
 begin
@@ -111,6 +110,7 @@ begin
 //      fmOrder.ADOQuery1.Next;
 //   end;
 //   fmOrder.ADOQuery1.Close;
+
 
 
 end;

@@ -11,11 +11,12 @@ type
   TfmChooseAddress = class(TForm)
     DBGrid1: TDBGrid;
     Panel1: TPanel;
-    DataSource1: TDataSource;
+    dsChooseAddress: TDataSource;
     btnChooseAddress: TButton;
     MainMenu1: TMainMenu;
     N1: TMenuItem;
     procedure N1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +31,11 @@ implementation
 {$R *.dfm}
 
 uses addAddress, dm;
+
+procedure TfmChooseAddress.FormActivate(Sender: TObject);
+begin
+  dsChooseAddress.DataSet := dmMy.cdsAddresses;
+end;
 
 procedure TfmChooseAddress.N1Click(Sender: TObject);
 begin

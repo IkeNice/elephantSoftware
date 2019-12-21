@@ -12,6 +12,7 @@ object fmChooseAddress: TfmChooseAddress
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object DBGrid1: TDBGrid
@@ -44,7 +45,7 @@ object fmChooseAddress: TfmChooseAddress
     Caption = #1042#1099#1073#1088#1072#1090#1100
     TabOrder = 2
   end
-  object DataSource1: TDataSource
+  object dsChooseAddress: TDataSource
     Left = 144
     Top = 64
   end

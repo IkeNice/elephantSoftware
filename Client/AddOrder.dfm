@@ -13,6 +13,7 @@ object fmOrder: TfmOrder
   Font.Style = []
   OldCreateOrder = False
   Position = poDesigned
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -151,6 +152,33 @@ object fmOrder: TfmOrder
     Color = clWhite
     ParentBackground = False
     TabOrder = 7
+  end
+  object tmTimeOfDelivery: TTimePicker
+    Left = 145
+    Top = 292
+    Width = 90
+    Height = 23
+    BorderStyle = bsNone
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    TabOrder = 8
+    Time = 43820.642991006940000000
+    TimeFormat = 'h:mm'
+  end
+  object cbTimeOfDelivery: TCheckBox
+    Left = 16
+    Top = 292
+    Width = 123
+    Height = 21
+    Alignment = taLeftJustify
+    Caption = #1042#1088#1077#1084#1103' '#1076#1086#1089#1090#1072#1074#1082#1080
+    Checked = True
+    State = cbChecked
+    TabOrder = 9
+    OnClick = cbTimeOfDeliveryClick
   end
   object dsProducts: TDataSource
     Left = 128
