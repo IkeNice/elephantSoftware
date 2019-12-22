@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.232,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddress.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.742,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\ChooseAddress.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.853,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Client.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.232,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddress.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.073,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Menu.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.151,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.232,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddress.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.151,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.dfm=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.199,=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.043,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dmpas.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.472,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dmpas.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.794,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\main.pas=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\main.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.742,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\ChooseAddress.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.976,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.615,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dmpas.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.073,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Menu.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.870,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.539,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.760,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.853,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.514,C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Project1.dproj=C:\Users\hieut\OneDrive\Документы\Embarcadero\Studio\Projects\elephantSoftware\Client.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.073,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Menu.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.472,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dmpas.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.151,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.043,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.960,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.142,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.346,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.635,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test1.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.472,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dmpas.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\dm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test1.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.372,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="addAddress.pas"/>
+    <File Path="addAddress.dfm"/>
+    <File Path="AddOrder.pas"/>
+    <File Path="AddOrder.dfm"/>
+    <File Path="dm.pas"/>
+    <File Path="dm.dfm"/>
+    <File Path="main.pas"/>
+    <File Path="main.dfm"/>
+    <File Path="Menu.pas"/>
+    <File Path="Menu.dfm"/>
+    <File Path="test.pas"/>
+    <File Path="test.dfm"/>
+    <File Path="test1.pas"/>
+    <File Path="test1.dfm"/>
+    <File Path="ChooseAddress.pas"/>
+    <File Path="ChooseAddress.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>
