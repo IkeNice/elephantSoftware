@@ -1,4 +1,4 @@
-unit dm;
+﻿unit dm;
 
 interface
 
@@ -17,6 +17,22 @@ type
     cdsMenuNAME: TWideStringField;
     cdsMenuCATEGORY_ID: TIntegerField;
     cdsMenuPRICE: TIntegerField;
+    cdsAddressesADDRESS_ID: TIntegerField;
+    cdsAddressesSTREET: TWideStringField;
+    cdsAddressesBUILDING: TWideStringField;
+    cdsAddressesAPARTMENT: TIntegerField;
+    cdsOrdersORDER_ID: TIntegerField;
+    cdsOrdersSTATUS_ID: TIntegerField;
+    cdsOrdersCLIENT: TWideStringField;
+    cdsOrdersADDRESS_ID: TIntegerField;
+    cdsOrdersCOURIER_ID: TIntegerField;
+    cdsOrdersOPERATOR_ID: TIntegerField;
+    cdsOrdersDATE: TDateField;
+    cdsOrdersTOTAL_PRICE: TIntegerField;
+    cdsOrdersInfoORDER_ID: TIntegerField;
+    cdsOrdersInfoPRODUCT_ID: TIntegerField;
+    cdsOrdersInfoQUANTITY: TIntegerField;
+    cdsOrdersInfoPRICE: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -42,7 +58,7 @@ begin
   cdsMenu.Open;
   //DCOMConnection1.AppServer.smUpdateProduct(0, '����', 1, 100);
   //DCOMConnection1.AppServer.smDeleteProduct(0);
-  DCOMConnection1.AppServer.smUpdateAddress(0, '�������', '3/4', 43);
+//  DCOMConnection1.AppServer.smUpdateAddress(0, 'street', '3/4', 'null');
 end;
 
 procedure TdmMy.DataModuleDestroy(Sender: TObject);

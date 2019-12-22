@@ -1,5 +1,7 @@
 object dmMy: TdmMy
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 430
   Width = 775
   object IBDatabase1: TIBDatabase
@@ -195,7 +197,7 @@ object dmMy: TdmMy
         ParamType = ptUnknown
       end>
   end
-  object ibspUpdateOrder: TIBStoredProc
+  object ibspUpdateOrders: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
     StoredProcName = 'UPDATE_ORDER'
@@ -253,7 +255,7 @@ object dmMy: TdmMy
         ParamType = ptUnknown
       end>
   end
-  object ibspDeleteOrder: TIBStoredProc
+  object ibspDeleteOrders: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
     StoredProcName = 'DELETE_ORDER'
@@ -266,7 +268,7 @@ object dmMy: TdmMy
         ParamType = ptUnknown
       end>
   end
-  object ibspUpdateOrderInfo: TIBStoredProc
+  object ibspUpdateOrdersInfo: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
     StoredProcName = 'UPDATE_ORDERINFO'
@@ -348,7 +350,7 @@ object dmMy: TdmMy
         ParamType = ptUnknown
       end>
   end
-  object ibspUpdateOrderStatus: TIBStoredProc
+  object ibspUpdateOrersStatus: TIBStoredProc
     Database = IBDatabase1
     Transaction = IBTransaction1
     StoredProcName = 'UPDATE_ORDERS_STATUS'

@@ -89,6 +89,12 @@ begin
   lbStatus.Left := (pnlHeader.Width div 3) + ((pnlHeader.Width div 3) div 2) - lbStatus.Width;
   lbOrders.Left := (pnlHeader.Width div 3) + 3*((pnlHeader.Width div 3) div 2) - lbOrders.Width;
   btnAddOrder.Left :=  (pnlControl.Width div 3) + 3*((pnlControl.Width div 3) div 2) - btnAddOrder.Width div 2;
+  //testing DB-connection
+  {
+  dmMy.IBDatabase1.Connected = true;
+  dmMy.smUpdateProduct(0, 'testSoup', 1, 100);
+  }
+  //end of test
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);

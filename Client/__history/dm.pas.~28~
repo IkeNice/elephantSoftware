@@ -59,7 +59,7 @@ type
           safecall;
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
-    procedure smSQLExecute; safecall;
+    procedure smSQLExecute; safecall;s
   end;
 
 var

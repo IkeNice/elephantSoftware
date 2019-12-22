@@ -56,7 +56,7 @@ end;
 
 procedure TfmMenu.FormActivate(Sender: TObject);
 begin
-  //dsMenu.DataSet := dmMy.cdsMenu;
+  dsMenu.DataSet := dmMy.cdsMenu;
   fmMenu.Width := 580;
   fmMenu.Top := 200;
   fmMenu.Left := 400;

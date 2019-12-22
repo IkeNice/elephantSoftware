@@ -41,7 +41,7 @@ type
     ibspUpdateDriversInfo: TIBStoredProc;
   private
     { Private declarations }
-  public
+  protected
     procedure smUpdateProduct(ID: Integer; const Name: WideString; Category, Price: Integer);
           safecall;
     procedure smDeleteProduct(ID: Integer); safecall;
@@ -60,6 +60,8 @@ type
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
     procedure smSQLExecute; safecall;
+  public
+    { Public declarations }
   end;
 
 var
