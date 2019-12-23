@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls, AddOrder;
 
 type
   TfmMenu = class(TForm)
@@ -25,6 +25,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edQuantityChange(Sender: TObject);
     procedure miAllMenuClick(Sender: TObject);
+    procedure btnChooseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +40,17 @@ implementation
 {$R *.dfm}
 
 uses dm;
+
+procedure TfmMenu.btnChooseClick(Sender: TObject);
+var
+  ProductID: integer;
+  Accept:    Boolean;
+begin
+  ProductID:= dbgMenu.DataSource.DataSet.Fields[0].Value;
+  dmMy.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
+  fmOrder.btnRefreshClick(Self);
+  Close;
+end;
 
 procedure TfmMenu.edQuantityChange(Sender: TObject);
 begin

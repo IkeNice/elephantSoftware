@@ -3,9 +3,10 @@ object dmMy: TdmMy
   Height = 356
   Width = 700
   object IBDatabase1: TIBDatabase
+    Connected = True
     DatabaseName = 
-      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
-      'NTSOFTWARE.FDB'
+      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
+      'ARE.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey'
@@ -184,22 +185,22 @@ object dmMy: TdmMy
       item
         DataType = ftInteger
         Name = 'INID                           '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftWideString
         Name = 'INSTREET                       '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftWideString
         Name = 'INBUILDING                     '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INAPARTMENT                    '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
   end
   object ibspDeleteAddress: TIBStoredProc
@@ -238,7 +239,7 @@ object dmMy: TdmMy
         ParamType = ptInput
       end
       item
-        DataType = ftInteger
+        DataType = ftWideString
         Name = 'INPHONE'
         ParamType = ptInput
       end
@@ -286,9 +287,9 @@ object dmMy: TdmMy
     Top = 224
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INID                           '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
   end
   object ibspUpdateOrderInfo: TIBStoredProc
@@ -299,19 +300,19 @@ object dmMy: TdmMy
     Top = 224
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INORDERID                      '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INPRODUCTID                    '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INQUANTITY                     '
-        ParamType = ptUnknown
+        ParamType = ptInput
       end>
   end
   object ibspUpdateProduct: TIBStoredProc

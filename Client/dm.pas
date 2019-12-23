@@ -127,7 +127,8 @@ implementation
             const TimeOfDelivery: WideString; TotalPrice: Integer): integer;
   var res:integer;
   begin
-    res := 1;
+    res := dmMy.ibspDeleteAddress.ParamCount;
+
     if ibspUpdateOrder.Transaction.InTransaction then
        ibspUpdateOrder.Transaction.Commit;
     ibspUpdateOrder.Params[0].Value := ID;

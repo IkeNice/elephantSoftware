@@ -4,21 +4,22 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, dm;
 
 type
   TfmAddAddress = class(TForm)
     lbStreet: TLabel;
     lbBuilding: TLabel;
-    eStreet: TEdit;
-    eBuilding: TEdit;
+    edStreet: TEdit;
+    edBuilding: TEdit;
     btnOk: TBitBtn;
     btnCancel: TBitBtn;
-    eFlat: TEdit;
+    edFlat: TEdit;
     lbFlat: TLabel;
     procedure FormActivate(Sender: TObject);
-    procedure eStreetChange(Sender: TObject);
-    procedure eFlatKeyPress(Sender: TObject; var Key: Char);
+    procedure edStreetChange(Sender: TObject);
+    procedure edFlatKeyPress(Sender: TObject; var Key: Char);
+    procedure btnOkClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,17 +33,22 @@ implementation
 
 {$R *.dfm}
 
-uses dm;
+uses ChooseAddress;
 
 
-procedure TfmAddAddress.eFlatKeyPress(Sender: TObject; var Key: Char);
+procedure TfmAddAddress.btnOkClick(Sender: TObject);
+begin
+  dmMy.smUpdateAddress(0, edStreet.Text, edBuilding.Text, StrToInt(edFlat.Text));
+end;
+
+procedure TfmAddAddress.edFlatKeyPress(Sender: TObject; var Key: Char);
 const Digit: set of Char=['0'..'9'];
 begin
   if (not(Key in Digit) and (Key <> #8)) then
     Key:=#0;
 end;
 
-procedure TfmAddAddress.eStreetChange(Sender: TObject);
+procedure TfmAddAddress.edStreetChange(Sender: TObject);
 var i: integer;
 begin
   btnOk.Enabled := True;

@@ -30,6 +30,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormActivate(Sender: TObject);
 
 
   private
@@ -73,6 +74,12 @@ end;
 
 
 
+procedure TfmTest.FormActivate(Sender: TObject);
+var tmp : integer;
+begin
+  Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
+end;
+
 procedure TfmTest.FormCreate(Sender: TObject);
 begin
   Panel2.Width := fmTest.Width div 2;
@@ -90,7 +97,7 @@ begin
 //    dmMy.DCOMConnection1.AppServer.ibtAddresses.Next;
 //  end;
 //    dmMy.smDeleteOrder(4);
-   // Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
+    //Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
 end;
 
 

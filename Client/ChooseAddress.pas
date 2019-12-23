@@ -5,18 +5,26 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.Menus, Vcl.StdCtrls;
+  Vcl.DBGrids, Vcl.Menus, Vcl.StdCtrls, addOrder;
 
 type
   TfmChooseAddress = class(TForm)
-    DBGrid1: TDBGrid;
+    dbgAddresses: TDBGrid;
     Panel1: TPanel;
     dsChooseAddress: TDataSource;
     btnChooseAddress: TButton;
     MainMenu1: TMainMenu;
     N1: TMenuItem;
+    pnlSearch: TPanel;
+    edSearch: TEdit;
+    Label1: TLabel;
+    btnAddAddress: TButton;
     procedure N1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure btnChooseAddressClick(Sender: TObject);
+    procedure edSearchChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAddAddressClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,9 +40,70 @@ implementation
 
 uses addAddress, dm;
 
+procedure TfmChooseAddress.btnAddAddressClick(Sender: TObject);
+begin
+  fmAddAddress.ShowModal;
+  dbgAddresses.Refresh;
+end;
+
+procedure TfmChooseAddress.btnChooseAddressClick(Sender: TObject);
+var flat: integer;
+begin
+  addrID := dsChooseAddress.DataSet.Fields[0].Value;
+  addressString := dsChooseAddress.DataSet.Fields[1].Value + ' ' +
+                              dsChooseAddress.DataSet.Fields[2].Value;
+  try
+    if dsChooseAddress.DataSet.Fields[3].Value <> null then
+    begin
+      flat := dsChooseAddress.DataSet.Fields[3].Value;
+      addressString := addressString + ', кв.  '+ flat.ToString;
+    end;
+  finally
+    close;
+  end;
+end;
+
+procedure TfmChooseAddress.edSearchChange(Sender: TObject);
+var SQL_Line: string;
+begin
+  SQL_Line := 'select * from addresses ' +
+              'where addresses.street containing ''' + edSearch.Text + ''';';
+  dmMy.smSQLClear;
+  dmMy.smSQLAddString(SQL_Line);
+  dmMy.smSQLExecute;
+  dsChooseAddress.DataSet := dmMy.IBQuery1;
+  dsChooseAddress.DataSet.Open;
+
+  dbgAddresses.Fields[0].Visible := false;
+  dbgAddresses.Fields[0].DisplayLabel := 'Улица';
+  dbgAddresses.Fields[0].DisplayWidth := 55;
+  dbgAddresses.Fields[1].DisplayLabel := 'Дом';
+  dbgAddresses.Fields[1].DisplayWidth := 5;
+  dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
+  dbgAddresses.Fields[2].DisplayWidth := 10;
+  dbgAddresses.Refresh;
+end;
+
 procedure TfmChooseAddress.FormActivate(Sender: TObject);
 begin
-//  dsChooseAddress.DataSet := dmMy.dspAddresses{cdsAddresses};
+  dsChooseAddress.DataSet := dmMy.ibtAddresses;
+  dsChooseAddress.DataSet.Open;
+
+  dbgAddresses.Fields[0].Visible := False;
+  dbgAddresses.Fields[0].DisplayLabel := 'Улица';
+  dbgAddresses.Fields[0].DisplayWidth := 55;
+  dbgAddresses.Fields[1].DisplayLabel := 'Дом';
+  dbgAddresses.Fields[1].DisplayWidth := 5;
+  dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
+  dbgAddresses.Fields[2].DisplayWidth := 10;
+
+  dbgAddresses.Refresh;
+end;
+
+procedure TfmChooseAddress.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  dsChooseAddress.DataSet.Close;
+  fmOrder.btnRefreshClick(fmOrder);
 end;
 
 procedure TfmChooseAddress.N1Click(Sender: TObject);
@@ -42,15 +111,15 @@ begin
   fmAddAddress.ShowModal;
   if fmAddAddress.ModalResult = mrOk then begin
     try
-      if (fmAddAddress.eFlat.Text <> '') then
+      if (fmAddAddress.edFlat.Text <> '') then
         dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
-        fmAddAddress.eStreet.Text,
-        fmAddAddress.eBuilding.Text,
-        StrToInt(fmAddAddress.eFlat.Text))
+        fmAddAddress.edStreet.Text,
+        fmAddAddress.edBuilding.Text,
+        StrToInt(fmAddAddress.edFlat.Text))
       else
         dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
-        fmAddAddress.eStreet.Text,
-        fmAddAddress.eBuilding.Text,0);
+        fmAddAddress.edStreet.Text,
+        fmAddAddress.edBuilding.Text,0);
     // иначе выводим ошибку
     except
       MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
