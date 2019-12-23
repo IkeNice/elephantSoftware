@@ -109,7 +109,7 @@ begin
 
       DataModule2.IBQuery1.SQL.Add('select o.order_id, c.name, c.surname, c.phone_number, ');
       DataModule2.IBQuery1.SQL.Add('a1.street STREET, a1.building BUILDING, a1.apartment APARTMENT, ');
-      DataModule2.IBQuery1.SQL.Add('oi.time_of_delivery,oi.price from order_info oi');
+      DataModule2.IBQuery1.SQL.Add('oi.time_of_delivery DATE_OF_DELIVERY,oi.price PRICE from order_info oi');
       DataModule2.IBQuery1.SQL.Add('join addresses a1 on (a1.address_id = oi.address_id)');
       DataModule2.IBQuery1.SQL.Add('join orders o on (o.COURIER_ID = '+idDriver.ToString+')');
       DataModule2.IBQuery1.SQL.Add('join addresses a2 on (a2.address_id = o.address_id)');
@@ -147,11 +147,11 @@ begin
 
           jsonBuffer.AddPair('delivery_time',VarToStr(DataModule2.IBQuery1.FieldByName('DATE_OF_DELIVERY').Value));
 
-          jsonBuffer.AddPair('number_of_movers',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_STEVEDORE').Value));
+//         jsonBuffer.AddPair('number_of_movers',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_STEVEDORE').Value));
 
           jsonBuffer.AddPair('payment',VarToStr(DataModule2.IBQuery1.FieldByName('PRICE').Value));
 
-          jsonBuffer.AddPair('status',VarToStr(DataModule2.IBQuery1.FieldByName('STATUS').Value));
+//          jsonBuffer.AddPair('status',VarToStr(DataModule2.IBQuery1.FieldByName('STATUS').Value));
 
           ArrayJson.AddElement(jsonBuffer);
 
@@ -170,95 +170,95 @@ begin
   Result := ResultJSON;
 end;
 
-function ToKeyWordIn(toKeyWordInJSON : TJsonObject) : TJsonObject;
-var
-  ResultJSON : TJSONObject;
-begin
-  Result := TJSONObject.Create;
-//  //=============онксвемхе йкчвебнцн якнбю пюанрмхйю хг рюакхжш=================
-//  DataModule2.IBQuery1.Active := false;
-//  DataModule2.IBQuery1.SQL.Clear;
+//function ToKeyWordIn(toKeyWordInJSON : TJsonObject) : TJsonObject;
+//var
+//  ResultJSON : TJSONObject;
+//begin
+//  Result := TJSONObject.Create;
+////  //=============онксвемхе йкчвебнцн якнбю пюанрмхйю хг рюакхжш=================
+////  DataModule2.IBQuery1.Active := false;
+////  DataModule2.IBQuery1.SQL.Clear;
+////
+////  DataModule2.IBQuery1.SQL.Add('SELECT KEY_WORD FROM INFORMATIONS_DRIVERS WHERE ');
+////  DataModule2.IBQuery1.SQL.Add('ID = ''' + toKeyWordInJSON.GetValue('id').ToString + '''');
+////
+////  DataModule2.IBQuery1.Active := true;
+////  DataModule2.IBQuery1.Open;
+////  //=============еякх нмн еярэ (бепмне хд)=================
+//  if (DataModule2.IBQuery1.RecordCount.ToBoolean) then
+//    begin
+// //     keyWord := VarToStr(DataModule2.IBQuery1.FieldByName('KEY_WORD').Value);
+//      //=============еякх онксвеммне йкчвебне якнбн янбоюдюер я йкчвебшл якнбнл хг рюакхжш дкъ щрнцн пюанрмхйю=================
+////      if (keyWord = normalizationString(toKeyWordInJSON.GetValue('keyword').ToString)) then
+// //       begin
+//          ResultJSON.AddPair('status','OK');
+//          //=============онксвемхе хмтнплюжхх н ецн гюйюгюу=================
+//          DataModule2.IBQuery1.Active := false;
+//          DataModule2.IBQuery1.SQL.Clear;
 //
-//  DataModule2.IBQuery1.SQL.Add('SELECT KEY_WORD FROM INFORMATIONS_DRIVERS WHERE ');
-//  DataModule2.IBQuery1.SQL.Add('ID = ''' + toKeyWordInJSON.GetValue('id').ToString + '''');
+//          DataModule2.IBQuery1.SQL.Add('select o.id,o.id_customer,o.weight, ');
+//          DataModule2.IBQuery1.SQL.Add('a.city CITY_FROM, a.street STREET_FROM, a.number_house NUMBER_HOUSE_FROM, a.floor_ FLOOR_FROM, ');
+//          DataModule2.IBQuery1.SQL.Add('a.city CITY_TO, a.street STREET_TO, a.number_house NUMBER_HOUSE_TO, a.floor_ FLOOR_TO, ');
+//          DataModule2.IBQuery1.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from ');
+//          DataModule2.IBQuery1.SQL.Add('orders o inner join address a on ');
+//          DataModule2.IBQuery1.SQL.Add('((o.from_id_address = a.id) or (o.to_id_address = a.id)) and (o.who_driver='+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+')');
 //
-//  DataModule2.IBQuery1.Active := true;
-//  DataModule2.IBQuery1.Open;
-//  //=============еякх нмн еярэ (бепмне хд)=================
-  if (DataModule2.IBQuery1.RecordCount.ToBoolean) then
-    begin
- //     keyWord := VarToStr(DataModule2.IBQuery1.FieldByName('KEY_WORD').Value);
-      //=============еякх онксвеммне йкчвебне якнбн янбоюдюер я йкчвебшл якнбнл хг рюакхжш дкъ щрнцн пюанрмхйю=================
-//      if (keyWord = normalizationString(toKeyWordInJSON.GetValue('keyword').ToString)) then
- //       begin
-          ResultJSON.AddPair('status','OK');
-          //=============онксвемхе хмтнплюжхх н ецн гюйюгюу=================
-          DataModule2.IBQuery1.Active := false;
-          DataModule2.IBQuery1.SQL.Clear;
-
-          DataModule2.IBQuery1.SQL.Add('select o.id,o.id_customer,o.weight, ');
-          DataModule2.IBQuery1.SQL.Add('a.city CITY_FROM, a.street STREET_FROM, a.number_house NUMBER_HOUSE_FROM, a.floor_ FLOOR_FROM, ');
-          DataModule2.IBQuery1.SQL.Add('a.city CITY_TO, a.street STREET_TO, a.number_house NUMBER_HOUSE_TO, a.floor_ FLOOR_TO, ');
-          DataModule2.IBQuery1.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from ');
-          DataModule2.IBQuery1.SQL.Add('orders o inner join address a on ');
-          DataModule2.IBQuery1.SQL.Add('((o.from_id_address = a.id) or (o.to_id_address = a.id)) and (o.who_driver='+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+')');
-
-          DataModule2.IBQuery1.Active := true;
-          DataModule2.IBQuery1.Open;
-          //=============гюонкмемхе JSONARRAY ецн гюйюгюлх=================
-          jsonBuffer := TJSONObject.Create;
-          ArrayJson := TJSONArray.Create;
-
-          DataModule2.IBQuery1.First;
-
-          while not DataModule2.IBQuery1.Eof do
-            begin
-              jsonBuffer.AddPair('id',VarToStr(DataModule2.IBQuery1.FieldByName('ID').Value));
-
-              jsonBuffer.AddPair('id_customer',VarToStr(DataModule2.IBQuery1.FieldByName('ID_CUSTOMER').Value));
-
-              jsonBuffer.AddPair('weight',VarToStr(DataModule2.IBQuery1.FieldByName('WEIGHT').Value));
-              jsonBuffer.AddPair('cityFrom',VarToStr(DataModule2.IBQuery1.FieldByName('CITY_FROM').Value));
-              jsonBuffer.AddPair('streetFrom',VarToStr(DataModule2.IBQuery1.FieldByName('STREET_FROM').Value));
-              jsonBuffer.AddPair('numberHouseFrom',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_HOUSE_FROM').Value));
-              jsonBuffer.AddPair('floorFrom',VarToStr(DataModule2.IBQuery1.FieldByName('FLOOR_FROM').Value));
-
-              jsonBuffer.AddPair('cityTo',VarToStr(DataModule2.IBQuery1.FieldByName('CITY_TO').Value));
-              jsonBuffer.AddPair('streetTo',VarToStr(DataModule2.IBQuery1.FieldByName('STREET_TO').Value));
-              jsonBuffer.AddPair('numberHouseTo',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_HOUSE_TO').Value));
-              jsonBuffer.AddPair('floorTo',VarToStr(DataModule2.IBQuery1.FieldByName('FLOOR_TO').Value));
-
-              jsonBuffer.AddPair('dateOfDelivery',VarToStr(DataModule2.IBQuery1.FieldByName('DATE_OF_DELIVERY').Value));
-
-              jsonBuffer.AddPair('countStevedore',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_STEVEDORE').Value));
-
-              jsonBuffer.AddPair('price',VarToStr(DataModule2.IBQuery1.FieldByName('PRICE').Value));
-
-              jsonBuffer.AddPair('status',VarToStr(DataModule2.IBQuery1.FieldByName('STATUS').Value));
-
-              ArrayJson.AddElement(jsonBuffer);
-
-              jsonBuffer := TJSONObject.Create;
-
-              DataModule2.IBQuery1.Next;
-            end;
-            ResultJSON.AddPair('data',ArrayJson);
-        end
-        //=============еякх йкчвебше якнбю ме янбоюдючр=================
-//      else
-//        begin
-//          ResultJSON.AddPair('status','error');
-//          ResultJSON.AddPair('message','There is an error in the keyword');
-//        end;
-//    end
-    //=============еякх рюйнцн пюанрмхйю мер=================
-  else
-    begin
-      ResultJSON.AddPair('status','error');
-      ResultJSON.AddPair('message','There is an error in the id!');
-    end;
-  Result := ResultJSON;
-end;
+//          DataModule2.IBQuery1.Active := true;
+//          DataModule2.IBQuery1.Open;
+//          //=============гюонкмемхе JSONARRAY ецн гюйюгюлх=================
+//          jsonBuffer := TJSONObject.Create;
+//          ArrayJson := TJSONArray.Create;
+//
+//          DataModule2.IBQuery1.First;
+//
+//          while not DataModule2.IBQuery1.Eof do
+//            begin
+//              jsonBuffer.AddPair('id',VarToStr(DataModule2.IBQuery1.FieldByName('ID').Value));
+//
+//              jsonBuffer.AddPair('id_customer',VarToStr(DataModule2.IBQuery1.FieldByName('ID_CUSTOMER').Value));
+//
+//              jsonBuffer.AddPair('weight',VarToStr(DataModule2.IBQuery1.FieldByName('WEIGHT').Value));
+//              jsonBuffer.AddPair('cityFrom',VarToStr(DataModule2.IBQuery1.FieldByName('CITY_FROM').Value));
+//              jsonBuffer.AddPair('streetFrom',VarToStr(DataModule2.IBQuery1.FieldByName('STREET_FROM').Value));
+//              jsonBuffer.AddPair('numberHouseFrom',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_HOUSE_FROM').Value));
+//              jsonBuffer.AddPair('floorFrom',VarToStr(DataModule2.IBQuery1.FieldByName('FLOOR_FROM').Value));
+//
+//              jsonBuffer.AddPair('cityTo',VarToStr(DataModule2.IBQuery1.FieldByName('CITY_TO').Value));
+//              jsonBuffer.AddPair('streetTo',VarToStr(DataModule2.IBQuery1.FieldByName('STREET_TO').Value));
+//              jsonBuffer.AddPair('numberHouseTo',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_HOUSE_TO').Value));
+//              jsonBuffer.AddPair('floorTo',VarToStr(DataModule2.IBQuery1.FieldByName('FLOOR_TO').Value));
+//
+//              jsonBuffer.AddPair('dateOfDelivery',VarToStr(DataModule2.IBQuery1.FieldByName('DATE_OF_DELIVERY').Value));
+//
+//              jsonBuffer.AddPair('countStevedore',VarToStr(DataModule2.IBQuery1.FieldByName('NUMBER_STEVEDORE').Value));
+//
+//              jsonBuffer.AddPair('price',VarToStr(DataModule2.IBQuery1.FieldByName('PRICE').Value));
+//
+//              jsonBuffer.AddPair('status',VarToStr(DataModule2.IBQuery1.FieldByName('STATUS').Value));
+//
+//              ArrayJson.AddElement(jsonBuffer);
+//
+//              jsonBuffer := TJSONObject.Create;
+//
+//              DataModule2.IBQuery1.Next;
+//            end;
+//            ResultJSON.AddPair('data',ArrayJson);
+//        end
+//        //=============еякх йкчвебше якнбю ме янбоюдючр=================
+////      else
+////        begin
+////          ResultJSON.AddPair('status','error');
+////          ResultJSON.AddPair('message','There is an error in the keyword');
+////        end;
+////    end
+//    //=============еякх рюйнцн пюанрмхйю мер=================
+//  else
+//    begin
+//      ResultJSON.AddPair('status','error');
+//      ResultJSON.AddPair('message','There is an error in the id!');
+//    end;
+//  Result := ResultJSON;
+//end;
 
 function ToChangeStatus(toChangeStatus : TJsonObject) : TJsonObject;
 var
@@ -390,15 +390,15 @@ begin
         jsonAnswerData := ToLogIn(jsonGetQuery);
       end;
     //=============еякх бндхрекэ гюундхр я хд х йкчвебшл якнбнл=================
-    if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'get_order_list') then
-      begin
-        jsonAnswerData := ToKeyWordIn(jsonGetQuery);
-      end;
+//    if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'get_order_list') then
+//      begin
+//        jsonAnswerData := ToKeyWordIn(jsonGetQuery);
+//      end;
     //=============еякх лемъеряъ ярюрся гюйюгю=================
-    if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'change_status') then
-      begin
-        jsonAnswerData := ToChangeStatus(jsonGetQuery);
-      end;
+//    if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'change_status') then
+//      begin
+//        jsonAnswerData := ToChangeStatus(jsonGetQuery);
+//      end;
 
 //  AResponseInfo.ContentType := 'text/html; charset=utf-8';
   AResponseInfo.ContentType := 'text; charset=utf-8';
