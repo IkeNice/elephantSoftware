@@ -38,6 +38,11 @@
     <Transaction>1899.12.30 00:00:00.000.635,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.976,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.960,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.073,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Menu.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.dfm=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.232,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddress.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.151,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.232,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddress.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\addAddres.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.142,=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.561,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\AddOrder.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.195,C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\test1.pas=C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\Client\Unit2.pas</Transaction>
