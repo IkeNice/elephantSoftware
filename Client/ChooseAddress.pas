@@ -34,7 +34,7 @@ uses addAddress, dm;
 
 procedure TfmChooseAddress.FormActivate(Sender: TObject);
 begin
-  dsChooseAddress.DataSet := dmMy.cdsAddresses;
+//  dsChooseAddress.DataSet := dmMy.dspAddresses{cdsAddresses};
 end;
 
 procedure TfmChooseAddress.N1Click(Sender: TObject);
@@ -43,19 +43,19 @@ begin
   if fmAddAddress.ModalResult = mrOk then begin
     try
       if (fmAddAddress.eFlat.Text <> '') then
-        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+        dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
         fmAddAddress.eStreet.Text,
         fmAddAddress.eBuilding.Text,
         StrToInt(fmAddAddress.eFlat.Text))
       else
-        dmMy.DCOMConnection1.AppServer.smUpdateAddress(0,
+        dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
         fmAddAddress.eStreet.Text,
         fmAddAddress.eBuilding.Text,0);
     // иначе выводим ошибку
     except
       MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
     end;
-    dmMy.cdsAddresses.Refresh;
+//    dmMy.{cdsAddresses.}dspAddresses.Refresh;
   end;
 end;
 

@@ -28,7 +28,7 @@ uses dm;
 
 procedure TfmTest1.FormActivate(Sender: TObject);
 begin
-  DataSource1.DataSet := dmMy.cdsAddresses;
+//  DataSource1.DataSet := dmMy.cdsAddresses;
 end;
 
 end.

@@ -1,0 +1,222 @@
+unit dm;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, IBX.IBCustomDataSet, IBX.IBQuery,
+  IBX.IBDatabase, Datasnap.DBClient, Datasnap.Win.MConnect, IBX.IBStoredProc,
+  Datasnap.Provider, IBX.IBTable;
+
+type
+  TdmMy = class(TDataModule)
+    IBDatabase1: TIBDatabase;
+    IBTransaction1: TIBTransaction;
+    ibtAddresses: TIBTable;
+    ibtOrders: TIBTable;
+    ibtOrdersInfo: TIBTable;
+    ibtMenu: TIBTable;
+    ibtStatuses: TIBTable;
+    ibtSchedule: TIBTable;
+    ibtCategories: TIBTable;
+    ibtEmployees: TIBTable;
+    IBQuery1: TIBQuery;
+    dspAddresses: TDataSetProvider;
+    dspOrders: TDataSetProvider;
+    dspOrdersInfo: TDataSetProvider;
+    dspMenu: TDataSetProvider;
+    dspStatuses: TDataSetProvider;
+    dspSchedule: TDataSetProvider;
+    dspCategories: TDataSetProvider;
+    dspEmployees: TDataSetProvider;
+    dspQuery: TDataSetProvider;
+    ibspUpdateAddress: TIBStoredProc;
+    ibspDeleteAddress: TIBStoredProc;
+    ibspUpdateOrder: TIBStoredProc;
+    ibspDeleteOrder: TIBStoredProc;
+    ibspUpdateOrderInfo: TIBStoredProc;
+    ibspUpdateProduct: TIBStoredProc;
+    ibspDeleteProduct: TIBStoredProc;
+    ibspDeleteOrderInfo: TIBStoredProc;
+    ibspUpdateOrderStatus: TIBStoredProc;
+    ibspUpdateDriversInfo: TIBStoredProc;
+    ibtMenuPRODUCT_ID: TIntegerField;
+    ibtMenuNAME: TIBStringField;
+    ibtMenuCATEGORY_ID: TIntegerField;
+    ibtMenuPRICE: TIntegerField;
+  private
+    { Private declarations }
+  public
+    procedure smUpdateProduct(ID: Integer; const Name: WideString; Category, Price: Integer);
+          safecall;
+    procedure smDeleteProduct(ID: Integer); safecall;
+    procedure smUpdateAddress(ID: Integer; const Street, Building: WideString; Apartment: Integer);
+          safecall;
+    procedure smDeleteAddress(ID: Integer); safecall;
+    procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; Phone, AddressID,
+          CourierID, OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
+          TotalPrice: Integer); safecall;
+    procedure smDeleteOrder(ID: Integer); safecall;
+    procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
+    procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
+    procedure smUpdateOrderStatus(OrderID, StatusID: Integer); safecall;
+    procedure smUpdateDriversInfo(EmpID: Integer; const TokenDev, Keyword: WideString);
+          safecall;
+    procedure smSQLClear; safecall;
+    procedure smSQLAddString(const s: WideString); safecall;
+    procedure smSQLExecute; safecall;
+  end;
+
+var
+  dmMy: TdmMy;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+  procedure tdmMy.smUpdateProduct(ID: Integer; const Name: WideString; Category,
+          Price: Integer);
+  begin
+    if ibspUpdateProduct.Transaction.InTransaction then
+      ibspUpdateProduct.Transaction.Commit;
+    ibspUpdateProduct.Params[0].Value := ID;
+    ibspUpdateProduct.Params[1].Value := Name;
+    ibspUpdateProduct.Params[2].Value := Category;
+    ibspUpdateProduct.Params[3].Value := Price;
+    ibspUpdateProduct.ExecProc;
+    if ibspUpdateProduct.Transaction.InTransaction then
+      ibspUpdateProduct.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smDeleteProduct(ID: Integer);
+  begin
+    if ibspDeleteProduct.Transaction.InTransaction then
+      ibspDeleteProduct.Transaction.Commit;
+    ibspDeleteProduct.Params[0].Value := ID;
+    ibspDeleteProduct.ExecProc;
+    if ibspDeleteProduct.Transaction.InTransaction then
+      ibspDeleteProduct.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smUpdateAddress(ID: Integer; const Street, Building: WideString;
+            Apartment: Integer);
+  begin
+    if ibspUpdateAddress.Transaction.InTransaction then
+      ibspUpdateAddress.Transaction.Commit;
+    ibspUpdateAddress.Params[0].Value := ID;
+    ibspUpdateAddress.Params[1].Value := Street;
+    ibspUpdateAddress.Params[2].Value := Building;
+    ibspUpdateAddress.Params[3].Value := Apartment;
+    ibspUpdateAddress.ExecProc;
+    if ibspUpdateAddress.Transaction.InTransaction then
+      ibspUpdateAddress.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smDeleteAddress(ID: Integer);
+  begin
+    if ibspDeleteAddress.Transaction.InTransaction then
+      ibspDeleteAddress.Transaction.Commit;
+    ibspDeleteAddress.Params[0].Value := ID;
+    ibspDeleteAddress.ExecProc;
+    if ibspDeleteAddress.Transaction.InTransaction then
+      ibspDeleteAddress.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smUpdateOrder(ID, StatusID: Integer; const Client: WideString;
+            Phone, AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer);
+  begin
+    if ibspUpdateOrder.Transaction.InTransaction then
+      ibspUpdateOrder.Transaction.Commit;
+    ibspUpdateOrder.Params[0].Value := ID;
+    ibspUpdateOrder.Params[1].Value := StatusID;
+    ibspUpdateOrder.Params[2].Value := Client;
+    ibspUpdateOrder.Params[3].Value := Phone;
+    ibspUpdateOrder.Params[4].Value := AddressID;
+    ibspUpdateOrder.Params[5].Value := CourierID;
+    ibspUpdateOrder.Params[6].Value := OperatorID;
+    ibspUpdateOrder.Params[7].Value := Date;
+    ibspUpdateOrder.Params[8].Value := TimeOfDelivery;
+    ibspUpdateOrder.Params[9].Value := TotalPrice;
+    ibspUpdateOrder.ExecProc;
+    if ibspUpdateOrder.Transaction.InTransaction then
+      ibspUpdateOrder.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smDeleteOrder(ID: Integer);
+  begin
+    if ibspDeleteOrder.Transaction.InTransaction then
+      ibspDeleteOrder.Transaction.Commit;
+    ibspDeleteOrder.Params[0].Value := ID;
+    ibspDeleteOrder.ExecProc;
+    if ibspDeleteOrder.Transaction.InTransaction then
+      ibspDeleteOrder.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer);
+  begin
+    if ibspUpdateOrderInfo.Transaction.InTransaction then
+      ibspUpdateOrderInfo.Transaction.Commit;
+    ibspUpdateOrderInfo.Params[0].Value := OrderID;
+    ibspUpdateOrderInfo.Params[1].Value := ProductID;
+    ibspUpdateOrderInfo.Params[2].Value := Quantity;
+    ibspUpdateOrderInfo.ExecProc;
+    if ibspUpdateOrderInfo.Transaction.InTransaction then
+      ibspUpdateOrderInfo.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smDeleteOrderInfo(OrderID, ProductID: Integer);
+  begin
+    if ibspDeleteOrderInfo.Transaction.InTransaction then
+      ibspDeleteOrderInfo.Transaction.Commit;
+    ibspDeleteOrderInfo.Params[0].Value := OrderID;
+    ibspDeleteOrderInfo.Params[1].Value := ProductID;
+    ibspDeleteOrderInfo.ExecProc;
+    if ibspDeleteOrderInfo.Transaction.InTransaction then
+      ibspDeleteOrderInfo.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smUpdateOrderStatus(OrderID, StatusID: Integer);
+  begin
+    if ibspUpdateOrderStatus.Transaction.InTransaction then
+      ibspUpdateOrderStatus.Transaction.Commit;
+    ibspUpdateOrderStatus.Params[0].Value := OrderID;
+    ibspUpdateOrderStatus.Params[1].Value := StatusID;
+    ibspUpdateOrderStatus.ExecProc;
+    if ibspUpdateOrderStatus.Transaction.InTransaction then
+      ibspUpdateOrderStatus.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smUpdateDriversInfo(EmpID: Integer; const TokenDev, Keyword: WideString);
+  begin
+    if ibspUpdateDriversInfo.Transaction.InTransaction then
+      ibspUpdateDriversInfo.Transaction.Commit;
+    ibspUpdateDriversInfo.Params[0].Value := EmpID;
+    ibspUpdateDriversInfo.Params[1].Value := TokenDev;
+    ibspUpdateDriversInfo.Params[2].Value := Keyword;
+    ibspUpdateDriversInfo.ExecProc;
+    if ibspUpdateDriversInfo.Transaction.InTransaction then
+      ibspUpdateDriversInfo.Transaction.Commit;
+  end;
+
+  procedure TdmMy.smSQLClear;
+  begin
+    if IBQuery1.Transaction.InTransaction then
+      IBQuery1.Transaction.Commit;
+    IBQuery1.Close;
+    IBQuery1.SQL.Clear;
+  end;
+
+  procedure TdmMy.smSQLAddString(const s: WideString);
+  begin
+    IBQuery1.SQL.Add(s);
+  end;
+
+  procedure TdmMy.smSQLExecute;
+  begin
+    IBQuery1.Open;
+    if IBQuery1.Transaction.InTransaction then
+      IBQuery1.Transaction.Commit;
+  end;
+
+end.
