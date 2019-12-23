@@ -39,6 +39,10 @@ type
     ibspDeleteOrderInfo: TIBStoredProc;
     ibspUpdateOrderStatus: TIBStoredProc;
     ibspUpdateDriversInfo: TIBStoredProc;
+    ibtMenuPRODUCT_ID: TIntegerField;
+    ibtMenuNAME: TIBStringField;
+    ibtMenuCATEGORY_ID: TIntegerField;
+    ibtMenuPRICE: TIntegerField;
   private
     { Private declarations }
   public
@@ -48,9 +52,9 @@ type
     procedure smUpdateAddress(ID: Integer; const Street, Building: WideString; Apartment: Integer);
           safecall;
     procedure smDeleteAddress(ID: Integer); safecall;
-    procedure smUpdateOrder(ID, StatusID: Integer; const Client: WideString; Phone, AddressID,
+    function smUpdateOrder(ID, StatusID: Integer; const Client, Phone: WideString; AddressID,
           CourierID, OperatorID: Integer; Date: TDateTime; const TimeOfDelivery: WideString;
-          TotalPrice: Integer); safecall;
+          TotalPrice: Integer): integer; safecall;
     procedure smDeleteOrder(ID: Integer); safecall;
     procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer); safecall;
     procedure smDeleteOrderInfo(OrderID, ProductID: Integer); safecall;
@@ -118,12 +122,14 @@ implementation
       ibspDeleteAddress.Transaction.Commit;
   end;
 
-  procedure TdmMy.smUpdateOrder(ID, StatusID: Integer; const Client: WideString;
-            Phone, AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
-            const TimeOfDelivery: WideString; TotalPrice: Integer);
+  function TdmMy.smUpdateOrder(ID, StatusID: Integer; const Client, Phone: WideString;
+            AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer): integer;
+  var res:integer;
   begin
+    res := 1;
     if ibspUpdateOrder.Transaction.InTransaction then
-      ibspUpdateOrder.Transaction.Commit;
+       ibspUpdateOrder.Transaction.Commit;
     ibspUpdateOrder.Params[0].Value := ID;
     ibspUpdateOrder.Params[1].Value := StatusID;
     ibspUpdateOrder.Params[2].Value := Client;
@@ -135,8 +141,11 @@ implementation
     ibspUpdateOrder.Params[8].Value := TimeOfDelivery;
     ibspUpdateOrder.Params[9].Value := TotalPrice;
     ibspUpdateOrder.ExecProc;
+    res := ibspUpdateOrder.Params[10].Value;
     if ibspUpdateOrder.Transaction.InTransaction then
       ibspUpdateOrder.Transaction.Commit;
+    smUpdateOrder:=res;
+//    Exit(res);
   end;
 
   procedure TdmMy.smDeleteOrder(ID: Integer);
@@ -184,13 +193,13 @@ implementation
   end;
 
   procedure TdmMy.smUpdateDriversInfo(EmpID: Integer; const TokenDev, Keyword: WideString);
-
   begin
     if ibspUpdateDriversInfo.Transaction.InTransaction then
       ibspUpdateDriversInfo.Transaction.Commit;
     ibspUpdateDriversInfo.Params[0].Value := EmpID;
     ibspUpdateDriversInfo.Params[1].Value := TokenDev;
     ibspUpdateDriversInfo.Params[2].Value := Keyword;
+    ibspUpdateDriversInfo.ExecProc;
     if ibspUpdateDriversInfo.Transaction.InTransaction then
       ibspUpdateDriversInfo.Transaction.Commit;
   end;

@@ -3,7 +3,6 @@ object dmMy: TdmMy
   Height = 356
   Width = 700
   object IBDatabase1: TIBDatabase
-    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'
@@ -61,6 +60,25 @@ object dmMy: TdmMy
     UniDirectional = False
     Left = 264
     Top = 96
+    object ibtMenuPRODUCT_ID: TIntegerField
+      DisplayLabel = #8470
+      FieldName = 'PRODUCT_ID'
+      Required = True
+    end
+    object ibtMenuNAME: TIBStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      DisplayWidth = 50
+      FieldName = 'NAME'
+      Size = 128
+    end
+    object ibtMenuCATEGORY_ID: TIntegerField
+      DisplayLabel = #1050#1072#1090#1077#1075#1086#1088#1080#1103
+      FieldName = 'CATEGORY_ID'
+    end
+    object ibtMenuPRICE: TIntegerField
+      DisplayLabel = #1062#1077#1085#1072
+      FieldName = 'PRICE'
+    end
   end
   object ibtStatuses: TIBTable
     Database = IBDatabase1
@@ -164,7 +182,7 @@ object dmMy: TdmMy
     Top = 224
     ParamData = <
       item
-        DataType = ftUnknown
+        DataType = ftInteger
         Name = 'INID                           '
         ParamType = ptUnknown
       end
@@ -205,54 +223,59 @@ object dmMy: TdmMy
     Top = 224
     ParamData = <
       item
-        DataType = ftUnknown
-        Name = 'INID                           '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INSTATUSID                     '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INSTATUSID'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INCLIENT                       '
-        ParamType = ptUnknown
+        DataType = ftWideString
+        Name = 'INCLIENT'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INPHONE                        '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INPHONE'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INADDRESSID                    '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INADDRESSID'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INCOURIERID                    '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INCOURIERID'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INOPERATORID                   '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INOPERATORID'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INDATE                         '
-        ParamType = ptUnknown
+        DataType = ftDate
+        Name = 'INDATE'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INTIMEOFDELIVERY               '
-        ParamType = ptUnknown
+        DataType = ftWideString
+        Name = 'INTIMEOFDELIVERY'
+        ParamType = ptInput
       end
       item
-        DataType = ftUnknown
-        Name = 'INTOTALPRICE                   '
-        ParamType = ptUnknown
+        DataType = ftInteger
+        Name = 'INTOTALPRICE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUTNEW_ID'
+        ParamType = ptOutput
       end>
   end
   object ibspDeleteOrder: TIBStoredProc

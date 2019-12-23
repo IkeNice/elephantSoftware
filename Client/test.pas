@@ -17,6 +17,7 @@ type
     ScrollBox1: TScrollBox;
     ComboBox1: TComboBox;
     DBComboBox1: TDBComboBox;
+    Label1: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -29,6 +30,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+
 
   private
     { Private declarations }
@@ -87,8 +89,10 @@ begin
 //      dmMy.DCOMConnection1.AppServer.ibtAddresses.FieldByName('STREET').AsString);
 //    dmMy.DCOMConnection1.AppServer.ibtAddresses.Next;
 //  end;
-
+//    dmMy.smDeleteOrder(4);
+   // Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
 end;
+
 
 procedure TfmTest.Panel1Resize(Sender: TObject);
 begin

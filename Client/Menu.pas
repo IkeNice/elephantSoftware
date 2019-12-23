@@ -73,6 +73,7 @@ begin
 end;
 
 procedure TfmMenu.miAllMenuClick(Sender: TObject);
+var i: integer;
 begin
   dsMenu.Enabled:= true;
   // нажат пункт "Все меню"
@@ -97,15 +98,14 @@ begin
     {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
     {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('where CATEGORY_ID = 1');
     {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
-    dmMy.IBQuery1.Fields[0].DisplayName := '№';
-    dmMy.IBQuery1.Fields[1].DisplayName := 'Наименование';
-    dmMy.IBQuery1.Fields[0].DisplayName := 'Категория';
-    dmMy.IBQuery1.Fields[0].DisplayName := 'Цена';
-//    dmMy.cdsMenu.Close;
-//    dmMy.cdsMenu.ProviderName := 'dspQuery';
-//    dmMy.cdsMenu.Open;
-    dsMenu.DataSet := {dmMy.cdsMenu} dmMy.IBQuery1;
+    dsMenu.DataSet :=  dmMy.IBQuery1;
     dsMenu.DataSet.Open;
+    dbgMenu.Fields[0].DisplayLabel := '№';
+    // TODO: displaywidth
+    dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[3].DisplayLabel := 'Цена';
+    //
     dbgMenu.Refresh;
   end
   // нажат пункт "Второе блюдо"
