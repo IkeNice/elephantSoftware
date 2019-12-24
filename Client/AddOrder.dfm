@@ -214,17 +214,6 @@ object fmOrder: TfmOrder
     TabOrder = 10
     OnClick = btnRefreshClick
   end
-  object dtpTimeOfDelivery: TDateTimePicker
-    Left = 145
-    Top = 361
-    Width = 87
-    Height = 21
-    Date = 43823.000000000000000000
-    Format = 'HH:mm'
-    Time = 0.413194444445252900
-    Kind = dtkTime
-    TabOrder = 11
-  end
   object dsProducts: TDataSource
     DataSet = dmMy.IBQuery1
     Left = 32

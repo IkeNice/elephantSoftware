@@ -27,7 +27,6 @@ type
     lbOrderNumber: TLabel;
     btnRefresh: TButton;
     lbSetAddress: TLabel;
-    dtpTimeOfDelivery: TDateTimePicker;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
@@ -126,6 +125,7 @@ procedure TfmOrder.btnShowMenuClick(Sender: TObject);
 begin
   // показать меню выбора продуктов
   // если выбрали продукт и нажали Ок, добавляем выбранный продукт в таблицу, а потом в DBGrid
+  fmMenu.edQuantity.Text := '';
   fmMenu.ShowModal;
   fmMenu.btnChoose.Enabled := false;
 end;
@@ -149,7 +149,7 @@ begin
     tpTimeOfDelivery.Enabled := false;
   end
   else begin
-    time := TimeToStr(dtpTimeOfDelivery.Time);
+    time := TimeToStr(tpTimeOfDelivery.Time);
     Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
     tpTimeOfDelivery.Enabled := true;
   end;
