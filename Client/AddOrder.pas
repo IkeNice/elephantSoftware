@@ -68,7 +68,7 @@ procedure TfmOrder.btnOkClick(Sender: TObject);
 var
   Panel: Tpanel;
 begin
-  orderNum:= orderNum+1;
+//  orderNum:= orderNum+1;
   Panel:= TPanel.Create(fmMain.sboxOrders);
   Panel.Parent:= fmMain.sboxOrders;
   Panel.Align:= alTop;
@@ -78,7 +78,7 @@ begin
   Panel.DragMode:= dmAutomatic;
 
   try
-    dmMy.smUpdateOrder(0, 1, eOrderer.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
+    dmMy.smUpdateOrder(orderNum, 1, eOrderer.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
   except
     MessageDlg('Ошибка записи заказа', mtError, [mbOk], 0)
   end;
