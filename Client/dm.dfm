@@ -3,6 +3,7 @@ object dmMy: TdmMy
   Height = 356
   Width = 700
   object IBDatabase1: TIBDatabase
+    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'
@@ -17,6 +18,7 @@ object dmMy: TdmMy
     Top = 16
   end
   object IBTransaction1: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase1
     Left = 104
     Top = 16
@@ -26,6 +28,33 @@ object dmMy: TdmMy
     Transaction = IBTransaction1
     BufferChunks = 1000
     CachedUpdates = False
+    FieldDefs = <
+      item
+        Name = 'ADDRESS_ID'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'STREET'
+        DataType = ftWideString
+        Size = 128
+      end
+      item
+        Name = 'BUILDING'
+        DataType = ftWideString
+        Size = 32
+      end
+      item
+        Name = 'APARTMENT'
+        DataType = ftInteger
+      end>
+    IndexDefs = <
+      item
+        Name = 'PK_ADDRESSES'
+        Fields = 'ADDRESS_ID'
+        Options = [ixUnique]
+      end>
+    StoreDefs = True
     TableName = 'ADDRESSES'
     UniDirectional = False
     Left = 24

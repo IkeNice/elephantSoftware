@@ -40,20 +40,15 @@ implementation
 
 uses addAddress, dm;
 
-//procedure TfmChooseAddress.btnAddAddressClick(Sender: TObject);
-//begin
-//  fmAddAddress.ShowModal;
-//  dbgAddresses.Refresh;
-//end;
-
 procedure TfmChooseAddress.btnChooseAddressClick(Sender: TObject);
 var flat: integer;
 begin
   addrID := dsChooseAddress.DataSet.Fields[0].Value;
-  addressString := dsChooseAddress.DataSet.Fields[1].Value + ' ' +
+  addressString := 'ул. ' + dsChooseAddress.DataSet.Fields[1].Value + ', дом ' +
                               dsChooseAddress.DataSet.Fields[2].Value;
   try
-    if dsChooseAddress.DataSet.Fields[3].Value <> null then
+    if ((dsChooseAddress.DataSet.Fields[3].Value <> null) and
+       (dsChooseAddress.DataSet.Fields[3].Value <> 0)) then
     begin
       flat := dsChooseAddress.DataSet.Fields[3].Value;
       addressString := addressString + ', кв.  '+ flat.ToString;
@@ -77,8 +72,10 @@ begin
   dbgAddresses.Fields[0].Visible := false;
   dbgAddresses.Fields[0].DisplayLabel := 'Улица';
   dbgAddresses.Fields[0].DisplayWidth := 55;
+
   dbgAddresses.Fields[1].DisplayLabel := 'Дом';
   dbgAddresses.Fields[1].DisplayWidth := 5;
+
   dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
   dbgAddresses.Fields[2].DisplayWidth := 10;
   dbgAddresses.Refresh;
@@ -92,8 +89,10 @@ begin
   dbgAddresses.Fields[0].Visible := False;
   dbgAddresses.Fields[0].DisplayLabel := 'Улица';
   dbgAddresses.Fields[0].DisplayWidth := 55;
+
   dbgAddresses.Fields[1].DisplayLabel := 'Дом';
   dbgAddresses.Fields[1].DisplayWidth := 5;
+
   dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
   dbgAddresses.Fields[2].DisplayWidth := 10;
 
@@ -109,24 +108,55 @@ end;
 procedure TfmChooseAddress.N1Click(Sender: TObject);
 begin
   fmAddAddress.ShowModal;
+
   if fmAddAddress.ModalResult = mrOk then begin
     try
-      if (fmAddAddress.edFlat.Text <> '') then
-        dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
+      if (fmAddAddress.edFlat.Text <> '') then begin
+        dmMy.smUpdateAddress(0,
         fmAddAddress.edStreet.Text,
         fmAddAddress.edBuilding.Text,
-        StrToInt(fmAddAddress.edFlat.Text))
-      else
-        dmMy.{DCOMConnection1.AppServer.}smUpdateAddress(0,
+        StrToInt(fmAddAddress.edFlat.Text));
+        dsChooseAddress.DataSet := dmMy.ibtAddresses;
+        dsChooseAddress.DataSet.Open;
+
+        dbgAddresses.Fields[0].Visible := False;
+        dbgAddresses.Fields[0].DisplayLabel := 'Улица';
+        dbgAddresses.Fields[0].DisplayWidth := 55;
+
+        dbgAddresses.Fields[1].DisplayLabel := 'Дом';
+        dbgAddresses.Fields[1].DisplayWidth := 5;
+
+        dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
+        dbgAddresses.Fields[2].DisplayWidth := 10;
+
+        dbgAddresses.Refresh;
+      end
+      else begin
+        dmMy.smUpdateAddress(0,
         fmAddAddress.edStreet.Text,
         fmAddAddress.edBuilding.Text,0);
+        dsChooseAddress.DataSet := dmMy.ibtAddresses;
+        dsChooseAddress.DataSet.Open;
+
+        dbgAddresses.Fields[0].Visible := False;
+        dbgAddresses.Fields[0].DisplayLabel := 'Улица';
+        dbgAddresses.Fields[0].DisplayWidth := 55;
+
+        dbgAddresses.Fields[1].DisplayLabel := 'Дом';
+        dbgAddresses.Fields[1].DisplayWidth := 5;
+
+        dbgAddresses.Fields[2].DisplayLabel := 'Квартира';
+        dbgAddresses.Fields[2].DisplayWidth := 10;
+
+        dbgAddresses.Refresh;
+      end;
     // иначе выводим ошибку
     except
       MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
     end;
-//    dmMy.{cdsAddresses.}dspAddresses.Refresh;
-    dbgAddresses.Refresh;
+
   end;
+
 end;
 
 end.

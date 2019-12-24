@@ -121,7 +121,7 @@ end;
 
 procedure TfmOrder.cbTimeOfDeliveryClick(Sender: TObject);
 begin
-  tmTimeOfDelivery.Enabled := cbTimeOfDelivery.Checked;
+  tmTimeOfDelivery.Enabled := not(cbTimeOfDelivery.Checked);
 end;
 
 procedure TfmOrder.FormActivate(Sender: TObject);
