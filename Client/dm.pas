@@ -152,11 +152,15 @@ implementation
     ibspUpdateOrder.Params[8].Value := TimeOfDelivery;
     ibspUpdateOrder.Params[9].Value := TotalPrice;
     ibspUpdateOrder.ExecProc;
-    res := ibspUpdateOrder.Params[10].Value;
+    //если ID=0, то мы создаем новый заказ и нам нужен его сгенерированный ID
+    if ID = 0 then
+      res := ibspUpdateOrder.Params[10].Value
+    //иначе изменяем существующий и процедура в БД возвращает NULL, который мы не можем записать в int, поэтому записываем 0
+    else
+      res := 0;
     if ibspUpdateOrder.Transaction.InTransaction then
       ibspUpdateOrder.Transaction.Commit;
     smUpdateOrder:=res;
-//    Exit(res);
   end;
 
   procedure TdmMy.smDeleteOrder(ID: Integer);

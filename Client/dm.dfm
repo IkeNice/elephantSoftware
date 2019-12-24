@@ -4,8 +4,8 @@ object dmMy: TdmMy
   Width = 700
   object IBDatabase1: TIBDatabase
     DatabaseName = 
-      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
-      'NTSOFTWARE.FDB'
+      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
+      'ARE.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey'
