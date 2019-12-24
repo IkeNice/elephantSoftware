@@ -19,14 +19,15 @@ type
     btnCancel: TBitBtn;
     btnOk: TBitBtn;
     lbNumber: TLabel;
-    Edit1: TEdit;
+    edPhone: TEdit;
     Label1: TLabel;
     pnlAddress: TPanel;
-    tmTimeOfDelivery: TTimePicker;
+    tpTimeOfDelivery: TTimePicker;
     cbTimeOfDelivery: TCheckBox;
     lbOrderNumber: TLabel;
     btnRefresh: TButton;
     lbSetAddress: TLabel;
+    dtpTimeOfDelivery: TDateTimePicker;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
@@ -45,7 +46,7 @@ var
   fmOrder: TfmOrder;
   orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
   addrID :integer;
-  addressString: string;
+  addressString, time: string;
 implementation
 uses main, addAddress, Menu, dm, ChooseAddress;
 {$R *.dfm}
@@ -76,7 +77,17 @@ begin
   Panel.Height:= 50;
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;
-  fmOrder.Close;
+
+  try
+    dmMy.smUpdateOrder(0, 1, eOrderer.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
+  except
+    MessageDlg('Ошибка записи заказа', mtError, [mbOk], 0)
+  end;
+
+
+//  fmOrder.Close;
+
+
 end;
 
 procedure TfmOrder.btnRefreshClick(Sender: TObject);
@@ -121,40 +132,33 @@ end;
 
 procedure TfmOrder.cbTimeOfDeliveryClick(Sender: TObject);
 begin
-  tmTimeOfDelivery.Enabled := not(cbTimeOfDelivery.Checked);
+  tpTimeOfDelivery.Enabled := not(cbTimeOfDelivery.Checked);
+  tpTimeOfDelivery.Time := IncHour(Now);
 end;
 
 procedure TfmOrder.FormActivate(Sender: TObject);
+//var time: string;
 begin
 //TODO: Создать записи в БД для врЕменных заказов
   orderNum := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0);
   lbOrderNumber.Caption := 'Номер заказа ' + orderNum.ToString;
   if cbTimeOfDelivery.Checked = true then begin
-    tmTimeOfDelivery.Time := IncHour(Now);
-    tmTimeOfDelivery.Enabled := false;
+    tpTimeOfDelivery.Time := IncHour(Now);
+    time := TimeToStr(tpTimeOfDelivery.Time);
+    Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
+    tpTimeOfDelivery.Enabled := false;
   end
-  else tmTimeOfDelivery.Enabled := true;
+  else begin
+    time := TimeToStr(dtpTimeOfDelivery.Time);
+    Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
+    tpTimeOfDelivery.Enabled := true;
+  end;
   btnRefreshClick(self);
 end;
 
 procedure TfmOrder.FormCreate(Sender: TObject);
 var i: integer;
 begin
-//============ ДОБАВЛЕНИЕ ЗАНЧЕНИЙ В COMBOBOX ===========//
-
-//   cbAddress.Items.Clear;
-//   fmOrder.ADOQuery1.Close;
-//   fmOrder.ADOQuery1.SQL.Clear;
-//   fmOrder.ADOQuery1.SQL.Add('select STREET, BUILDING, APARTAMENT from ADDRESSES');
-//   fmOrder.ADOQuery1.Open;
-//   fmOrder.ADOQuery1.First;
-//   for  i := 0 to fmOrder.ADOQuery1.RecordCount - 1 do
-//   begin
-//      cbAddress.Items.Add(fmOrder.ADOQuery1.FieldByName('STREET').AsString);
-//      fmOrder.ADOQuery1.Next;
-//   end;
-//   fmOrder.ADOQuery1.Close;
-
 
 
 end;

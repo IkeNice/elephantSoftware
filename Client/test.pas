@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids,
-  Data.DB, Vcl.DBCtrls, Data.Win.ADODB;
+  Data.DB, Vcl.DBCtrls, Data.Win.ADODB, Vcl.ComCtrls;
 
 type
   TfmTest = class(TForm)
@@ -18,6 +18,7 @@ type
     ComboBox1: TComboBox;
     DBComboBox1: TDBComboBox;
     Label1: TLabel;
+    DateTimePicker1: TDateTimePicker;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -45,6 +46,8 @@ var
   fmTest: TfmTest;
    orderNum :integer = 0;
    dragflag: boolean;
+   t : string;
+   len : integer;
 implementation
 {$R *.dfm}
 
@@ -61,7 +64,7 @@ procedure TfmTest.Button1Click(Sender: TObject);
 var
   Panel: TPanel;
   Button: TButton;
-begin
+begin   {
   orderNum:= orderNum+1;
   Panel:= TPanel.Create(fmTest.ScrollBox1);
   Panel.Parent:= fmTest.ScrollBox1;
@@ -69,15 +72,25 @@ begin
   Panel.Width:= fmTest.ScrollBox1.Width;
   Panel.Height:= 100;
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
-  Panel.DragMode:= dmAutomatic;
+  Panel.DragMode:= dmAutomatic;  }
+  t := TimeToStr(DateTimePicker1.Time);
+  len := length(t);
+  Delete(t, len-2, len);
+  Label1.Caption := t;
+  fmTest.Refresh;
 end;
 
 
 
 procedure TfmTest.FormActivate(Sender: TObject);
-var tmp : integer;
+var tmp,len : integer;
+s,t, res : string;
 begin
-  Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
+{
+  t := TimeToStr(DateTimePicker1.Time);
+  len := length(t);
+  Delete(t, len-2, len);
+  Label1.Caption := t; }
 end;
 
 procedure TfmTest.FormCreate(Sender: TObject);

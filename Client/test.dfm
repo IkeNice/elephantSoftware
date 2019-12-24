@@ -68,6 +68,17 @@ object fmTest: TfmTest
       Height = 21
       TabOrder = 3
     end
+    object DateTimePicker1: TDateTimePicker
+      Left = 104
+      Top = 304
+      Width = 65
+      Height = 21
+      Date = 43823.000000000000000000
+      Format = 'HH:mm'
+      Time = 0.415389247682469400
+      Kind = dtkTime
+      TabOrder = 4
+    end
   end
   object Panel2: TPanel
     Left = 369

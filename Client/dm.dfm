@@ -3,7 +3,6 @@ object dmMy: TdmMy
   Height = 356
   Width = 700
   object IBDatabase1: TIBDatabase
-    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'
@@ -18,7 +17,6 @@ object dmMy: TdmMy
     Top = 16
   end
   object IBTransaction1: TIBTransaction
-    Active = True
     DefaultDatabase = IBDatabase1
     Left = 104
     Top = 16
@@ -65,10 +63,112 @@ object dmMy: TdmMy
     Transaction = IBTransaction1
     BufferChunks = 1000
     CachedUpdates = False
+    FieldDefs = <
+      item
+        Name = 'ORDER_ID'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'STATUS_ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'CLIENT_NAME'
+        DataType = ftWideString
+        Size = 64
+      end
+      item
+        Name = 'PHONE_NUMBER'
+        DataType = ftWideString
+        Size = 30
+      end
+      item
+        Name = 'ADDRESS_ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'COURIER_ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'OPERATOR_ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'DATE'
+        DataType = ftDate
+      end
+      item
+        Name = 'TIME_OF_DELIVERY'
+        DataType = ftWideString
+        Size = 5
+      end
+      item
+        Name = 'TOTAL_PRICE'
+        DataType = ftInteger
+      end>
+    IndexDefs = <
+      item
+        Name = 'PK_ORDERS'
+        Fields = 'ORDER_ID'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'FK_ORDERS_STATUSES'
+        Fields = 'STATUS_ID'
+      end
+      item
+        Name = 'FK_ORDERS_ADDRESSES'
+        Fields = 'ADDRESS_ID'
+      end
+      item
+        Name = 'FK_ORDERS_EMP_COURIER'
+        Fields = 'COURIER_ID'
+      end
+      item
+        Name = 'FK_ORDERS_EMP_OPERATOR'
+        Fields = 'OPERATOR_ID'
+      end>
+    StoreDefs = True
     TableName = 'ORDERS'
     UniDirectional = False
     Left = 104
     Top = 96
+    object ibtOrdersORDER_ID: TIntegerField
+      FieldName = 'ORDER_ID'
+      Required = True
+    end
+    object ibtOrdersSTATUS_ID: TIntegerField
+      FieldName = 'STATUS_ID'
+    end
+    object ibtOrdersCLIENT_NAME: TIBStringField
+      FieldName = 'CLIENT_NAME'
+      Size = 64
+    end
+    object ibtOrdersPHONE_NUMBER: TIBStringField
+      FieldName = 'PHONE_NUMBER'
+      Size = 30
+    end
+    object ibtOrdersADDRESS_ID: TIntegerField
+      FieldName = 'ADDRESS_ID'
+    end
+    object ibtOrdersCOURIER_ID: TIntegerField
+      FieldName = 'COURIER_ID'
+    end
+    object ibtOrdersOPERATOR_ID: TIntegerField
+      FieldName = 'OPERATOR_ID'
+    end
+    object ibtOrdersDATE: TDateField
+      FieldName = 'DATE'
+    end
+    object ibtOrdersTIME_OF_DELIVERY: TIBStringField
+      FieldName = 'TIME_OF_DELIVERY'
+      Size = 5
+    end
+    object ibtOrdersTOTAL_PRICE: TIntegerField
+      FieldName = 'TOTAL_PRICE'
+    end
   end
   object ibtOrdersInfo: TIBTable
     Database = IBDatabase1

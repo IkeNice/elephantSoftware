@@ -43,6 +43,16 @@ type
     ibtMenuNAME: TIBStringField;
     ibtMenuCATEGORY_ID: TIntegerField;
     ibtMenuPRICE: TIntegerField;
+    ibtOrdersORDER_ID: TIntegerField;
+    ibtOrdersSTATUS_ID: TIntegerField;
+    ibtOrdersCLIENT_NAME: TIBStringField;
+    ibtOrdersPHONE_NUMBER: TIBStringField;
+    ibtOrdersADDRESS_ID: TIntegerField;
+    ibtOrdersCOURIER_ID: TIntegerField;
+    ibtOrdersOPERATOR_ID: TIntegerField;
+    ibtOrdersDATE: TDateField;
+    ibtOrdersTIME_OF_DELIVERY: TIBStringField;
+    ibtOrdersTOTAL_PRICE: TIntegerField;
   private
     { Private declarations }
   public

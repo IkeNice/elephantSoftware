@@ -151,7 +151,7 @@ object fmOrder: TfmOrder
     TabStop = False
     OnClick = btnOkClick
   end
-  object Edit1: TEdit
+  object edPhone: TEdit
     Left = 137
     Top = 110
     Width = 177
@@ -177,12 +177,13 @@ object fmOrder: TfmOrder
       ExplicitHeight = 13
     end
   end
-  object tmTimeOfDelivery: TTimePicker
+  object tpTimeOfDelivery: TTimePicker
     Left = 145
     Top = 332
     Width = 90
     Height = 23
     BorderStyle = bsNone
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -212,6 +213,17 @@ object fmOrder: TfmOrder
     Caption = #1054#1073#1085#1086#1074#1080#1090#1100
     TabOrder = 10
     OnClick = btnRefreshClick
+  end
+  object dtpTimeOfDelivery: TDateTimePicker
+    Left = 145
+    Top = 361
+    Width = 87
+    Height = 21
+    Date = 43823.000000000000000000
+    Format = 'HH:mm'
+    Time = 0.413194444445252900
+    Kind = dtkTime
+    TabOrder = 11
   end
   object dsProducts: TDataSource
     DataSet = dmMy.IBQuery1
