@@ -4,8 +4,8 @@ object dmMy: TdmMy
   Width = 700
   object IBDatabase1: TIBDatabase
     DatabaseName = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE.FDB'
+      '192.168.43.113:D:\'#1057#1080#1089#1090#1077#1084#1085#1072#1103'\Desktop\elephantSoftware-Kirill\ELEP' +
+      'HANTSOFTWARE.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=masterkey'
@@ -13,6 +13,7 @@ object dmMy: TdmMy
     LoginPrompt = False
     DefaultTransaction = IBTransaction1
     ServerType = 'IBServer'
+    AllowStreamedConnected = False
     Left = 24
     Top = 16
   end

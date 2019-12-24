@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids,
-  Data.DB, Vcl.DBCtrls, Data.Win.ADODB, Vcl.ComCtrls;
+  Data.DB, Vcl.DBCtrls, Data.Win.ADODB, Vcl.ComCtrls, Vcl.WinXPickers;
 
 type
   TfmTest = class(TForm)
@@ -19,6 +19,7 @@ type
     DBComboBox1: TDBComboBox;
     Label1: TLabel;
     DateTimePicker1: TDateTimePicker;
+    TimePicker1: TTimePicker;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -73,11 +74,12 @@ begin   {
   Panel.Height:= 100;
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;  }
-  t := TimeToStr(DateTimePicker1.Time);
+//  t := TimeToStr(DateTimePicker1.Time);
+  t := TimeToStr(TimePicker1.Time);
   len := length(t);
   Delete(t, len-2, len);
   Label1.Caption := t;
-  fmTest.Refresh;
+//  fmTest.Refresh;
 end;
 
 

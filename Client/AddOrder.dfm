@@ -153,7 +153,7 @@ object fmOrder: TfmOrder
   end
   object edPhone: TEdit
     Left = 137
-    Top = 110
+    Top = 108
     Width = 177
     Height = 21
     TabOrder = 6

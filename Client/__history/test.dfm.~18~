@@ -79,20 +79,6 @@ object fmTest: TfmTest
       Kind = dtkTime
       TabOrder = 4
     end
-    object TimePicker1: TTimePicker
-      Left = 192
-      Top = 256
-      Width = 97
-      Height = 21
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      TabOrder = 5
-      Time = 43823.531101574070000000
-      TimeFormat = 'h:mm'
-    end
   end
   object Panel2: TPanel
     Left = 369

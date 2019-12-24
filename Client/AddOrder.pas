@@ -30,11 +30,11 @@ type
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure cbTimeOfDeliveryClick(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -77,15 +77,21 @@ begin
   Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
   Panel.DragMode:= dmAutomatic;
 
+  time := TimeToStr(tpTimeOfDelivery.Time);
+  Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
+
   try
     dmMy.smUpdateOrder(orderNum, 1, eOrderer.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
   except
     MessageDlg('Ошибка записи заказа', mtError, [mbOk], 0)
   end;
-
-
-//  fmOrder.Close;
-
+  //
+  eOrderer.Text := '';
+  edPhone.Text := '';
+  lbSetAddress.Caption := '';
+  cbTimeOfDelivery.Checked := true;
+  //
+  fmOrder.Close;
 
 end;
 
@@ -137,29 +143,22 @@ begin
 end;
 
 procedure TfmOrder.FormActivate(Sender: TObject);
-//var time: string;
 begin
-//TODO: Создать записи в БД для врЕменных заказов
+  //TODO: Создать записи в БД для врЕменных заказов
   orderNum := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0);
   lbOrderNumber.Caption := 'Номер заказа ' + orderNum.ToString;
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
-    time := TimeToStr(tpTimeOfDelivery.Time);
-    Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
     tpTimeOfDelivery.Enabled := false;
   end
   else begin
-    time := TimeToStr(tpTimeOfDelivery.Time);
-    Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
     tpTimeOfDelivery.Enabled := true;
   end;
   btnRefreshClick(self);
 end;
 
 procedure TfmOrder.FormCreate(Sender: TObject);
-var i: integer;
 begin
-
 
 end;
 

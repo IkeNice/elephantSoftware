@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids,
+  Data.DB, Vcl.DBCtrls, Data.Win.ADODB, Vcl.ComCtrls;
 
 type
   TfmTest = class(TForm)
@@ -14,6 +15,10 @@ type
     Edit2: TEdit;
     Panel3: TPanel;
     ScrollBox1: TScrollBox;
+    ComboBox1: TComboBox;
+    DBComboBox1: TDBComboBox;
+    Label1: TLabel;
+    DateTimePicker1: TDateTimePicker;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel1Resize(Sender: TObject);
@@ -24,8 +29,11 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
-//    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
-//      Shift: TShiftState; X, Y: Integer);
+    procedure Panel3MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure FormActivate(Sender: TObject);
+
+
   private
     { Private declarations }
     procedure ClickPanel(Sender: TObject; Button: TMouseButton;
@@ -38,10 +46,12 @@ var
   fmTest: TfmTest;
    orderNum :integer = 0;
    dragflag: boolean;
+   t : string;
+   len : integer;
 implementation
 {$R *.dfm}
 
-uses test1;
+uses test1, dm;
 
 {====================
 
@@ -53,22 +63,34 @@ uses test1;
 procedure TfmTest.Button1Click(Sender: TObject);
 var
   Panel: TPanel;
-  Button: TMouseButton;
-begin
+  Button: TButton;
+begin   {
   orderNum:= orderNum+1;
   Panel:= TPanel.Create(fmTest.ScrollBox1);
   Panel.Parent:= fmTest.ScrollBox1;
   Panel.Align:= alTop;
   Panel.Width:= fmTest.ScrollBox1.Width;
-  Panel.Height:= 50;
+  Panel.Height:= 100;
   Panel.Caption:= '«‡Í‡Á π ' + IntToStr(orderNum);
-  Panel.DragMode:= dmAutomatic;
-  if not dragflag then
-    Edit2.Text := 'false';
-    if Button = mbRight then
-      Panel.OnMouseDown := ClickPanel
-  else
-    Edit2.Text := 'true';
+  Panel.DragMode:= dmAutomatic;  }
+  t := TimeToStr(DateTimePicker1.Time);
+  len := length(t);
+  Delete(t, len-2, len);
+  Label1.Caption := t;
+  fmTest.Refresh;
+end;
+
+
+
+procedure TfmTest.FormActivate(Sender: TObject);
+var tmp,len : integer;
+s,t, res : string;
+begin
+{
+  t := TimeToStr(DateTimePicker1.Time);
+  len := length(t);
+  Delete(t, len-2, len);
+  Label1.Caption := t; }
 end;
 
 procedure TfmTest.FormCreate(Sender: TObject);
@@ -76,7 +98,21 @@ begin
   Panel2.Width := fmTest.Width div 2;
   Panel1.Width := fmTest.Width div 2;
   Panel3.OnMouseDown := ClickPanel;
+//
+////  ShowMessage(dmMy.cdsAddresses.FieldByName('STREET').AsVariant);
+//
+//  dmMy.DCOMConnection1.AppServer.ibtAddresses.Refresh;
+//  fmTest.ComboBox1.Clear;
+//  dmMy.DCOMConnection1.AppServer.ibtAddresses.First;
+//  While not dmMy.DCOMConnection1.AppServer.ibtAddresses.EOF do begin
+//    fmTest.ComboBox1.Items.Add(
+//      dmMy.DCOMConnection1.AppServer.ibtAddresses.FieldByName('STREET').AsString);
+//    dmMy.DCOMConnection1.AppServer.ibtAddresses.Next;
+//  end;
+//    dmMy.smDeleteOrder(4);
+    //Label1.caption := dmMy.smUpdateOrder(0, 1, '', '', 4, 4, 3, Now, '', 0).ToString;
 end;
+
 
 procedure TfmTest.Panel1Resize(Sender: TObject);
 begin
@@ -91,20 +127,27 @@ begin
   TPanel(Source).Left:=X;
   TPanel(Source).Top:=Y;
   dragflag := false;
+//  TPanel(Sender).Text := TPanel(Source).Text;
+  TPanel(Sender).SetFocus;
+//  TPanel(Sender).SelectAll;
 end;
 
 procedure TfmTest.Panel2DragOver(Sender, Source: TObject; X, Y: Integer;
   State: TDragState; var Accept: Boolean);
 begin
- Accept:=true;
- dragflag:= true;
+   if Source is TPanel then
+    Accept := True
+  else
+    Accept := False;
 end;
 
-//procedure TfmTest.Panel3MouseDown(Sender: TObject; Button: TMouseButton;
-//  Shift: TShiftState; X, Y: Integer);
-//begin
-//  if Button=mbRight then fmTest1.ShowModal;
-//end;
+
+procedure TfmTest.Panel3MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if Button=mbLeft then
+    TPanel(Sender).BeginDrag(True);
+end;
 
 //*******************************************************//
 //=======  œ–Œ –”“ ¿ SCROLLBOX — œŒÃŒŸ‹ﬁ  ŒÀ≈—» ¿ =======//
@@ -132,5 +175,7 @@ begin
     if Button=mbRight then
       fmTest1.ShowModal;
 end;
+
+
 
 end.
