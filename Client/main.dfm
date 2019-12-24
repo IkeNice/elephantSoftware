@@ -3,7 +3,7 @@ object fmMain: TfmMain
   Top = 0
   Align = alClient
   Caption = 'fmMain'
-  ClientHeight = 397
+  ClientHeight = 394
   ClientWidth = 811
   Color = clBtnFace
   DragMode = dmAutomatic
@@ -23,7 +23,7 @@ object fmMain: TfmMain
     Left = 626
     Top = 41
     Width = 185
-    Height = 292
+    Height = 289
     Align = alRight
     DockSite = True
     TabOrder = 0
@@ -33,20 +33,43 @@ object fmMain: TfmMain
       Left = 1
       Top = 1
       Width = 183
-      Height = 290
+      Height = 287
       HorzScrollBar.Visible = False
       Align = alClient
       DockSite = True
       TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
       OnMouseWheelDown = sboxOrdersMouseWheelDown
       OnMouseWheelUp = ScrollBox1MouseWheelUp
+      ExplicitLeft = 5
+      ExplicitTop = -2
+      object Panel1: TPanel
+        Left = -5
+        Top = 144
+        Width = 185
+        Height = 41
+        Caption = 'Panel1'
+        DragMode = dmAutomatic
+        ParentBackground = False
+        TabOrder = 0
+      end
+      object Panel2: TPanel
+        Left = 3
+        Top = 223
+        Width = 57
+        Height = 169
+        Caption = 'Panel2'
+        DragMode = dmAutomatic
+        TabOrder = 1
+      end
     end
   end
   object pnlDrivers: TPanel
     Left = 0
     Top = 41
     Width = 626
-    Height = 292
+    Height = 289
     Align = alClient
     DockSite = True
     TabOrder = 1
@@ -56,22 +79,27 @@ object fmMain: TfmMain
       Left = 1
       Top = 1
       Width = 295
-      Height = 290
+      Height = 287
       HorzScrollBar.Visible = False
       Align = alClient
+      DockSite = True
       TabOrder = 0
+      OnDragDrop = pnlOrdersDragDrop
+      OnDragOver = pnlOrdersDragOver
     end
     object sboxStatus: TScrollBox
       Left = 296
       Top = 1
       Width = 329
-      Height = 290
+      Height = 287
       HorzScrollBar.Visible = False
       Align = alRight
       DockSite = True
       TabOrder = 1
       OnDragDrop = pnlOrdersDragDrop
       OnDragOver = pnlOrdersDragOver
+      ExplicitLeft = 297
+      ExplicitTop = -2
     end
   end
   object pnlHeader: TPanel
@@ -123,7 +151,7 @@ object fmMain: TfmMain
   end
   object pnlControl: TPanel
     Left = 0
-    Top = 333
+    Top = 330
     Width = 811
     Height = 64
     Align = alBottom
@@ -140,19 +168,10 @@ object fmMain: TfmMain
       TabOrder = 0
       OnClick = btnAddOrderClick
     end
-    object Button1: TButton
-      Left = 504
-      Top = 4
-      Width = 75
-      Height = 36
-      Caption = 'test'
-      TabOrder = 1
-      OnClick = Button1Click
-    end
   end
   object MainMenu1: TMainMenu
-    Left = 8
-    Top = 9
+    Left = 88
+    Top = 89
     object N1: TMenuItem
       Caption = #1048#1089#1087#1086#1083#1085#1103#1077#1084#1099#1077
     end
@@ -161,10 +180,6 @@ object fmMain: TfmMain
     end
     object N3: TMenuItem
       Caption = #1054#1090#1084#1077#1085#1077#1085#1085#1099#1077
-    end
-    object miClose: TMenuItem
-      Caption = #1042#1099#1093#1086#1076
-      OnClick = miCloseClick
     end
   end
 end

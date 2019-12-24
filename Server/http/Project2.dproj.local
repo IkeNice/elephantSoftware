@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.654,=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.340,=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.355,=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.263,=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.882,D:\Системная\Desktop\elephantSoftware\Server\http\Unit2.dfm=D:\Системная\Desktop\elephantSoftware\Server\http\Dm.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.882,D:\Системная\Desktop\elephantSoftware\Server\http\Unit2.pas=D:\Системная\Desktop\elephantSoftware\Server\http\Dm.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.102,=D:\Системная\Desktop\elephantSoftware\Server\http\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.684,=D:\Системная\Desktop\elephantSoftware\Server\http\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.296,D:\Системная\Desktop\elephantSoftware\Server\http\Unit1.pas=D:\Системная\Desktop\elephantSoftware\Server\http\Http.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.047,D:\Системная\Desktop\elephantSoftware\Server\http\Unit1.pas=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.197,D:\Системная\Desktop\elephantSoftware\Server\http\Project2.dproj=D:\Системная\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.599,=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.311,D:\Системная\Desktop\elephantSoftware\Server\http\Unit1.dfm=D:\Системная\Desktop\elephantSoftware\Server\http\Http.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.047,D:\Системная\Desktop\elephantSoftware\Server\http\Unit1.dfm=D:\Системная\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019.12.10 08:36:28.160,D:\Системная\Desktop\elephantSoftware\Server\http\Dm.pas=</Transaction>
+    <Transaction>2019.12.10 08:38:51.115,=D:\Системная\Desktop\elephantSoftware\Server\http\Unit3.pas</Transaction>
+    <Transaction>2019.12.10 08:39:52.388,D:\Системная\Desktop\elephantSoftware\Server\http\Dm.dfm=D:\Системная\Desktop\elephantSoftware\Server\http\Unit3.dfm</Transaction>
+    <Transaction>2019.12.10 08:39:52.388,D:\Системная\Desktop\elephantSoftware\Server\http\Dm.pas=D:\Системная\Desktop\elephantSoftware\Server\http\Unit3.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -4,25 +4,17 @@ uses
   Vcl.Forms,
   main in 'main.pas' {fmMain},
   AddOrder in 'AddOrder.pas' {fmOrder},
-  test in 'test.pas' {fmTest},
-  addAddress in 'addAddress.pas' {fmAddAddress},
-  dm in 'dm.pas' {dmMy: TDataModule},
-  Menu in 'Menu.pas' {fmMenu},
-  test1 in 'test1.pas' {fmTest1},
-  ChooseAddress in 'ChooseAddress.pas' {fmChooseAddress};
+  test in 'test.pas' {Form1},
+  Authorization in 'Authorization.pas' {Form2};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TfmMain, fmMain);
+  Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TfmOrder, fmOrder);
-  Application.CreateForm(TfmTest, fmTest);
-  Application.CreateForm(TfmAddAddress, fmAddAddress);
-  Application.CreateForm(TdmMy, dmMy);
-  Application.CreateForm(TfmMenu, fmMenu);
-  Application.CreateForm(TfmTest1, fmTest1);
-  Application.CreateForm(TfmChooseAddress, fmChooseAddress);
   Application.Run;
 end.

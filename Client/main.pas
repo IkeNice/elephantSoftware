@@ -21,10 +21,10 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     sboxOrders: TScrollBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
     sboxDrivers: TScrollBox;
     sboxStatus: TScrollBox;
-    Button1: TButton;
-    miClose: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddOrderClick(Sender: TObject);
@@ -35,9 +35,6 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
-    procedure Button1Click(Sender: TObject);
-    procedure miCloseClick(Sender: TObject);
-    procedure miAddOrderClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -52,31 +49,13 @@ implementation
 
 {$R *.dfm}
 
-uses AddOrder, test, addAddress, dm;
+uses AddOrder;
 
 procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
 
-procedure TfmMain.miAddOrderClick(Sender: TObject);
-begin
-  fmOrder.ShowModal;
-end;
-
-procedure TfmMain.miCloseClick(Sender: TObject);
-begin
-  Close;
-end;
-
-//=================== œŒ“ŒÃ ”¡–¿“‹!!! ===================//
-procedure TfmMain.Button1Click(Sender: TObject);
-begin
-  fmTest.ShowModal;
-end;
-//*******************************************************//
-
-//================== ‘Œ–Ã»–Œ¬¿Õ»≈ Œ Õ¿ ==================//
 procedure TfmMain.FormActivate(Sender: TObject);
 begin
   pnlOrders.Width := fmMain.ClientWidth div 3;
@@ -89,12 +68,6 @@ begin
   lbStatus.Left := (pnlHeader.Width div 3) + ((pnlHeader.Width div 3) div 2) - lbStatus.Width;
   lbOrders.Left := (pnlHeader.Width div 3) + 3*((pnlHeader.Width div 3) div 2) - lbOrders.Width;
   btnAddOrder.Left :=  (pnlControl.Width div 3) + 3*((pnlControl.Width div 3) div 2) - btnAddOrder.Width div 2;
-  //testing DB-connection
-  {
-  dmMy.IBDatabase1.Connected = true;
-  dmMy.smUpdateProduct(0, 'testSoup', 1, 100);
-  }
-  //end of test
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);
@@ -107,17 +80,14 @@ begin
   sboxOrders.Height := pnlOrders.Height;
 end;
 
-//*******************************************************//
-
-//==================== DRAG-AND-DROP ====================//
+//================== DRAG-AND-DROP ==================//
 procedure TfmMain.pnlOrdersDragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
 //  (Source as TPanel).Parent:=(Sender as TScrollBar);   // ‰Îˇ TScrollBar
 //  (Source as TPanel).Parent:=(Sender as TPanel);  // ‰Îˇ TPanel
   TPanel(Source).Parent := TScrollBox(Sender);  // ‰Îˇ ScrollBox
-  Tpanel(Source).Align := alTop; // ÔÓÁËˆËˇ ‚ÒÍÂ„‰‡ Ò‚ÂıÛ
-  //TPanel(Source).Left:=0;
-  //TPanel(Source).Top:=Y;
+  TPanel(Source).Left:=X;
+  TPanel(Source).Top:=Y;
 end;
 
 procedure TfmMain.pnlOrdersDragOver(Sender, Source: TObject; X, Y: Integer;
