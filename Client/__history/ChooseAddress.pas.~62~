@@ -52,9 +52,15 @@ begin
   addrID := dsChooseAddress.DataSet.Fields[0].Value;
   addressString := dsChooseAddress.DataSet.Fields[1].Value + ' ' +
                               dsChooseAddress.DataSet.Fields[2].Value;
-  if   (dsChooseAddress.DataSet.Fields[3].Value <> null) then
-    addressString := addressString + ', кв.  '+ dsChooseAddress.DataSet.Fields[3].Value;
-  close;
+  try
+    if dsChooseAddress.DataSet.Fields[3].Value <> null then
+    begin
+      flat := dsChooseAddress.DataSet.Fields[3].Value;
+      addressString := addressString + ', кв.  '+ flat.ToString;
+    end;
+  finally
+    close;
+  end;
 end;
 
 procedure TfmChooseAddress.edSearchChange(Sender: TObject);

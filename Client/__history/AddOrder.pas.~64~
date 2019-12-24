@@ -21,11 +21,12 @@ type
     lbNumber: TLabel;
     Edit1: TEdit;
     Label1: TLabel;
-    Panel1: TPanel;
+    pnlAddress: TPanel;
     tmTimeOfDelivery: TTimePicker;
     cbTimeOfDelivery: TCheckBox;
     lbOrderNumber: TLabel;
     btnRefresh: TButton;
+    lbSetAddress: TLabel;
     procedure btnOkClick(Sender: TObject);
     procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
@@ -43,7 +44,8 @@ type
 var
   fmOrder: TfmOrder;
   orderNum :integer = 0;  // номер заказа для Caption на новой кнопке (потом использовать ID в бд)
-
+  addrID :integer;
+  addressString: string;
 implementation
 uses main, addAddress, Menu, dm, ChooseAddress;
 {$R *.dfm}
@@ -53,6 +55,7 @@ procedure TfmOrder.btnAddAddressClick(Sender: TObject);
 begin
   dsProducts.DataSet := nil;
   fmChooseAddress.ShowModal;
+  lbSetAddress.Caption := addressString;
 end;
 //*******************************************************//
  procedure TfmOrder.btnCancelClick(Sender: TObject);
@@ -90,13 +93,13 @@ begin
   dsProducts.DataSet.Open;
   //Настройка dbgrid
   dbgProducts.Fields[0].DisplayLabel := 'Наименование';
-  dbgProducts.Fields[0].DisplayWidth := 32;
+  dbgProducts.Fields[0].DisplayWidth := 30;
   dbgProducts.Fields[1].DisplayLabel := 'Категория';
   dbgProducts.Fields[1].DisplayWidth := 15;
   dbgProducts.Fields[2].DisplayLabel := 'Количество';
   dbgProducts.Fields[2].DisplayWidth := 10;
   dbgProducts.Fields[3].DisplayLabel := 'Цена';
-  dbgProducts.Fields[3].DisplayWidth := 6;
+  dbgProducts.Fields[3].DisplayWidth := 5;
   dbgProducts.Fields[4].Visible := false;
 
   dbgProducts.Refresh;
@@ -128,6 +131,7 @@ begin
     tmTimeOfDelivery.Enabled := false;
   end
   else tmTimeOfDelivery.Enabled := true;
+  btnRefreshClick(self);
 end;
 
 procedure TfmOrder.FormCreate(Sender: TObject);

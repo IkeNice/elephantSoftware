@@ -94,10 +94,13 @@ begin
   //Настройка dbgrid
   dbgProducts.Fields[0].DisplayLabel := 'Наименование';
   dbgProducts.Fields[0].DisplayWidth := 30;
+
   dbgProducts.Fields[1].DisplayLabel := 'Категория';
   dbgProducts.Fields[1].DisplayWidth := 15;
+
   dbgProducts.Fields[2].DisplayLabel := 'Количество';
   dbgProducts.Fields[2].DisplayWidth := 10;
+
   dbgProducts.Fields[3].DisplayLabel := 'Цена';
   dbgProducts.Fields[3].DisplayWidth := 5;
   dbgProducts.Fields[4].Visible := false;

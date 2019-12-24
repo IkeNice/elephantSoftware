@@ -68,13 +68,12 @@ end;
 
 procedure TfmMenu.FormActivate(Sender: TObject);
 begin
-  //dsMenu.DataSet := dmMy.cdsMenu;
   fmMenu.Width := 580;
   fmMenu.Top := 200;
   fmMenu.Left := 400;
   btnChoose.Left := fmMenu.Width - btnChoose.Width - 50;
 
-  dsMenu.DataSet := {dmMy.cdsMenu} dmMy.dspMenu.DataSet;
+  dsMenu.DataSet := dmMy.dspMenu.DataSet;
   dsMenu.DataSet.Open;
   dbgMenu.Refresh;
 end;
@@ -91,78 +90,100 @@ begin
   // нажат пункт "Все меню"
   if Sender = MainMenu1.Items[0] then
   begin
-//    ShowMessage(MainMenu1.Items[0].Caption)
-//    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLClear;
-//    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
-//    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
-//    dmMy.dspMenu.Close;
-//    dmMy.cdsMenu.ProviderName := 'dspQuery';
-//    dmMy.cdsMenu.Open;
-    dsMenu.DataSet := {dmMy.cdsMenu} dmMy.ibtMenu;
+    dsMenu.DataSet := dmMy.ibtMenu;
     dsMenu.DataSet.Open;
     dbgMenu.Refresh;
   end
   // нажат пункт "Первое блюдо"
   else if Sender = MainMenu1.Items[1] then
   begin
-//    ShowMessage(MainMenu1.Items[1].Caption)
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLClear;
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('where CATEGORY_ID = 1');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
+    dmMy.smSQLClear;
+    dmMy.smSQLAddString('select * from Menu');
+    dmMy.smSQLAddString('where CATEGORY_ID = 1');
+    dmMy.smSQLExecute;
+
     dsMenu.DataSet :=  dmMy.IBQuery1;
     dsMenu.DataSet.Open;
     dbgMenu.Fields[0].DisplayLabel := '№';
-    // TODO: displaywidth
+
     dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[1].DisplayWidth := 50;
+
     dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[2].DisplayWidth := 10;
+
     dbgMenu.Fields[3].DisplayLabel := 'Цена';
-    //
+    dbgMenu.Fields[3].DisplayWidth := 10;
+
     dbgMenu.Refresh;
   end
   // нажат пункт "Второе блюдо"
   else if Sender = MainMenu1.Items[2] then
   begin
-//    ShowMessage(MainMenu1.Items[2].Caption)
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLClear;
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('where CATEGORY_ID = 2');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
-//    dmMy.cdsMenu.Close;
-//    dmMy.cdsMenu.ProviderName := 'dspQuery';
-//    dmMy.cdsMenu.Open;
-    dsMenu.DataSet := {dmMy.cdsMenu} dmMy.IBQuery1;
+    dmMy.smSQLClear;
+    dmMy.smSQLAddString('select * from Menu');
+    dmMy.smSQLAddString('where CATEGORY_ID = 2');
+    dmMy.smSQLExecute;
+
+    dsMenu.DataSet :=  dmMy.IBQuery1;
     dsMenu.DataSet.Open;
+    dbgMenu.Fields[0].DisplayLabel := '№';
+
+    dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[1].DisplayWidth := 50;
+
+    dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[2].DisplayWidth := 10;
+
+    dbgMenu.Fields[3].DisplayLabel := 'Цена';
+    dbgMenu.Fields[3].DisplayWidth := 10;
+
     dbgMenu.Refresh;
   end
   // нажат пункт "Десерты"
   else if Sender = MainMenu1.Items[3] then
   begin
-//    ShowMessage(MainMenu1.Items[3].Caption)
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLClear;
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('where CATEGORY_ID = 3');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
-//    dmMy.cdsMenu.Close;
-//    dmMy.cdsMenu.ProviderName := 'dspQuery';
-//    dmMy.cdsMenu.Open;
-    dsMenu.DataSet := {dmMy.cdsMenu} dmMy.IBQuery1;
+    dmMy.smSQLClear;
+    dmMy.smSQLAddString('select * from Menu');
+    dmMy.smSQLAddString('where CATEGORY_ID = 3');
+    dmMy.smSQLExecute;
+
+    dsMenu.DataSet :=  dmMy.IBQuery1;
     dsMenu.DataSet.Open;
+    dbgMenu.Fields[0].DisplayLabel := '№';
+
+    dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[1].DisplayWidth := 50;
+
+    dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[2].DisplayWidth := 10;
+
+    dbgMenu.Fields[3].DisplayLabel := 'Цена';
+    dbgMenu.Fields[3].DisplayWidth := 10;
+
     dbgMenu.Refresh;
   end
   // нажат пункт "Напитки"
   else if Sender = MainMenu1.Items[4] then
   begin
-//    ShowMessage(MainMenu1.Items[4].Caption)
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLClear;
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('select * from Menu');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLAddString('where CATEGORY_ID = 4');
-    {dmMy.DCOMConnection1.AppServer.}dmMy.smSQLExecute;
-//    dmMy.cdsMenu.Close;
-//    dmMy.cdsMenu.ProviderName := 'dspQuery';
-//    dmMy.cdsMenu.Open;
-    dsMenu.DataSet := {dmMy.cdsMenu} dmMy.IBQuery1;
+    dmMy.smSQLClear;
+    dmMy.smSQLAddString('select * from Menu');
+    dmMy.smSQLAddString('where CATEGORY_ID = 4');
+    dmMy.smSQLExecute;
+
+    dsMenu.DataSet :=  dmMy.IBQuery1;
     dsMenu.DataSet.Open;
+    dbgMenu.Fields[0].DisplayLabel := '№';
+
+    dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[1].DisplayWidth := 50;
+
+    dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[2].DisplayWidth := 10;
+
+    dbgMenu.Fields[3].DisplayLabel := 'Цена';
+    dbgMenu.Fields[3].DisplayWidth := 10;
+
     dbgMenu.Refresh;
   end;
 

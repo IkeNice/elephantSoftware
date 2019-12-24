@@ -24,7 +24,7 @@ type
     procedure btnChooseAddressClick(Sender: TObject);
     procedure edSearchChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnAddAddressClick(Sender: TObject);
+//    procedure btnAddAddressClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,11 +40,11 @@ implementation
 
 uses addAddress, dm;
 
-procedure TfmChooseAddress.btnAddAddressClick(Sender: TObject);
-begin
-  fmAddAddress.ShowModal;
-  dbgAddresses.Refresh;
-end;
+//procedure TfmChooseAddress.btnAddAddressClick(Sender: TObject);
+//begin
+//  fmAddAddress.ShowModal;
+//  dbgAddresses.Refresh;
+//end;
 
 procedure TfmChooseAddress.btnChooseAddressClick(Sender: TObject);
 var flat: integer;
@@ -125,6 +125,7 @@ begin
       MessageDlg('Ошибка записи в БД', mtError, [mbOk], 0)
     end;
 //    dmMy.{cdsAddresses.}dspAddresses.Refresh;
+    dbgAddresses.Refresh;
   end;
 end;
 

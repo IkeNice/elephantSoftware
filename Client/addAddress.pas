@@ -38,7 +38,8 @@ uses ChooseAddress;
 
 procedure TfmAddAddress.btnOkClick(Sender: TObject);
 begin
-  dmMy.smUpdateAddress(0, edStreet.Text, edBuilding.Text, StrToInt(edFlat.Text));
+//  dmMy.smUpdateAddress(0, edStreet.Text, edBuilding.Text, StrToInt(edFlat.Text));
+//  fmChooseAddress.dbgAddresses.Refresh;
 end;
 
 procedure TfmAddAddress.edFlatKeyPress(Sender: TObject; var Key: Char);
