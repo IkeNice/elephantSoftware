@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Menus, Vcl.ExtCtrls, IBX.IBQuery;
 
 type
   TfmMain = class(TForm)
@@ -38,6 +38,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure miCloseClick(Sender: TObject);
     procedure miAddOrderClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -95,6 +96,29 @@ begin
   dmMy.smUpdateProduct(0, 'testSoup', 1, 100);
   }
   //end of test
+end;
+
+procedure TfmMain.FormCreate(Sender: TObject);
+var  Panel: Tpanel;
+SQL_Line: string;
+SQLQuery: TIBQuery;
+begin
+{
+  SQLQuery.Database;
+  SQLQuery := TIBQuery.Create(nil);
+  SQLQuery.SQL.Add('SELECT ORDER_ID ID FROM ORDERS');
+  SQLQuery.ExecSQL;
+}
+  dmMy.IBQuery1.SQL.Add('SELECT ORDER_ID id FROM ORDERS');
+
+  Panel:= TPanel.Create(fmMain.sboxOrders);
+  Panel.Parent:= fmMain.sboxOrders;
+  Panel.Align:= alTop;
+  Panel.Width:= fmMain.sboxOrders.Width;
+  Panel.Height:= 50;
+//  Panel.Caption:= 'Заказ № ' + IntToStr(orderNum);
+  Panel.Caption:= 'Заказ № ' + IntToStr(SQLQuery.FieldByName('ID').Value);
+  Panel.DragMode:= dmAutomatic;
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);

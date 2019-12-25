@@ -23,6 +23,8 @@ type
     sboxOrders: TScrollBox;
     sboxDrivers: TScrollBox;
     sboxStatus: TScrollBox;
+    Button1: TButton;
+    miClose: TMenuItem;
     procedure FormResize(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddOrderClick(Sender: TObject);
@@ -33,6 +35,9 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure ScrollBox1MouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
+    procedure Button1Click(Sender: TObject);
+    procedure miCloseClick(Sender: TObject);
+    procedure miAddOrderClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -47,12 +52,30 @@ implementation
 
 {$R *.dfm}
 
-uses AddOrder;
+uses AddOrder, test, addAddress, dm;
 
 procedure TfmMain.btnAddOrderClick(Sender: TObject);
 begin
   fmOrder.ShowModal;
 end;
+
+procedure TfmMain.miAddOrderClick(Sender: TObject);
+begin
+  fmOrder.ShowModal;
+end;
+
+procedure TfmMain.miCloseClick(Sender: TObject);
+begin
+  Close;
+end;
+
+//=================== œŒ“ŒÃ ”¡–¿“‹!!! ===================//
+procedure TfmMain.Button1Click(Sender: TObject);
+begin
+  fmTest.ShowModal;
+end;
+//*******************************************************//
+
 //================== ‘Œ–Ã»–Œ¬¿Õ»≈ Œ Õ¿ ==================//
 procedure TfmMain.FormActivate(Sender: TObject);
 begin
@@ -66,6 +89,12 @@ begin
   lbStatus.Left := (pnlHeader.Width div 3) + ((pnlHeader.Width div 3) div 2) - lbStatus.Width;
   lbOrders.Left := (pnlHeader.Width div 3) + 3*((pnlHeader.Width div 3) div 2) - lbOrders.Width;
   btnAddOrder.Left :=  (pnlControl.Width div 3) + 3*((pnlControl.Width div 3) div 2) - btnAddOrder.Width div 2;
+  //testing DB-connection
+  {
+  dmMy.IBDatabase1.Connected = true;
+  dmMy.smUpdateProduct(0, 'testSoup', 1, 100);
+  }
+  //end of test
 end;
 
 procedure TfmMain.FormResize(Sender: TObject);
@@ -77,7 +106,9 @@ begin
   sboxOrders.Width := pnlOrders.Width;
   sboxOrders.Height := pnlOrders.Height;
 end;
+
 //*******************************************************//
+
 //==================== DRAG-AND-DROP ====================//
 procedure TfmMain.pnlOrdersDragDrop(Sender, Source: TObject; X, Y: Integer);
 begin
