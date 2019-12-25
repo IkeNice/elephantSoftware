@@ -10,22 +10,32 @@ uses
   System.JSON, System.Generics.Collections, Vcl.ExtCtrls, syncobjs,
   IdServerIOHandler, IdSSL, IdSSLOpenSSL, IdTCPConnection, IdTCPClient, IdHTTP,
   IBX.IBCustomDataSet, IBX.IBQuery, IBX.IBStoredProc, IdContext,
-  IdCustomHTTPServer, IdCustomTCPServer, IdHTTPServer;
+  IdCustomHTTPServer, IdCustomTCPServer, IdHTTPServer, IBX.IBEvents,
+  Vcl.StdCtrls;
 
 type
   TForm1 = class(TForm)
     IBDatabase1: TIBDatabase;
-    IBSQLMonitor1: TIBSQLMonitor;
     IdUDPServer1: TIdUDPServer;
     IdUDPClient1: TIdUDPClient;
-    IdHTTP1: TIdHTTP;
-    IBStoredProc1: TIBStoredProc;
     IdHTTPServer1: TIdHTTPServer;
+    IBEvents1: TIBEvents;
+    IBQuery1: TIBQuery;
+    IBEvents2: TIBEvents;
+    Edit1: TEdit;
+    Label1: TLabel;
+    Button1: TButton;
     procedure IdUDPServer1UDPRead(AThread: TIdUDPListenerThread;
       const AData: TIdBytes; ABinding: TIdSocketHandle);
-    procedure IBSQLMonitor1SQL(EventText: string; EventTime: TDateTime);
     procedure IdHTTPServer1CommandGet(AContext: TIdContext;
       ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
+    procedure IBEvents1EventAlert(Sender: TObject; EventName: string;
+      EventCount: Integer; var CancelAlerts: Boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure IBEvents2EventAlert(Sender: TObject; EventName: string;
+      EventCount: Integer; var CancelAlerts: Boolean);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,45 +46,23 @@ var
   Form1: TForm1;
   jsonBuffer: TJSONObject;
   ArrayJson: TJSONArray;
+  FCS: TCriticalSection;
+  FCS2: TCriticalSection;
+  host: String;
 
 implementation
 
 {$R *.dfm}
 
-procedure SendFirebaseMessage(ID_Driver: Integer; Title : String; Body : String);
+procedure SendFirebaseMessage(Token: String; Title : String; Body : String);
 var
   IdHTTP: TIdHTTP;
   IdSSL: TIdSSLIOHandlerSocketOpenSSL;
   Data:TStringStream;
   jsonData1,jsonData2: TJSONObject;
-  TokenDevice,Answer : String;
-  Transaction: TIBTransaction;
-  SQLQuery: TIBQuery;
+  Answer : String;
 begin
   IdHTTP := TIdHTTP.Create;
-
-  try
-    Transaction := TIBTransaction.Create(nil);
-    SQLQuery := TIBQuery.Create(nil);
-    Transaction.DefaultDatabase := Form1.IBDatabase1;
-    SQLQuery.Database := Form1.IBDatabase1;
-    SQLQuery.Transaction := Transaction;
-
-    SQLQuery.Active := false;
-    SQLQuery.SQL.Clear;
-
-    SQLQuery.SQL.Add('SELECT TOKEN_DEVICE FROM INFORMATIONS_DRIVERS ');
-    SQLQuery.SQL.Add('WHERE ID = ' + IntToStr(ID_Driver));
-
-    SQLQuery.Active := true;
-    SQLQuery.Open;
-    SQLQuery.First;
-
-    TokenDevice := VarToStr(SQLQuery.FieldByName('TOKEN_DEVICE').Value);
-  finally
-    Transaction.Free;
-    SQLQuery.Free;
-  end;
 
   try
     jsonData1 := TJSONObject.Create;
@@ -85,15 +73,17 @@ begin
     IdHTTP.IOHandler := IdSSL;
     IdHTTP.Request.ContentType := 'application/json';
     IdHTTP.Request.CharSet := 'UTF-8';
+//    IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
+//      'key=AIzaSyA_sM6ipUnv6yL30Wh-MH4nXZyyCoxmlPo';
     IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
-      'key=AIzaSyA_sM6ipUnv6yL30Wh-MH4nXZyyCoxmlPo';
+      'key=AIzaSyC28fUUJlmDOQMfuz2XQAaLNEJBs1bNwt4';
 
     jsonData2.AddPair('body',Body);
     jsonData2.AddPair('title',Title);
     jsonData2.AddPair('vibrate','1');
     jsonData2.AddPair('sound','default');
 
-    jsonData1.AddPair('to',TokenDevice);
+    jsonData1.AddPair('to',Token);
     jsonData1.AddPair('notification',jsonData2);
 
     Data := TStringStream.Create(jsonData1.ToString,TEncoding.UTF8);
@@ -144,7 +134,7 @@ begin
 
   SQLQuery.SQL.Add('SELECT ID FROM LOGGING_IN ');
   SQLQuery.SQL.Add('WHERE LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
-  SQLQuery.SQL.Add(' AND PASSWORD_ = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + '''');
+  SQLQuery.SQL.Add(' AND PASSWORD_ = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + ''' and ROLE_ = 2');
 
   SQLQuery.Active := true;
   SQLQuery.Open;
@@ -159,13 +149,13 @@ begin
       ResultJSON.AddPair('id',idDriver.ToString);
       ResultJSON.AddPair('keyword',keyWord);
       //=============УСТАНОВКА НОВОГО КЛЮЧЕВОГО СЛОВА=================
+      if Transaction.InTransaction then Transaction.Commit;
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
-      if Transaction.InTransaction then Transaction.Commit;
 
       SQLQuery.SQL.Add('UPDATE INFORMATIONS_DRIVERS ');
       SQLQuery.SQL.Add('SET KEY_WORD = ''' + keyWord + '''');
-      SQLQuery.SQL.Add(', DEVICE_TOKEN = ''' + tokenDevice + '''');
+      SQLQuery.SQL.Add(', TOKEN_DEVICE = ''' + tokenDevice + '''');
       SQLQuery.SQL.Add(' WHERE ID = ' + idDriver.ToString);
       SQLQuery.ExecSQL;
 
@@ -350,15 +340,20 @@ end;
 
 function ToChangeStatus(toChangeStatus : TJsonObject) : TJsonObject;
 var
+  Database: TIBDatabase;
   updateStatusOrder: TIBStoredProc;
   Transaction: TIBTransaction;
   ResultJSON : TJSONObject;
 begin
   ResultJSON := TJSONObject.Create;
+  Database := TIBDatabase.Create(nil);
+  Database := Form1.IBDatabase1;
+  Database.Connected := true;
   Transaction := TIBTransaction.Create(nil);
-  Transaction.DefaultDatabase := Form1.IBDatabase1;
+  Transaction.DefaultDatabase := Database;
   if (StrToInt(toChangeStatus.GetValue('new_status').ToString) in [2..6]) then
     begin
+      FCS2.Enter;
       updateStatusOrder := TIBStoredProc.Create(nil);
       updateStatusOrder.Database := Form1.IBDatabase1;
       updateStatusOrder.Transaction := Transaction;
@@ -373,11 +368,11 @@ begin
       updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
       updateStatusOrder.ExecProc;
 
-      if DataModule2.IBTransaction1.InTransaction then
-        DataModule2.IBTransaction1.Commit;
+      if Transaction.InTransaction then Transaction.Commit;
 
-      DataModule2.IBTransaction1.Active := False;
+      Transaction.Active := False;
       ResultJSON.AddPair('status','OK');
+      FCS2.Leave;
     end
   else
     begin
@@ -386,51 +381,153 @@ begin
   Result := ResultJSON;
 end;
 
-procedure TForm1.IBSQLMonitor1SQL(EventText: string; EventTime: TDateTime);
-var
-  Proc : TIBStoredProc;
-  Transaction: TIBTransaction;
-  s : TStrings;
-  i:Integer;
-  nameProc: String;
+procedure TForm1.Button1Click(Sender: TObject);
 begin
+  host := Edit1.Text;
+end;
+
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+if ((not(Key in ['0' .. '9','.',#08])) or (Length(Edit1.Text) >= 15)) then Key := #0;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  IBDatabase1.Connected := true;
+  IBEvents1.Registered := true;
+  IBEvents2.Registered := true;
+  FCS := TCriticalSection.Create;
+  FCS2 := TCriticalSection.Create;
+end;
+
+procedure TForm1.IBEvents1EventAlert(Sender: TObject; EventName: string;
+  EventCount: Integer; var CancelAlerts: Boolean);
+begin
+//  ShowMessage(EventName);
+//  host := '192.168.43.255';
+
+  if (EventName = 'ADD_WORKER') then
+      IdUDPServer1.Send(host,11000,'2');
+  if (EventName = 'EDIT_WORKER') then
+      IdUDPServer1.Send(host,11000,'2');
+  if (EventName = 'DELETE_WORKER') then
+      IdUDPServer1.Send(host,11000,'2');
+  if (EventName = 'BEGIN_DAY_DRIVER') then
+      IdUDPServer1.Send(host,11000,'3');
+  if (EventName = 'EDIT_DRIVER_SET_CAR') then
+      IdUDPServer1.Send(host,11000,'1');    //............
+  if (EventName = 'EDIT_DRIVER_SET_SCHEDULE') then
+      IdUDPServer1.Send(host,11000,'1');    //............
+end;
+
+function Get_Token(): TJSONArray;
+var
+  res_:Integer;
+  Database: TIBDatabase;
+  Transaction: TIBTransaction;
+  GetTokenProc: TIBStoredProc;
+  jsonBuffer: TJSONObject;
+  Result1 :TJSONArray;
+begin
+  Database := TIBDatabase.Create(nil);
+  Database := Form1.IBDatabase1;
+  Database.Connected := true;
+  Transaction := TIBTransaction.Create(nil);
+  Transaction.DefaultDatabase := Database;
+  GetTokenProc := TIBStoredProc.Create(nil);
+  GetTokenProc.Database := Database;
+  GetTokenProc.Transaction := Transaction;
+  GetTokenProc.StoredProcName := 'CHECK_JOURNAL_GET_TOKEN';
+  Result1 := TJSONArray.Create;
   try
-    Transaction := TIBTransaction.Create(nil);
-    Transaction.DefaultDatabase := Form1.IBDatabase1;
-    Proc := TIBStoredProc.Create(nil);
-    Proc.Database := Form1.IBDatabase1;
-    Proc.Transaction := Transaction;
-    s := Proc.StoredProcedureNames;
+    repeat
+      jsonBuffer := TJSONObject.Create;
+      if Transaction.InTransaction then Transaction.Commit;
+      GetTokenProc.ExecProc;
+      res_ := StrToInt(VarToStr(GetTokenProc.ParamByName('REST').Value));
+      jsonBuffer.AddPair('new_status',
+        VarToStr(GetTokenProc.ParamByName('NEW_STATUS').Value));
+      jsonBuffer.AddPair('old_token',
+        VarToStr(GetTokenProc.ParamByName('OLD_TOKEN').Value));
+      jsonBuffer.AddPair('token',
+        VarToStr(GetTokenProc.ParamByName('TOKEN').Value));
+      Result1.AddElement(jsonBuffer);
+      jsonBuffer := TJSONObject.Create;
+      if Transaction.InTransaction then Transaction.Commit;
+    until (res_ = 0);
   finally
+    GetTokenProc.Free;
     Transaction.Free;
-    Proc.Free;
   end;
-  for i := 0 to s.Count-1 do
+  Result := Result1;
+end;
+
+procedure TForm1.IBEvents2EventAlert(Sender: TObject; EventName: string;
+  EventCount: Integer; var CancelAlerts: Boolean);
+var
+  ArrToken: TJSONArray;
+  Title,Body :String;
+  i: Integer;
+  JSONObject: TJSONObject;
+begin
+//  host := '192.168.43.255';
+  if (EventName = 'UPDATE_STATUS') then
     begin
-      if pos(s[i],EventText)>0 then nameProc := s[i];
+      FCS.Enter;
+      ArrToken := Get_Token();
+      for i := 0 to ArrToken.Count-1 do
+        begin
+          JSONObject := ArrToken.Items[i] as TJSONObject;
+          if (normalizationString(JSONObject.GetValue('new_status').ToString) = '2') then
+            begin
+              Title := 'Новая информация';
+              Body := 'Вам назначен новый заказ';
+              SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
+                Title,Body);
+              if (normalizationString(JSONObject.GetValue('old_token').ToString) <> '') then
+                begin
+                  Title := 'Новая информация';
+                  Body := 'У вас отменен заказ';
+                  SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
+                    Title,Body);
+                end;
+            end;
+          if (normalizationString(JSONObject.GetValue('new_status').ToString) = '0') then
+            begin
+              Title := 'Новая информация';
+              Body := 'У вас отменен заказ';
+//              ShowMessage(normalizationString(JSONObject.GetValue('old_token').ToString));
+              SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
+                Title,Body);
+            end;
+        end;
+      IdUDPServer1.Send(host,11000,'1');
+      FCS.Leave;
     end;
-  if (nameProc = 'ADD_WORKER') then
-    IdUDPClient1.Send('Добавлен новый работник',IndyTextEncoding_UTF8);
-  if (nameProc = 'EDIT_WORKER') then
-    IdUDPClient1.Send('Изменена информация о работнике',IndyTextEncoding_UTF8);
-  if (nameProc = 'DELETE_WORKER') then
-    IdUDPClient1.Send('Произошло удаление работника',IndyTextEncoding_UTF8);
-  if (nameProc = 'BEGIN_DAY_DRIVER') then
-    IdUDPClient1.Send('Работник прикреплен к машине',IndyTextEncoding_UTF8);
-  if (nameProc = 'EDIT_DRIVER_SET_CAR') then
-    IdUDPClient1.Send('По некоторым причинам водитель изменил машину',IndyTextEncoding_UTF8);
-  if (nameProc = 'EDIT_DRIVER_SET_SCHEDULE') then
-    IdUDPClient1.Send('У водителя изменился рабочий график на сегодня',IndyTextEncoding_UTF8);
-  if (nameProc = 'ADD_ADDRESS') then
-    IdUDPClient1.Send('Новый адрес занесен в базу',IndyTextEncoding_UTF8);
-  if (nameProc = 'ADD_CAR') then
-    IdUDPClient1.Send('Новая машина занесена в базу',IndyTextEncoding_UTF8);
-  if (nameProc = 'ADD_CUSTOMER') then
-    IdUDPClient1.Send('Новый заказчик занесен в базу',IndyTextEncoding_UTF8);
-  if (nameProc = 'ADD_ORDER') then
-    IdUDPClient1.Send('Появился новый заказ',IndyTextEncoding_UTF8);
-  if (nameProc = 'EDIT_ORDER') then
-    IdUDPClient1.Send('Изменена информация о заказе',IndyTextEncoding_UTF8);
+
+  if (EventName = 'ADD_ADDRESS') then
+      IdUDPServer1.Send(host,11000,'1');
+  if (EventName = 'ADD_CUSTOMER') then
+      IdUDPServer1.Send(host,11000,'1');
+  if (EventName = 'ADD_CAR') then
+      IdUDPServer1.Send(host,11000,'3');
+  if (EventName = 'ADD_ORDER') then
+      IdUDPServer1.Send(host,11000,'1');
+  if (EventName = 'EDIT_ORDER') then
+    begin
+      FCS.Enter;
+      ArrToken := Get_Token();
+      for i := 0 to ArrToken.Count-1 do
+        begin
+          JSONObject := ArrToken.Items[i] as TJSONObject;
+          Title := 'Изменение информации';
+          Body := 'Изменена информация о заказе';
+          SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
+            Title,Body);
+        end;
+      IdUDPServer1.Send(host,11000,'1');
+      FCS.Leave;
+    end;
 end;
 
 procedure TForm1.IdHTTPServer1CommandGet(AContext: TIdContext;
@@ -460,8 +557,6 @@ begin
       begin
         jsonAnswerData := ToChangeStatus(jsonGetQuery);
       end;
-//      ShowMessage(jsonAnswerData.ToString);
-//  AResponseInfo.ContentType := 'text/html; charset=utf-8';
   AResponseInfo.ContentType := 'text; charset=utf-8';
   AResponseInfo.ContentText := jsonAnswerData.ToString;
 end;
@@ -500,7 +595,7 @@ begin
         begin
           IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' распределен водителю '+
             IntToStr(id_worker),IndyTextEncoding_UTF8);
-          SendFirebaseMessage(id_worker,'Новая информация','Вам назначен новый заказ');
+//          SendFirebaseMessage(id_worker,'Новая информация','Вам назначен новый заказ');
         end;
     end;
 end;

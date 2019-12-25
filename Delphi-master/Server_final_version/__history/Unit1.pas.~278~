@@ -76,7 +76,7 @@ begin
 //    IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
 //      'key=AIzaSyA_sM6ipUnv6yL30Wh-MH4nXZyyCoxmlPo';
     IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
-      'key=AIzaSyC28fUUJlmDOQMfuz2XQAaLNEJBs1bNwt4';
+      'key=AIzaSyDEPdQ1ZzIGvHFr3khjfO528YOrbeiFEG4';
 
     jsonData2.AddPair('body',Body);
     jsonData2.AddPair('title',Title);
@@ -117,6 +117,7 @@ end;
 function ToLogIn (toLogInJSON: TJSONObject) : TJSONObject;
 var
   idDriver : Integer;
+  p : String;
   ResultJSON: TJSONObject;
   Transaction: TIBTransaction;
   SQLQuery: TIBQuery;
@@ -128,27 +129,29 @@ begin
   Transaction.DefaultDatabase := Form1.IBDatabase1;
   SQLQuery.Database := Form1.IBDatabase1;
   SQLQuery.Transaction := Transaction;
-  //=============–ü–û–õ–£–ß–ï–ù–ò–ï –ò–î –†–ê–ë–û–¢–ù–ò–ö–ê=================
+  //=============œŒÀ”◊≈Õ»≈ »ƒ –¿¡Œ“Õ» ¿=================
   SQLQuery.Active := false;
   SQLQuery.SQL.Clear;
-
-  SQLQuery.SQL.Add('SELECT ID FROM AUTHOTIZATION ');
-  SQLQuery.SQL.Add('WHERE LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
-  SQLQuery.SQL.Add(' AND PASSWORD = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + ''' and ROLE_ = 2');
-
+//  p := normalizationString(toLogInJSON.GetValue('login'));
+//   showmessage(p);
+  SQLQuery.SQL.Add('SELECT a.EMP_ID FROM AUTHOTIZATION a join employees j on ');
+  SQLQuery.SQL.Add('a.LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
+  SQLQuery.SQL.Add(' AND a.PASSWORD = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + '''');
+//  SQLQuery.SQL.Add('and  j.emp_id = a.emp_id and j.job_id = 3');
+//    showmessage(SQLQuery.FieldByName('EMP_ID').Value);
   SQLQuery.Active := true;
   SQLQuery.Open;
-  //=============–ï–°–õ–ò –û–ù –ï–°–¢–¨, –¢–û –°–û–ë–ò–†–ê–ï–ú –ò–ù–§–û–†–ú–ê–¶–ò–Æ=================
+  //=============≈—À» ŒÕ ≈—“‹, “Œ —Œ¡»–¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ=================
   if (SQLQuery.RecordCount.ToBoolean) then
     begin
-      idDriver := SQLQuery.FieldByName('ID').Value;
+      idDriver := SQLQuery.FieldByName('EMP_ID').Value;
       keyWord := generationKeyWord();
       tokenDevice := normalizationString(toLogInJSON.GetValue('token').ToString);
-
+//      showmessage(idDriver.ToString);
       ResultJSON.AddPair('status','OK');
       ResultJSON.AddPair('id',idDriver.ToString);
       ResultJSON.AddPair('keyword',keyWord);
-      //=============–£–°–¢–ê–ù–û–í–ö–ê –ù–û–í–û–ì–û –ö–õ–Æ–ß–ï–í–û–ì–û –°–õ–û–í–ê=================
+      //=============”—“¿ÕŒ¬ ¿ ÕŒ¬Œ√Œ  Àﬁ◊≈¬Œ√Œ —ÀŒ¬¿=================
       if Transaction.InTransaction then Transaction.Commit;
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
@@ -158,26 +161,26 @@ begin
       SQLQuery.SQL.Add(', TOKEN_DEVICE = ''' + tokenDevice + '''');
       SQLQuery.SQL.Add(' WHERE EMP_ID = ' + idDriver.ToString);
       SQLQuery.ExecSQL;
-
+//      showmessage(keyWord);
+//      showmessage(tokenDevice);
+//      showmessage(idDriver.ToString);
       SQLQuery.Active := true;
       SQLQuery.Open;
       if Transaction.InTransaction then Transaction.Commit;
-      //=============–ü–û–õ–£–ß–ï–ù–ò–ï –ò–ù–§–û–†–ú–ê–¶–ò–ò –û –ï–ì–û –ó–ê–ö–ê–ó–ê–•=================
+      //=============œŒÀ”◊≈Õ»≈ »Õ‘Œ–Ã¿÷»» Œ ≈√Œ «¿ ¿«¿’=================
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
 
-      SQLQuery.SQL.Add('select o.order_id, o.client_name NAME, o.phone_number PHONE_NUMBER, o.time_of_delivery TIME_OF_DELIVERY, o."DATE" DATE, o.total_price PRICE, o.status_id STATUS, ');
-      SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO from orders o');
- //     SQLQuery.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from orders o');
-      SQLQuery.SQL.Add('join addresses a1 on');
-      SQLQuery.SQL.Add('(o.address_id = a1.address_id) and (o.courier_id = '+idDriver.ToString+') and (o.status between 2 and 5)');
-      SQLQuery.SQL.Add('join address a2 on (a2.id = o.to_id_address)');
-      SQLQuery.SQL.Add('join customers c on (c.id = o.id_customer)');
+      SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
+      SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO, ');
+      SQLQuery.SQL.Add('o.time_of_delivery TIME_OF_DELIVERY, o."DATE", o.total_price, o.status_id from orders o');
+      SQLQuery.SQL.Add('join addresses a1 on ');
+      SQLQuery.SQL.Add('(a1.address_id = o.address_id) and (o.courier_id =  '+idDriver.ToString+') and (o.status_id between 2 and 5)');
       SQLQuery.SQL.Add('order by o.time_of_delivery descending');
 
       SQLQuery.Active := true;
       SQLQuery.Open;
-      //=============–ó–ê–ü–û–õ–ù–ï–ù–ò–ï JSONARRAY –ï–ì–û –ó–ê–ö–ê–ó–ê–ú–ò=================
+      //=============«¿œŒÀÕ≈Õ»≈ JSONARRAY ≈√Œ «¿ ¿«¿Ã»=================
       jsonBuffer := TJSONObject.Create;
       ArrayJson := TJSONArray.Create;
 
@@ -186,23 +189,16 @@ begin
       while not SQLQuery.Eof do
         begin
           jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
-
+  //         showmessage(idDriver.ToString);
           jsonBuffer.AddPair('customer_name',
             VarToStr(SQLQuery.FieldByName('NAME').Value));
-
           jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
-
           jsonBuffer.AddPair('destination_address',
             VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
-            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+' ('+
-            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value)+ ' —ç—Ç.)');
-
+            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+
+            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value));
           jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('TIME_OF_DELIVERY').Value));
-
-     //     jsonBuffer.AddPair('number_of_movers',VarToStr(SQLQuery.FieldByName('NUMBER_STEVEDORE').Value));
-          jsonBuffer.AddPair('date',VarToStr(SQLQuery.FieldByName('DATE').Value));
           jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
-
           jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
 
           ArrayJson.AddElement(jsonBuffer);
@@ -213,7 +209,7 @@ begin
         end;
         ResultJSON.AddPair('data',ArrayJson);
     end
-    //=============–ï–°–õ–ò –¢–ê–ö–û–ì–û –†–ê–ë–û–¢–ù–ò–ö–ê –ù–ï–¢=================
+    //=============≈—À» “¿ Œ√Œ –¿¡Œ“Õ» ¿ Õ≈“=================
   else
     begin
       ResultJSON.AddPair('status','error');
@@ -235,41 +231,38 @@ begin
   Transaction.DefaultDatabase := Form1.IBDatabase1;
   SQLQuery.Database := Form1.IBDatabase1;
   SQLQuery.Transaction := Transaction;
-  //=============–ü–û–õ–£–ß–ï–ù–ò–ï –ö–õ–Æ–ß–ï–í–û–ì–û –°–õ–û–í–ê –†–ê–ë–û–¢–ù–ò–ö–ê –ò–ó –¢–ê–ë–õ–ò–¶–´=================
+  //=============œŒÀ”◊≈Õ»≈  Àﬁ◊≈¬Œ√Œ —ÀŒ¬¿ –¿¡Œ“Õ» ¿ »« “¿¡À»÷€=================
   SQLQuery.Active := false;
   SQLQuery.SQL.Clear;
 
-  SQLQuery.SQL.Add('SELECT KEY_WORD FROM INFORMATIONS_DRIVERS WHERE ');
-  SQLQuery.SQL.Add('ID = ''' +
+  SQLQuery.SQL.Add('SELECT KEYWORD FROM DRIVERS_INFO WHERE ');
+  SQLQuery.SQL.Add('EMP_ID = ''' +
     normalizationString(toKeyWordInJSON.GetValue('id').ToString) + '''');
 
   SQLQuery.Active := true;
   SQLQuery.Open;
-  //=============–ï–°–õ–ò –û–ù–û –ï–°–¢–¨ (–í–ï–†–ù–û–ï –ò–î)=================
+  //=============≈—À» ŒÕŒ ≈—“‹ (¬≈–ÕŒ≈ »ƒ)=================
   if (SQLQuery.RecordCount.ToBoolean) then
     begin
-      keyWord := VarToStr(SQLQuery.FieldByName('KEY_WORD').Value);
-      //=============–ï–°–õ–ò –ü–û–õ–£–ß–ï–ù–ù–û–ï –ö–õ–Æ–ß–ï–í–û–ï –°–õ–û–í–û –°–û–í–ü–ê–î–ê–ï–¢ –° –ö–õ–Æ–ß–ï–í–´–ú –°–õ–û–í–û–ú –ò–ó –¢–ê–ë–õ–ò–¶–´ –î–õ–Ø –≠–¢–û–ì–û –†–ê–ë–û–¢–ù–ò–ö–ê=================
+      keyWord := VarToStr(SQLQuery.FieldByName('KEYWORD').Value);
+      //=============≈—À» œŒÀ”◊≈ÕÕŒ≈  Àﬁ◊≈¬Œ≈ —ÀŒ¬Œ —Œ¬œ¿ƒ¿≈“ —  Àﬁ◊≈¬€Ã —ÀŒ¬ŒÃ »« “¿¡À»÷€ ƒÀﬂ ›“Œ√Œ –¿¡Œ“Õ» ¿=================
       if (keyWord = normalizationString(toKeyWordInJSON.GetValue('keyword').ToString)) then
         begin
           ResultJSON.AddPair('status','OK');
-          //=============–ü–û–õ–£–ß–ï–ù–ò–ï –ò–ù–§–û–†–ú–ê–¶–ò–ò –û –ï–ì–û –ó–ê–ö–ê–ó–ê–•=================
+          //=============œŒÀ”◊≈Õ»≈ »Õ‘Œ–Ã¿÷»» Œ ≈√Œ «¿ ¿«¿’=================
           SQLQuery.Active := false;
           SQLQuery.SQL.Clear;
 
-          SQLQuery.SQL.Add('select o.id, c.name, c.surname, c.phone_number, ');
-          SQLQuery.SQL.Add('a1.city CITY_FROM, a1.street STREET_FROM, a1.number_house NUMBER_HOUSE_FROM, a1.floor_ FLOOR_FROM, ');
-          SQLQuery.SQL.Add('a2.city CITY_TO, a2.street STREET_TO, a2.number_house NUMBER_HOUSE_TO, a2.floor_ FLOOR_TO, ');
-          SQLQuery.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from orders o');
-          SQLQuery.SQL.Add('join address a1 on ');
-          SQLQuery.SQL.Add('(a1.id = o.from_id_address) and (o.who_driver = '+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+') and (o.status between 2 and 5)');
-          SQLQuery.SQL.Add('join address a2 on (a2.id = o.to_id_address)');
-          SQLQuery.SQL.Add('join customers c on (c.id = o.id_customer)');
-          SQLQuery.SQL.Add('order by o.date_of_delivery descending');
+SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
+      SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO, ');
+      SQLQuery.SQL.Add('o.time_of_delivery TIME_OF_DELIVERY, o."DATE", o.total_price, o.status_id from orders o');
+      SQLQuery.SQL.Add('join addresses a1 on ');
+      SQLQuery.SQL.Add('(a1.address_id = o.address_id) and (o.courier_id =  '+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+') and (o.status_id between 2 and 5)');
+      SQLQuery.SQL.Add('order by o.time_of_delivery descending');
 
           SQLQuery.Active := true;
           SQLQuery.Open;
-          //=============–ó–ê–ü–û–õ–ù–ï–ù–ò–ï JSONARRAY –ï–ì–û –ó–ê–ö–ê–ó–ê–ú–ò=================
+          //=============«¿œŒÀÕ≈Õ»≈ JSONARRAY ≈√Œ «¿ ¿«¿Ã»=================
           jsonBuffer := TJSONObject.Create;
           ArrayJson := TJSONArray.Create;
 
@@ -280,31 +273,18 @@ begin
               jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
 
               jsonBuffer.AddPair('customer_name',
-                VarToStr(SQLQuery.FieldByName('NAME').Value)+' '+
-                VarToStr(SQLQuery.FieldByName('SURNAME').Value));
+                VarToStr(SQLQuery.FieldByName('NAME').Value));
 
               jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
 
-              jsonBuffer.AddPair('origin_address',
-                VarToStr(SQLQuery.FieldByName('CITY_FROM').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('STREET_FROM').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_FROM').Value)+ ' ('+
-                VarToStr(SQLQuery.FieldByName('FLOOR_FROM').Value)+ ' —ç—Ç.)');
+          jsonBuffer.AddPair('destination_address',
+            VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
+            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+
+            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value));
 
-              jsonBuffer.AddPair('destination_address',
-                VarToStr(SQLQuery.FieldByName('CITY_TO').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
-                VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+' ('+
-                VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value)+ ' —ç—Ç.)');
-
-              jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('DATE_OF_DELIVERY').Value));
-
-              jsonBuffer.AddPair('number_of_movers',VarToStr(SQLQuery.FieldByName('NUMBER_STEVEDORE').Value));
-
-              jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
-
-              jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
-
+          jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('TIME_OF_DELIVERY').Value));
+          jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
+          jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
               ArrayJson.AddElement(jsonBuffer);
 
               jsonBuffer := TJSONObject.Create;
@@ -313,14 +293,14 @@ begin
             end;
             ResultJSON.AddPair('data',ArrayJson);
         end
-        //=============–ï–°–õ–ò –ö–õ–Æ–ß–ï–í–´–ï –°–õ–û–í–ê –ù–ï –°–û–í–ü–ê–î–ê–Æ–¢=================
+        //=============≈—À»  Àﬁ◊≈¬€≈ —ÀŒ¬¿ Õ≈ —Œ¬œ¿ƒ¿ﬁ“=================
       else
         begin
           ResultJSON.AddPair('status','error');
           ResultJSON.AddPair('message','There is an error in the keyword');
         end;
     end
-    //=============–ï–°–õ–ò –¢–ê–ö–û–ì–û –†–ê–ë–û–¢–ù–ò–ö–ê –ù–ï–¢=================
+    //=============≈—À» “¿ Œ√Œ –¿¡Œ“Õ» ¿ Õ≈“=================
   else
     begin
       ResultJSON.AddPair('status','error');
@@ -344,19 +324,22 @@ begin
   Transaction.DefaultDatabase := Database;
   if (StrToInt(toChangeStatus.GetValue('new_status').ToString) in [2..6]) then
     begin
+//    showmessage(toChangeStatus.GetValue('new_status').ToString);
       FCS2.Enter;
       updateStatusOrder := TIBStoredProc.Create(nil);
-      updateStatusOrder.Database := Form1.IBDatabase1;
+      updateStatusOrder.Database := Database;
       updateStatusOrder.Transaction := Transaction;
 
       updateStatusOrder.StoredProcName := 'EDIT_ORDER_SET_STATUS';
       Transaction.Active := True;
 
       if Transaction.InTransaction then Transaction.Commit;
+ //      showmessage(toChangeStatus.GetValue('order_id').ToString);
+ //      showmessage(toChangeStatus.GetValue('new_status').ToString);
 
       updateStatusOrder.ParamByName('ID_ORDER').AsInteger := StrToInt(toChangeStatus.GetValue('order_id').ToString);
       updateStatusOrder.ParamByName('NEW_STATUS').AsInteger := StrToInt(toChangeStatus.GetValue('new_status').ToString);
-      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
+//      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
       updateStatusOrder.ExecProc;
 
       if Transaction.InTransaction then Transaction.Commit;
@@ -471,22 +454,22 @@ begin
           JSONObject := ArrToken.Items[i] as TJSONObject;
           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '2') then
             begin
-              Title := '–ù–æ–≤–∞—è –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è';
-              Body := '–í–∞–º –Ω–∞–∑–Ω–∞—á–µ–Ω –Ω–æ–≤—ã–π –∑–∞–∫–∞–∑';
+              Title := 'ÕÓ‚‡ˇ ËÌÙÓÏ‡ˆËˇ';
+              Body := '¬‡Ï Ì‡ÁÌ‡˜ÂÌ ÌÓ‚˚È Á‡Í‡Á';
               SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
                 Title,Body);
               if (normalizationString(JSONObject.GetValue('old_token').ToString) <> '') then
                 begin
-                  Title := '–ù–æ–≤–∞—è –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è';
-                  Body := '–£ –≤–∞—Å –æ—Ç–º–µ–Ω–µ–Ω –∑–∞–∫–∞–∑';
+                  Title := 'ÕÓ‚‡ˇ ËÌÙÓÏ‡ˆËˇ';
+                  Body := '” ‚‡Ò ÓÚÏÂÌÂÌ Á‡Í‡Á';
                   SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
                     Title,Body);
                 end;
             end;
           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '0') then
             begin
-              Title := '–ù–æ–≤–∞—è –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è';
-              Body := '–£ –≤–∞—Å –æ—Ç–º–µ–Ω–µ–Ω –∑–∞–∫–∞–∑';
+              Title := 'ÕÓ‚‡ˇ ËÌÙÓÏ‡ˆËˇ';
+              Body := '” ‚‡Ò ÓÚÏÂÌÂÌ Á‡Í‡Á';
 //              ShowMessage(normalizationString(JSONObject.GetValue('old_token').ToString));
               SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
                 Title,Body);
@@ -511,8 +494,8 @@ begin
       for i := 0 to ArrToken.Count-1 do
         begin
           JSONObject := ArrToken.Items[i] as TJSONObject;
-          Title := '–ò–∑–º–µ–Ω–µ–Ω–∏–µ –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏–∏';
-          Body := '–ò–∑–º–µ–Ω–µ–Ω–∞ –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è –æ –∑–∞–∫–∞–∑–µ';
+          Title := '»ÁÏÂÌÂÌËÂ ËÌÙÓÏ‡ˆËË';
+          Body := '»ÁÏÂÌÂÌ‡ ËÌÙÓÏ‡ˆËˇ Ó Á‡Í‡ÁÂ';
           SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
             Title,Body);
         end;
@@ -533,22 +516,23 @@ begin
     S:= TStringStream.Create;
     S.CopyFrom(ARequestInfo.PostStream,0);
     jsonGetQuery := TJSONObject.ParseJSONValue(S.DataString) as TJSONObject;
-    //=============–ï–°–õ–ò –í–û–î–ò–¢–ï–õ–¨ –ó–ê–•–û–î–ò–¢ –° –õ–û–ì–ò–ù–û–ú –ò –ü–ê–†–û–õ–ï–ú=================
+    //=============≈—À» ¬Œƒ»“≈À‹ «¿’Œƒ»“ — ÀŒ√»ÕŒÃ » œ¿–ŒÀ≈Ã=================
     if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'authentication') then
       begin
         jsonAnswerData := ToLogIn(jsonGetQuery);
       end;
-    //=============–ï–°–õ–ò –í–û–î–ò–¢–ï–õ–¨ –ó–ê–•–û–î–ò–¢ –° –ò–î –ò –ö–õ–Æ–ß–ï–í–´–ú –°–õ–û–í–û–ú=================
+    //=============≈—À» ¬Œƒ»“≈À‹ «¿’Œƒ»“ — »ƒ »  Àﬁ◊≈¬€Ã —ÀŒ¬ŒÃ=================
     if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'get_order_list') then
       begin
         jsonAnswerData := ToKeyWordIn(jsonGetQuery);
       end;
-    //=============–ï–°–õ–ò –ú–ï–ù–Ø–ï–¢–°–Ø –°–¢–ê–¢–£–° –ó–ê–ö–ê–ó–ê=================
+    //=============≈—À» Ã≈Õﬂ≈“—ﬂ —“¿“”— «¿ ¿«¿=================
     if (normalizationString(jsonGetQuery.GetValue('request_type').ToString) = 'change_status') then
       begin
         jsonAnswerData := ToChangeStatus(jsonGetQuery);
       end;
   AResponseInfo.ContentType := 'text; charset=utf-8';
+//  showmessage(jsonAnswerData.ToString);
   AResponseInfo.ContentText := jsonAnswerData.ToString;
 end;
 
@@ -571,22 +555,22 @@ begin
   if(id_worker = -1) then
     begin
       if (new_status = 0) then
-        IdUDPClient1.Send('–ó–∞–∫–∞–∑ '+IntToStr(id_order)+' –Ω–µ —Ä–∞—Å–ø—Ä–µ–¥–µ–ª–µ–Ω',IndyTextEncoding_UTF8);
+        IdUDPClient1.Send('«‡Í‡Á '+IntToStr(id_order)+' ÌÂ ‡ÒÔÂ‰ÂÎÂÌ',IndyTextEncoding_UTF8);
       if (new_status = 7) then
-        IdUDPClient1.Send('–ó–∞–∫–∞–∑ '+IntToStr(id_order)+' –≤—ã–ø–æ–ª–Ω–µ–Ω',IndyTextEncoding_UTF8);
+        IdUDPClient1.Send('«‡Í‡Á '+IntToStr(id_order)+' ‚˚ÔÓÎÌÂÌ',IndyTextEncoding_UTF8);
       if (new_status = 8) then
-        IdUDPClient1.Send('–ó–∞–∫–∞–∑ '+IntToStr(id_order)+' –æ—Ç–º–µ–Ω–µ–Ω',IndyTextEncoding_UTF8);
+        IdUDPClient1.Send('«‡Í‡Á '+IntToStr(id_order)+' ÓÚÏÂÌÂÌ',IndyTextEncoding_UTF8);
     end
   else
     begin
       if (new_status = 1) then
-        IdUDPClient1.Send('–ó–∞–∫–∞–∑ '+IntToStr(id_order)+' –ø—Ä–∏—Å–≤–æ–µ–Ω –æ–ø–µ—Ä–∞—Ç–æ—Ä–æ–º '+
+        IdUDPClient1.Send('«‡Í‡Á '+IntToStr(id_order)+' ÔËÒ‚ÓÂÌ ÓÔÂ‡ÚÓÓÏ '+
           IntToStr(id_worker),IndyTextEncoding_UTF8);
       if (new_status = 2) then
         begin
-          IdUDPClient1.Send('–ó–∞–∫–∞–∑ '+IntToStr(id_order)+' —Ä–∞—Å–ø—Ä–µ–¥–µ–ª–µ–Ω –≤–æ–¥–∏—Ç–µ–ª—é '+
+          IdUDPClient1.Send('«‡Í‡Á '+IntToStr(id_order)+' ‡ÒÔÂ‰ÂÎÂÌ ‚Ó‰ËÚÂÎ˛ '+
             IntToStr(id_worker),IndyTextEncoding_UTF8);
-//          SendFirebaseMessage(id_worker,'–ù–æ–≤–∞—è –∏–Ω—Ñ–æ—Ä–º–∞—Ü–∏—è','–í–∞–º –Ω–∞–∑–Ω–∞—á–µ–Ω –Ω–æ–≤—ã–π –∑–∞–∫–∞–∑');
+//          SendFirebaseMessage(id_worker,'ÕÓ‚‡ˇ ËÌÙÓÏ‡ˆËˇ','¬‡Ï Ì‡ÁÌ‡˜ÂÌ ÌÓ‚˚È Á‡Í‡Á');
         end;
     end;
 end;

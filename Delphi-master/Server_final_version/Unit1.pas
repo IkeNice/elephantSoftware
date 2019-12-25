@@ -76,7 +76,7 @@ begin
 //    IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
 //      'key=AIzaSyA_sM6ipUnv6yL30Wh-MH4nXZyyCoxmlPo';
     IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
-      'key=AIzaSyC28fUUJlmDOQMfuz2XQAaLNEJBs1bNwt4';
+      'key=AIzaSyDEPdQ1ZzIGvHFr3khjfO528YOrbeiFEG4';
 
     jsonData2.AddPair('body',Body);
     jsonData2.AddPair('title',Title);
@@ -117,6 +117,7 @@ end;
 function ToLogIn (toLogInJSON: TJSONObject) : TJSONObject;
 var
   idDriver : Integer;
+  p : String;
   ResultJSON: TJSONObject;
   Transaction: TIBTransaction;
   SQLQuery: TIBQuery;
@@ -131,20 +132,22 @@ begin
   //=============œŒÀ”◊≈Õ»≈ »ƒ –¿¡Œ“Õ» ¿=================
   SQLQuery.Active := false;
   SQLQuery.SQL.Clear;
-
-  SQLQuery.SQL.Add('SELECT ID FROM LOGGING_IN ');
-  SQLQuery.SQL.Add('WHERE LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
-  SQLQuery.SQL.Add(' AND PASSWORD_ = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + ''' and ROLE_ = 2');
-
+//  p := normalizationString(toLogInJSON.GetValue('login'));
+//   showmessage(p);
+  SQLQuery.SQL.Add('SELECT a.EMP_ID FROM AUTHOTIZATION a join employees j on ');
+  SQLQuery.SQL.Add('a.LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
+  SQLQuery.SQL.Add(' AND a.PASSWORD = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + '''');
+  SQLQuery.SQL.Add('and  j.emp_id = a.emp_id and j.job_id = 3');
+//    showmessage(SQLQuery.FieldByName('EMP_ID').Value);
   SQLQuery.Active := true;
   SQLQuery.Open;
   //=============≈—À» ŒÕ ≈—“‹, “Œ —Œ¡»–¿≈Ã »Õ‘Œ–Ã¿÷»ﬁ=================
   if (SQLQuery.RecordCount.ToBoolean) then
     begin
-      idDriver := SQLQuery.FieldByName('ID').Value;
+      idDriver := SQLQuery.FieldByName('EMP_ID').Value;
       keyWord := generationKeyWord();
       tokenDevice := normalizationString(toLogInJSON.GetValue('token').ToString);
-
+//      showmessage(idDriver.ToString);
       ResultJSON.AddPair('status','OK');
       ResultJSON.AddPair('id',idDriver.ToString);
       ResultJSON.AddPair('keyword',keyWord);
@@ -153,12 +156,14 @@ begin
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
 
-      SQLQuery.SQL.Add('UPDATE INFORMATIONS_DRIVERS ');
-      SQLQuery.SQL.Add('SET KEY_WORD = ''' + keyWord + '''');
+      SQLQuery.SQL.Add('UPDATE DRIVERS_INFO ');
+      SQLQuery.SQL.Add('SET KEYWORD = ''' + keyWord + '''');
       SQLQuery.SQL.Add(', TOKEN_DEVICE = ''' + tokenDevice + '''');
-      SQLQuery.SQL.Add(' WHERE ID = ' + idDriver.ToString);
+      SQLQuery.SQL.Add(' WHERE EMP_ID = ' + idDriver.ToString);
       SQLQuery.ExecSQL;
-
+//      showmessage(keyWord);
+//      showmessage(tokenDevice);
+//      showmessage(idDriver.ToString);
       SQLQuery.Active := true;
       SQLQuery.Open;
       if Transaction.InTransaction then Transaction.Commit;
@@ -166,15 +171,12 @@ begin
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
 
-      SQLQuery.SQL.Add('select o.id, c.name, c.surname, c.phone_number, ');
-      SQLQuery.SQL.Add('a1.city CITY_FROM, a1.street STREET_FROM, a1.number_house NUMBER_HOUSE_FROM, a1.floor_ FLOOR_FROM, ');
-      SQLQuery.SQL.Add('a2.city CITY_TO, a2.street STREET_TO, a2.number_house NUMBER_HOUSE_TO, a2.floor_ FLOOR_TO, ');
-      SQLQuery.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from orders o');
-      SQLQuery.SQL.Add('join address a1 on ');
-      SQLQuery.SQL.Add('(a1.id = o.from_id_address) and (o.who_driver = '+idDriver.ToString+') and (o.status between 2 and 5)');
-      SQLQuery.SQL.Add('join address a2 on (a2.id = o.to_id_address)');
-      SQLQuery.SQL.Add('join customers c on (c.id = o.id_customer)');
-      SQLQuery.SQL.Add('order by o.date_of_delivery descending');
+      SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
+      SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO, ');
+      SQLQuery.SQL.Add('o.time_of_delivery TIME_OF_DELIVERY, o."DATE", o.total_price, o.status_id from orders o');
+      SQLQuery.SQL.Add('join addresses a1 on ');
+      SQLQuery.SQL.Add('(a1.address_id = o.address_id) and (o.courier_id =  '+idDriver.ToString+') and (o.status_id between 2 and 5)');
+      SQLQuery.SQL.Add('order by o.time_of_delivery descending');
 
       SQLQuery.Active := true;
       SQLQuery.Open;
@@ -187,31 +189,16 @@ begin
       while not SQLQuery.Eof do
         begin
           jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
-
+  //         showmessage(idDriver.ToString);
           jsonBuffer.AddPair('customer_name',
-            VarToStr(SQLQuery.FieldByName('NAME').Value)+' '+
-            VarToStr(SQLQuery.FieldByName('SURNAME').Value));
-
+            VarToStr(SQLQuery.FieldByName('NAME').Value));
           jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
-
-          jsonBuffer.AddPair('origin_address',
-            VarToStr(SQLQuery.FieldByName('CITY_FROM').Value)+ ', '+
-            VarToStr(SQLQuery.FieldByName('STREET_FROM').Value)+ ', '+
-            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_FROM').Value)+ ' ('+
-            VarToStr(SQLQuery.FieldByName('FLOOR_FROM').Value)+ ' ˝Ú.)');
-
           jsonBuffer.AddPair('destination_address',
-            VarToStr(SQLQuery.FieldByName('CITY_TO').Value)+ ', '+
             VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
-            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+' ('+
-            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value)+ ' ˝Ú.)');
-
-          jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('DATE_OF_DELIVERY').Value));
-
-          jsonBuffer.AddPair('number_of_movers',VarToStr(SQLQuery.FieldByName('NUMBER_STEVEDORE').Value));
-
+            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+
+            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value));
+          jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('TIME_OF_DELIVERY').Value));
           jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
-
           jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
 
           ArrayJson.AddElement(jsonBuffer);
@@ -248,8 +235,8 @@ begin
   SQLQuery.Active := false;
   SQLQuery.SQL.Clear;
 
-  SQLQuery.SQL.Add('SELECT KEY_WORD FROM INFORMATIONS_DRIVERS WHERE ');
-  SQLQuery.SQL.Add('ID = ''' +
+  SQLQuery.SQL.Add('SELECT KEYWORD FROM DRIVERS_INFO WHERE ');
+  SQLQuery.SQL.Add('EMP_ID = ''' +
     normalizationString(toKeyWordInJSON.GetValue('id').ToString) + '''');
 
   SQLQuery.Active := true;
@@ -257,7 +244,7 @@ begin
   //=============≈—À» ŒÕŒ ≈—“‹ (¬≈–ÕŒ≈ »ƒ)=================
   if (SQLQuery.RecordCount.ToBoolean) then
     begin
-      keyWord := VarToStr(SQLQuery.FieldByName('KEY_WORD').Value);
+      keyWord := VarToStr(SQLQuery.FieldByName('KEYWORD').Value);
       //=============≈—À» œŒÀ”◊≈ÕÕŒ≈  Àﬁ◊≈¬Œ≈ —ÀŒ¬Œ —Œ¬œ¿ƒ¿≈“ —  Àﬁ◊≈¬€Ã —ÀŒ¬ŒÃ »« “¿¡À»÷€ ƒÀﬂ ›“Œ√Œ –¿¡Œ“Õ» ¿=================
       if (keyWord = normalizationString(toKeyWordInJSON.GetValue('keyword').ToString)) then
         begin
@@ -266,15 +253,12 @@ begin
           SQLQuery.Active := false;
           SQLQuery.SQL.Clear;
 
-          SQLQuery.SQL.Add('select o.id, c.name, c.surname, c.phone_number, ');
-          SQLQuery.SQL.Add('a1.city CITY_FROM, a1.street STREET_FROM, a1.number_house NUMBER_HOUSE_FROM, a1.floor_ FLOOR_FROM, ');
-          SQLQuery.SQL.Add('a2.city CITY_TO, a2.street STREET_TO, a2.number_house NUMBER_HOUSE_TO, a2.floor_ FLOOR_TO, ');
-          SQLQuery.SQL.Add('o.date_of_delivery,o.number_stevedore,o.price,o.status from orders o');
-          SQLQuery.SQL.Add('join address a1 on ');
-          SQLQuery.SQL.Add('(a1.id = o.from_id_address) and (o.who_driver = '+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+') and (o.status between 2 and 5)');
-          SQLQuery.SQL.Add('join address a2 on (a2.id = o.to_id_address)');
-          SQLQuery.SQL.Add('join customers c on (c.id = o.id_customer)');
-          SQLQuery.SQL.Add('order by o.date_of_delivery descending');
+SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
+      SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO, ');
+      SQLQuery.SQL.Add('o.time_of_delivery TIME_OF_DELIVERY, o."DATE", o.total_price, o.status_id from orders o');
+      SQLQuery.SQL.Add('join addresses a1 on ');
+      SQLQuery.SQL.Add('(a1.address_id = o.address_id) and (o.courier_id =  '+normalizationString(toKeyWordInJSON.GetValue('id').ToString)+') and (o.status_id between 2 and 5)');
+      SQLQuery.SQL.Add('order by o.time_of_delivery descending');
 
           SQLQuery.Active := true;
           SQLQuery.Open;
@@ -289,31 +273,18 @@ begin
               jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
 
               jsonBuffer.AddPair('customer_name',
-                VarToStr(SQLQuery.FieldByName('NAME').Value)+' '+
-                VarToStr(SQLQuery.FieldByName('SURNAME').Value));
+                VarToStr(SQLQuery.FieldByName('NAME').Value));
 
               jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
 
-              jsonBuffer.AddPair('origin_address',
-                VarToStr(SQLQuery.FieldByName('CITY_FROM').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('STREET_FROM').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_FROM').Value)+ ' ('+
-                VarToStr(SQLQuery.FieldByName('FLOOR_FROM').Value)+ ' ˝Ú.)');
+          jsonBuffer.AddPair('destination_address',
+            VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
+            VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+
+            VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value));
 
-              jsonBuffer.AddPair('destination_address',
-                VarToStr(SQLQuery.FieldByName('CITY_TO').Value)+ ', '+
-                VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
-                VarToStr(SQLQuery.FieldByName('NUMBER_HOUSE_TO').Value)+' ('+
-                VarToStr(SQLQuery.FieldByName('FLOOR_TO').Value)+ ' ˝Ú.)');
-
-              jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('DATE_OF_DELIVERY').Value));
-
-              jsonBuffer.AddPair('number_of_movers',VarToStr(SQLQuery.FieldByName('NUMBER_STEVEDORE').Value));
-
-              jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
-
-              jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
-
+          jsonBuffer.AddPair('delivery_time',VarToStr(SQLQuery.FieldByName('TIME_OF_DELIVERY').Value));
+          jsonBuffer.AddPair('payment',VarToStr(SQLQuery.FieldByName('PRICE').Value));
+          jsonBuffer.AddPair('status',VarToStr(SQLQuery.FieldByName('STATUS').Value));
               ArrayJson.AddElement(jsonBuffer);
 
               jsonBuffer := TJSONObject.Create;
@@ -353,19 +324,22 @@ begin
   Transaction.DefaultDatabase := Database;
   if (StrToInt(toChangeStatus.GetValue('new_status').ToString) in [2..6]) then
     begin
+//    showmessage(toChangeStatus.GetValue('new_status').ToString);
       FCS2.Enter;
       updateStatusOrder := TIBStoredProc.Create(nil);
-      updateStatusOrder.Database := Form1.IBDatabase1;
+      updateStatusOrder.Database := Database;
       updateStatusOrder.Transaction := Transaction;
 
       updateStatusOrder.StoredProcName := 'EDIT_ORDER_SET_STATUS';
       Transaction.Active := True;
 
       if Transaction.InTransaction then Transaction.Commit;
+ //      showmessage(toChangeStatus.GetValue('order_id').ToString);
+ //      showmessage(toChangeStatus.GetValue('new_status').ToString);
 
       updateStatusOrder.ParamByName('ID_ORDER').AsInteger := StrToInt(toChangeStatus.GetValue('order_id').ToString);
       updateStatusOrder.ParamByName('NEW_STATUS').AsInteger := StrToInt(toChangeStatus.GetValue('new_status').ToString);
-      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
+//      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
       updateStatusOrder.ExecProc;
 
       if Transaction.InTransaction then Transaction.Commit;
@@ -558,6 +532,7 @@ begin
         jsonAnswerData := ToChangeStatus(jsonGetQuery);
       end;
   AResponseInfo.ContentType := 'text; charset=utf-8';
+//  showmessage(jsonAnswerData.ToString);
   AResponseInfo.ContentText := jsonAnswerData.ToString;
 end;
 
