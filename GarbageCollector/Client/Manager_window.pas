@@ -1,4 +1,4 @@
-unit Manager_window;
+﻿unit Manager_window;
 
 interface
 
@@ -34,7 +34,6 @@ type
     Label_cars: TLabel;
     Label_managers: TLabel;
     Label_operators: TLabel;
-    menu_customer: TMenuItem;
     menu_address: TMenuItem;
     cmbMenu: TComboBox;
     procedure menu_ordersClick(Sender: TObject);
@@ -138,7 +137,10 @@ begin
   for i := 0 to 2 do begin
      DBGrid_cars.Columns[i].Width := trunc(DBGrid_cars.Width/3-6);
   end;
-  label_cars.Left := 5;
+  DBGrid_cars.Columns[0].Width := DBGrid_cars.Columns[0].Width + 20;
+  DBGrid_cars.Columns[2].Width := DBGrid_cars.Columns[2].Width - 20;
+  cmbMenu.Left := trunc(DBGrid_cars.Width/2 - cmbMenu.Width/2);
+  label_cars.Left := cmbMenu.Left - Label_cars.Width - 5;
 
   DBGrid_drivers.Width := trunc(Width/4);
   DBGrid_drivers.Left := trunc(Width/4);
@@ -147,7 +149,7 @@ begin
   for i := 0 to 3 do begin
      DBGrid_drivers.Columns[i].Width := trunc(DBGrid_drivers.Width/4-6);
   end;
-  label_drivers.Left := trunc(Width/4)+5;
+  label_drivers.Left := trunc(Width/4)+ trunc(DBGrid_drivers.Width/2-Label_drivers.Width/2);
 
   DBGrid_managers.Width:= trunc(Width/4);
   DBGrid_managers.Left := trunc(Width*2/4);
@@ -156,7 +158,7 @@ begin
   for i := 0 to 3 do begin
      DBGrid_managers.Columns[i].Width := trunc(DBGrid_managers.Width/4-6);
   end;
-  label_managers.Left := trunc(Width*2/4)+5;
+  label_managers.Left := trunc(Width*2/4)+trunc(DBGrid_managers.Width/2-Label_managers.Width/2);
 
   DBGrid_operators.Width := trunc(Width/4);
   DBGrid_operators.Left := trunc(Width*3/4);
@@ -165,7 +167,7 @@ begin
   for i := 0 to 3 do begin
      DBGrid_operators.Columns[i].Width := trunc(DBGrid_operators.Width/4-6);
   end;
-  label_operators.Left := trunc(Width*3/4)+5;
+  label_operators.Left := trunc(Width*3/4)+trunc(DBGrid_operators.Width/2-Label_operators.Width/2);
 
   update;
 end;
@@ -173,7 +175,7 @@ end;
 procedure TForm_manager.menu_diverClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;    {
   if form_Add_Worker.ModalResult = mrOk then
   begin
       dm_add.add_worker(form_Add_Worker.label_name.text,
@@ -186,7 +188,7 @@ begin
         form_Add_Worker.ShowModal;
       end;
 
-   end;
+   end;                          }
    update;
 end;
 
@@ -225,31 +227,30 @@ end;
 procedure TForm_manager.menu_addressClick(Sender: TObject);
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
-  form_Add_Address.ShowModal;
+  form_Add_Address.ShowModal;       {
   if form_Add_Address.ModalResult = mrOk then  begin
-      dm_add.add_address(form_Add_Address.label_city.Text,
-                         form_Add_Address.label_street.Text,
+      dm_add.add_address(form_Add_Address.label_street.Text,
                          StrToInt(form_Add_Address.label_number.Text),
                          StrToInt(form_Add_Address.label_floor.Text));
-   end;
+   end;         }
    update;
 end;
 
 procedure TForm_manager.menu_menuClick(Sender: TObject);
 begin
    form_Add_Car := Tform_Add_Car.Create(APPLICATION);
-   form_Add_Car.showmodal;
+   form_Add_Car.showmodal;  {
    if form_Add_Car.ModalResult = mrOk then  begin
        dm_add.add_car(form_Add_Car.label_mark.Text,
                       form_Add_Car.label_number.Text,
                       form_Add_Car.label_model.Text);
    end;
 
-   dm.TVehicle.Refresh;
+   dm.TVehicle.Refresh;      }
 end;
 
 procedure TForm_manager.menu_customerClick(Sender: TObject);
-begin
+begin         {
   form_Add_customer := Tform_Add_customer.Create(Application);
   form_Add_customer.ShowModal;
   if form_Add_customer.ModalResult = mrOk then  begin
@@ -258,7 +259,7 @@ begin
                           dm.TAddress_In.FieldByName('ID').Value,
                           form_Add_customer.label_phone.Text);
    end;
-   update;
+   update;     }
 end;
 
 procedure TForm_manager.menu_distr_carsClick(Sender: TObject);
@@ -280,7 +281,7 @@ end;
 
 procedure TForm_manager.menu_edit_carClick(Sender: TObject);
 begin
-  form_Add_Car := Tform_Add_Car.Create(APPLICATION);
+  form_Add_Car := Tform_Add_Car.Create(APPLICATION); {
   with form_Add_Car do begin
     label_mark.Text := dm.TVehicle.FieldByName('MARKA').Value;
     label_number.Text := dm.TVehicle.FieldByName('NUMBER').Value;
@@ -293,7 +294,7 @@ begin
                       form_Add_Car.label_number.Text,
                       form_Add_Car.label_model.Text);
    end;
-   dm.TVehicle.Refresh;
+   dm.TVehicle.Refresh;                               }
    update;
 end;
 

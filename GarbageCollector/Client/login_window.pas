@@ -16,6 +16,8 @@ type
     Edit_adress: TEdit;
     Label3: TLabel;
     Edit_path: TEdit;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure Button_log_inClick(Sender: TObject);
   private
     { Private declarations }
@@ -34,6 +36,7 @@ implementation
     //C:\Users\Ibrag\Desktop\Delphi\Programms\FREIGHT_TAXI_actual_changes.FDB
     //C:\Users\dupel\firebird_db\FREIGHT_TAXI_actualest_changes.FDB
     //C:\Users\hieut\OneDrive\Документы\GitHub\GarbageCollector\FREIGHT_TAXI_actual_changes.FDB
+    //C:\Users\hieut\OneDrive\Документы\GitHub\elephantSoftware\ELEPHANTSOFTWARE.FDB
 uses Manager_window, operator_window_inh, common_db;
 
 procedure TLogin_Form.Button_log_inClick(Sender: TObject);
@@ -41,7 +44,7 @@ var
 worker_id,role : integer;
 begin
     // Send request to bd
-    dm_db.edit_host(Edit_adress.Text,Edit_path.Text);
+    dm_db.edit_host(Edit_adress.Text, Edit_path.Text);
     dm.open_all;
     with dm.spLogin do
     begin

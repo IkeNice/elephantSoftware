@@ -31,7 +31,7 @@ object Form_manager: TForm_manager
     ParentFont = False
   end
   object Label_cars: TLabel
-    Left = 8
+    Left = 32
     Top = 0
     Width = 33
     Height = 13
@@ -304,7 +304,7 @@ object Form_manager: TForm_manager
       end>
   end
   object cmbMenu: TComboBox
-    Left = 47
+    Left = 79
     Top = -3
     Width = 145
     Height = 21
@@ -338,10 +338,6 @@ object Form_manager: TForm_manager
       object menu_menu: TMenuItem
         Caption = #1052#1077#1085#1102
         OnClick = menu_menuClick
-      end
-      object menu_customer: TMenuItem
-        Caption = #1047#1072#1082#1072#1079#1095#1080#1082
-        OnClick = menu_customerClick
       end
       object menu_address: TMenuItem
         Caption = #1040#1076#1088#1077#1089

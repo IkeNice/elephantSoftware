@@ -19,6 +19,8 @@ type
     label_login: TEdit;
     label_password: TEdit;
     BitBtn2: TBitBtn;
+    label_lastname: TEdit;
+    Label1: TLabel;
   private
     { Private declarations }
   public

@@ -30,5 +30,6 @@ implementation
 {$R *.dfm}
 
 
+         //< Выберите категорию>
 
 end.

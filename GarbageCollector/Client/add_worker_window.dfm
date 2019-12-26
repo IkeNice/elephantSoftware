@@ -1,7 +1,7 @@
 object form_Add_Worker: Tform_Add_Worker
   Left = 0
   Top = 0
-  Caption = #1056#1072#1073#1086#1090#1072' '#1089' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1086#1084
+  Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1089#1086#1090#1088#1091#1076#1085#1080#1082#1072
   ClientHeight = 248
   ClientWidth = 300
   Color = clBtnFace
@@ -41,9 +41,9 @@ object form_Add_Worker: Tform_Add_Worker
   end
   object Label5: TLabel
     Left = 43
-    Top = 99
+    Top = 136
     Width = 98
-    Height = 16
+    Height = 14
     Caption = #1042#1074#1077#1076#1080#1090#1077' '#1083#1086#1075#1080#1085
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -54,7 +54,7 @@ object form_Add_Worker: Tform_Add_Worker
   end
   object Label6: TLabel
     Left = 34
-    Top = 134
+    Top = 172
     Width = 107
     Height = 16
     Caption = #1042#1074#1077#1076#1080#1090#1077' '#1087#1072#1088#1086#1083#1100
@@ -65,9 +65,22 @@ object form_Add_Worker: Tform_Add_Worker
     Font.Style = []
     ParentFont = False
   end
+  object Label1: TLabel
+    Left = 34
+    Top = 99
+    Width = 105
+    Height = 16
+    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1086#1090#1095#1077#1089#1090#1074#1086
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object BitBtn1: TBitBtn
     Left = 43
-    Top = 190
+    Top = 206
     Width = 75
     Height = 25
     Font.Charset = DEFAULT_CHARSET
@@ -84,7 +97,7 @@ object form_Add_Worker: Tform_Add_Worker
     Left = 157
     Top = 63
     Width = 121
-    Height = 20
+    Height = 21
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -92,7 +105,6 @@ object form_Add_Worker: Tform_Add_Worker
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = #1048#1084#1103
   end
   object label_surname: TEdit
     Left = 157
@@ -106,11 +118,10 @@ object form_Add_Worker: Tform_Add_Worker
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    Text = #1060#1072#1084#1080#1083#1080#1103
   end
   object label_login: TEdit
     Left = 157
-    Top = 98
+    Top = 136
     Width = 121
     Height = 21
     Font.Charset = DEFAULT_CHARSET
@@ -120,11 +131,10 @@ object form_Add_Worker: Tform_Add_Worker
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    Text = #1051#1086#1075#1080#1085
   end
   object label_password: TEdit
     Left = 157
-    Top = 133
+    Top = 171
     Width = 121
     Height = 21
     Font.Charset = DEFAULT_CHARSET
@@ -134,16 +144,22 @@ object form_Add_Worker: Tform_Add_Worker
     Font.Style = []
     ParentFont = False
     TabOrder = 4
-    Text = #1055#1072#1088#1086#1083#1100
   end
   object BitBtn2: TBitBtn
     Left = 203
-    Top = 190
+    Top = 206
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072
     Kind = bkCancel
     NumGlyphs = 2
     TabOrder = 5
+  end
+  object label_lastname: TEdit
+    Left = 157
+    Top = 98
+    Width = 121
+    Height = 21
+    TabOrder = 6
   end
 end

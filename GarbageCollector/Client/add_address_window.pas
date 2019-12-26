@@ -8,15 +8,14 @@ uses
 
 type
   Tform_Add_Address = class(TForm)
-    Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     BitBtn1: TBitBtn;
-    label_city: TEdit;
     label_street: TEdit;
     label_number: TEdit;
     Label4: TLabel;
     label_floor: TEdit;
+    BitBtn2: TBitBtn;
   private
     { Private declarations }
   public
