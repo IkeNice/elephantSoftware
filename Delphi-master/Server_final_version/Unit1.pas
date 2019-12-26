@@ -36,6 +36,7 @@ type
       EventCount: Integer; var CancelAlerts: Boolean);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Button1Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -49,6 +50,7 @@ var
   FCS: TCriticalSection;
   FCS2: TCriticalSection;
   host: String;
+  ttt: String;
 
 implementation
 
@@ -76,7 +78,7 @@ begin
 //    IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
 //      'key=AIzaSyA_sM6ipUnv6yL30Wh-MH4nXZyyCoxmlPo';
     IdHTTP.Request.CustomHeaders.Values['Authorization'] :=
-      'key=AIzaSyDEPdQ1ZzIGvHFr3khjfO528YOrbeiFEG4';
+      'key=AIzaSyCKBxtO0O4iSl1e2PENdFErLWJrY4dvopI';
 
     jsonData2.AddPair('body',Body);
     jsonData2.AddPair('title',Title);
@@ -132,13 +134,11 @@ begin
   //=============ПОЛУЧЕНИЕ ИД РАБОТНИКА=================
   SQLQuery.Active := false;
   SQLQuery.SQL.Clear;
-//  p := normalizationString(toLogInJSON.GetValue('login'));
-//   showmessage(p);
   SQLQuery.SQL.Add('SELECT a.EMP_ID FROM AUTHOTIZATION a join employees j on ');
   SQLQuery.SQL.Add('a.LOGIN = ''' + normalizationString(toLogInJSON.GetValue('login').ToString) + '''');
   SQLQuery.SQL.Add(' AND a.PASSWORD = ''' + normalizationString(toLogInJSON.GetValue('password').ToString) + '''');
   SQLQuery.SQL.Add('and  j.emp_id = a.emp_id and j.job_id = 3');
-//    showmessage(SQLQuery.FieldByName('EMP_ID').Value);
+
   SQLQuery.Active := true;
   SQLQuery.Open;
   //=============ЕСЛИ ОН ЕСТЬ, ТО СОБИРАЕМ ИНФОРМАЦИЮ=================
@@ -147,7 +147,7 @@ begin
       idDriver := SQLQuery.FieldByName('EMP_ID').Value;
       keyWord := generationKeyWord();
       tokenDevice := normalizationString(toLogInJSON.GetValue('token').ToString);
-//      showmessage(idDriver.ToString);
+
       ResultJSON.AddPair('status','OK');
       ResultJSON.AddPair('id',idDriver.ToString);
       ResultJSON.AddPair('keyword',keyWord);
@@ -162,7 +162,7 @@ begin
       SQLQuery.SQL.Add(' WHERE EMP_ID = ' + idDriver.ToString);
       SQLQuery.ExecSQL;
 //      showmessage(keyWord);
-//      showmessage(tokenDevice);
+        ttt:=tokenDevice;
 //      showmessage(idDriver.ToString);
       SQLQuery.Active := true;
       SQLQuery.Open;
@@ -189,7 +189,6 @@ begin
       while not SQLQuery.Eof do
         begin
           jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
-  //         showmessage(idDriver.ToString);
           jsonBuffer.AddPair('customer_name',
             VarToStr(SQLQuery.FieldByName('NAME').Value));
           jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
@@ -253,7 +252,7 @@ begin
           SQLQuery.Active := false;
           SQLQuery.SQL.Clear;
 
-SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
+      SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE_NUMBER, o.total_price PRICE, o.status_id STATUS, ');
       SQLQuery.SQL.Add('a1.street STREET_TO, a1.building NUMBER_HOUSE_TO, a1.apartment FLOOR_TO, ');
       SQLQuery.SQL.Add('o.time_of_delivery TIME_OF_DELIVERY, o."DATE", o.total_price, o.status_id from orders o');
       SQLQuery.SQL.Add('join addresses a1 on ');
@@ -272,10 +271,10 @@ SQLQuery.SQL.Add('select o.order_id ID, o.client_name NAME, o.phone_number PHONE
             begin
               jsonBuffer.AddPair('id',VarToStr(SQLQuery.FieldByName('ID').Value));
 
-              jsonBuffer.AddPair('customer_name',
+          jsonBuffer.AddPair('customer_name',
                 VarToStr(SQLQuery.FieldByName('NAME').Value));
 
-              jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
+          jsonBuffer.AddPair('customer_phone_number',VarToStr(SQLQuery.FieldByName('PHONE_NUMBER').Value));
 
           jsonBuffer.AddPair('destination_address',
             VarToStr(SQLQuery.FieldByName('STREET_TO').Value)+', '+
@@ -324,7 +323,6 @@ begin
   Transaction.DefaultDatabase := Database;
   if (StrToInt(toChangeStatus.GetValue('new_status').ToString) in [2..6]) then
     begin
-//    showmessage(toChangeStatus.GetValue('new_status').ToString);
       FCS2.Enter;
       updateStatusOrder := TIBStoredProc.Create(nil);
       updateStatusOrder.Database := Database;
@@ -334,8 +332,6 @@ begin
       Transaction.Active := True;
 
       if Transaction.InTransaction then Transaction.Commit;
- //      showmessage(toChangeStatus.GetValue('order_id').ToString);
- //      showmessage(toChangeStatus.GetValue('new_status').ToString);
 
       updateStatusOrder.ParamByName('ID_ORDER').AsInteger := StrToInt(toChangeStatus.GetValue('order_id').ToString);
       updateStatusOrder.ParamByName('NEW_STATUS').AsInteger := StrToInt(toChangeStatus.GetValue('new_status').ToString);
@@ -359,6 +355,16 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   host := Edit1.Text;
 end;
+
+//procedure TForm1.Button2Click(Sender: TObject);
+//var Title,Body,token: String;
+//begin
+//  Title := 'Изменение информации';
+//  Body := 'Изменена информация о заказе';
+//  showmessage(token);
+//  token := ttt;
+//  SendFirebaseMessage(token,Title,Body);
+//end;
 
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
@@ -447,6 +453,7 @@ begin
 //  host := '192.168.43.255';
   if (EventName = 'UPDATE_STATUS') then
     begin
+//    showmessage('hfjdj');
       FCS.Enter;
       ArrToken := Get_Token();
       for i := 0 to ArrToken.Count-1 do
@@ -470,7 +477,6 @@ begin
             begin
               Title := 'Новая информация';
               Body := 'У вас отменен заказ';
-//              ShowMessage(normalizationString(JSONObject.GetValue('old_token').ToString));
               SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
                 Title,Body);
             end;
