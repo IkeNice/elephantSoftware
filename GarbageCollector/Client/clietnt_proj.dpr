@@ -34,7 +34,8 @@ uses
   details_worker_window in 'details_worker_window.pas' {form_Details_Worker},
   details_order_window in 'details_order_window.pas' {form_Details_Order},
   common_db in 'common_db.pas' {dm_db: TDataModule},
-  statuses in 'statuses.pas';
+  statuses in 'statuses.pas',
+  show_menu in 'show_menu.pas' {fmMenu};
 
 {$R *.res}
 
@@ -45,6 +46,7 @@ begin
   Application.CreateForm(Tdm_db, dm_db);
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tdm_add, dm_add);
+  Application.CreateForm(TfmMenu, fmMenu);
   //Application.CreateForm(Tform_Details_Worker, form_Details_Worker);
   //Application.CreateForm(Tform_Details_Order, form_Details_Order);
   //Application.CreateForm(Tform_Details_Car, form_Details_Car);

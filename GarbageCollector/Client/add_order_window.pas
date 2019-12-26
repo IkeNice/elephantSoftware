@@ -1,4 +1,4 @@
-unit add_order_window;
+﻿unit add_order_window;
 
 interface
 
@@ -32,6 +32,7 @@ type
     procedure cbTimeOfDeliveryClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
+    procedure btnShowMenuClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,17 +49,20 @@ implementation
 
 {$R *.dfm}
 
-uses add_address_window;
+uses add_address_window, show_menu;
 
 procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
+
+  addrID := DataSource_to_address.DataSet.Fields[0].Value;
+
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
   try
     dm_add.add_Order(orderNum, 1, edClientName.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
   except
-    MessageDlg('������ ������ ������', mtError, [mbOk], 0)
+    MessageDlg('Ошибка при добавлении заказа', mtError, [mbOk], 0)
   end;
 end;
 
@@ -75,6 +79,11 @@ begin
                           form_Add_customer.label_phone.Text);
    end;  }
    dm.open_all;
+end;
+
+procedure TForm_add_order.btnShowMenuClick(Sender: TObject);
+begin
+  fmMenu.ShowModal;
 end;
 
 procedure TForm_add_order.cbTimeOfDeliveryClick(Sender: TObject);

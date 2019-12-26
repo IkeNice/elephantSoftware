@@ -43,7 +43,7 @@ object form_Add_Worker: Tform_Add_Worker
     Left = 43
     Top = 136
     Width = 98
-    Height = 14
+    Height = 16
     Caption = #1042#1074#1077#1076#1080#1090#1077' '#1083#1086#1075#1080#1085
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -146,8 +146,8 @@ object form_Add_Worker: Tform_Add_Worker
     TabOrder = 4
   end
   object BitBtn2: TBitBtn
-    Left = 203
-    Top = 206
+    Left = 195
+    Top = 207
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072

@@ -1,0 +1,384 @@
+﻿unit Manager_window;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, user_class, data_module_add,
+  Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, data_module ;
+
+type
+  TForm_manager = class(TForm)
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    menu_diver: TMenuItem;
+    menu_operator: TMenuItem;
+    menu_manager: TMenuItem;
+    menu_orders: TMenuItem;
+    menu_menu: TMenuItem;
+    DBGrid_drivers: TDBGrid;
+    Label_drivers: TLabel;
+    DataSource_drivers: TDataSource;
+    menu_update: TMenuItem;
+    menu_edit: TMenuItem;
+    menu_edit_car: TMenuItem;
+    DBGrid_cars: TDBGrid;
+    DataSource_menu: TDataSource;
+    menu_edit_driver: TMenuItem;
+    DBGrid_managers: TDBGrid;
+    DBGrid_operators: TDBGrid;
+    DataSource_managers: TDataSource;
+    DataSource_operators: TDataSource;
+    menu_edit_operator: TMenuItem;
+    menu_edit_manager: TMenuItem;
+    Label_cars: TLabel;
+    Label_managers: TLabel;
+    Label_operators: TLabel;
+    menu_address: TMenuItem;
+    cmbMenu: TComboBox;
+    procedure menu_ordersClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure menu_diverClick(Sender: TObject);
+    procedure menu_managerClick(Sender: TObject);
+    procedure menu_operatorClick(Sender: TObject);
+    procedure menu_updateClick(Sender: TObject);
+    procedure menu_edit_carClick(Sender: TObject);
+    procedure menu_edit_driverClick(Sender: TObject);
+    procedure menu_edit_operatorClick(Sender: TObject);
+    procedure menu_edit_managerClick(Sender: TObject);
+    procedure menu_menuClick(Sender: TObject);
+    procedure menu_addressClick(Sender: TObject);
+    procedure update;
+    procedure DataSource_menuDataChange(Sender: TObject; Field: TField);
+    procedure DataSource_driversDataChange(Sender: TObject; Field: TField);
+    procedure DataSource_managersDataChange(Sender: TObject; Field: TField);
+    procedure DataSource_operatorsDataChange(Sender: TObject; Field: TField);
+    procedure cmbMenuChange(Sender: TObject);
+  private
+    { Private declarations }
+    user : TUser;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form_manager: TForm_manager;
+
+implementation
+
+{$R *.dfm}
+
+uses operator_window_inh, car_distributing_window, add_car_window, add_address_window, add_worker_window, add_customer_window;
+
+procedure TForm_manager.update;
+begin
+  dm.open_all;
+end;
+procedure TForm_manager.DataSource_menuDataChange(Sender: TObject;
+  Field: TField);
+begin
+    ShowScrollBar(DBGrid_cars.Handle, SB_BOTH, False);
+    ShowScrollBar(DBGrid_cars.Handle, sb_Horz , False);
+end;
+
+procedure TForm_manager.cmbMenuChange(Sender: TObject);
+var SQLLine : String;
+begin
+  SQLLine := 'select menu.product_id, menu.name, menu.price, menu.category_id, categories.name from menu inner join categories on menu.category_id = categories.category_id';
+  case cmbMenu.ItemIndex of
+    0: SQLLine := SQLLine + ';';
+    1: SQLLine := SQLLine + ' where categories.category_id = 1;';
+    2: SQLLine := SQLLine + ' where categories.category_id = 2;';
+    3: SQLLine := SQLLine + ' where categories.category_id = 3;';
+    4: SQLLine := SQLLine + ' where categories.category_id = 4;';
+  end;
+  dm.QMenu.SQL.Clear;
+  dm.QMenu.SQL.Add(SQLLine);
+  dm.QMenu.Close;
+  dm.QMenu.Open;
+end;
+
+procedure TForm_manager.DataSource_driversDataChange(Sender: TObject;
+  Field: TField);
+begin
+    ShowScrollBar(DBGrid_drivers.Handle, SB_BOTH, False);
+    ShowScrollBar(DBGrid_cars.Handle, sb_Horz , False);
+end;
+
+procedure TForm_manager.DataSource_managersDataChange(Sender: TObject;
+  Field: TField);
+begin
+    ShowScrollBar(DBGrid_managers.Handle, SB_BOTH, False);
+    ShowScrollBar(DBGrid_cars.Handle, sb_Horz , False);
+end;
+
+procedure TForm_manager.DataSource_operatorsDataChange(Sender: TObject;
+  Field: TField);
+begin
+    ShowScrollBar(DBGrid_operators.Handle, SB_BOTH, False);
+    ShowScrollBar(DBGrid_cars.Handle, sb_Horz , False);
+end;
+
+procedure TForm_manager.FormCreate(Sender: TObject);
+var toplevel, underlevel, i:integer;
+begin
+  inherited;
+  Screen.MenuFont.Name := 'Verdana';
+  toplevel := 25;
+  underlevel := trunc(screen.Height/10+10);
+  Width := screen.Width;
+  Height := screen.Height;
+  DBGrid_cars.Width := trunc(Width/4);
+  DBGrid_cars.Left := 0;
+  DBGrid_cars.Height := trunc(Height - toplevel - underlevel);
+  DBGrid_cars.Top := toplevel;
+  for i := 0 to 2 do begin
+     DBGrid_cars.Columns[i].Width := trunc(DBGrid_cars.Width/3-6);
+  end;
+  DBGrid_cars.Columns[0].Width := DBGrid_cars.Columns[0].Width + 20;
+  DBGrid_cars.Columns[2].Width := DBGrid_cars.Columns[2].Width - 20;
+  cmbMenu.Left := trunc(DBGrid_cars.Width/2 - cmbMenu.Width/2);
+  label_cars.Left := cmbMenu.Left - Label_cars.Width - 5;
+
+  DBGrid_drivers.Width := trunc(Width/4);
+  DBGrid_drivers.Left := trunc(Width/4);
+  DBGrid_drivers.Height := trunc(Height - toplevel - underlevel);
+  DBGrid_drivers.Top := toplevel;
+  for i := 0 to 3 do begin
+     DBGrid_drivers.Columns[i].Width := trunc(DBGrid_drivers.Width/4-6);
+  end;
+  label_drivers.Left := trunc(Width/4)+ trunc(DBGrid_drivers.Width/2-Label_drivers.Width/2);
+
+  DBGrid_managers.Width:= trunc(Width/4);
+  DBGrid_managers.Left := trunc(Width*2/4);
+  DBGrid_managers.Height := trunc(Height - toplevel - underlevel);
+  DBGrid_managers.Top := toplevel;
+  for i := 0 to 3 do begin
+     DBGrid_managers.Columns[i].Width := trunc(DBGrid_managers.Width/4-6);
+  end;
+  label_managers.Left := trunc(Width*2/4)+trunc(DBGrid_managers.Width/2-Label_managers.Width/2);
+
+  DBGrid_operators.Width := trunc(Width/4);
+  DBGrid_operators.Left := trunc(Width*3/4);
+  DBGrid_operators.Height := trunc(Height - toplevel - underlevel);
+  DBGrid_operators.Top := toplevel;
+  for i := 0 to 3 do begin
+     DBGrid_operators.Columns[i].Width := trunc(DBGrid_operators.Width/4-6);
+  end;
+  label_operators.Left := trunc(Width*3/4)+trunc(DBGrid_operators.Width/2-Label_operators.Width/2);
+
+  update;
+end;
+
+procedure TForm_manager.menu_diverClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker.showmodal;
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
+                        form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        3,
+                        form_Add_Worker.label_login.text,
+                        form_Add_Worker.label_password.text);
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
+      begin
+        ShowMessage('Логин уже занят');
+        form_Add_Worker.ShowModal;
+      end;
+   end;
+   update;
+end;
+
+procedure TForm_manager.menu_managerClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker.showmodal;
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
+                        form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        1,
+                        form_Add_Worker.label_login.text,
+                        form_Add_Worker.label_password.text);
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
+      begin
+        ShowMessage('Логин уже занят');
+        form_Add_Worker.ShowModal;
+      end;
+   end;
+   update;
+end;
+
+procedure TForm_manager.menu_operatorClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker.showmodal;
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
+                        form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        2,
+                        form_Add_Worker.label_login.text,
+                        form_Add_Worker.label_password.text);
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
+      begin
+        ShowMessage('Логин уже занят');
+        form_Add_Worker.ShowModal;
+      end;
+   end;
+   update;
+end;
+
+procedure TForm_manager.menu_addressClick(Sender: TObject);
+var tmp: integer;
+begin
+  form_Add_Address := Tform_Add_Address.Create(Application);
+  form_Add_Address.ShowModal;
+  if form_Add_Address.ModalResult = mrOk then
+  begin
+      if form_add_address.label_flat.text = '' then
+        tmp := 0
+      else
+        tmp := StrToInt(form_add_address.label_flat.text);
+      dm_add.add_address(form_Add_Address.label_street.Text,
+                         form_Add_Address.label_building.Text,
+                         tmp);
+   end;
+   update;
+end;
+
+procedure TForm_manager.menu_menuClick(Sender: TObject);
+begin
+   form_Add_Car := Tform_Add_Car.Create(APPLICATION);
+   form_Add_Car.showmodal;
+   if form_Add_Car.ModalResult = mrOk then  begin
+       dm_add.add_car(form_Add_Car.label_name.Text,
+                      form_Add_Car.cmbCategory.ItemIndex + 1,
+                      StrToInt(form_Add_Car.label_price.Text));
+   end;
+
+   dm.TVehicle.Refresh;
+end;
+
+
+procedure TForm_manager.menu_ordersClick(Sender: TObject);
+begin
+  Form_inh_operator := TForm_inh_operator.create(Application);
+  Form_inh_operator.showmodal;
+end;
+
+procedure TForm_manager.menu_updateClick(Sender: TObject);
+begin
+  update;
+end;
+
+//manu
+procedure TForm_manager.menu_edit_carClick(Sender: TObject);
+var tmp: integer;
+begin
+  form_Add_Car := Tform_Add_Car.Create(APPLICATION);
+  with form_Add_Car do begin
+    label_name.Text := dm.QMenu.Fields[1].Value;
+    tmp := dm.QMenu.Fields[3].Value;
+    label_price.Text := tmp.toString;
+    cmbCategory.ItemIndex := dm.QMenu.Fields[2].Value - 1;
+    showmodal;
+  end;
+   tmp:= form_Add_Car.cmbCategory.ItemIndex + 1;
+  if form_Add_Car.ModalResult = mrOk then  begin
+      dm_add.edit_car(dm.QMenu.Fields[0].Value,
+                      form_Add_Car.label_name.Text,
+                      tmp,
+                      StrToInt(form_Add_Car.label_price.Text));
+   end;
+   dm.TVehicle.Refresh;
+   update;
+end;
+
+procedure TForm_manager.menu_edit_driverClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  with form_Add_Worker do begin
+    label_name.Text := dm.QDrivers.Fields[1].Value;
+    label_surname.Text := dm.QDrivers.Fields[2].Value;
+    label_lastname.Text := dm.QDrivers.Fields[3].Value;
+    label_login.Text := dm.QDrivers.Fields[4].Value;
+    label_password.Text := dm.QDrivers.Fields[5].Value;
+    showmodal;
+  end;
+
+  if form_Add_Worker.ModalResult = mrOk then  begin
+      dm_add.edit_worker(dm.QDrivers.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         3,
+                         form_Add_Worker.label_login.text,
+                         form_Add_Worker.label_password.text);
+
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
+    update;
+end;
+
+procedure TForm_manager.menu_edit_managerClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  with form_Add_Worker do begin
+    label_name.Text := dm.QManagers.Fields[1].Value;
+    label_surname.Text := dm.QManagers.Fields[2].Value;
+    label_lastname.Text := dm.QManagers.Fields[3].Value;
+    label_login.Text := dm.QManagers.Fields[4].Value;
+    label_password.Text := dm.QManagers.Fields[5].Value;
+    showmodal;
+  end;
+
+  if form_Add_Worker.ModalResult = mrOk then  begin
+      dm_add.edit_worker(dm.QManagers.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         1,
+                         form_Add_Worker.label_login.text,
+                         form_Add_Worker.label_password.text);
+
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
+    update;
+end;
+
+procedure TForm_manager.menu_edit_operatorClick(Sender: TObject);
+begin
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  with form_Add_Worker do begin
+    label_name.Text := dm.QOperators.Fields[1].Value;
+    label_surname.Text := dm.QOperators.Fields[2].Value;
+    label_lastname.Text := dm.QOperators.Fields[3].Value;
+    label_login.Text := dm.QOperators.Fields[4].Value;
+    label_password.Text := dm.QOperators.Fields[5].Value;
+    showmodal;
+  end;
+
+  if form_Add_Worker.ModalResult = mrOk then  begin
+      dm_add.edit_worker(dm.QOperators.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         2,
+                         form_Add_Worker.label_login.text,
+                         form_Add_Worker.label_password.text);
+
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
+    update;
+   update;
+end;
+
+end.

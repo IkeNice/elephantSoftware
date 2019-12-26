@@ -90,7 +90,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    Text = 'admin'
+    Text = 'oplog'
   end
   object Edit_password: TEdit
     Left = 192
@@ -104,7 +104,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'admin'
+    Text = 'oppass'
   end
   object Button_log_in: TButton
     Left = 114
@@ -148,7 +148,7 @@ object Login_Form: TLogin_Form
     ParentFont = False
     TabOrder = 4
     Text = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE.FDB'
+      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
+      'NTSOFTWARE.FDB'
   end
 end

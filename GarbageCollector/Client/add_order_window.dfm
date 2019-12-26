@@ -288,11 +288,12 @@ object Form_add_order: TForm_add_order
   end
   object btnShowMenu: TButton
     Left = 259
-    Top = 228
+    Top = 227
     Width = 94
     Height = 25
     Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1084#1077#1085#1102
     TabOrder = 8
+    OnClick = btnShowMenuClick
   end
   object edSearch: TEdit
     Left = 70

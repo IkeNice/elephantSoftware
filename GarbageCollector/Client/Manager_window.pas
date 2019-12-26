@@ -319,11 +319,10 @@ begin
                          3,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
-
+      if dm_add.spEdit_Worker.Params[7].Value = 0 then
+        ShowMessage('Логин уже занят');
    end;
-    if dm_add.spEdit_Worker.Params[7].Value = 0 then
-      ShowMessage('Логин уже занят');
-    update;
+   update;
 end;
 
 procedure TForm_manager.menu_edit_managerClick(Sender: TObject);
@@ -346,10 +345,10 @@ begin
                          1,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
-
+      if dm_add.spEdit_Worker.Params[7].Value = 0 then
+        ShowMessage('Логин уже занят');
    end;
-    if dm_add.spEdit_Worker.Params[7].Value = 0 then
-      ShowMessage('Логин уже занят');
+
     update;
 end;
 
@@ -373,11 +372,10 @@ begin
                          2,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
+      if dm_add.spEdit_Worker.Params[7].Value = 0 then
+        ShowMessage('Логин уже занят');
 
    end;
-    if dm_add.spEdit_Worker.Params[7].Value = 0 then
-      ShowMessage('Логин уже занят');
-    update;
    update;
 end;
 

@@ -21,15 +21,11 @@ type
     procedure add_car(_name:string; category:integer; price:integer);
     procedure edit_car(id:integer; _name:string; category: integer; price: integer);
     procedure add_worker(empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
-    procedure edit_worker(id:integer; status:integer; role_:integer; experience:integer; dob:tdatetime; worker_name:string; worker_surname:string; worker_login:string; worker_password:string);
     function add_order(ID, StatusID: Integer; const Client, Phone: WideString;
             AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
             const TimeOfDelivery: WideString; TotalPrice: Integer):integer;
-    procedure add_customer(customer_name:string; customer_surname:string; address_id:integer; phone:string);
-    procedure add_address(city:string; street:string; number:integer; floor:integer);
     procedure edit_worker(id:integer; empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
-    procedure add_order(customer_id:integer; weight:integer; from_id:integer; to_id:integer; delivery:tdatetime; operator_id:integer; num_stevedore:integer; price:integer);
-    procedure add_address(street:string; building: string; flat:integer);
+   procedure add_address(street:string; building: string; flat:integer);
   end;
 
 var
