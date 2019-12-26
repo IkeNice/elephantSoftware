@@ -33,9 +33,9 @@ object Form_manager: TForm_manager
   object Label_cars: TLabel
     Left = 8
     Top = 0
-    Width = 48
+    Width = 33
     Height = 13
-    Caption = #1052#1072#1096#1080#1085#1099
+    Caption = #1052#1077#1085#1102
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -86,7 +86,20 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'SURNAME'
+        FieldName = 'EMP_ID'
+        Title.Alignment = taCenter
+        Title.Caption = 'ID'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -9
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'SECOND_NAME'
         Title.Alignment = taCenter
         Title.Caption = #1060#1072#1084#1080#1083#1080#1103
         Title.Font.Charset = DEFAULT_CHARSET
@@ -99,7 +112,7 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'NAME'
+        FieldName = 'FIRST_NAME'
         Title.Alignment = taCenter
         Title.Caption = #1048#1084#1103
         Title.Font.Charset = DEFAULT_CHARSET
@@ -113,32 +126,15 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'DOB'
+        FieldName = 'LAST_NAME'
         Title.Alignment = taCenter
-        Title.Caption = #1044#1072#1090#1072' '#1087#1088#1080#1085#1103#1090#1080#1103
+        Title.Caption = #1054#1090#1095#1077#1089#1090#1074#1086
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -9
         Title.Font.Name = 'Verdana'
         Title.Font.Style = []
         Width = 31
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'EXPERIENCE'
-        Title.Alignment = taCenter
-        Title.Caption = #1054#1087#1099#1090' '#1088#1072#1073#1086#1090#1099
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -9
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
         Visible = True
       end>
   end
@@ -167,7 +163,7 @@ object Form_manager: TForm_manager
         Expanded = False
         FieldName = 'NAME'
         Title.Alignment = taCenter
-        Title.Caption = #1052#1072#1088#1082#1072
+        Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -12
@@ -179,9 +175,9 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'PRICE'
+        FieldName = 'NAME1'
         Title.Alignment = taCenter
-        Title.Caption = #1052#1086#1076#1077#1083#1100
+        Title.Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -12
@@ -192,9 +188,9 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'PRODUCT_ID'
+        FieldName = 'PRICE'
         Title.Alignment = taCenter
-        Title.Caption = #1053#1086#1084#1077#1088
+        Title.Caption = #1062#1077#1085#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -12
@@ -225,7 +221,13 @@ object Form_manager: TForm_manager
     Columns = <
       item
         Expanded = False
-        FieldName = 'LAST_NAME'
+        FieldName = 'EMP_ID'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SECOND_NAME'
         Title.Caption = #1060#1072#1084#1080#1083#1080#1103
         Visible = True
       end
@@ -237,15 +239,9 @@ object Form_manager: TForm_manager
       end
       item
         Expanded = False
-        FieldName = 'SECOND_NAME'
+        FieldName = 'LAST_NAME'
         Title.Caption = #1054#1090#1095#1077#1089#1090#1074#1086
         Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'JOB_ID'
-        Title.Caption = #1056#1086#1083#1100
-        Visible = False
       end>
   end
   object DBGrid_operators: TDBGrid
@@ -269,9 +265,15 @@ object Form_manager: TForm_manager
     TitleFont.Style = []
     Columns = <
       item
+        Expanded = False
+        FieldName = 'EMP_ID'
+        Title.Caption = 'ID'
+        Visible = True
+      end
+      item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'SURNAME'
+        FieldName = 'SECOND_NAME'
         Title.Alignment = taCenter
         Title.Caption = #1060#1072#1084#1080#1083#1080#1103
         Title.Font.Charset = DEFAULT_CHARSET
@@ -284,7 +286,7 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'NAME'
+        FieldName = 'FIRST_NAME'
         Title.Alignment = taCenter
         Title.Caption = #1048#1084#1103
         Title.Font.Charset = DEFAULT_CHARSET
@@ -295,31 +297,26 @@ object Form_manager: TForm_manager
         Visible = True
       end
       item
-        Alignment = taCenter
         Expanded = False
-        FieldName = 'DOB'
-        Title.Alignment = taCenter
-        Title.Caption = #1044#1072#1090#1072' '#1087#1088#1080#1085#1103#1090#1080#1103
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -9
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'EXPERIENCE'
-        Title.Alignment = taCenter
-        Title.Caption = #1054#1087#1099#1090' '#1088#1072#1073#1086#1090#1099
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -9
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
+        FieldName = 'LAST_NAME'
+        Title.Caption = #1054#1090#1095#1077#1089#1090#1074#1086
         Visible = True
       end>
+  end
+  object cmbMenu: TComboBox
+    Left = 47
+    Top = -3
+    Width = 145
+    Height = 21
+    TabOrder = 4
+    Text = #1042#1089#1077' '#1084#1077#1085#1102
+    OnChange = cmbMenuChange
+    Items.Strings = (
+      #1042#1089#1077' '#1084#1077#1085#1102
+      #1055#1077#1088#1074#1099#1077' '#1073#1083#1102#1076#1072
+      #1042#1090#1086#1088#1099#1077' '#1073#1083#1102#1076#1072
+      #1044#1077#1089#1077#1088#1090#1099
+      #1053#1072#1087#1080#1090#1082#1080)
   end
   object MainMenu1: TMainMenu
     Left = 536
@@ -370,10 +367,6 @@ object Form_manager: TForm_manager
         OnClick = menu_edit_carClick
       end
     end
-    object menu_distr_cars: TMenuItem
-      Caption = #1056#1072#1089#1087#1088#1077#1076#1077#1083#1080#1090#1100' '#1074#1086#1076#1080#1090#1077#1083#1077#1081' '
-      OnClick = menu_distr_carsClick
-    end
     object menu_update: TMenuItem
       Caption = #1054#1073#1085#1086#1074#1080#1090#1100
       OnClick = menu_updateClick
@@ -390,7 +383,7 @@ object Form_manager: TForm_manager
     Top = 120
   end
   object DataSource_menu: TDataSource
-    DataSet = dm.TVehicle
+    DataSet = dm.QMenu
     OnDataChange = DataSource_menuDataChange
     Left = 144
     Top = 136
