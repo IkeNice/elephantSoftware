@@ -12,9 +12,9 @@ type
     Label3: TLabel;
     BitBtn1: TBitBtn;
     label_street: TEdit;
-    label_number: TEdit;
+    label_building: TEdit;
     Label4: TLabel;
-    label_floor: TEdit;
+    label_flat: TEdit;
     BitBtn2: TBitBtn;
   private
     { Private declarations }

@@ -67,7 +67,7 @@ object form_Add_Car: Tform_Add_Car
     ParentFont = False
     TabOrder = 0
   end
-  object label_mark: TEdit
+  object label_name: TEdit
     Left = 192
     Top = 28
     Width = 161
@@ -80,7 +80,7 @@ object form_Add_Car: Tform_Add_Car
     ParentFont = False
     TabOrder = 1
   end
-  object label_model: TEdit
+  object label_price: TEdit
     Left = 192
     Top = 111
     Width = 161
@@ -103,7 +103,7 @@ object form_Add_Car: Tform_Add_Car
     NumGlyphs = 2
     TabOrder = 3
   end
-  object ComboBox1: TComboBox
+  object cmbCategory: TComboBox
     Left = 192
     Top = 71
     Width = 161

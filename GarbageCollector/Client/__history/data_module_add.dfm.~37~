@@ -1,0 +1,276 @@
+object dm_add: Tdm_add
+  OldCreateOrder = False
+  Height = 354
+  Width = 554
+  object spAdd_Car: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'UPDATE_PRODUCT'
+    Left = 480
+    Top = 80
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INCATEGORY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INPRICE'
+        ParamType = ptInput
+      end>
+  end
+  object spEdit_Car: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'UPDATE_PRODUCT'
+    Left = 488
+    Top = 200
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INNAME                         '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INCATEGORY                     '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPRICE                        '
+        ParamType = ptUnknown
+      end>
+  end
+  object spEdit_Worker: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'EDIT_WORKER'
+    Left = 168
+    Top = 64
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'ID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'STATUS'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ROLE_'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'EXPERIENCE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'DOB'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'SURNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'LOGIN'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'PASSWORD_'
+        ParamType = ptInput
+      end>
+  end
+  object spAdd_Address: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'UPDATE_ADDRESS'
+    Left = 480
+    Top = 144
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INSTREET'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INBUILDING'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INAPARTMENT'
+        ParamType = ptInput
+      end>
+  end
+  object spAdd_Order: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'ADD_ORDER'
+    Left = 224
+    Top = 144
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'RESULT'
+        ParamType = ptOutput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_OPERATOR'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_CUSTOMER'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'WEIGHT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'FROM_ID_ADDREESS'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'TO_ID_ADDRESS'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDateTime
+        Name = 'DATE_OF_DELIVERY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'NUMBER_STEVEDORE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'PRICE'
+        ParamType = ptInput
+      end>
+  end
+  object spAdd_Customer: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'ADD_CUSTOMER'
+    Left = 104
+    Top = 152
+    ParamData = <
+      item
+        DataType = ftString
+        Name = 'NAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'SURNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_ADDRESS'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'PHONE_NUMBER'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'RESULT'
+        ParamType = ptOutput
+      end>
+  end
+  object spAdd_Worker: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    StoredProcName = 'UPDATE_EMP'
+    Left = 480
+    Top = 24
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INFIRSTNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INSECONDNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INLASTNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INJOBID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INLOGIN'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INPASSWORD'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUT_SUCCESS'
+        ParamType = ptOutput
+      end>
+  end
+end

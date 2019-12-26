@@ -205,9 +205,10 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select employees.emp_id, employees.second_name, employees.first_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 3;')
+        'select employees.emp_id, employees.first_name, employees.second_' +
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 3;')
     Left = 72
     Top = 144
   end
@@ -220,8 +221,9 @@ object dm: Tdm
     SQL.Strings = (
       
         'select employees.emp_id, employees.first_name, employees.second_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 1;')
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 1;')
     Left = 72
     Top = 48
   end
@@ -233,9 +235,10 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select employees.emp_id, employees.second_name, employees.first_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 2;')
+        'select employees.emp_id, employees.first_name, employees.second_' +
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 2;')
     Left = 72
     Top = 96
   end
@@ -393,8 +396,9 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select menu.name, menu.price, categories.name from menu inner jo' +
-        'in categories on menu.category_id = categories.category_id;')
+        'select menu.product_id, menu.name,  menu.category_id, menu.price' +
+        ', categories.name from menu inner join categories on menu.catego' +
+        'ry_id = categories.category_id;')
     Left = 120
     Top = 368
   end

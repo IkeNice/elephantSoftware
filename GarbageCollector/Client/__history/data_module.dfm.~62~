@@ -403,8 +403,9 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select menu.name, menu.price, categories.name from menu inner jo' +
-        'in categories on menu.category_id = categories.category_id;')
+        'select menu.product_id, menu.name,  menu.category_id, menu.price' +
+        ', categories.name from menu inner join categories on menu.catego' +
+        'ry_id = categories.category_id;')
     Left = 120
     Top = 368
   end

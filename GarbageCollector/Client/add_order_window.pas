@@ -58,7 +58,7 @@ begin
   try
     dm_add.add_Order(orderNum, 1, edClientName.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
   except
-    MessageDlg('Ошибка записи заказа', mtError, [mbOk], 0)
+    MessageDlg('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ', mtError, [mbOk], 0)
   end;
 end;
 
@@ -66,6 +66,15 @@ procedure TForm_add_order.btnAddClick(Sender: TObject);
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
+  form_Add_customer := Tform_Add_customer.Create(Application);
+  form_Add_customer.ShowModal;     {
+  if form_Add_customer.ModalResult = mrOk then  begin
+      dm_add.add_customer(form_Add_customer.label_name.Text,
+                          form_Add_customer.label_surname.Text,
+                          dm.TAddress_In.FieldByName('ID').Value,
+                          form_Add_customer.label_phone.Text);
+   end;  }
+   dm.open_all;
 end;
 
 procedure TForm_add_order.cbTimeOfDeliveryClick(Sender: TObject);

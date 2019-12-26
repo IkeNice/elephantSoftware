@@ -80,7 +80,7 @@ object form_Add_Address: Tform_Add_Address
     ParentFont = False
     TabOrder = 1
   end
-  object label_number: TEdit
+  object label_building: TEdit
     Left = 184
     Top = 64
     Width = 121
@@ -93,7 +93,7 @@ object form_Add_Address: Tform_Add_Address
     ParentFont = False
     TabOrder = 2
   end
-  object label_floor: TEdit
+  object label_flat: TEdit
     Left = 184
     Top = 100
     Width = 121

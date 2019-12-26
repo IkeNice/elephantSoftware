@@ -58,8 +58,9 @@ end;
 procedure  Tdm.open_all;
 begin
   dm.TOrders.Open;
+  dm.TVehicle.Open;
   {
-  dm.TWorkers.Open;
+  dm.T.Open;
   dm.TVehicle.Open;
   dm.TNew_day_car_delivery.Open;
   dm.TAddress_In.Open; }

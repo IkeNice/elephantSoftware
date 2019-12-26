@@ -308,8 +308,9 @@ object Form_manager: TForm_manager
     Top = 2
     Width = 145
     Height = 21
+    Style = csDropDownList
     TabOrder = 4
-    Text = #1042#1089#1077' '#1084#1077#1085#1102
+    TextHint = #1042#1089#1077' '#1084#1077#1085#1102
     OnChange = cmbMenuChange
     Items.Strings = (
       #1042#1089#1077' '#1084#1077#1085#1102
