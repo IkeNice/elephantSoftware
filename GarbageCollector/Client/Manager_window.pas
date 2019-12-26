@@ -14,7 +14,6 @@ type
     menu_diver: TMenuItem;
     menu_operator: TMenuItem;
     menu_manager: TMenuItem;
-    menu_distr_cars: TMenuItem;
     menu_orders: TMenuItem;
     menu_car: TMenuItem;
     DBGrid_drivers: TDBGrid;
@@ -37,6 +36,7 @@ type
     Label_operators: TLabel;
     menu_customer: TMenuItem;
     menu_address: TMenuItem;
+    cmbMenu: TComboBox;
     procedure menu_ordersClick(Sender: TObject);
     procedure menu_distr_carsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -56,6 +56,7 @@ type
     procedure DataSource_driversDataChange(Sender: TObject; Field: TField);
     procedure DataSource_managersDataChange(Sender: TObject; Field: TField);
     procedure DataSource_operatorsDataChange(Sender: TObject; Field: TField);
+    procedure cmbMenuChange(Sender: TObject);
   private
     { Private declarations }
     user : TUser;
@@ -81,6 +82,23 @@ procedure TForm_manager.DataSource_menuDataChange(Sender: TObject;
 begin
     ShowScrollBar(DBGrid_cars.Handle, SB_BOTH, False);
     ShowScrollBar(DBGrid_cars.Handle, sb_Horz , False);
+end;
+
+procedure TForm_manager.cmbMenuChange(Sender: TObject);
+var SQLLine : String;
+begin
+  SQLLine := 'select menu.name, menu.price, categories.name from menu inner join categories on menu.category_id = categories.category_id';
+  case cmbMenu.ItemIndex of
+    0: SQLLine := SQLLine + ';';
+    1: SQLLine := SQLLine + ' where categories.category_id = 1;';
+    2: SQLLine := SQLLine + ' where categories.category_id = 2;';
+    3: SQLLine := SQLLine + ' where categories.category_id = 3;';
+    4: SQLLine := SQLLine + ' where categories.category_id = 4;';
+  end;
+  dm.QMenu.SQL.Clear;
+  dm.QMenu.SQL.Add(SQLLine);
+  dm.QMenu.Close;
+  dm.QMenu.Open;
 end;
 
 procedure TForm_manager.DataSource_driversDataChange(Sender: TObject;
@@ -156,13 +174,18 @@ procedure TForm_manager.menu_diverClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
   form_Add_Worker.showmodal;
-  if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.add_worker(2, StrtoInt(form_Add_Worker.label_exp.Text),
-                        form_Add_Worker.dtp_DOB.datetime,
-                        form_Add_Worker.label_name.text,
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
                         form_Add_Worker.label_surname.text,
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
+      if dm_add.spAdd_Worker.Params[7] = 0 then
+      begin
+        ShowMessage('Логин уже существует');
+        form_Add_Worker.ShowModal;
+      end;
+
    end;
    update;
 end;
@@ -170,7 +193,7 @@ end;
 procedure TForm_manager.menu_managerClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal; {
   if form_Add_Worker.ModalResult = mrOk then  begin
       dm_add.add_worker(0, StrtoInt(form_Add_Worker.label_exp.Text),
                         form_Add_Worker.dtp_DOB.datetime,
@@ -179,14 +202,14 @@ begin
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
 
-   end;
+   end;}
    update;
 end;
 
 procedure TForm_manager.menu_operatorClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;{
   if form_Add_Worker.ModalResult = mrOk then  begin
       dm_add.add_worker(1, StrtoInt(form_Add_Worker.label_exp.Text),
                         form_Add_Worker.dtp_DOB.datetime,
@@ -195,7 +218,7 @@ begin
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
 
-   end;
+   end;}
    update;
 end;
 

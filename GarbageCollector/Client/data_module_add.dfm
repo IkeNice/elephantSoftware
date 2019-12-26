@@ -6,8 +6,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_CAR'
-    Left = 24
-    Top = 40
+    Left = 8
+    Top = 48
     ParamData = <
       item
         DataType = ftWideString
@@ -29,8 +29,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'EDIT_CAR'
-    Left = 112
-    Top = 40
+    Left = 96
+    Top = 48
     ParamData = <
       item
         DataType = ftInteger
@@ -57,8 +57,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'EDIT_WORKER'
-    Left = 184
-    Top = 56
+    Left = 168
+    Top = 64
     ParamData = <
       item
         DataType = ftInteger
@@ -110,8 +110,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_ADDRESS'
-    Left = 280
-    Top = 40
+    Left = 264
+    Top = 48
     ParamData = <
       item
         DataType = ftString
@@ -138,7 +138,7 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_ORDER'
-    Left = 296
+    Left = 224
     Top = 144
     ParamData = <
       item
@@ -191,8 +191,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_CUSTOMER'
-    Left = 280
-    Top = 96
+    Left = 104
+    Top = 152
     ParamData = <
       item
         DataType = ftString
@@ -223,44 +223,49 @@ object dm_add: Tdm_add
   object spAdd_Worker: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'ADD_WORKER'
-    Left = 144
-    Top = 264
+    StoredProcName = 'UPDATE_EMP'
+    Left = 480
+    Top = 24
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'ROLE_'
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INFIRSTNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INSECONDNAME'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INLASTNAME'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'EXPERIENCE'
+        Name = 'INJOBID'
         ParamType = ptInput
       end
       item
-        DataType = ftDate
-        Name = 'DOB'
+        DataType = ftWideString
+        Name = 'INLOGIN'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'SURNAME'
+        DataType = ftWideString
+        Name = 'INPASSWORD'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'NAME'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'LOGIN'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
-        Name = 'PASSWORD_'
-        ParamType = ptInput
+        DataType = ftInteger
+        Name = 'OUT_SUCCESS'
+        ParamType = ptOutput
       end>
   end
 end

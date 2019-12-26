@@ -31,6 +31,7 @@ type
     spEdit_Order_Status: TIBStoredProc;
     QWorker_By_Id: TIBQuery;
     QLogin_By_Id: TIBQuery;
+    QMenu: TIBQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -72,6 +73,8 @@ begin
    dm.QManagers.Open;
    dm.QOperators.Close;
    dm.QOperators.Open;
+   dm.QMenu.Close;
+   dm.QMenu.Open;
    //dm.QCustomers.Close;
    //dm.QCustomers.Open;
     {

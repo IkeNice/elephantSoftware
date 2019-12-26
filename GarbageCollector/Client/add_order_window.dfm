@@ -345,7 +345,7 @@ object Form_add_order: TForm_add_order
   end
   object BitBtn1: TBitBtn
     Left = 486
-    Top = 407
+    Top = 408
     Width = 75
     Height = 25
     Font.Charset = DEFAULT_CHARSET

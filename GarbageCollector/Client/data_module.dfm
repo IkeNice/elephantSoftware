@@ -193,35 +193,9 @@ object dm: Tdm
   object spLogin: TIBStoredProc
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
-    StoredProcName = 'LOGIN'
+    StoredProcName = 'LOGIN_PROC'
     Left = 352
     Top = 152
-    ParamData = <
-      item
-        DataType = ftInteger
-        Name = 'OUT_SUCCESS'
-        ParamType = ptOutput
-      end
-      item
-        DataType = ftInteger
-        Name = 'OUT_JOB'
-        ParamType = ptOutput
-      end
-      item
-        DataType = ftInteger
-        Name = 'OUT_EMP_ID'
-        ParamType = ptOutput
-      end
-      item
-        DataType = ftWideString
-        Name = 'IN_PASSWORD'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftWideString
-        Name = 'IN_LOGIN'
-        ParamType = ptInput
-      end>
   end
   object QDrivers: TIBQuery
     Database = dm_db.IBDatabase_read
@@ -231,8 +205,9 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select * from employees e join authotization  a on e.emp_id = a.' +
-        'emp_id where e.job_id = 3;')
+        'select employees.emp_id, employees.second_name, employees.first_' +
+        'name, employees.last_name from employees where employees.job_id ' +
+        '= 3;')
     Left = 72
     Top = 144
   end
@@ -244,8 +219,9 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        '   select * from employees e join authotization a on e.emp_id = ' +
-        'a.emp_id where e.job_id = 1;')
+        'select employees.emp_id, employees.first_name, employees.second_' +
+        'name, employees.last_name from employees where employees.job_id ' +
+        '= 1;')
     Left = 72
     Top = 48
   end
@@ -257,9 +233,9 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select * from employees e join authotization a on e.emp_id = a.e' +
-        'mp_id where e.job_id = 2;'
-      '')
+        'select employees.emp_id, employees.second_name, employees.first_' +
+        'name, employees.last_name from employees where employees.job_id ' +
+        '= 2;')
     Left = 72
     Top = 96
   end
@@ -418,5 +394,18 @@ object dm: Tdm
         Name = 'id_login'
         ParamType = ptInput
       end>
+  end
+  object QMenu: TIBQuery
+    Database = dm_db.IBDatabase_read
+    Transaction = dm_db.IBTransaction_read
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      
+        'select menu.name, menu.price, categories.name from menu inner jo' +
+        'in categories on menu.category_id = categories.category_id;')
+    Left = 120
+    Top = 368
   end
 end

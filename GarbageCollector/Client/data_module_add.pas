@@ -20,7 +20,7 @@ type
   public
     procedure add_car(mark:string; number:string; model:string);
     procedure edit_car(id:integer; mark:string; number:string; model:string);
-    procedure add_worker(role_:integer; experience:integer; dob:tdatetime; worker_name:string; worker_surname:string; worker_login:string; worker_password:string);
+    procedure add_worker(empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
     procedure edit_worker(id:integer; status:integer; role_:integer; experience:integer; dob:tdatetime; worker_name:string; worker_surname:string; worker_login:string; worker_password:string);
     procedure add_order(customer_id:integer; weight:integer; from_id:integer; to_id:integer; delivery:tdatetime; operator_id:integer; num_stevedore:integer; price:integer);
     procedure add_customer(customer_name:string; customer_surname:string; address_id:integer; phone:string);
@@ -70,24 +70,21 @@ begin
   end;
 end;
 
-procedure Tdm_add.add_worker(role_:integer; experience:integer; dob:tdatetime;
-                             worker_name:string; worker_surname:string;
-                             worker_login:string; worker_password:string);
+procedure Tdm_add.add_worker(empFirstname: string; empSecondname: string;
+                             empLastname: string; jobID: integer; login: string; password: string);
 begin
 with dm_add.spAdd_Worker do
   begin
-
-  ParamByName('ROLE_').AsInteger := role_;
-  ParamByName('EXPERIENCE').AsInteger := experience;
-  ParamByName('DOB').AsDate:= dob;
-  ParamByName('NAME').Value:= worker_name;
-  ParamByName('SURNAME').Value:= worker_surname;
-  ParamByName('LOGIN').Value:= worker_login;
-  ParamByName('PASSWORD_').Value:= worker_password;
-
+  Params[0].Value := 0;
+  Params[1].Value := empFirstname;
+  Params[2].Value := empSecondname;
+  Params[3].Value := empLastname;
+  Params[4].Value := jobID;
+  Params[5].Value := login;
+  Params[6].Value := password;
   // Execute the procedure
   if not Transaction.InTransaction then
-    Transaction.StartTransaction;
+    Transaction.Commit;
   ExecProc;
   Transaction.Commit;
   end;
