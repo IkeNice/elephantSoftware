@@ -308,8 +308,9 @@ object Form_manager: TForm_manager
     Top = -3
     Width = 145
     Height = 21
+    Style = csDropDownList
     TabOrder = 4
-    Text = #1042#1089#1077' '#1084#1077#1085#1102
+    TextHint = #1042#1089#1077' '#1084#1077#1085#1102
     OnChange = cmbMenuChange
     Items.Strings = (
       #1042#1089#1077' '#1084#1077#1085#1102
@@ -359,7 +360,7 @@ object Form_manager: TForm_manager
         OnClick = menu_edit_managerClick
       end
       object menu_edit_car: TMenuItem
-        Caption = #1052#1072#1096#1080#1085#1072
+        Caption = #1052#1077#1085#1102
         OnClick = menu_edit_carClick
       end
     end

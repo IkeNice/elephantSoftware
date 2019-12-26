@@ -69,7 +69,7 @@ object Form_add_order: TForm_add_order
   object Label1: TLabel
     Left = 168
     Top = 39
-    Width = 185
+    Width = 170
     Height = 16
     Caption = #1055#1088#1080#1084#1077#1088' '#1085#1086#1084#1077#1088#1072': 9181234567'
     Font.Charset = DEFAULT_CHARSET

@@ -40,11 +40,11 @@ object form_Add_Address: Tform_Add_Address
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 69
+    Left = 40
     Top = 101
-    Width = 94
+    Width = 123
     Height = 16
-    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1101#1090#1072#1078
+    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1082#1074#1072#1088#1090#1080#1088#1091
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -80,7 +80,7 @@ object form_Add_Address: Tform_Add_Address
     ParentFont = False
     TabOrder = 1
   end
-  object label_number: TEdit
+  object label_building: TEdit
     Left = 184
     Top = 64
     Width = 121
@@ -93,7 +93,7 @@ object form_Add_Address: Tform_Add_Address
     ParentFont = False
     TabOrder = 2
   end
-  object label_floor: TEdit
+  object label_flat: TEdit
     Left = 184
     Top = 100
     Width = 121

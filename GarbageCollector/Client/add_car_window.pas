@@ -12,10 +12,10 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    label_mark: TEdit;
-    label_model: TEdit;
+    label_name: TEdit;
+    label_price: TEdit;
     BitBtn2: TBitBtn;
-    ComboBox1: TComboBox;
+    cmbCategory: TComboBox;
   private
     { Private declarations }
   public

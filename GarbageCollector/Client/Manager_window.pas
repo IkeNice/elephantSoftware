@@ -48,7 +48,6 @@ type
     procedure menu_edit_operatorClick(Sender: TObject);
     procedure menu_edit_managerClick(Sender: TObject);
     procedure menu_menuClick(Sender: TObject);
-    procedure menu_customerClick(Sender: TObject);
     procedure menu_addressClick(Sender: TObject);
     procedure update;
     procedure DataSource_menuDataChange(Sender: TObject; Field: TField);
@@ -86,7 +85,7 @@ end;
 procedure TForm_manager.cmbMenuChange(Sender: TObject);
 var SQLLine : String;
 begin
-  SQLLine := 'select menu.name, menu.price, categories.name from menu inner join categories on menu.category_id = categories.category_id';
+  SQLLine := 'select menu.product_id, menu.name, menu.price, menu.category_id, categories.name from menu inner join categories on menu.category_id = categories.category_id';
   case cmbMenu.ItemIndex of
     0: SQLLine := SQLLine + ';';
     1: SQLLine := SQLLine + ' where categories.category_id = 1;';
@@ -175,92 +174,97 @@ end;
 procedure TForm_manager.menu_diverClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;    {
+  form_Add_Worker.showmodal;
   if form_Add_Worker.ModalResult = mrOk then
   begin
       dm_add.add_worker(form_Add_Worker.label_name.text,
                         form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        3,
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
-      if dm_add.spAdd_Worker.Params[7] = 0 then
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
       begin
-        ShowMessage('����� ��� ����������');
+        ShowMessage('Логин уже занят');
         form_Add_Worker.ShowModal;
       end;
-
-   end;                          }
+   end;
    update;
 end;
 
 procedure TForm_manager.menu_managerClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal; {
-  if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.add_worker(0, StrtoInt(form_Add_Worker.label_exp.Text),
-                        form_Add_Worker.dtp_DOB.datetime,
-                        form_Add_Worker.label_name.text,
+  form_Add_Worker.showmodal;
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
                         form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        1,
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
-
-   end;}
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
+      begin
+        ShowMessage('Логин уже занят');
+        form_Add_Worker.ShowModal;
+      end;
+   end;
    update;
 end;
 
 procedure TForm_manager.menu_operatorClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;{
-  if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.add_worker(1, StrtoInt(form_Add_Worker.label_exp.Text),
-                        form_Add_Worker.dtp_DOB.datetime,
-                        form_Add_Worker.label_name.text,
+  form_Add_Worker.showmodal;
+  if form_Add_Worker.ModalResult = mrOk then
+  begin
+      dm_add.add_worker(form_Add_Worker.label_name.text,
                         form_Add_Worker.label_surname.text,
+                        form_Add_Worker.label_lastname.Text,
+                        2,
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
-
-   end;}
+      if dm_add.spAdd_Worker.Params[7].Value = 0 then
+      begin
+        ShowMessage('Логин уже занят');
+        form_Add_Worker.ShowModal;
+      end;
+   end;
    update;
 end;
 
 procedure TForm_manager.menu_addressClick(Sender: TObject);
+var tmp: integer;
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
-  form_Add_Address.ShowModal;       {
-  if form_Add_Address.ModalResult = mrOk then  begin
+  form_Add_Address.ShowModal;
+  if form_Add_Address.ModalResult = mrOk then
+  begin
+      if form_add_address.label_flat.text = '' then
+        tmp := 0
+      else
+        tmp := StrToInt(form_add_address.label_flat.text);
       dm_add.add_address(form_Add_Address.label_street.Text,
-                         StrToInt(form_Add_Address.label_number.Text),
-                         StrToInt(form_Add_Address.label_floor.Text));
-   end;         }
+                         form_Add_Address.label_building.Text,
+                         tmp);
+   end;
    update;
 end;
 
 procedure TForm_manager.menu_menuClick(Sender: TObject);
 begin
    form_Add_Car := Tform_Add_Car.Create(APPLICATION);
-   form_Add_Car.showmodal;  {
+   form_Add_Car.showmodal;
    if form_Add_Car.ModalResult = mrOk then  begin
-       dm_add.add_car(form_Add_Car.label_mark.Text,
-                      form_Add_Car.label_number.Text,
-                      form_Add_Car.label_model.Text);
+       dm_add.add_car(form_Add_Car.label_name.Text,
+                      form_Add_Car.cmbCategory.ItemIndex + 1,
+                      StrToInt(form_Add_Car.label_price.Text));
    end;
 
-   dm.TVehicle.Refresh;      }
+   dm.TVehicle.Refresh;
 end;
 
-procedure TForm_manager.menu_customerClick(Sender: TObject);
-begin         {
-  form_Add_customer := Tform_Add_customer.Create(Application);
-  form_Add_customer.ShowModal;
-  if form_Add_customer.ModalResult = mrOk then  begin
-      dm_add.add_customer(form_Add_customer.label_name.Text,
-                          form_Add_customer.label_surname.Text,
-                          dm.TAddress_In.FieldByName('ID').Value,
-                          form_Add_customer.label_phone.Text);
-   end;
-   update;     }
-end;
 
 procedure TForm_manager.menu_distr_carsClick(Sender: TObject);
 begin
@@ -279,101 +283,108 @@ begin
   update;
 end;
 
+//manu
 procedure TForm_manager.menu_edit_carClick(Sender: TObject);
+var tmp: integer;
 begin
-  form_Add_Car := Tform_Add_Car.Create(APPLICATION); {
+  form_Add_Car := Tform_Add_Car.Create(APPLICATION);
   with form_Add_Car do begin
-    label_mark.Text := dm.TVehicle.FieldByName('MARKA').Value;
-    label_number.Text := dm.TVehicle.FieldByName('NUMBER').Value;
-    label_model.Text := dm.TVehicle.FieldByName('MODEL').Value;
+    label_name.Text := dm.QMenu.Fields[1].Value;
+    tmp := dm.QMenu.Fields[3].Value;
+    label_price.Text := tmp.toString;
+    cmbCategory.ItemIndex := dm.QMenu.Fields[2].Value - 1;
     showmodal;
   end;
+   tmp:= form_Add_Car.cmbCategory.ItemIndex + 1;
   if form_Add_Car.ModalResult = mrOk then  begin
-      dm_add.edit_car(dm.TVehicle.FieldByName('ID').Value,
-                      form_Add_Car.label_mark.Text,
-                      form_Add_Car.label_number.Text,
-                      form_Add_Car.label_model.Text);
+      dm_add.edit_car(dm.QMenu.Fields[0].Value,
+                      form_Add_Car.label_name.Text,
+                      tmp,
+                      StrToInt(form_Add_Car.label_price.Text));
    end;
-   dm.TVehicle.Refresh;                               }
+   dm.TVehicle.Refresh;
    update;
 end;
 
 procedure TForm_manager.menu_edit_driverClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION); {
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
   with form_Add_Worker do begin
-    label_name.Text := dm.QDrivers.FieldByName('NAME').Value;
-    label_surname.Text := dm.QDrivers.FieldByName('SURNAME').Value;
-    label_exp.Text := dm.QDrivers.FieldByName('EXPERIENCE').Value;
-    dtp_DOB.DateTime := dm.QDrivers.FieldByName('DOB').AsDateTime;
-    label_login.Text := dm.QDrivers.FieldByName('LOGIN').Value;
-    label_password.Text := dm.QDrivers.FieldByName('PASSWORD_').Value;
+    label_name.Text := dm.QDrivers.Fields[1].Value;
+    label_surname.Text := dm.QDrivers.Fields[2].Value;
+    label_lastname.Text := dm.QDrivers.Fields[3].Value;
+    label_login.Text := dm.QDrivers.Fields[4].Value;
+    label_password.Text := dm.QDrivers.Fields[5].Value;
     showmodal;
   end;
 
   if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.edit_worker(dm.QDrivers.FieldByName('ID').Value,
-                         dm.QDrivers.FieldByName('STATUS').Value, 2,
-                         StrtoInt(form_Add_Worker.label_exp.Text),
-                         form_Add_Worker.dtp_DOB.datetime,
-                         form_Add_Worker.label_name.text,
-                         form_Add_Worker.label_surname.text,
+      dm_add.edit_worker(dm.QDrivers.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         3,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;     }
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
     update;
 end;
 
 procedure TForm_manager.menu_edit_managerClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);{
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
   with form_Add_Worker do begin
-    label_name.Text := dm.QManagers.FieldByName('NAME').Value;
-    label_surname.Text := dm.QManagers.FieldByName('SURNAME').Value;
-    label_exp.Text := dm.QManagers.FieldByName('EXPERIENCE').Value;
-    dtp_DOB.DateTime := dm.QManagers.FieldByName('DOB').AsDateTime;
-    label_login.Text := dm.QManagers.FieldByName('LOGIN').Value;
-    label_password.Text := dm.QManagers.FieldByName('PASSWORD_').Value;
+    label_name.Text := dm.QManagers.Fields[1].Value;
+    label_surname.Text := dm.QManagers.Fields[2].Value;
+    label_lastname.Text := dm.QManagers.Fields[3].Value;
+    label_login.Text := dm.QManagers.Fields[4].Value;
+    label_password.Text := dm.QManagers.Fields[5].Value;
     showmodal;
   end;
+
   if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.edit_worker(dm.QManagers.FieldByName('ID').Value,
-                         dm.QManagers.FieldByName('STATUS').Value, 0,
-                         StrtoInt(form_Add_Worker.label_exp.Text),
-                         form_Add_Worker.dtp_DOB.datetime,
-                         form_Add_Worker.label_name.text,
-                         form_Add_Worker.label_surname.text,
+      dm_add.edit_worker(dm.QManagers.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         1,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;  }
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
     update;
 end;
 
 procedure TForm_manager.menu_edit_operatorClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);   {
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
   with form_Add_Worker do begin
-    label_name.Text := dm.QOperators.FieldByName('NAME').Value;
-    label_surname.Text := dm.QOperators.FieldByName('SURNAME').Value;
-    label_exp.Text := dm.QOperators.FieldByName('EXPERIENCE').Value;
-    dtp_DOB.DateTime := dm.QOperators.FieldByName('DOB').AsDateTime;
-    label_login.Text := dm.QOperators.FieldByName('LOGIN').Value;
-    label_password.Text := dm.QOperators.FieldByName('PASSWORD_').Value;
+    label_name.Text := dm.QOperators.Fields[1].Value;
+    label_surname.Text := dm.QOperators.Fields[2].Value;
+    label_lastname.Text := dm.QOperators.Fields[3].Value;
+    label_login.Text := dm.QOperators.Fields[4].Value;
+    label_password.Text := dm.QOperators.Fields[5].Value;
     showmodal;
   end;
+
   if form_Add_Worker.ModalResult = mrOk then  begin
-      dm_add.edit_worker(dm.QOperators.FieldByName('ID').Value,
-                         dm.QOperators.FieldByName('STATUS').Value, 1,
-                         StrtoInt(form_Add_Worker.label_exp.Text),
-                         form_Add_Worker.dtp_DOB.datetime,
-                         form_Add_Worker.label_name.text,
-                         form_Add_Worker.label_surname.text,
+      dm_add.edit_worker(dm.QOperators.Fields[0].Value,
+                         form_Add_Worker.label_name.Text,
+                         form_Add_Worker.label_surname.Text,
+                         form_Add_Worker.label_lastname.Text,
+                         2,
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;      }
+   end;
+    if dm_add.spEdit_Worker.Params[7].Value = 0 then
+      ShowMessage('Логин уже занят');
+    update;
    update;
 end;
 

@@ -67,7 +67,7 @@ object form_Add_Car: Tform_Add_Car
     ParentFont = False
     TabOrder = 0
   end
-  object label_mark: TEdit
+  object label_name: TEdit
     Left = 192
     Top = 28
     Width = 161
@@ -80,7 +80,7 @@ object form_Add_Car: Tform_Add_Car
     ParentFont = False
     TabOrder = 1
   end
-  object label_model: TEdit
+  object label_price: TEdit
     Left = 192
     Top = 111
     Width = 161
@@ -103,13 +103,14 @@ object form_Add_Car: Tform_Add_Car
     NumGlyphs = 2
     TabOrder = 3
   end
-  object ComboBox1: TComboBox
+  object cmbCategory: TComboBox
     Left = 192
     Top = 71
     Width = 161
     Height = 21
+    Style = csDropDownList
     TabOrder = 4
-    Text = '< '#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102'>'
+    TextHint = '<'#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102'>'
     Items.Strings = (
       #1055#1077#1088#1074#1086#1077' '#1073#1083#1102#1076#1086
       #1042#1090#1086#1088#1086#1077' '#1073#1083#1102#1076#1086

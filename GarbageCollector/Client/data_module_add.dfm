@@ -5,132 +5,132 @@ object dm_add: Tdm_add
   object spAdd_Car: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'ADD_CAR'
-    Left = 8
-    Top = 48
+    StoredProcName = 'UPDATE_PRODUCT'
+    Left = 480
+    Top = 80
     ParamData = <
       item
-        DataType = ftWideString
-        Name = 'MARKA'
+        DataType = ftInteger
+        Name = 'INID'
         ParamType = ptInput
       end
       item
         DataType = ftWideString
-        Name = 'NUMBER'
+        Name = 'INNAME'
         ParamType = ptInput
       end
       item
-        DataType = ftWideString
-        Name = 'MODEL'
+        DataType = ftInteger
+        Name = 'INCATEGORY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INPRICE'
         ParamType = ptInput
       end>
   end
   object spEdit_Car: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'EDIT_CAR'
-    Left = 96
-    Top = 48
+    StoredProcName = 'UPDATE_PRODUCT'
+    Left = 480
+    Top = 200
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'ID'
+        Name = 'INID                           '
         ParamType = ptInput
       end
       item
         DataType = ftWideString
-        Name = 'MARKA'
+        Name = 'INNAME                         '
         ParamType = ptInput
       end
       item
-        DataType = ftWideString
-        Name = 'NUMBER'
+        DataType = ftInteger
+        Name = 'INCATEGORY                     '
         ParamType = ptInput
       end
       item
-        DataType = ftWideString
-        Name = 'MODEL'
+        DataType = ftInteger
+        Name = 'INPRICE                        '
         ParamType = ptInput
       end>
   end
   object spEdit_Worker: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'EDIT_WORKER'
-    Left = 168
-    Top = 64
+    StoredProcName = 'UPDATE_EMP'
+    Left = 480
+    Top = 256
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'ID'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'STATUS'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'ROLE_'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'EXPERIENCE'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftDate
-        Name = 'DOB'
+        Name = 'INID'
         ParamType = ptInput
       end
       item
         DataType = ftWideString
-        Name = 'SURNAME'
+        Name = 'INFIRSTNAME'
         ParamType = ptInput
       end
       item
         DataType = ftWideString
-        Name = 'NAME'
+        Name = 'INSECONDNAME'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'LOGIN'
+        DataType = ftWideString
+        Name = 'INLASTNAME'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'PASSWORD_'
+        DataType = ftInteger
+        Name = 'INJOBID'
         ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INLOGIN'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INPASSWORD'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUT_SUCCESS'
+        ParamType = ptOutput
       end>
   end
   object spAdd_Address: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'ADD_ADDRESS'
-    Left = 264
-    Top = 48
+    StoredProcName = 'UPDATE_ADDRESS'
+    Left = 480
+    Top = 144
     ParamData = <
       item
-        DataType = ftString
-        Name = 'CITY'
+        DataType = ftInteger
+        Name = 'INID'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'STREET'
+        DataType = ftWideString
+        Name = 'INSTREET'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INBUILDING'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'NUMBER_HOUSE'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'FLOOR_'
+        Name = 'INAPARTMENT'
         ParamType = ptInput
       end>
   end
@@ -138,8 +138,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_ORDER'
-    Left = 224
-    Top = 144
+    Left = 80
+    Top = 64
     ParamData = <
       item
         DataType = ftInteger

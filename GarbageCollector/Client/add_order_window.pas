@@ -47,13 +47,13 @@ implementation
 procedure TForm_add_order.Button1Click(Sender: TObject);
 begin
   form_Add_customer := Tform_Add_customer.Create(Application);
-  form_Add_customer.ShowModal;
+  form_Add_customer.ShowModal;     {
   if form_Add_customer.ModalResult = mrOk then  begin
       dm_add.add_customer(form_Add_customer.label_name.Text,
                           form_Add_customer.label_surname.Text,
                           dm.TAddress_In.FieldByName('ID').Value,
                           form_Add_customer.label_phone.Text);
-   end;
+   end;  }
    dm.open_all;
 end;
 
