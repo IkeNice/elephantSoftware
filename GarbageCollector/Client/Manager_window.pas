@@ -24,7 +24,7 @@ type
     menu_edit: TMenuItem;
     menu_edit_car: TMenuItem;
     DBGrid_cars: TDBGrid;
-    DataSource_cars: TDataSource;
+    DataSource_menu: TDataSource;
     menu_edit_driver: TMenuItem;
     DBGrid_managers: TDBGrid;
     DBGrid_operators: TDBGrid;
@@ -52,7 +52,7 @@ type
     procedure menu_customerClick(Sender: TObject);
     procedure menu_addressClick(Sender: TObject);
     procedure update;
-    procedure DataSource_carsDataChange(Sender: TObject; Field: TField);
+    procedure DataSource_menuDataChange(Sender: TObject; Field: TField);
     procedure DataSource_driversDataChange(Sender: TObject; Field: TField);
     procedure DataSource_managersDataChange(Sender: TObject; Field: TField);
     procedure DataSource_operatorsDataChange(Sender: TObject; Field: TField);
@@ -76,7 +76,7 @@ procedure TForm_manager.update;
 begin
   dm.open_all;
 end;
-procedure TForm_manager.DataSource_carsDataChange(Sender: TObject;
+procedure TForm_manager.DataSource_menuDataChange(Sender: TObject;
   Field: TField);
 begin
     ShowScrollBar(DBGrid_cars.Handle, SB_BOTH, False);

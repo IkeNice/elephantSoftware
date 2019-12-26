@@ -147,6 +147,7 @@ object dm: Tdm
     Transaction = dm_db.IBTransaction_read
     BufferChunks = 1000
     CachedUpdates = False
+    TableName = 'MENU'
     UniDirectional = False
     Left = 512
     Top = 184
@@ -230,8 +231,8 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        '   select * from employees e join authotization  a on e.emp_id =' +
-        ' a.emp_id where e.job_id = 3;')
+        'select * from employees e join authotization  a on e.emp_id = a.' +
+        'emp_id where e.job_id = 3;')
     Left = 72
     Top = 144
   end
@@ -255,10 +256,9 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      ''
       
-        '   select * from employees e join authotization a on e.emp_id = ' +
-        'a.emp_id where e.job_id = 2;'
+        'select * from employees e join authotization a on e.emp_id = a.e' +
+        'mp_id where e.job_id = 2;'
       '')
     Left = 72
     Top = 96

@@ -13,11 +13,12 @@ object Form_manager: TForm_manager
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesigned
+  WindowState = wsMaximized
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label_drivers: TLabel
-    Left = 288
+    Left = 336
     Top = 0
     Width = 56
     Height = 13
@@ -146,7 +147,7 @@ object Form_manager: TForm_manager
     Top = 19
     Width = 233
     Height = 174
-    DataSource = DataSource_cars
+    DataSource = DataSource_menu
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -164,7 +165,7 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'MARKA'
+        FieldName = 'NAME'
         Title.Alignment = taCenter
         Title.Caption = #1052#1072#1088#1082#1072
         Title.Font.Charset = DEFAULT_CHARSET
@@ -178,7 +179,7 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'MODEL'
+        FieldName = 'PRICE'
         Title.Alignment = taCenter
         Title.Caption = #1052#1086#1076#1077#1083#1100
         Title.Font.Charset = DEFAULT_CHARSET
@@ -191,7 +192,7 @@ object Form_manager: TForm_manager
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'NUMBER'
+        FieldName = 'PRODUCT_ID'
         Title.Alignment = taCenter
         Title.Caption = #1053#1086#1084#1077#1088
         Title.Font.Charset = DEFAULT_CHARSET
@@ -221,6 +222,31 @@ object Form_manager: TForm_manager
     TitleFont.Height = -11
     TitleFont.Name = 'Verdana'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'LAST_NAME'
+        Title.Caption = #1060#1072#1084#1080#1083#1080#1103
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FIRST_NAME'
+        Title.Caption = #1048#1084#1103
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SECOND_NAME'
+        Title.Caption = #1054#1090#1095#1077#1089#1090#1074#1086
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'JOB_ID'
+        Title.Caption = #1056#1086#1083#1100
+        Visible = False
+      end>
   end
   object DBGrid_operators: TDBGrid
     Left = 247
@@ -363,8 +389,9 @@ object Form_manager: TForm_manager
     Left = 424
     Top = 120
   end
-  object DataSource_cars: TDataSource
-    OnDataChange = DataSource_carsDataChange
+  object DataSource_menu: TDataSource
+    DataSet = dm.TVehicle
+    OnDataChange = DataSource_menuDataChange
     Left = 144
     Top = 136
   end
