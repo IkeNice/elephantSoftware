@@ -56,7 +56,7 @@ object fmMenu: TfmMenu
     end
     object btnChoose: TButton
       Left = 480
-      Top = 12
+      Top = 4
       Width = 75
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100

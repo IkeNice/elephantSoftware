@@ -31,7 +31,11 @@ type
     QWorker_By_Id: TIBQuery;
     QLogin_By_Id: TIBQuery;
     QMenu: TIBQuery;
+    IBQuery1: TIBQuery;
     procedure DataModuleCreate(Sender: TObject);
+    procedure smSQLClear; safecall;
+    procedure smSQLAddString(const s: WideString); safecall;
+    procedure smSQLExecute; safecall;
   private
     { Private declarations }
   public
@@ -98,5 +102,23 @@ begin
   dm.QCustomer_By_Id.Close;
 end;
 
+    procedure Tdm.smSQLClear;
+  begin
+    if IBQuery1.Transaction.InTransaction then
+      IBQuery1.Transaction.Commit;
+    IBQuery1.Close;
+    IBQuery1.SQL.Clear;
+  end;
 
+  procedure Tdm.smSQLAddString(const s: WideString);
+  begin
+    IBQuery1.SQL.Add(s);
+  end;
+
+  procedure Tdm.smSQLExecute;
+  begin
+    IBQuery1.Open;
+    if IBQuery1.Transaction.InTransaction then
+      IBQuery1.Transaction.Commit;
+  end;
 end.

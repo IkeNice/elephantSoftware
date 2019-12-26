@@ -2,8 +2,8 @@ object form_Details_Order: Tform_Details_Order
   Left = 0
   Top = 0
   Caption = #1055#1086#1076#1088#1086#1073#1085#1086#1089#1090#1080' '#1079#1072#1082#1072#1079#1072
-  ClientHeight = 375
-  ClientWidth = 616
+  ClientHeight = 359
+  ClientWidth = 435
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

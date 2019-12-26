@@ -12,9 +12,11 @@ object fmMenu: TfmMenu
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnActivate = FormActivate
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
-  object DBGrid1: TDBGrid
+  object dbgMenu: TDBGrid
     Left = 0
     Top = 0
     Width = 486
@@ -36,7 +38,6 @@ object fmMenu: TfmMenu
     Align = alBottom
     BorderStyle = bsSingle
     TabOrder = 1
-    ExplicitTop = 207
     object lbQuantity: TLabel
       Left = 19
       Top = 13
@@ -56,6 +57,7 @@ object fmMenu: TfmMenu
       Width = 121
       Height = 21
       TabOrder = 0
+      OnChange = edQuantityChange
     end
     object btnChoose: TButton
       Left = 392
@@ -64,25 +66,31 @@ object fmMenu: TfmMenu
       Height = 25
       Caption = #1042#1099#1073#1088#1072#1090#1100
       TabOrder = 1
+      OnClick = btnChooseClick
     end
   end
   object MainMenu1: TMainMenu
     Left = 16
     Top = 24
-    object N1: TMenuItem
+    object miAllMenu: TMenuItem
       Caption = #1042#1089#1077' '#1084#1077#1085#1102
+      OnClick = miAllMenuClick
     end
-    object N2: TMenuItem
+    object miFirstCourse: TMenuItem
       Caption = #1055#1077#1088#1074#1099#1077' '#1073#1083#1102#1076#1072
+      OnClick = miAllMenuClick
     end
-    object N3: TMenuItem
+    object miSecondCourse: TMenuItem
       Caption = #1042#1090#1086#1088#1099#1077' '#1073#1083#1102#1076#1072
+      OnClick = miAllMenuClick
     end
-    object N4: TMenuItem
+    object miDrink: TMenuItem
       Caption = #1053#1072#1087#1080#1090#1082#1080
+      OnClick = miAllMenuClick
     end
-    object N5: TMenuItem
+    object miDessert: TMenuItem
       Caption = #1044#1077#1089#1077#1088#1090#1099
+      OnClick = miAllMenuClick
     end
   end
   object dsMenu: TDataSource

@@ -33,6 +33,7 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,23 +67,22 @@ begin
   end;
 end;
 
+procedure TForm_add_order.BitBtn2Click(Sender: TObject);
+begin
+  //удалякм врЕменный заказ из БД при отмене
+//  dmMy.smDeleteOrder(orderNum);
+end;
+
 procedure TForm_add_order.btnAddClick(Sender: TObject);
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
-  form_Add_customer := Tform_Add_customer.Create(Application);
-  form_Add_customer.ShowModal;     {
-  if form_Add_customer.ModalResult = mrOk then  begin
-      dm_add.add_customer(form_Add_customer.label_name.Text,
-                          form_Add_customer.label_surname.Text,
-                          dm.TAddress_In.FieldByName('ID').Value,
-                          form_Add_customer.label_phone.Text);
-   end;  }
-   dm.open_all;
+  dm.open_all;
 end;
 
 procedure TForm_add_order.btnShowMenuClick(Sender: TObject);
 begin
+  fmMenu := TFmMenu.Create(Application);
   fmMenu.ShowModal;
 end;
 

@@ -46,7 +46,6 @@ begin
   Application.CreateForm(Tdm_db, dm_db);
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tdm_add, dm_add);
-  Application.CreateForm(TfmMenu, fmMenu);
   //Application.CreateForm(Tform_Details_Worker, form_Details_Worker);
   //Application.CreateForm(Tform_Details_Order, form_Details_Order);
   //Application.CreateForm(Tform_Details_Car, form_Details_Car);

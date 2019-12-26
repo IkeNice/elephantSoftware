@@ -285,6 +285,7 @@ object Form_add_order: TForm_add_order
     Kind = bkCancel
     NumGlyphs = 2
     TabOrder = 7
+    OnClick = BitBtn2Click
   end
   object btnShowMenu: TButton
     Left = 259

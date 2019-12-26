@@ -399,7 +399,14 @@ object dm: Tdm
         'select menu.product_id, menu.name,  menu.category_id, menu.price' +
         ', categories.name from menu inner join categories on menu.catego' +
         'ry_id = categories.category_id;')
-    Left = 120
+    Left = 56
+    Top = 352
+  end
+  object IBQuery1: TIBQuery
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    Left = 192
     Top = 368
   end
 end
