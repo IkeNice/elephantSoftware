@@ -250,22 +250,12 @@ object dm: Tdm
     Left = 64
     Top = 192
   end
-  object TAddress_In: TIBTable
-    Database = dm_db.IBDatabase_read
-    Transaction = dm_db.IBTransaction_read
-    BufferChunks = 1000
-    CachedUpdates = False
-    TableName = 'ADDRESS'
-    UniDirectional = False
-    Left = 592
-    Top = 72
-  end
   object TAddress_Out: TIBTable
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
     BufferChunks = 1000
     CachedUpdates = False
-    TableName = 'ADDRESS'
+    TableName = 'ADDRESSES'
     UniDirectional = False
     Left = 592
     Top = 120

@@ -3,7 +3,7 @@ object form_Add_Car: Tform_Add_Car
   Top = 0
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1074' '#1084#1077#1085#1102
   ClientHeight = 205
-  ClientWidth = 406
+  ClientWidth = 392
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -108,8 +108,9 @@ object form_Add_Car: Tform_Add_Car
     Top = 71
     Width = 161
     Height = 21
+    Style = csDropDownList
     TabOrder = 4
-    Text = '< '#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102'>'
+    TextHint = '<'#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102'>'
     Items.Strings = (
       #1055#1077#1088#1074#1086#1077' '#1073#1083#1102#1076#1086
       #1042#1090#1086#1088#1086#1077' '#1073#1083#1102#1076#1086

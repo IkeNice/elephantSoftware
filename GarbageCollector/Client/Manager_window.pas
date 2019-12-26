@@ -37,7 +37,6 @@ type
     menu_address: TMenuItem;
     cmbMenu: TComboBox;
     procedure menu_ordersClick(Sender: TObject);
-    procedure menu_distr_carsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure menu_diverClick(Sender: TObject);
     procedure menu_managerClick(Sender: TObject);
@@ -260,12 +259,6 @@ begin         {
                           form_Add_customer.label_phone.Text);
    end;
    update;     }
-end;
-
-procedure TForm_manager.menu_distr_carsClick(Sender: TObject);
-begin
-  Form_car_distributing := TForm_car_distributing.create(APPLICATION);
-  Form_car_distributing.showmodal;
 end;
 
 procedure TForm_manager.menu_ordersClick(Sender: TObject);

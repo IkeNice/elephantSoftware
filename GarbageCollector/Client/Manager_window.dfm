@@ -1,6 +1,6 @@
 object Form_manager: TForm_manager
   Left = 5
-  Top = 206
+  Top = 210
   Caption = #1054#1082#1085#1086' '#1084#1077#1085#1077#1076#1078#1077#1088#1072
   ClientHeight = 401
   ClientWidth = 1112
@@ -19,7 +19,7 @@ object Form_manager: TForm_manager
   TextHeight = 13
   object Label_drivers: TLabel
     Left = 336
-    Top = 0
+    Top = 5
     Width = 56
     Height = 13
     Caption = #1042#1086#1076#1080#1090#1077#1083#1080
@@ -32,7 +32,7 @@ object Form_manager: TForm_manager
   end
   object Label_cars: TLabel
     Left = 32
-    Top = 0
+    Top = 5
     Width = 33
     Height = 13
     Caption = #1052#1077#1085#1102
@@ -45,7 +45,7 @@ object Form_manager: TForm_manager
   end
   object Label_managers: TLabel
     Left = 500
-    Top = 0
+    Top = 5
     Width = 70
     Height = 13
     Caption = #1052#1077#1085#1077#1076#1078#1077#1088#1099
@@ -58,7 +58,7 @@ object Form_manager: TForm_manager
   end
   object Label_operators: TLabel
     Left = 576
-    Top = 0
+    Top = 5
     Width = 65
     Height = 13
     Caption = #1054#1087#1077#1088#1072#1090#1086#1088#1099
@@ -304,8 +304,8 @@ object Form_manager: TForm_manager
       end>
   end
   object cmbMenu: TComboBox
-    Left = 79
-    Top = -3
+    Left = 87
+    Top = 2
     Width = 145
     Height = 21
     TabOrder = 4
@@ -359,7 +359,7 @@ object Form_manager: TForm_manager
         OnClick = menu_edit_managerClick
       end
       object menu_edit_car: TMenuItem
-        Caption = #1052#1072#1096#1080#1085#1072
+        Caption = #1052#1077#1085#1102
         OnClick = menu_edit_carClick
       end
     end

@@ -19,6 +19,7 @@ type
     procedure MENU_UPDATEClick(Sender: TObject);
     procedure ADD_ORDERClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
 
   private
   const maxOrdersCount = 5;
@@ -44,6 +45,7 @@ type
 
 var
   Form_inh_operator: TForm_inh_operator;
+  orderNum :integer = 0;
 
 implementation
 
@@ -85,17 +87,10 @@ procedure TForm_inh_operator.ADD_ORDERClick(Sender: TObject);
 begin
   inherited;
   form_add_order := TForm_add_order.Create(Application);
-  form_add_order.showmodal;   {
+  form_add_order.showmodal;
   if form_add_order.ModalResult = mrOk then  begin
-     dm_add.add_order(dm.QCustomers.FieldByName('ID').Value,
-                      StrtoInt(form_add_order.label_weight.Text),
-                      dm.TAddress_In.FieldByName('ID').Value,
-                      dm.TAddress_Out.FieldByName('ID').Value,
-                      form_add_order.dtp_delivery.DateTime,
-                      dm.user.get_id,
-                      strToInt(form_add_order.label_stevedore.Text),
-                      strToInt(form_add_order.label_price.Text));
-  end;                         }
+//     dm_add.add_order();
+  end;
   update;
 end;
 
@@ -173,6 +168,12 @@ begin
         end;
 end;
 
+
+procedure TForm_inh_operator.FormActivate(Sender: TObject);
+begin
+  inherited;
+  orderNum := dm_add.add_order(0, 1, '', '', 4, 4, 3, Now, '', 0);
+end;
 
 procedure TForm_inh_operator.FormCreate(Sender: TObject);
 var i:integer;

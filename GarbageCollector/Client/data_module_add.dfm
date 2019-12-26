@@ -6,8 +6,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_CAR'
-    Left = 8
-    Top = 48
+    Left = 40
+    Top = 32
     ParamData = <
       item
         DataType = ftWideString
@@ -29,8 +29,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'EDIT_CAR'
-    Left = 96
-    Top = 48
+    Left = 168
+    Top = 32
     ParamData = <
       item
         DataType = ftInteger
@@ -57,8 +57,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'EDIT_WORKER'
-    Left = 168
-    Top = 64
+    Left = 264
+    Top = 32
     ParamData = <
       item
         DataType = ftInteger
@@ -110,8 +110,8 @@ object dm_add: Tdm_add
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_ADDRESS'
-    Left = 264
-    Top = 48
+    Left = 392
+    Top = 24
     ParamData = <
       item
         DataType = ftString
@@ -137,62 +137,72 @@ object dm_add: Tdm_add
   object spAdd_Order: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'ADD_ORDER'
-    Left = 224
-    Top = 144
+    StoredProcName = 'UPDATE_ORDER'
+    Left = 256
+    Top = 128
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'RESULT'
+        Name = 'INID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INSTATUSID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INCLIENT'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INPHONE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INADDRESSID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INCOURIERID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INOPERATORID'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'INDATE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftWideString
+        Name = 'INTIMEOFDELIVERY'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'INTOTALPRICE'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'OUTNEW_ID'
         ParamType = ptOutput
-      end
-      item
-        DataType = ftInteger
-        Name = 'ID_OPERATOR'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'ID_CUSTOMER'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'WEIGHT'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'FROM_ID_ADDREESS'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'TO_ID_ADDRESS'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftDateTime
-        Name = 'DATE_OF_DELIVERY'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'NUMBER_STEVEDORE'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'PRICE'
-        ParamType = ptInput
       end>
   end
   object spAdd_Customer: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'ADD_CUSTOMER'
-    Left = 104
-    Top = 152
+    Left = 96
+    Top = 128
     ParamData = <
       item
         DataType = ftString

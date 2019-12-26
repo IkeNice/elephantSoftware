@@ -14,7 +14,7 @@ object Login_Form: TLogin_Form
   PixelsPerInch = 96
   TextHeight = 24
   object Label1: TLabel
-    Left = 112
+    Left = 104
     Top = 14
     Width = 153
     Height = 25
@@ -107,8 +107,8 @@ object Login_Form: TLogin_Form
     Text = 'admin'
   end
   object Button_log_in: TButton
-    Left = 120
-    Top = 144
+    Left = 114
+    Top = 152
     Width = 121
     Height = 49
     Caption = #1042#1086#1081#1090#1080

@@ -4,6 +4,7 @@ inherited Form_inh_operator: TForm_inh_operator
   ClientWidth = 1156
   Menu = MainMenu1
   WindowState = wsMaximized
+  OnActivate = FormActivate
   ExplicitWidth = 1172
   ExplicitHeight = 740
   PixelsPerInch = 96

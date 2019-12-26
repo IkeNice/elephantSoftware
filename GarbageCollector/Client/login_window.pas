@@ -82,7 +82,7 @@ begin
     end
     else  // If login refused
       begin
-        label1.Caption := 'мебепмши кнцхм хкх оюпнкэ';
+        ShowMessage('мебепмши кнцхм хкх оюпнкэ!');
       end;
     end;
 

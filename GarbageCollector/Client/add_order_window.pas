@@ -9,7 +9,7 @@ uses
 
 type
   TForm_add_order = class(TForm)
-    DataSource_from_address: TDataSource;
+    DataSource_Goods: TDataSource;
     DBGrid_from_address: TDBGrid;
     DBGrid_to_address: TDBGrid;
     Label5: TLabel;
@@ -27,10 +27,11 @@ type
     btnShowMenu: TButton;
     lbSearch: TLabel;
     edSearch: TEdit;
-    Button1: TButton;
-    procedure Button1Click(Sender: TObject);
+    btnAdd: TButton;
     procedure FormActivate(Sender: TObject);
     procedure cbTimeOfDeliveryClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,22 +40,32 @@ type
 
 var
   Form_add_order: TForm_add_order;
+  orderNum: integer = 0;
+  addrID :integer;
+  addressString, time: string;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm_add_order.Button1Click(Sender: TObject);
+uses add_address_window;
+
+procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
-  form_Add_customer := Tform_Add_customer.Create(Application);
-  form_Add_customer.ShowModal;
-  if form_Add_customer.ModalResult = mrOk then  begin
-      dm_add.add_customer(form_Add_customer.label_name.Text,
-                          form_Add_customer.label_surname.Text,
-                          dm.TAddress_In.FieldByName('ID').Value,
-                          form_Add_customer.label_phone.Text);
-   end;
-   dm.open_all;
+  time := TimeToStr(tpTimeOfDelivery.Time);
+  Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
+
+  try
+    dm_add.add_Order(orderNum, 1, edClientName.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
+  except
+    MessageDlg('Ошибка записи заказа', mtError, [mbOk], 0)
+  end;
+end;
+
+procedure TForm_add_order.btnAddClick(Sender: TObject);
+begin
+  form_Add_Address := Tform_Add_Address.Create(Application);
+  form_Add_Address.ShowModal;
 end;
 
 procedure TForm_add_order.cbTimeOfDeliveryClick(Sender: TObject);
@@ -65,6 +76,7 @@ end;
 
 procedure TForm_add_order.FormActivate(Sender: TObject);
 begin
+  orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, '', 0);
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
     tpTimeOfDelivery.Enabled := false;
@@ -73,5 +85,6 @@ begin
     tpTimeOfDelivery.Enabled := true;
   end;
 end;
+
 
 end.

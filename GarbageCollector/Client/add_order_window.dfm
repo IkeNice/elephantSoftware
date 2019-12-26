@@ -3,7 +3,7 @@ object Form_add_order: TForm_add_order
   Top = 0
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
   ClientHeight = 514
-  ClientWidth = 373
+  ClientWidth = 376
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,7 +16,7 @@ object Form_add_order: TForm_add_order
   TextHeight = 13
   object Label5: TLabel
     Left = 144
-    Top = 259
+    Top = 258
     Width = 109
     Height = 16
     Caption = #1040#1076#1088#1077#1089' '#1076#1086#1089#1090#1072#1074#1082#1080
@@ -69,7 +69,7 @@ object Form_add_order: TForm_add_order
   object Label1: TLabel
     Left = 168
     Top = 39
-    Width = 185
+    Width = 170
     Height = 16
     Caption = #1055#1088#1080#1084#1077#1088' '#1085#1086#1084#1077#1088#1072': 9181234567'
     Font.Charset = DEFAULT_CHARSET
@@ -80,8 +80,8 @@ object Form_add_order: TForm_add_order
     ParentFont = False
   end
   object lbSearch: TLabel
-    Left = 18
-    Top = 407
+    Left = 24
+    Top = 275
     Width = 40
     Height = 18
     Caption = #1055#1086#1080#1089#1082
@@ -97,7 +97,7 @@ object Form_add_order: TForm_add_order
     Top = 110
     Width = 329
     Height = 120
-    DataSource = DataSource_from_address
+    DataSource = DataSource_Goods
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -160,7 +160,7 @@ object Form_add_order: TForm_add_order
   end
   object DBGrid_to_address: TDBGrid
     Left = 24
-    Top = 281
+    Top = 299
     Width = 329
     Height = 120
     DataSource = DataSource_to_address
@@ -179,35 +179,38 @@ object Form_add_order: TForm_add_order
     Columns = <
       item
         Expanded = False
-        FieldName = 'CITY'
+        FieldName = 'STREET'
         Title.Caption = #1059#1083#1080#1094#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Verdana'
         Title.Font.Style = []
+        Width = 170
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'STREET'
+        FieldName = 'BUILDING'
         Title.Caption = #1044#1086#1084
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Verdana'
         Title.Font.Style = []
+        Width = 50
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'NUMBER_HOUSE'
+        FieldName = 'APARTMENT'
         Title.Caption = #1050#1074#1072#1088#1090#1080#1088#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
         Title.Font.Name = 'Verdana'
         Title.Font.Style = []
+        Width = 60
         Visible = True
       end>
   end
@@ -225,10 +228,11 @@ object Form_add_order: TForm_add_order
     NumGlyphs = 2
     ParentFont = False
     TabOrder = 2
+    OnClick = BitBtn1Click
   end
   object cbTimeOfDelivery: TCheckBox
-    Left = 24
-    Top = 458
+    Left = 26
+    Top = 450
     Width = 121
     Height = 17
     Alignment = taLeftJustify
@@ -245,8 +249,8 @@ object Form_add_order: TForm_add_order
     OnClick = cbTimeOfDeliveryClick
   end
   object tpTimeOfDelivery: TTimePicker
-    Left = 24
-    Top = 481
+    Left = 26
+    Top = 473
     Width = 121
     Height = 25
     Font.Charset = DEFAULT_CHARSET
@@ -273,7 +277,7 @@ object Form_add_order: TForm_add_order
     TabOrder = 6
   end
   object BitBtn2: TBitBtn
-    Left = 287
+    Left = 280
     Top = 481
     Width = 66
     Height = 25
@@ -291,26 +295,28 @@ object Form_add_order: TForm_add_order
     TabOrder = 8
   end
   object edSearch: TEdit
-    Left = 64
-    Top = 407
-    Width = 220
-    Height = 23
+    Left = 70
+    Top = 278
+    Width = 283
+    Height = 21
     TabOrder = 9
   end
-  object Button1: TButton
-    Left = 290
-    Top = 407
-    Width = 63
-    Height = 25
-    Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+  object btnAdd: TButton
+    Left = 208
+    Top = 418
+    Width = 145
+    Height = 24
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1085#1086#1074#1099#1081' '#1072#1076#1088#1077#1089
     TabOrder = 10
+    OnClick = btnAddClick
   end
-  object DataSource_from_address: TDataSource
+  object DataSource_Goods: TDataSource
     Left = 240
     Top = 160
   end
   object DataSource_to_address: TDataSource
-    Left = 184
-    Top = 320
+    DataSet = dm.TAddress_Out
+    Left = 152
+    Top = 336
   end
 end

@@ -22,7 +22,6 @@ type
     QManagers: TIBQuery;
     QOperators: TIBQuery;
     QCustomers: TIBQuery;
-    TAddress_In: TIBTable;
     TAddress_Out: TIBTable;
     QCustomer_By_Id: TIBQuery;
     QCar_By_Id: TIBQuery;
@@ -63,10 +62,11 @@ begin
   dm.TWorkers.Open;
   dm.TVehicle.Open;
   dm.TNew_day_car_delivery.Open;
-  dm.TAddress_In.Open;
+  dm.TAddress_In.Open; }
   dm.TAddress_Out.Open;
-    }
 
+//   dm.QAddress.Close;
+//   dm.QAddress.Open;
    dm.Qdrivers.Close;
    dm.QDrivers.Open;
    dm.QManagers.Close;

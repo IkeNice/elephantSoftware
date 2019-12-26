@@ -3,6 +3,7 @@ object dm_db: Tdm_db
   Height = 253
   Width = 308
   object IBDatabase_read: TIBDatabase
+    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'
@@ -25,11 +26,13 @@ object dm_db: Tdm_db
     Top = 56
   end
   object IBTransaction_edit: TIBTransaction
+    Active = True
     DefaultDatabase = IBDatabase_read
     Left = 184
     Top = 144
   end
   object IBDatabase_edit: TIBDatabase
+    Connected = True
     DatabaseName = 
       'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
       'NTSOFTWARE.FDB'

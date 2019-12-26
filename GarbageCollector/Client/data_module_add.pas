@@ -22,7 +22,9 @@ type
     procedure edit_car(id:integer; mark:string; number:string; model:string);
     procedure add_worker(empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
     procedure edit_worker(id:integer; status:integer; role_:integer; experience:integer; dob:tdatetime; worker_name:string; worker_surname:string; worker_login:string; worker_password:string);
-    procedure add_order(customer_id:integer; weight:integer; from_id:integer; to_id:integer; delivery:tdatetime; operator_id:integer; num_stevedore:integer; price:integer);
+    function add_order(ID, StatusID: Integer; const Client, Phone: WideString;
+            AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer):integer;
     procedure add_customer(customer_name:string; customer_surname:string; address_id:integer; phone:string);
     procedure add_address(city:string; street:string; number:integer; floor:integer);
   end;
@@ -116,13 +118,13 @@ with dm_add.spEdit_Worker do
 end;
 
 
-procedure Tdm_add.add_order(customer_id:integer; weight:integer; from_id:integer;
-        to_id:integer; delivery:tdatetime; operator_id:integer;
-        num_stevedore:integer; price:integer);
+function Tdm_add.add_order(ID, StatusID: Integer; const Client, Phone: WideString;
+            AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer): integer;
+var res: integer;
 begin
 with dm_add.spAdd_Order do
-  begin
-
+  begin{
   ParamByName('ID_CUSTOMER').AsInteger := customer_id;
   ParamByName('WEIGHT').AsInteger := weight;
   ParamByName('FROM_ID_ADDREESS').AsInteger := from_id;
@@ -135,7 +137,22 @@ with dm_add.spAdd_Order do
   //ParamByName('STATUS').AsInteger := 0;
   //ParamByName('DATE_ORDER_COMPLETION').AsDate:= null;
   //ParamByName('DATE_ORDER_CANCELLATION').AsDate:= null;
+   }
+   Params[0].Value := ID;
+   Params[1].Value := StatusID;
+   Params[2].Value := Client;
+   Params[3].Value := Phone;
+   Params[4].Value := AddressID;
+   Params[5].Value := CourierID;
+   Params[6].Value := operatorID;
+   Params[7].Value := Date;
+   Params[8].Value := TimeOfDelivery;
+   Params[9].Value := TotalPrice;
 
+    if ID = 0 then
+      res := spAdd_Order.Params[10].Value
+    else
+      res := 0;
   // Execute the procedure
   if not Transaction.InTransaction then
     Transaction.StartTransaction;
