@@ -339,10 +339,6 @@ object Form_manager: TForm_manager
         Caption = #1052#1077#1085#1102
         OnClick = menu_menuClick
       end
-      object menu_customer: TMenuItem
-        Caption = #1047#1072#1082#1072#1079#1095#1080#1082
-        OnClick = menu_customerClick
-      end
       object menu_address: TMenuItem
         Caption = #1040#1076#1088#1077#1089
         OnClick = menu_addressClick

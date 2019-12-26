@@ -122,7 +122,7 @@ object Login_Form: TLogin_Form
     ParentFont = False
     TabOrder = 4
     Text = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE.FDB'
+      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
+      'NTSOFTWARE.FDB'
   end
 end

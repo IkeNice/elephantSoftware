@@ -1,4 +1,4 @@
-unit Manager_window;
+﻿unit Manager_window;
 
 interface
 
@@ -34,7 +34,6 @@ type
     Label_cars: TLabel;
     Label_managers: TLabel;
     Label_operators: TLabel;
-    menu_customer: TMenuItem;
     menu_address: TMenuItem;
     cmbMenu: TComboBox;
     procedure menu_ordersClick(Sender: TObject);
@@ -173,7 +172,7 @@ end;
 procedure TForm_manager.menu_diverClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;    {
   if form_Add_Worker.ModalResult = mrOk then
   begin
       dm_add.add_worker(form_Add_Worker.label_name.text,
@@ -186,7 +185,7 @@ begin
         form_Add_Worker.ShowModal;
       end;
 
-   end;
+   end;                          }
    update;
 end;
 
@@ -238,14 +237,14 @@ end;
 procedure TForm_manager.menu_menuClick(Sender: TObject);
 begin
    form_Add_Car := Tform_Add_Car.Create(APPLICATION);
-   form_Add_Car.showmodal;
+   form_Add_Car.showmodal;  {
    if form_Add_Car.ModalResult = mrOk then  begin
        dm_add.add_car(form_Add_Car.label_mark.Text,
                       form_Add_Car.label_number.Text,
                       form_Add_Car.label_model.Text);
    end;
 
-   dm.TVehicle.Refresh;
+   dm.TVehicle.Refresh;      }
 end;
 
 procedure TForm_manager.menu_customerClick(Sender: TObject);
@@ -280,7 +279,7 @@ end;
 
 procedure TForm_manager.menu_edit_carClick(Sender: TObject);
 begin
-  form_Add_Car := Tform_Add_Car.Create(APPLICATION);
+  form_Add_Car := Tform_Add_Car.Create(APPLICATION); {
   with form_Add_Car do begin
     label_mark.Text := dm.TVehicle.FieldByName('MARKA').Value;
     label_number.Text := dm.TVehicle.FieldByName('NUMBER').Value;
@@ -293,7 +292,7 @@ begin
                       form_Add_Car.label_number.Text,
                       form_Add_Car.label_model.Text);
    end;
-   dm.TVehicle.Refresh;
+   dm.TVehicle.Refresh;                               }
    update;
 end;
 
