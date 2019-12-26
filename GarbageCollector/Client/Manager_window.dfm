@@ -31,7 +31,7 @@ object Form_manager: TForm_manager
     ParentFont = False
   end
   object Label_cars: TLabel
-    Left = 8
+    Left = 32
     Top = 0
     Width = 33
     Height = 13
@@ -304,7 +304,7 @@ object Form_manager: TForm_manager
       end>
   end
   object cmbMenu: TComboBox
-    Left = 47
+    Left = 79
     Top = -3
     Width = 145
     Height = 21

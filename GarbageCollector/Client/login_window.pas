@@ -16,6 +16,8 @@ type
     Edit_adress: TEdit;
     Label3: TLabel;
     Edit_path: TEdit;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure Button_log_inClick(Sender: TObject);
   private
     { Private declarations }
@@ -42,7 +44,7 @@ var
 worker_id,role : integer;
 begin
     // Send request to bd
-    dm_db.edit_host(Edit_adress.Text,Edit_path.Text);
+    dm_db.edit_host(Edit_adress.Text, Edit_path.Text);
     dm.open_all;
     with dm.spLogin do
     begin

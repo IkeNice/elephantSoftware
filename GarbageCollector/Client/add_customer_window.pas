@@ -37,7 +37,7 @@ implementation
 uses add_address_window, data_module_add;
 
 procedure Tform_Add_customer.Button_add_adressClick(Sender: TObject);
-begin
+begin          {
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
   if form_Add_Address.ModalResult = mrOk then  begin
@@ -47,7 +47,7 @@ begin
       StrToInt(form_Add_Address.label_floor.Text));
    end;
    dm.TAddress_In.Refresh;
-   dm.TAddress_Out.Refresh;
+   dm.TAddress_Out.Refresh; }
 end;
 
 end.
