@@ -2,8 +2,8 @@ object Form_add_order: TForm_add_order
   Left = 0
   Top = 0
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079
-  ClientHeight = 468
-  ClientWidth = 717
+  ClientHeight = 514
+  ClientWidth = 373
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,105 +11,93 @@ object Form_add_order: TForm_add_order
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 440
-    Top = 104
-    Width = 85
-    Height = 13
-    Caption = #1044#1072#1090#1072' '#1076#1086#1089#1090#1072#1074#1082#1080
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 440
-    Top = 189
-    Width = 57
-    Height = 13
-    Caption = #1042#1077#1089' '#1075#1088#1091#1079#1072
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label3: TLabel
-    Left = 440
-    Top = 248
-    Width = 105
-    Height = 13
-    Caption = #1050#1086#1083'-'#1074#1086' '#1075#1088#1091#1079#1095#1080#1082#1086#1074
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label4: TLabel
-    Left = 440
-    Top = 294
-    Width = 30
-    Height = 13
-    Caption = #1062#1077#1085#1072
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-  end
   object Label5: TLabel
-    Left = 8
-    Top = 294
-    Width = 36
-    Height = 13
-    Caption = #1050#1091#1076#1072'?'
+    Left = 144
+    Top = 259
+    Width = 109
+    Height = 16
+    Caption = #1040#1076#1088#1077#1089' '#1076#1086#1089#1090#1072#1074#1082#1080
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
   end
   object Label6: TLabel
-    Left = 8
-    Top = 150
-    Width = 49
-    Height = 13
-    Caption = #1054#1090#1082#1091#1076#1072'?'
+    Left = 168
+    Top = 88
+    Width = 50
+    Height = 16
+    Caption = #1058#1086#1074#1072#1088#1099
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -13
     Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
   end
-  object Label7: TLabel
-    Left = 24
+  object lbClientName: TLabel
+    Left = 48
     Top = 8
-    Width = 55
-    Height = 13
+    Width = 77
+    Height = 18
     Caption = #1047#1072#1082#1072#1079#1095#1080#1082
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
+    Font.Height = -16
     Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
   end
-  object DBGrid_customers: TDBGrid
-    Left = 8
-    Top = 24
-    Width = 320
+  object lbPhone: TLabel
+    Left = 24
+    Top = 59
+    Width = 123
+    Height = 19
+    Caption = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 168
+    Top = 39
+    Width = 185
+    Height = 16
+    Caption = #1055#1088#1080#1084#1077#1088' '#1085#1086#1084#1077#1088#1072': 9181234567'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lbSearch: TLabel
+    Left = 18
+    Top = 407
+    Width = 40
+    Height = 18
+    Caption = #1055#1086#1080#1089#1082
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object DBGrid_from_address: TDBGrid
+    Left = 24
+    Top = 110
+    Width = 329
     Height = 120
-    DataSource = DataSource_customers
+    DataSource = DataSource_from_address
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -125,31 +113,43 @@ object Form_add_order: TForm_add_order
     Columns = <
       item
         Expanded = False
-        FieldName = 'SURNAME'
-        Title.Caption = #1060#1072#1084#1080#1083#1080#1103
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'NAME'
-        Title.Caption = #1048#1084#1103
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Width = 61
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'PHONE_NUMBER'
+        FieldName = 'CITY'
         Title.Caption = #1053#1086#1084#1077#1088
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'STREET'
+        Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 90
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NUMBER_HOUSE'
+        Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = []
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FLOOR_'
+        Title.Caption = #1062#1077#1085#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
@@ -158,12 +158,12 @@ object Form_add_order: TForm_add_order
         Visible = True
       end>
   end
-  object DBGrid_from_address: TDBGrid
-    Left = 8
-    Top = 168
-    Width = 320
+  object DBGrid_to_address: TDBGrid
+    Left = 24
+    Top = 281
+    Width = 329
     Height = 120
-    DataSource = DataSource_from_address
+    DataSource = DataSource_to_address
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -180,17 +180,6 @@ object Form_add_order: TForm_add_order
       item
         Expanded = False
         FieldName = 'CITY'
-        Title.Caption = #1043#1086#1088#1086#1076
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'STREET'
         Title.Caption = #1059#1083#1080#1094#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
@@ -201,61 +190,8 @@ object Form_add_order: TForm_add_order
       end
       item
         Expanded = False
-        FieldName = 'NUMBER_HOUSE'
-        Title.Caption = #8470' '#1076#1086#1084#1072
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'FLOOR_'
-        Title.Caption = #8470' '#1101#1090#1072#1078#1072
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end>
-  end
-  object DBGrid_to_address: TDBGrid
-    Left = 8
-    Top = 313
-    Width = 320
-    Height = 120
-    DataSource = DataSource_to_address
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'CITY'
-        Title.Caption = #1043#1086#1088#1086#1076
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
         FieldName = 'STREET'
-        Title.Caption = #1059#1083#1080#1094#1072
+        Title.Caption = #1044#1086#1084
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
@@ -266,18 +202,7 @@ object Form_add_order: TForm_add_order
       item
         Expanded = False
         FieldName = 'NUMBER_HOUSE'
-        Title.Caption = #8470' '#1076#1086#1084#1072
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'FLOOR_'
-        Title.Caption = #8470' '#1101#1090#1072#1078#1072
+        Title.Caption = #1050#1074#1072#1088#1090#1080#1088#1072
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clWindowText
         Title.Font.Height = -11
@@ -285,67 +210,10 @@ object Form_add_order: TForm_add_order
         Title.Font.Style = []
         Visible = True
       end>
-  end
-  object dtp_delivery: TDateTimePicker
-    Left = 440
-    Top = 123
-    Width = 186
-    Height = 21
-    Date = 43814.000000000000000000
-    Time = 0.569593310188793100
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-  end
-  object label_weight: TEdit
-    Left = 440
-    Top = 208
-    Width = 121
-    Height = 21
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 4
-    Text = 'label_weight'
-  end
-  object label_stevedore: TEdit
-    Left = 440
-    Top = 267
-    Width = 121
-    Height = 21
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 5
-    Text = 'label_stevedore'
-  end
-  object label_price: TEdit
-    Left = 440
-    Top = 313
-    Width = 121
-    Height = 21
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 6
-    Text = 'label_price'
   end
   object BitBtn1: TBitBtn
-    Left = 486
-    Top = 407
+    Left = 199
+    Top = 481
     Width = 75
     Height = 25
     Font.Charset = DEFAULT_CHARSET
@@ -356,34 +224,93 @@ object Form_add_order: TForm_add_order
     Kind = bkOK
     NumGlyphs = 2
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 2
   end
-  object Button1: TButton
-    Left = 334
-    Top = 57
-    Width = 136
-    Height = 25
-    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1082#1072#1079#1095#1080#1082#1072
+  object cbTimeOfDelivery: TCheckBox
+    Left = 24
+    Top = 458
+    Width = 121
+    Height = 17
+    Alignment = taLeftJustify
+    Caption = #1042#1088#1077#1084#1103' '#1076#1086#1089#1090#1072#1074#1082#1080
+    Checked = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Verdana'
+    Font.Height = -13
+    Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
-    OnClick = Button1Click
+    State = cbChecked
+    TabOrder = 3
+    OnClick = cbTimeOfDeliveryClick
   end
-  object DataSource_customers: TDataSource
-    DataSet = dm.QCustomers
-    Left = 344
-    Top = 112
+  object tpTimeOfDelivery: TTimePicker
+    Left = 24
+    Top = 481
+    Width = 121
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    TabOrder = 4
+    Time = 43825.554466203710000000
+    TimeFormat = 'HH:mm'
+  end
+  object edClientName: TEdit
+    Left = 168
+    Top = 8
+    Width = 185
+    Height = 21
+    TabOrder = 5
+  end
+  object edPhone: TEdit
+    Left = 168
+    Top = 61
+    Width = 185
+    Height = 21
+    TabOrder = 6
+  end
+  object BitBtn2: TBitBtn
+    Left = 287
+    Top = 481
+    Width = 66
+    Height = 25
+    Caption = #1054#1090#1084#1077#1085#1072
+    Kind = bkCancel
+    NumGlyphs = 2
+    TabOrder = 7
+  end
+  object btnShowMenu: TButton
+    Left = 259
+    Top = 228
+    Width = 94
+    Height = 25
+    Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1084#1077#1085#1102
+    TabOrder = 8
+  end
+  object edSearch: TEdit
+    Left = 64
+    Top = 407
+    Width = 220
+    Height = 23
+    TabOrder = 9
+  end
+  object Button1: TButton
+    Left = 290
+    Top = 407
+    Width = 63
+    Height = 25
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+    TabOrder = 10
   end
   object DataSource_from_address: TDataSource
-    Left = 360
-    Top = 232
+    Left = 240
+    Top = 160
   end
   object DataSource_to_address: TDataSource
-    Left = 360
-    Top = 352
+    Left = 184
+    Top = 320
   end
 end

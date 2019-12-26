@@ -16,7 +16,7 @@ type
     menu_manager: TMenuItem;
     menu_distr_cars: TMenuItem;
     menu_orders: TMenuItem;
-    menu_car: TMenuItem;
+    menu_menu: TMenuItem;
     DBGrid_drivers: TDBGrid;
     Label_drivers: TLabel;
     DataSource_drivers: TDataSource;
@@ -48,7 +48,7 @@ type
     procedure menu_edit_driverClick(Sender: TObject);
     procedure menu_edit_operatorClick(Sender: TObject);
     procedure menu_edit_managerClick(Sender: TObject);
-    procedure menu_carClick(Sender: TObject);
+    procedure menu_menuClick(Sender: TObject);
     procedure menu_customerClick(Sender: TObject);
     procedure menu_addressClick(Sender: TObject);
     procedure update;
@@ -155,7 +155,7 @@ end;
 procedure TForm_manager.menu_diverClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;  {
   if form_Add_Worker.ModalResult = mrOk then  begin
       dm_add.add_worker(2, StrtoInt(form_Add_Worker.label_exp.Text),
                         form_Add_Worker.dtp_DOB.datetime,
@@ -163,14 +163,14 @@ begin
                         form_Add_Worker.label_surname.text,
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
-   end;
+   end;                        }
    update;
 end;
 
 procedure TForm_manager.menu_managerClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;   {
   if form_Add_Worker.ModalResult = mrOk then  begin
       dm_add.add_worker(0, StrtoInt(form_Add_Worker.label_exp.Text),
                         form_Add_Worker.dtp_DOB.datetime,
@@ -179,14 +179,14 @@ begin
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
 
-   end;
+   end;                         }
    update;
 end;
 
 procedure TForm_manager.menu_operatorClick(Sender: TObject);
 begin
   form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
-  form_Add_Worker.showmodal;
+  form_Add_Worker.showmodal;  {
   if form_Add_Worker.ModalResult = mrOk then  begin
       dm_add.add_worker(1, StrtoInt(form_Add_Worker.label_exp.Text),
                         form_Add_Worker.dtp_DOB.datetime,
@@ -195,7 +195,7 @@ begin
                         form_Add_Worker.label_login.text,
                         form_Add_Worker.label_password.text);
 
-   end;
+   end;          }
    update;
 end;
 
@@ -212,7 +212,7 @@ begin
    update;
 end;
 
-procedure TForm_manager.menu_carClick(Sender: TObject);
+procedure TForm_manager.menu_menuClick(Sender: TObject);
 begin
    form_Add_Car := Tform_Add_Car.Create(APPLICATION);
    form_Add_Car.showmodal;
@@ -276,7 +276,7 @@ end;
 
 procedure TForm_manager.menu_edit_driverClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION); {
   with form_Add_Worker do begin
     label_name.Text := dm.QDrivers.FieldByName('NAME').Value;
     label_surname.Text := dm.QDrivers.FieldByName('SURNAME').Value;
@@ -297,13 +297,13 @@ begin
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;
+   end;     }
     update;
 end;
 
 procedure TForm_manager.menu_edit_managerClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);{
   with form_Add_Worker do begin
     label_name.Text := dm.QManagers.FieldByName('NAME').Value;
     label_surname.Text := dm.QManagers.FieldByName('SURNAME').Value;
@@ -323,13 +323,13 @@ begin
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;
+   end;  }
     update;
 end;
 
 procedure TForm_manager.menu_edit_operatorClick(Sender: TObject);
 begin
-  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);
+  form_Add_Worker := Tform_Add_Worker.Create(APPLICATION);   {
   with form_Add_Worker do begin
     label_name.Text := dm.QOperators.FieldByName('NAME').Value;
     label_surname.Text := dm.QOperators.FieldByName('SURNAME').Value;
@@ -349,7 +349,7 @@ begin
                          form_Add_Worker.label_login.text,
                          form_Add_Worker.label_password.text);
 
-   end;
+   end;      }
    update;
 end;
 

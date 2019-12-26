@@ -13,8 +13,9 @@ type
     Label2: TLabel;
     Label3: TLabel;
     label_mark: TEdit;
-    label_number: TEdit;
     label_model: TEdit;
+    BitBtn2: TBitBtn;
+    ComboBox1: TComboBox;
   private
     { Private declarations }
   public

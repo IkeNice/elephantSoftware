@@ -55,10 +55,10 @@ end;
 constructor TOrder.Create(row : TIBTable);
 begin
     id := row.FieldByName('ID').AsInteger;
-    status := row.FieldByName('STATUS').AsInteger;
-    driver_id := row.FieldByName('WHO_DRIVER').AsInteger;
-    customer := dm.get_name_customer_by_id(row.FieldByName('ID_CUSTOMER').AsInteger);
-    date_delivery := row.FieldByName('DATE_OF_DELIVERY').Value;
+    status := row.FieldByName('STATUS_ID').AsInteger;
+    driver_id := row.FieldByName('COURIER_ID').AsInteger;
+    customer := row.FieldByName('CLIENT_NAME').AsString;
+    date_delivery := row.FieldByName('TIME_OF_DELIVERY').Value;
 end;
 
 

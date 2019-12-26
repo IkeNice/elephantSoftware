@@ -3,15 +3,17 @@ inherited Form_inh_operator: TForm_inh_operator
   ClientHeight = 681
   ClientWidth = 1156
   Menu = MainMenu1
+  WindowState = wsMaximized
   ExplicitWidth = 1172
   ExplicitHeight = 740
   PixelsPerInch = 96
   TextHeight = 13
   object Panel_orders: TPanel [0]
     Left = 424
-    Top = 8
+    Top = 0
     Width = 265
     Height = 558
+    BorderStyle = bsSingle
     Caption = #1055#1072#1085#1077#1083#1100' '#1079#1072#1082#1072#1079#1086#1074
     ParentBackground = False
     TabOrder = 0
@@ -21,6 +23,7 @@ inherited Form_inh_operator: TForm_inh_operator
     Top = 0
     Width = 368
     Height = 558
+    BorderStyle = bsSingle
     Caption = #1055#1072#1085#1077#1083#1100' '#1074#1086#1076#1080#1090#1077#1083#1077#1081
     ParentBackground = False
     TabOrder = 1

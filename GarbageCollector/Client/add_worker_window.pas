@@ -9,19 +9,16 @@ uses
 
 type
   Tform_Add_Worker = class(TForm)
-    Label1: TLabel;
-    dtp_DOB: TDateTimePicker;
     BitBtn1: TBitBtn;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
     label_name: TEdit;
     label_surname: TEdit;
-    label_exp: TEdit;
     Label5: TLabel;
     Label6: TLabel;
     label_login: TEdit;
     label_password: TEdit;
+    BitBtn2: TBitBtn;
   private
     { Private declarations }
   public
