@@ -54,7 +54,7 @@ end;
 
 constructor TOrder.Create(row : TIBTable);
 begin
-    id := row.FieldByName('ID').AsInteger;
+    id := row.FieldByName('ORDER_ID').AsInteger;
     status := row.FieldByName('STATUS_ID').AsInteger;
     driver_id := row.FieldByName('COURIER_ID').AsInteger;
     customer := row.FieldByName('CLIENT_NAME').AsString;
@@ -83,9 +83,9 @@ procedure TOrder.push;
 begin
   // push himself to db
      // Fill db procedure parametrs with form valut
-    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('ID_ORDER').AsInteger := id;
-    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('ID_WORKERS').AsInteger:= driver_id ;
-    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('NEW_STATUS').AsInteger:= status;
+    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('IDORDERID').AsInteger := id;
+//    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('ID_WORKERS').AsInteger:= driver_id ;
+    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('INNEWSTATUS').AsInteger:= status;
 
     // Execute the procedure
     if not dm.spEDIT_ORDER_SET_DRIVER.Transaction.InTransaction then

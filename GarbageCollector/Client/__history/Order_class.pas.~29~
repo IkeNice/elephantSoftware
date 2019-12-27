@@ -8,7 +8,8 @@ interface
     id : integer;
     status : integer;
     driver_id : integer;
-    customer_name : string;
+    customer : string;
+    date_delivery : tdatetime;
     procedure push;
   public
     constructor Create(row : TIBTable);
@@ -19,6 +20,8 @@ interface
     function get_id : integer;
     function get_status : integer;
     function get_driver_id : integer;
+    function get_customer:string;
+    function get_date_delivery:tdatetime;
 
 
   End;
@@ -38,12 +41,24 @@ function TOrder.get_driver_id;
 begin
   get_driver_id := driver_id;
 end;
+
+function TOrder.get_customer;
+begin
+  get_customer := customer;
+end;
+
+function TOrder.get_date_delivery;
+begin
+  get_date_delivery := date_delivery;
+end;
+
 constructor TOrder.Create(row : TIBTable);
 begin
     id := row.FieldByName('ID').AsInteger;
-    status := row.FieldByName('STATUS').AsInteger;
-    driver_id := row.FieldByName('WHO_DRIVER').AsInteger;
-    customer_name := dm.get_name_customer_by_id(id);
+    status := row.FieldByName('STATUS_ID').AsInteger;
+    driver_id := row.FieldByName('COURIER_ID').AsInteger;
+    customer := row.FieldByName('CLIENT_NAME').AsString;
+    date_delivery := row.FieldByName('TIME_OF_DELIVERY').Value;
 end;
 
 

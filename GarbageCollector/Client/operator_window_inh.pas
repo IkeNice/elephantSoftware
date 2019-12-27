@@ -172,7 +172,7 @@ end;
 procedure TForm_inh_operator.FormActivate(Sender: TObject);
 begin
   inherited;
-  orderNum := dm_add.add_order(0, 1, '', '', 4, 4, 3, Now, '', 0);
+//  orderNum := dm_add.add_order(0, 1, '', '', 4, 4, 3, Now, '', 0);
 end;
 
 procedure TForm_inh_operator.FormCreate(Sender: TObject);
