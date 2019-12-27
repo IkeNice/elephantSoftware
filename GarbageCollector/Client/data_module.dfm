@@ -403,10 +403,59 @@ object dm: Tdm
     Top = 352
   end
   object IBQuery1: TIBQuery
+    Database = dm_db.IBDatabase_read
+    Transaction = dm_db.IBTransaction_edit
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True
-    Left = 192
+    Left = 200
+    Top = 344
+  end
+  object spDeleteOrder: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_read
+    StoredProcName = 'DELETE_ORDER'
+    Left = 392
+    Top = 312
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end>
+  end
+  object spUpdateOrderInfo: TIBStoredProc
+    Database = dm_db.IBDatabase_read
+    Transaction = dm_db.IBTransaction_read
+    StoredProcName = 'UPDATE_ORDERINFO'
+    Left = 304
+    Top = 288
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPRODUCTID                    '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INQUANTITY                     '
+        ParamType = ptUnknown
+      end>
+  end
+  object qOrderInfo: TIBQuery
+    Database = dm_db.IBDatabase_read
+    Transaction = dm_db.IBTransaction_read
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      '')
+    Left = 120
     Top = 368
   end
 end

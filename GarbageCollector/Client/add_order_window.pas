@@ -27,13 +27,17 @@ type
     btnShowMenu: TButton;
     lbSearch: TLabel;
     edSearch: TEdit;
-    btnAdd: TButton;
+    btnAddAddress: TButton;
+    btnRefresh: TButton;
     procedure FormActivate(Sender: TObject);
     procedure cbTimeOfDeliveryClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
-    procedure btnAddClick(Sender: TObject);
+    procedure btnAddAddressClick(Sender: TObject);
     procedure btnShowMenuClick(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure edSearchChange(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -70,15 +74,64 @@ end;
 procedure TForm_add_order.BitBtn2Click(Sender: TObject);
 begin
   //удалякм врЕменный заказ из БД при отмене
-//  dmMy.smDeleteOrder(orderNum);
+  dm.smDeleteOrder(orderNum);
 end;
 
-procedure TForm_add_order.btnAddClick(Sender: TObject);
+procedure TForm_add_order.btnAddAddressClick(Sender: TObject);
+var tmp: integer;
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
+    if form_Add_Address.ModalResult = mrOk then
+  begin
+      if form_add_address.label_flat.text = '' then
+        tmp := 0
+      else
+        tmp := StrToInt(form_add_address.label_flat.text);
+      dm_add.add_address(form_Add_Address.label_street.Text,
+                         form_Add_Address.label_building.Text,
+                         tmp);
+  end;
+  update;
+  dm.TAddress_Out.Refresh;
   dm.open_all;
 end;
+
+procedure TForm_add_order.btnRefreshClick(Sender: TObject);
+var SQL_Line: string;
+  begin
+    //Form_add_order.DataSource_Goods.DataSet.Open;
+
+    SQL_Line := 'select menu.name, categories.name, order_info.quantity, order_info.price, order_info.order_id' +
+               ' from order_info join menu ON order_info.product_id = menu.product_id' +
+               ' join categories ON menu.category_id= categories.category_id where order_id = ' + orderNum.ToString;
+    dm.qOrderInfo.Sql.Clear;
+    dm.qOrderInfo.SQL.Add(SQL_Line);
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+    dm.qOrderInfo.Close;
+    dm.qOrderInfo.Open;
+    DataSource_Goods.DataSet := dm.qOrderInfo;
+//    dm.smSQLClear;
+//    dm.smSQLAddString(SQL_Line);
+//    dm.smSQLExecute;
+
+    //Настройка dbgrid
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 30;
+
+    Form_add_order.DBGrid_from_address.Fields[1].DisplayLabel := 'Категория';
+    Form_add_order.DBGrid_from_address.Fields[1].DisplayWidth := 15;
+
+    Form_add_order.DBGrid_from_address.Fields[2].DisplayLabel := 'Количество';
+    Form_add_order.DBGrid_from_address.Fields[2].DisplayWidth := 10;
+
+    Form_add_order.DBGrid_from_address.Fields[3].DisplayLabel := 'Цена';
+    Form_add_order.DBGrid_from_address.Fields[3].DisplayWidth := 5;
+    Form_add_order.DBGrid_from_address.Fields[4].Visible := false;
+
+    Form_add_order.DBGrid_from_address.Refresh;
+  end;
 
 procedure TForm_add_order.btnShowMenuClick(Sender: TObject);
 begin
@@ -92,6 +145,29 @@ begin
   tpTimeOfDelivery.Time := IncHour(Now);
 end;
 
+procedure TForm_add_order.edSearchChange(Sender: TObject);
+var SQL_Line: string;
+begin
+  SQL_Line := 'select * from addresses ' +
+              'where addresses.street containing ''' + edSearch.Text + ''';';
+  dm.smSQLClear;
+  dm.smSQLAddString(SQL_Line);
+  dm.smSQLExecute;
+  DataSource_to_address.DataSet := dm.IBQuery1;
+  DataSource_to_address.DataSet.Open;
+
+  DBGrid_to_address.Fields[0].Visible := false;
+  DBGrid_to_address.Fields[0].DisplayLabel := 'Улица';
+  DBGrid_to_address.Fields[0].DisplayWidth := 55;
+
+  DBGrid_to_address.Fields[1].DisplayLabel := 'Дом';
+  DBGrid_to_address.Fields[1].DisplayWidth := 5;
+
+  DBGrid_to_address.Fields[2].DisplayLabel := 'Квартира';
+  DBGrid_to_address.Fields[2].DisplayWidth := 10;
+  DBGrid_to_address.Refresh;
+end;
+
 procedure TForm_add_order.FormActivate(Sender: TObject);
 begin
   orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, '', 0);
@@ -102,7 +178,20 @@ begin
   else begin
     tpTimeOfDelivery.Enabled := true;
   end;
+
+  DataSource_to_address.DataSet := dm.TAddress_Out;
+  DataSource_to_address.DataSet.Open;
+
+  DBGrid_to_address.Fields[0].Visible := False;
+  DBGrid_to_address.Fields[0].DisplayLabel := 'Улица';
+  DBGrid_to_address.Fields[0].DisplayWidth := 55;
+
+  DBGrid_to_address.Fields[1].DisplayLabel := 'Дом';
+  DBGrid_to_address.Fields[1].DisplayWidth := 5;
+
+  DBGrid_to_address.Fields[2].DisplayLabel := 'Квартира';
+  DBGrid_to_address.Fields[2].DisplayWidth := 10;
+
+  DBGrid_to_address.Refresh;
 end;
-
-
 end.

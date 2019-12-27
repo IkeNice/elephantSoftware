@@ -302,15 +302,25 @@ object Form_add_order: TForm_add_order
     Width = 283
     Height = 21
     TabOrder = 9
+    OnChange = edSearchChange
   end
-  object btnAdd: TButton
+  object btnAddAddress: TButton
     Left = 208
     Top = 418
     Width = 145
     Height = 24
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1085#1086#1074#1099#1081' '#1072#1076#1088#1077#1089
     TabOrder = 10
-    OnClick = btnAddClick
+    OnClick = btnAddAddressClick
+  end
+  object btnRefresh: TButton
+    Left = 24
+    Top = 227
+    Width = 75
+    Height = 25
+    Caption = #1054#1073#1085#1086#1074#1080#1090#1100
+    TabOrder = 11
+    OnClick = btnRefreshClick
   end
   object DataSource_Goods: TDataSource
     Left = 240

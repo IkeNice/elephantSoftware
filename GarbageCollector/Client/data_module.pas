@@ -32,10 +32,15 @@ type
     QLogin_By_Id: TIBQuery;
     QMenu: TIBQuery;
     IBQuery1: TIBQuery;
+    spDeleteOrder: TIBStoredProc;
+    spUpdateOrderInfo: TIBStoredProc;
+    qOrderInfo: TIBQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
     procedure smSQLExecute; safecall;
+    procedure smDeleteOrder(ID: Integer); safecall;
+
   private
     { Private declarations }
   public
@@ -43,6 +48,7 @@ type
   user : TUser;
   procedure open_all;
   function get_name_customer_by_id(id:integer):string;
+  procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer);
   end;
 
 var
@@ -121,4 +127,26 @@ end;
     if IBQuery1.Transaction.InTransaction then
       IBQuery1.Transaction.Commit;
   end;
+  procedure Tdm.smDeleteOrder(ID: Integer);
+  begin
+    if spDeleteOrder.Transaction.InTransaction then
+      spDeleteOrder.Transaction.Commit;
+    spDeleteOrder.Params[0].Value := ID;
+    spDeleteOrder.ExecProc;
+    if spDeleteOrder.Transaction.InTransaction then
+      spDeleteOrder.Transaction.Commit;
+  end;
+
+  procedure Tdm.smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer);
+  begin
+    if spUpdateOrderInfo.Transaction.InTransaction then
+      spUpdateOrderInfo.Transaction.Commit;
+    spUpdateOrderInfo.Params[0].Value := OrderID;
+    spUpdateOrderInfo.Params[1].Value := ProductID;
+    spUpdateOrderInfo.Params[2].Value := Quantity;
+    spUpdateOrderInfo.ExecProc;
+    if spUpdateOrderInfo.Transaction.InTransaction then
+      spUpdateOrderInfo.Transaction.Commit;
+  end;
+
 end.

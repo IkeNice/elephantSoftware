@@ -45,11 +45,11 @@ procedure TfmMenu.btnChooseClick(Sender: TObject);
 var
   ProductID: integer;
   Accept:    Boolean;
-begin      {
+begin
   ProductID:= dbgMenu.DataSource.DataSet.Fields[0].Value;
-  dm.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
+//  dm.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
 //  fmOrder.btnRefreshClick(Self);
-  Close;      }
+  Close;
 end;
 
 procedure TfmMenu.edQuantityChange(Sender: TObject);
@@ -68,7 +68,19 @@ end;
 
 procedure TfmMenu.FormActivate(Sender: TObject);
 begin
-  dsMenu.DataSet := dm.TVehicle;
+    dsMenu.DataSet := dm.TVehicle;
+    dsMenu.DataSet.Open;
+    dbgMenu.Fields[0].DisplayLabel := '№';
+
+    dbgMenu.Fields[1].DisplayLabel := 'Наименование';
+    dbgMenu.Fields[1].DisplayWidth := 50;
+
+    dbgMenu.Fields[2].DisplayLabel := 'Категория';
+    dbgMenu.Fields[2].DisplayWidth := 10;
+
+    dbgMenu.Fields[3].DisplayLabel := 'Цена';
+    dbgMenu.Fields[3].DisplayWidth := 10;
+    dbgMenu.Refresh;
 end;
 
 procedure TfmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -77,7 +89,7 @@ begin
 end;
 
 procedure TfmMenu.miAllMenuClick(Sender: TObject);
-begin                {
+begin
  dsMenu.Enabled:= true;
   // нажат пункт "Все меню"
   if Sender = MainMenu1.Items[0] then
@@ -187,7 +199,7 @@ begin                {
     dbgMenu.Fields[3].DisplayWidth := 10;
 
     dbgMenu.Refresh;
-  end;  }
+  end;
 end;
 
 end.
