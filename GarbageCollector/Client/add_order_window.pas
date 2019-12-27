@@ -60,7 +60,7 @@ uses add_address_window, show_menu;
 procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
 
-  addrID := DataSource_to_address.DataSet.Fields[0].Value;
+//  addrID := DataSource_to_address.DataSet.Fields[0].Value;
 
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
@@ -83,7 +83,7 @@ var tmp: integer;
 begin
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
-    if form_Add_Address.ModalResult = mrOk then
+  if form_Add_Address.ModalResult = mrOk then
   begin
       if form_add_address.label_flat.text = '' then
         tmp := 0
@@ -121,13 +121,13 @@ var SQL_Line: string;
     DataSource_Goods.DataSet.Open;
     //Настройка dbgrid
     Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
-    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 30;
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 25;
 
     Form_add_order.DBGrid_from_address.Fields[1].DisplayLabel := 'Категория';
-    Form_add_order.DBGrid_from_address.Fields[1].DisplayWidth := 15;
+    Form_add_order.DBGrid_from_address.Fields[1].DisplayWidth := 10;
 
     Form_add_order.DBGrid_from_address.Fields[2].DisplayLabel := 'Количество';
-    Form_add_order.DBGrid_from_address.Fields[2].DisplayWidth := 10;
+    Form_add_order.DBGrid_from_address.Fields[2].DisplayWidth := 5;
 
     Form_add_order.DBGrid_from_address.Fields[3].DisplayLabel := 'Цена';
     Form_add_order.DBGrid_from_address.Fields[3].DisplayWidth := 5;
@@ -174,7 +174,10 @@ end;
 
 procedure TForm_add_order.FormActivate(Sender: TObject);
 begin
-  orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, '', 0);
+  time := TimeToStr(tpTimeOfDelivery.Time);
+  Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
+
+  orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, time, 0);
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
     tpTimeOfDelivery.Enabled := false;

@@ -9,6 +9,7 @@ uses
   ,order_class, Vcl.StdCtrls,IBX.IBTable, driver_class,driver_interface,panel_driver,
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
+ //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
   ignore_status = [status_done,status_cancel,9];
 type
   TElem = (Order,Vehicle,Driver);
@@ -69,16 +70,16 @@ begin
     // Copy TList to queue
     queue := TList<TOrder_Interface>.Create;
     queue.InsertRange(0,order_list);
-    {
+
     for  i := 0 to count - 1 do    begin
-      if dm.TOrders.FieldByName('STATUS').AsInteger in ignore_status  then begin
+      if dm.TOrders.FieldByName('STATUS_ID').AsInteger in ignore_status  then begin
         dm.TOrders.Next;
         continue;
       end;
 
 
       j:=0;
-      while ( j < queue.Count) and ( queue[j].get_id  <> dm.TOrders.FieldByName('ID').AsInteger )  do
+      while ( j < queue.Count) and ( queue[j].get_id  <> dm.TOrders.FieldByName('ORDER_ID').AsInteger )  do
          j := j+1;
       // if found order but status changed
       if (j < queue.Count) then begin
@@ -99,17 +100,18 @@ begin
 
       dm.TOrders.Next;
     end;
-    }
-    // Delete orders wich not found in db
 
+    // Delete orders wich not found in db
+         {
     for i := 0 to queue.Count - 1 do begin
       order_list.Remove(queue[i]);
       queue[i].destroy_from_interface;
     end;
 
-
+             }
     queue.Destroy;
     update_interface(order);
+
 end;
 
 procedure TForm_abstract_operator.update_drivers;
@@ -130,7 +132,7 @@ begin
     // Copy TList to queue
     queue := TList<TDriver_interface>.Create;
     queue.InsertRange(0,driver_list);
-    {
+
     for  i := 0 to count - 1 do    begin
 
       j:=0;
@@ -154,7 +156,7 @@ begin
       // end add order in list
 
       dm.Qdrivers.Next;
-    end;  }
+    end;
 
     // Delete orders wich not found in db
 
@@ -173,7 +175,7 @@ var i,j,count : integer;
    new_vehicle : Tvehicle;
    queue : TList<Tvehicle_Interface>;
    id_driver : integer;
-begin
+begin        {
     // Refresh table
     dm.Tvehicle.Refresh;
 
@@ -240,8 +242,8 @@ begin
 
 
     queue.Destroy;
-    update_interface(vehicle);  }
-end;
+    update_interface(vehicle);
+end;               }
 end;
 
 procedure TForm_abstract_operator.FormClose(Sender: TObject;

@@ -164,8 +164,8 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       '')
-    Left = 104
-    Top = 288
+    Left = 72
+    Top = 296
   end
   object spBegin_day_driver: TIBStoredProc
     Database = dm_db.IBDatabase_read
@@ -244,9 +244,15 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select * from customers;')
+      'select CLIENT_NAME from ORDERS where ORDER_ID = :inorderid')
     Left = 64
     Top = 192
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'inorderid'
+        ParamType = ptUnknown
+      end>
   end
   object TAddress_Out: TIBTable
     Database = dm_db.IBDatabase_read
@@ -329,23 +335,18 @@ object dm: Tdm
   object spEdit_Order_Status: TIBStoredProc
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
-    StoredProcName = 'EDIT_ORDER_SET_STATUS'
+    StoredProcName = 'UPDATE_ORDERS_STATUS'
     Left = 408
     Top = 88
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'ID_ORDER'
+        Name = 'INORDERID'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'NEW_STATUS'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftInteger
-        Name = 'ID_WORKERS'
+        Name = 'INNEWSTATUS'
         ParamType = ptInput
       end>
   end

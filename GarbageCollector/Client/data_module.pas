@@ -21,7 +21,6 @@ type
     QDrivers: TIBQuery;
     QManagers: TIBQuery;
     QOperators: TIBQuery;
-    QCustomers: TIBQuery;
     TAddress_Out: TIBTable;
     QCustomer_By_Id: TIBQuery;
     QCar_By_Id: TIBQuery;
@@ -35,11 +34,12 @@ type
     spDeleteOrder: TIBStoredProc;
     spUpdateOrderInfo: TIBStoredProc;
     qOrderInfo: TIBQuery;
+    QCustomers: TIBQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
     procedure smSQLExecute; safecall;
-    procedure smDeleteOrder(ID: Integer); safecall;
+
 
   private
     { Private declarations }
@@ -49,6 +49,7 @@ type
   procedure open_all;
   function get_name_customer_by_id(id:integer):string;
   procedure smUpdateOrderInfo(OrderID, ProductID, Quantity: Integer);
+      procedure smDeleteOrder(ID: Integer); safecall;
   end;
 
 var
@@ -86,8 +87,8 @@ begin
    dm.QOperators.Open;
    dm.QMenu.Close;
    dm.QMenu.Open;
-   //dm.QCustomers.Close;
-   //dm.QCustomers.Open;
+   dm.QCustomers.Close;
+   dm.QCustomers.Open;
     {
   with   dm.QDriver_id_from_vehicle_day do begin
     ParamByName('IN_DATE').Value := now;

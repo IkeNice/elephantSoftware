@@ -49,17 +49,17 @@ var who_driver : integer;
 begin
       dm.QOrder_By_Id.ParamByName('ID_ORDER').Value := id_order;
     dm.QOrder_By_Id.Open;
-    if varisnull(dm.QOrder_By_Id.FieldByName('WHO_DRIVER').Value) then
+    if varisnull(dm.QOrder_By_Id.FieldByName('COURIER_ID').Value) then
       who_driver := 0
       else
-      who_driver  := dm.QOrder_By_Id.FieldByName('WHO_DRIVER').Value;
+      who_driver  := dm.QOrder_By_Id.FieldByName('COURIER_ID').Value;
     dm.QOrder_By_Id.Close;
     with dm.spEdit_Order_Status do
     begin
 
-    ParamByName('ID_ORDER').AsInteger := id_order;
-    ParamByName('ID_WORKERS').AsInteger:= who_driver;
-    ParamByName('NEW_STATUS').AsInteger:=  status;
+    ParamByName('INORDERID').AsInteger := id_order;
+//    ParamByName('COURIER_ID').AsInteger:= who_driver;
+    ParamByName('INNEWSTATUS').AsInteger:=  status;
 
     // Execute the procedure
     if not Transaction.InTransaction then
@@ -89,15 +89,18 @@ end;
 procedure Tform_Details_Order.FormShow(Sender: TObject);
 var customer_id, customer_address_id, address_id_from, address_id_to, driver_id, operator_id, order_status:integer;
   check_driver, check_operator:boolean;
+  customer_name: string;
 begin
     dm.QOrder_By_Id.ParamByName('ID_ORDER').Value := id_order;
     dm.QOrder_By_Id.Open;
     form_Details_Order.label_id.Caption := 'Id: ' + IntToStr(id_order);
-    customer_id := dm.QOrder_By_Id.FieldByName('ID_CUSTOMER').Value;
-    form_Details_Order.label_weight.Caption := 'Вес груза: ' + IntToStr(dm.QOrder_By_Id.FieldByName('WEIGHT').Value) + ' грамм';
-    address_id_from := dm.QOrder_By_Id.FieldByName('FROM_ID_ADDRESS').Value;
-    address_id_to := dm.QOrder_By_Id.FieldByName('TO_ID_ADDRESS').Value;
-    form_Details_Order.label_dod.Caption := 'Дата доставки: ' + DateTimeToStr(dm.QOrder_By_Id.FieldByName('DATE_OF_DELIVERY').Value);
+//    customer_id := dm.QOrder_By_Id.FieldByName('ID_CUSTOMER').Value;
+    customer_name := dm.QCustomers.FieldByName('CLIENT_NAME').AsString;
+//    form_Details_Order.label_weight.Caption := 'Вес груза: ' + IntToStr(dm.QOrder_By_Id.FieldByName('WEIGHT').Value) + ' грамм';
+//    address_id_from := dm.QOrder_By_Id.FieldByName('FROM_ID_ADDRESS').Value;
+    address_id_to := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
+    form_Details_Order.label_dod.Caption := 'Дата доставки: ' + DateTimeToStr(dm.QOrder_By_Id.FieldByName('TIME_OF_DELIVERY').Value);
+        {
     if VarIsNull(dm.QOrder_By_Id.FieldByName('WHO_DRIVER').Value) then begin
       check_driver:=false;
     end
@@ -191,7 +194,7 @@ begin
     end
     else begin
         BitBtn1.Visible:=false;
-    end;
+    end;     }
 end;
 
 end.

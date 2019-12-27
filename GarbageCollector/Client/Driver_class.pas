@@ -40,10 +40,10 @@ end;
 
 constructor TDriver.Create(row : TIBQuery);
 begin
-    id := row.FieldByName('ID').AsInteger;
-    status := row.FieldByName('STATUS').AsInteger;
-    name := row.FieldByName('NAME').Value;
-    surname := row.FieldByName('SURNAME').Value;
+    id := row.FieldByName('EMP_ID').AsInteger;
+//    status := row.FieldByName('STATUS').AsInteger;
+    name := row.FieldByName('FIRST_NAME').Value;
+    surname := row.FieldByName('SECOND_NAME').Value;
 end;
 
 procedure TDriver.Edit(P_id: Integer);
