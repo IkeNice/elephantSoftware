@@ -205,9 +205,10 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select employees.emp_id, employees.second_name, employees.first_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 3;')
+        'select employees.emp_id, employees.first_name, employees.second_' +
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 3;')
     Left = 72
     Top = 144
   end
@@ -220,8 +221,9 @@ object dm: Tdm
     SQL.Strings = (
       
         'select employees.emp_id, employees.first_name, employees.second_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 1;')
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 1;')
     Left = 72
     Top = 48
   end
@@ -233,9 +235,10 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select employees.emp_id, employees.second_name, employees.first_' +
-        'name, employees.last_name from employees where employees.job_id ' +
-        '= 2;')
+        'select employees.emp_id, employees.first_name, employees.second_' +
+        'name, employees.last_name, authotization.login,  authotization."' +
+        'PASSWORD" from employees inner join authotization on employees.e' +
+        'mp_id = authotization.emp_id where employees.job_id = 2;')
     Left = 72
     Top = 96
   end
@@ -250,22 +253,12 @@ object dm: Tdm
     Left = 64
     Top = 192
   end
-  object TAddress_In: TIBTable
-    Database = dm_db.IBDatabase_read
-    Transaction = dm_db.IBTransaction_read
-    BufferChunks = 1000
-    CachedUpdates = False
-    TableName = 'ADDRESS'
-    UniDirectional = False
-    Left = 592
-    Top = 72
-  end
   object TAddress_Out: TIBTable
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
     BufferChunks = 1000
     CachedUpdates = False
-    TableName = 'ADDRESS'
+    TableName = 'ADDRESSES'
     UniDirectional = False
     Left = 592
     Top = 120
@@ -403,8 +396,63 @@ object dm: Tdm
     ParamCheck = True
     SQL.Strings = (
       
-        'select menu.name, menu.price, categories.name from menu inner jo' +
-        'in categories on menu.category_id = categories.category_id;')
+        'select menu.product_id, menu.name,  menu.category_id, menu.price' +
+        ', categories.name from menu inner join categories on menu.catego' +
+        'ry_id = categories.category_id;')
+    Left = 56
+    Top = 352
+  end
+  object IBQuery1: TIBQuery
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    Left = 200
+    Top = 344
+  end
+  object spDeleteOrder: TIBStoredProc
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_read
+    StoredProcName = 'DELETE_ORDER'
+    Left = 392
+    Top = 312
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INID                           '
+        ParamType = ptUnknown
+      end>
+  end
+  object spUpdateOrderInfo: TIBStoredProc
+    Database = dm_db.IBDatabase_read
+    Transaction = dm_db.IBTransaction_read
+    StoredProcName = 'UPDATE_ORDERINFO'
+    Left = 304
+    Top = 288
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'INORDERID                      '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INPRODUCTID                    '
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'INQUANTITY                     '
+        ParamType = ptUnknown
+      end>
+  end
+  object qOrderInfo: TIBQuery
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      '')
     Left = 120
     Top = 368
   end

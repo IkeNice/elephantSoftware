@@ -100,19 +100,24 @@ end;
 procedure TForm_add_order.btnRefreshClick(Sender: TObject);
 var SQL_Line: string;
   begin
-  Form_add_order.DataSource_Goods.DataSet.Open;
+    //Form_add_order.DataSource_Goods.DataSet.Open;
 
     SQL_Line := 'select menu.name, categories.name, order_info.quantity, order_info.price, order_info.order_id' +
                ' from order_info join menu ON order_info.product_id = menu.product_id' +
                ' join categories ON menu.category_id= categories.category_id where order_id = ' + orderNum.ToString;
     dm.qOrderInfo.Sql.Clear;
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+    dm.qOrderInfo.Close;
     dm.qOrderInfo.SQL.Add(SQL_Line);
-    DataSource_Goods.DataSet.Close;
-    DataSource_Goods.DataSet.Open;
-//           dm.qOrderInfo.ExecSQL;
-//    dm.smSQLClear;
-//    dm.smSQLAddString(SQL_Line);
-//    dm.smSQLExecute;
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+    dm.qOrderInfo.Close;
+    dm.qOrderInfo.SQL.Add(SQL_Line);
+    IBQuery1.Open;
+    if IBQuery1.Transaction.InTransaction then
+      IBQuery1.Transaction.Commit;
+    DataSource_Goods.DataSet := dm.qOrderInfo;
 
     //Настройка dbgrid
     Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
@@ -192,7 +197,4 @@ begin
 
   DBGrid_to_address.Refresh;
 end;
-
-
-
 end.
