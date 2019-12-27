@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Menus,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, add_order_window;
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfmMenu = class(TForm)
@@ -47,8 +47,8 @@ var
   Accept:    Boolean;
 begin
   ProductID:= dbgMenu.DataSource.DataSet.Fields[0].Value;
-  dm.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
-  Form_add_order.btnRefreshClick(Self);
+//  dm.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
+//  fmOrder.btnRefreshClick(Self);
   Close;
 end;
 
@@ -112,7 +112,8 @@ begin
   else if Sender = MainMenu1.Items[1] then
   begin
     dm.smSQLClear;
-    dm.smSQLAddString('select * from Menu where CATEGORY_ID = 1');
+    dm.smSQLAddString('select * from Menu');
+    dm.smSQLAddString('where CATEGORY_ID = 1');
     dm.smSQLExecute;
 
     dsMenu.DataSet :=  dm.IBQuery1;
@@ -134,7 +135,7 @@ begin
   else if Sender = MainMenu1.Items[2] then
   begin
     dm.smSQLClear;
-    dm.smSQLAddString('select * from Menu ');
+    dm.smSQLAddString('select * from Menu');
     dm.smSQLAddString('where CATEGORY_ID = 2');
     dm.smSQLExecute;
 
@@ -157,7 +158,7 @@ begin
   else if Sender = MainMenu1.Items[3] then
   begin
     dm.smSQLClear;
-    dm.smSQLAddString('select * from Menu ');
+    dm.smSQLAddString('select * from Menu');
     dm.smSQLAddString('where CATEGORY_ID = 3');
     dm.smSQLExecute;
 
@@ -180,7 +181,7 @@ begin
   else if Sender = MainMenu1.Items[4] then
   begin
     dm.smSQLClear;
-    dm.smSQLAddString('select * from Menu ');
+    dm.smSQLAddString('select * from Menu');
     dm.smSQLAddString('where CATEGORY_ID = 4');
     dm.smSQLExecute;
 

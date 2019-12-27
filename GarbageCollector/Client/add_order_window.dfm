@@ -12,6 +12,7 @@ object Form_add_order: TForm_add_order
   Font.Style = []
   OldCreateOrder = False
   OnActivate = FormActivate
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object Label5: TLabel
@@ -110,53 +111,6 @@ object Form_add_order: TForm_add_order
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'CITY'
-        Title.Caption = #1053#1086#1084#1077#1088
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'STREET'
-        Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Width = 90
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'NUMBER_HOUSE'
-        Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Width = 80
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'FLOOR_'
-        Title.Caption = #1062#1077#1085#1072
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clWindowText
-        Title.Font.Height = -11
-        Title.Font.Name = 'Verdana'
-        Title.Font.Style = []
-        Visible = True
-      end>
   end
   object DBGrid_to_address: TDBGrid
     Left = 24

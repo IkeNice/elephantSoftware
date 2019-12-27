@@ -149,7 +149,10 @@ with dm_add.spAdd_Order do
     Transaction.StartTransaction;
   ExecProc;
   Transaction.Commit;
+
+
   end;
+  add_order := res;
 end;
 
 procedure Tdm_add.add_address(street:string; building:string;

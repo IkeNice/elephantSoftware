@@ -404,7 +404,7 @@ object dm: Tdm
   end
   object IBQuery1: TIBQuery
     Database = dm_db.IBDatabase_read
-    Transaction = dm_db.IBTransaction_edit
+    Transaction = dm_db.IBTransaction_read
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True
@@ -448,8 +448,8 @@ object dm: Tdm
       end>
   end
   object qOrderInfo: TIBQuery
-    Database = dm_db.IBDatabase_read
-    Transaction = dm_db.IBTransaction_read
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
     BufferChunks = 1000
     CachedUpdates = False
     ParamCheck = True

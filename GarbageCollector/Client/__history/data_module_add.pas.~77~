@@ -21,9 +21,11 @@ type
     procedure add_car(_name:string; category:integer; price:integer);
     procedure edit_car(id:integer; _name:string; category: integer; price: integer);
     procedure add_worker(empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
-    procedure edit_worker(id:integer; status:integer; role_:integer; experience:integer; dob:tdatetime; worker_name:string; worker_surname:string; worker_login:string; worker_password:string);
-    procedure add_order(customer_id:integer; weight:integer; from_id:integer; to_id:integer; delivery:tdatetime; operator_id:integer; num_stevedore:integer; price:integer);
-    procedure add_address(street:string; building: string; flat:integer);
+    function add_order(ID, StatusID: Integer; const Client, Phone: WideString;
+            AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer):integer;
+    procedure edit_worker(id:integer; empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
+   procedure add_address(street:string; building: string; flat:integer);
   end;
 
 var
@@ -86,22 +88,17 @@ with dm_add.spAdd_Worker do
   end;
 end;
 
-procedure Tdm_add.edit_worker(id:integer; status:integer; role_:integer;
-      experience:integer; dob:tdatetime; worker_name:string; worker_surname:string;
-                             worker_login:string; worker_password:string);
+procedure Tdm_add.edit_worker(id:integer; empFirstname: string; empSecondname: string; empLastname: string; jobID: integer; login: string; password: string);
 begin
 with dm_add.spEdit_Worker do
   begin
-
-  ParamByName('ID').AsInteger := id;
-  ParamByName('STATUS').AsInteger := status;
-  ParamByName('ROLE_').AsInteger := role_;
-  ParamByName('EXPERIENCE').AsInteger := experience;
-  ParamByName('DOB').AsDate:= dob;
-  ParamByName('NAME').Value:= worker_name;
-  ParamByName('SURNAME').Value:= worker_surname;
-  ParamByName('LOGIN').Value:= worker_login;
-  ParamByName('PASSWORD_').Value:= worker_password;
+    Params[0].Value := id;
+    Params[1].Value := empFirstname;
+    Params[2].Value := empSecondname;
+    Params[3].Value := empLastname;
+    Params[4].Value := jobID;
+    Params[5].Value := login;
+    Params[6].Value := password;
 
   // Execute the procedure
   if not Transaction.InTransaction then
@@ -112,13 +109,13 @@ with dm_add.spEdit_Worker do
 end;
 
 
-procedure Tdm_add.add_order(customer_id:integer; weight:integer; from_id:integer;
-        to_id:integer; delivery:tdatetime; operator_id:integer;
-        num_stevedore:integer; price:integer);
+function Tdm_add.add_order(ID, StatusID: Integer; const Client, Phone: WideString;
+            AddressID, CourierID, OperatorID: Integer; Date: TDateTime;
+            const TimeOfDelivery: WideString; TotalPrice: Integer): integer;
+var res: integer;
 begin
 with dm_add.spAdd_Order do
-  begin
-
+  begin{
   ParamByName('ID_CUSTOMER').AsInteger := customer_id;
   ParamByName('WEIGHT').AsInteger := weight;
   ParamByName('FROM_ID_ADDREESS').AsInteger := from_id;
@@ -131,13 +128,31 @@ with dm_add.spAdd_Order do
   //ParamByName('STATUS').AsInteger := 0;
   //ParamByName('DATE_ORDER_COMPLETION').AsDate:= null;
   //ParamByName('DATE_ORDER_CANCELLATION').AsDate:= null;
+   }
+   Params[0].Value := ID;
+   Params[1].Value := StatusID;
+   Params[2].Value := Client;
+   Params[3].Value := Phone;
+   Params[4].Value := AddressID;
+   Params[5].Value := CourierID;
+   Params[6].Value := operatorID;
+   Params[7].Value := Date;
+   Params[8].Value := TimeOfDelivery;
+   Params[9].Value := TotalPrice;
 
+    if ID = 0 then
+      res := spAdd_Order.Params[10].Value
+    else
+      res := 0;
   // Execute the procedure
   if not Transaction.InTransaction then
     Transaction.StartTransaction;
   ExecProc;
   Transaction.Commit;
+
+
   end;
+  Tdm_add.add_order := res;
 end;
 
 procedure Tdm_add.add_address(street:string; building:string;

@@ -37,6 +37,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure edSearchChange(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     { Private declarations }
@@ -105,17 +106,19 @@ var SQL_Line: string;
     SQL_Line := 'select menu.name, categories.name, order_info.quantity, order_info.price, order_info.order_id' +
                ' from order_info join menu ON order_info.product_id = menu.product_id' +
                ' join categories ON menu.category_id= categories.category_id where order_id = ' + orderNum.ToString;
-    dm.qOrderInfo.Sql.Clear;
-    dm.qOrderInfo.SQL.Add(SQL_Line);
+
     if dm.qOrderInfo.Transaction.InTransaction then
       dm.qOrderInfo.Transaction.Commit;
     dm.qOrderInfo.Close;
-    dm.qOrderInfo.Open;
-    DataSource_Goods.DataSet := dm.qOrderInfo;
-//    dm.smSQLClear;
-//    dm.smSQLAddString(SQL_Line);
-//    dm.smSQLExecute;
+    dm.qOrderInfo.SQL.Clear;
+    dm.qOrderInfo.SQL.Add(SQL_Line);
 
+    dm.qOrderInfo.Open;
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+
+    DataSource_Goods.DataSet := dm.qOrderInfo;
+    DataSource_Goods.DataSet.Open;
     //Настройка dbgrid
     Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
     Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 30;
@@ -137,6 +140,7 @@ procedure TForm_add_order.btnShowMenuClick(Sender: TObject);
 begin
   fmMenu := TFmMenu.Create(Application);
   fmMenu.ShowModal;
+  edSearchChange(self);
 end;
 
 procedure TForm_add_order.cbTimeOfDeliveryClick(Sender: TObject);
@@ -194,4 +198,9 @@ begin
 
   DBGrid_to_address.Refresh;
 end;
+procedure TForm_add_order.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  dm.smDeleteOrder(orderNum);
+end;
+
 end.

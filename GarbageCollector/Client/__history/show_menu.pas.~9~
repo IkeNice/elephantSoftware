@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Menus,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, add_order_window;
+  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfmMenu = class(TForm)
@@ -48,7 +48,7 @@ var
 begin
   ProductID:= dbgMenu.DataSource.DataSet.Fields[0].Value;
   dm.smUpdateOrderInfo(orderNum, ProductID, StrToInt(edQuantity.Text));
-  Form_add_order.btnRefreshClick(Self);
+  fmadd_order_window.btnRefreshClick(Self);
   Close;
 end;
 
