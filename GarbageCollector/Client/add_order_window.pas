@@ -47,7 +47,7 @@ type
 
 var
   Form_add_order: TForm_add_order;
-  orderNum: integer = 0;
+  orderNum: integer;
   addrID :integer;
   addressString, time: string;
 
@@ -60,7 +60,7 @@ uses add_address_window, show_menu;
 procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
 
-//  addrID := DataSource_to_address.DataSet.Fields[0].Value;
+  addrID := DataSource_to_address.DataSet.Fields[0].Value;
 
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
@@ -119,6 +119,7 @@ var SQL_Line: string;
 
     DataSource_Goods.DataSet := dm.qOrderInfo;
     DataSource_Goods.DataSet.Open;
+
     //Настройка dbgrid
     Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
     Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 25;
@@ -178,6 +179,7 @@ begin
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
   orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, time, 0);
+  Caption := Caption + ' №' + orderNum.ToString;
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
     tpTimeOfDelivery.Enabled := false;
@@ -203,7 +205,7 @@ begin
 end;
 procedure TForm_add_order.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  dm.smDeleteOrder(orderNum);
+//  dm.smDeleteOrder(orderNum);
 end;
 
 end.

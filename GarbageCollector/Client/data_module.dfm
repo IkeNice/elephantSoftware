@@ -68,8 +68,8 @@ object dm: Tdm
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
     StoredProcName = 'ADD_ORDER'
-    Left = 304
-    Top = 208
+    Left = 408
+    Top = 144
     ParamData = <
       item
         DataType = ftInteger
@@ -189,8 +189,8 @@ object dm: Tdm
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
     StoredProcName = 'LOGIN_PROC'
-    Left = 352
-    Top = 152
+    Left = 272
+    Top = 136
   end
   object QDrivers: TIBQuery
     Database = dm_db.IBDatabase_read
@@ -411,8 +411,8 @@ object dm: Tdm
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'DELETE_ORDER'
-    Left = 432
-    Top = 256
+    Left = 488
+    Top = 312
     ParamData = <
       item
         DataType = ftInteger
@@ -421,11 +421,11 @@ object dm: Tdm
       end>
   end
   object spUpdateOrderInfo: TIBStoredProc
-    Database = dm_db.IBDatabase_read
-    Transaction = dm_db.IBTransaction_read
+    Database = dm_db.IBDatabase_edit
+    Transaction = dm_db.IBTransaction_edit
     StoredProcName = 'UPDATE_ORDERINFO'
-    Left = 304
-    Top = 288
+    Left = 392
+    Top = 264
     ParamData = <
       item
         DataType = ftInteger

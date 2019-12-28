@@ -137,7 +137,7 @@ object Login_Form: TLogin_Form
   end
   object Edit_path: TEdit
     Left = 40
-    Top = 110
+    Top = 113
     Width = 121
     Height = 21
     Font.Charset = DEFAULT_CHARSET
@@ -148,7 +148,7 @@ object Login_Form: TLogin_Form
     ParentFont = False
     TabOrder = 4
     Text = 
-      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
-      'NTSOFTWARE.FDB'
+      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
+      'ARE.FDB'
   end
 end

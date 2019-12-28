@@ -10,7 +10,7 @@ uses
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-  ignore_status = [status_done,status_cancel,9];
+  ignore_status = [status_done, 3];
 type
   TElem = (Order,Vehicle,Driver);
   TForm_abstract_operator = class(TForm)
@@ -59,6 +59,7 @@ var i,j,count : integer;
    new_order : TOrder;
    queue : TList<TOrder_Interface>;
 begin
+    dm.Torders.Open;
     // Refresh table
     dm.TOrders.Refresh;
 

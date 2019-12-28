@@ -140,17 +140,16 @@ with dm_add.spAdd_Order do
    Params[8].Value := TimeOfDelivery;
    Params[9].Value := TotalPrice;
 
-    if ID = 0 then
-      res := spAdd_Order.Params[10].Value
-    else
-      res := 0;
   // Execute the procedure
   if not Transaction.InTransaction then
     Transaction.StartTransaction;
   ExecProc;
   Transaction.Commit;
 
-
+  if ID = 0 then
+    res := spAdd_Order.Params[10].Value
+  else
+    res := 0;
   end;
   add_order := res;
 end;
