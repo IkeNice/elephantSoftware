@@ -123,7 +123,7 @@ begin
 
     dm.QAddress_By_Id.ParamByName('ADDRESS_ID').Value := address_id_to;
     dm.QAddress_By_Id.Open;
-//          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value).ToString);
+//          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value));
     if dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0 then begin
       form_Details_Order.label_to_address.Caption := ' уда:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
     end
