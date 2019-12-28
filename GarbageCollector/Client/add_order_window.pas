@@ -55,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses add_address_window, show_menu;
+uses add_address_window, show_menu, login_window;
 
 procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
@@ -66,7 +66,7 @@ begin
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
   try
-    dm_add.add_Order(orderNum, 1, edClientName.Text, edPhone.Text, addrID, 4, 3, Now, time, 0);
+    dm_add.add_Order(orderNum, 1, edClientName.Text, edPhone.Text, addrID, 0, dm.spLogin.ParamByName('OUT_EMP_ID').value, Now, time, 0);
   except
     MessageDlg('Ошибка при добавлении заказа', mtError, [mbOk], 0)
   end;
@@ -177,7 +177,7 @@ begin
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
-  orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, time, 0);
+  orderNum := dm_add.Add_Order(0, 1, '', '', 1, 5, 1, Now, time, 0);
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
     tpTimeOfDelivery.Enabled := false;

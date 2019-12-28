@@ -9,7 +9,7 @@ uses
   ,order_class, Vcl.StdCtrls,IBX.IBTable, driver_class,driver_interface,panel_driver,
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
- //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+ //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  //
   ignore_status = [status_done,status_cancel,9];
 type
   TElem = (Order,Vehicle,Driver);

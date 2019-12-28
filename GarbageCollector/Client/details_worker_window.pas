@@ -11,8 +11,6 @@ type
     label_name: TLabel;
     label_surname: TLabel;
     label_role: TLabel;
-    label_dob: TLabel;
-    label_exp: TLabel;
     label_id: TLabel;
     label_login: TLabel;
     label_password: TLabel;
@@ -34,29 +32,30 @@ implementation
 
 procedure Tform_Details_Worker.FormCreate(Sender: TObject);
 begin
-    Width := trunc(screen.Width/4);
-    Height := trunc(screen.Height/3);
+    Width := 302;
+    Height := 215;
 end;
 
 procedure Tform_Details_Worker.FormShow(Sender: TObject);
 var role:integer;
 begin
-    dm.QWorker_By_Id.ParamByName('ID_WORKER').Value := id_worker;
+    dm.QWorker_By_Id.ParamByName('EMP_ID').Value := id_worker;
     dm.QWorker_By_Id.Open;
     form_Details_Worker.label_id.Caption := 'Id: ' + IntToStr(id_worker);
-    form_Details_Worker.label_name.Caption := 'Имя: ' + dm.QWorker_By_Id.FieldByName('NAME').Value;
-    form_Details_Worker.label_surname.Caption := 'Фамилия: ' + dm.QWorker_By_Id.FieldByName('SURNAME').Value;
-    form_Details_Worker.label_dob.Caption := 'Дата принятия: ' + DateTimeToStr(dm.QWorker_By_Id.FieldByName('DOB').Value);
-    form_Details_Worker.label_exp.Caption := 'Опыт работы: ' + IntToStr(dm.QWorker_By_Id.FieldByName('EXPERIENCE').Value) + ' лет';
-    role := dm.QWorker_By_Id.FieldByName('ROLE_').Value;
-    if role=0 then begin
+    form_Details_Worker.label_name.Caption := 'Имя: ' + dm.QWorker_By_Id.FieldByName('FIRST_NAME').Value;
+    form_Details_Worker.label_surname.Caption := 'Фамилия: ' + dm.QWorker_By_Id.FieldByName('SECOND_NAME').Value;
+//    form_Details_Worker.label_dob.Caption := 'Дата принятия: ' + DateTimeToStr(dm.QWorker_By_Id.FieldByName('DOB').Value);
+//    form_Details_Worker.label_exp.Caption := 'Опыт работы: ' + IntToStr(dm.QWorker_By_Id.FieldByName('EXPERIENCE').Value) + ' лет';
+    role := dm.QWorker_By_Id.FieldByName('JOB_ID').Value;
+//    ShowMessage(IntToStr(role));
+    if role = 1 then begin
         form_Details_Worker.label_role.Caption := 'Менеджер';
     end
-    else if role=1 then begin
+    else if role = 2 then begin
         form_Details_Worker.label_role.Caption := 'Оператор';
     end
-    else if role=2 then begin
-        form_Details_Worker.label_role.Caption := 'Водитель';
+    else if role = 3 then begin
+        form_Details_Worker.label_role.Caption := 'Курьер';
     end;
     dm.QWorker_By_Id.Close;
 
@@ -65,7 +64,7 @@ begin
     dm.QLogin_By_Id.ParamByName('ID_LOGIN').Value := id_worker;
     dm.QLogin_By_Id.Open;
     form_Details_Worker.label_login.Caption := 'Логин: ' + dm.QLogin_By_Id.FieldByName('LOGIN').Value;
-    form_Details_Worker.label_password.Caption := 'Пароль: ' + dm.QLogin_By_Id.FieldByName('PASSWORD_').Value;
+    form_Details_Worker.label_password.Caption := 'Пароль: ' + dm.QLogin_By_Id.FieldByName('PASSWORD').Value;
     dm.QLogin_By_Id.Close;
 
     if dm.user.get_role = Oper  then

@@ -305,7 +305,7 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select * from orders where id = :id_order;')
+      'select * from  ORDERS where ORDER_ID = :id_order;')
     Left = 136
     Top = 144
     ParamData = <
@@ -322,14 +322,14 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select * from address where id = :id_address;')
+      'select * from addresses where address_id = :id_address;')
     Left = 64
     Top = 240
     ParamData = <
       item
-        DataType = ftInteger
-        Name = 'id_address'
-        ParamType = ptInput
+        DataType = ftUnknown
+        Name = 'address_id'
+        ParamType = ptUnknown
       end>
   end
   object spEdit_Order_Status: TIBStoredProc
@@ -357,13 +357,13 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select * from workers where id = :id_worker;')
+      'select * from EMPLOYEES where emp_id = :emp_id;')
     Left = 136
     Top = 192
     ParamData = <
       item
         DataType = ftUnknown
-        Name = 'id_worker'
+        Name = 'emp_id'
         ParamType = ptUnknown
       end>
   end
@@ -374,7 +374,7 @@ object dm: Tdm
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select * from logging_in where id = :id_login;')
+      'select * from authotization where emp_id = :id_login;')
     Left = 136
     Top = 48
     ParamData = <
