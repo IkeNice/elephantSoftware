@@ -1,7 +1,6 @@
 program clietnt_proj;
 
 
-//
 uses
   Vcl.Forms,
   login_window in 'login_window.pas' {Login_Form},
