@@ -20,6 +20,7 @@ type
     label_id: TLabel;
     label_status: TLabel;
     BitBtn_cancel: TBitBtn;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -83,36 +84,39 @@ begin
 end;
 
 procedure Tform_Details_Order.FormShow(Sender: TObject);
-var customer_id, customer_address_id, address_id_from, address_id_to, driver_id, operator_id, order_status:integer;
+var customer_id, customer_address_id, address_id_from, address_id_to, driver_id, operator_id, order_status, order_sum:integer;
   check_driver, check_operator:boolean;
   customer_name: string;
 begin
     dm.QOrder_By_Id.ParamByName('ID_ORDER').Value := id_order;
     dm.QOrder_By_Id.Open;
-    form_Details_Order.label_id.Caption := 'Id: ' + IntToStr(id_order);
+    form_Details_Order.label_id.Caption := 'Номер заказа: ' + IntToStr(id_order);
 //    customer_id := dm.QOrder_By_Id.FieldByName('ID_CUSTOMER').Value;
     customer_name := dm.QOrder_By_Id.FieldByName('CLIENT_NAME').AsString;
 //    form_Details_Order.label_weight.Caption := 'Вес груза: ' + IntToStr(dm.QOrder_By_Id.FieldByName('WEIGHT').Value) + ' грамм';
     address_id_to := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
-    form_Details_Order.label_dod.Caption := 'Дата доставки: ' + {DateTimeToStr(}dm.QOrder_By_Id.FieldByName('TIME_OF_DELIVERY').Value{)};
-          {
-    if VarIsNull(dm.QOrder_By_Id.FieldByName('WHO_DRIVER').Value) then begin
+    form_Details_Order.label_dod.Caption := 'Время доставки: ' + dm.QOrder_By_Id.FieldByName('TIME_OF_DELIVERY').Value;
+    form_Details_Order.label_customer_phone.Caption := dm.QOrder_By_Id.FieldByName('PHONE_NUMBER').Value;
+    order_sum := dm.QOrder_By_Id.FieldByName('TOTAL_PRICE').Value;
+    form_Details_Order.label_price.Caption := 'Сумма заказа: ' + order_sum.ToString + ' руб.';
+
+    if VarIsNull(dm.QOrder_By_Id.FieldByName('COURIER_ID').Value) then begin
       check_driver:=false;
     end
     else begin
       check_driver:=true;
-      driver_id := dm.QOrder_By_Id.FieldByName('WHO_DRIVER').Value;
+      driver_id := dm.QOrder_By_Id.FieldByName('COURIER_ID').Value;
     end;
-    if VarIsNull(dm.QOrder_By_Id.FieldByName('ID_OPERATOR').Value) then begin
+    if VarIsNull(dm.QOrder_By_Id.FieldByName('OPERATOR_ID').Value) then begin
       check_operator:=false;
     end
     else begin
       check_operator:=true;
-      operator_id := dm.QOrder_By_Id.FieldByName('ID_OPERATOR').Value;
+      operator_id := dm.QOrder_By_Id.FieldByName('OPERATOR_ID').Value;
     end;
-    form_Details_Order.label_stevedors.Caption := 'Кол-во грузчиков: ' + IntToStr(dm.QOrder_By_Id.FieldByName('NUMBER_STEVEDORE').Value) + ' человек';
-    form_Details_Order.label_price.Caption := 'Цена: ' + IntToStr(dm.QOrder_By_Id.FieldByName('PRICE').Value) + ' руб.';
-    order_status := dm.QOrder_By_Id.FieldByName('STATUS').Value;    }
+//    form_Details_Order.label_stevedors.Caption := 'Кол-во грузчиков: ' + IntToStr(dm.QOrder_By_Id.FieldByName('NUMBER_STEVEDORE').Value) + ' человек';
+//    form_Details_Order.label_price.Caption := 'Цена: ' + IntToStr(dm.QOrder_By_Id.FieldByName('PRICE').Value) + ' руб.';
+    order_status := dm.QOrder_By_Id.FieldByName('STATUS_ID').Value;
 
 
     form_Details_Order.label_customer_surname_and_name.Caption := 'Заказчик: ' + dm.QOrder_By_Id.FieldByName('CLIENT_NAME').AsString;
@@ -125,17 +129,20 @@ begin
     dm.QAddress_By_Id.Open;
 //          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value));
     if dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0 then begin
-      form_Details_Order.label_to_address.Caption := 'Куда:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
+      form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
     end
     else begin
-      form_Details_Order.label_to_address.Caption := 'Куда:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value) + ', кв. ' + IntToStr(dm.QAddress_By_Id.FieldByName('APARTMENT').Value);
+      form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value) + ', кв. ' + IntToStr(dm.QAddress_By_Id.FieldByName('APARTMENT').Value);
     end;
     dm.QAddress_By_Id.Close;
-                   {
+
     if check_driver then begin
-        dm.QWorker_By_Id.ParamByName('ID_WORKER').Value := driver_id;
+        dm.QWorker_By_Id.ParamByName('EMP_ID').Value := driver_id;
         dm.QWorker_By_Id.Open;
-        form_Details_Order.label_driver.Caption := 'Водитель: ' + dm.QWorker_By_Id.FieldByName('NAME').Value + ' ' + dm.QWorker_By_Id.FieldByName('SURNAME').Value;
+        form_Details_Order.label_driver.Caption := 'Водитель: '
+                                                  + dm.QWorker_By_Id.FieldByName('FIRST_NAME').Value + ' '
+                                                  + dm.QWorker_By_Id.FieldByName('SECOND_NAME').Value + ' '
+                                                  + dm.QWorker_By_Id.FieldByName('LAST_NAME').Value;
         dm.QWorker_By_Id.Close;
     end
     else begin
@@ -143,28 +150,32 @@ begin
     end;
 
     if check_operator then begin
-        dm.QWorker_By_Id.ParamByName('ID_WORKER').Value := operator_id;
+        dm.QWorker_By_Id.ParamByName('EMP_ID').Value := operator_id;
         dm.QWorker_By_Id.Open;
-        form_Details_Order.label_operator.Caption := 'Оператор: ' + dm.QWorker_By_Id.FieldByName('NAME').Value + ' ' + dm.QWorker_By_Id.FieldByName('SURNAME').Value;
+        form_Details_Order.label_operator.Caption := 'Оператор: '
+                                                    + dm.QWorker_By_Id.FieldByName('FIRST_NAME').Value + ' '
+                                                    + dm.QWorker_By_Id.FieldByName('SECOND_NAME').Value + ' '
+                                                    + dm.QWorker_By_Id.FieldByName('LAST_NAME').Value;
         dm.QWorker_By_Id.Close;
     end
     else begin
         form_Details_Order.label_operator.Caption := 'Оператор: отсутствует';
     end;
-    }
-    {
-    if order_status=0 then begin
-      form_Details_Order.label_status.Caption := 'Заказ создан, но не распределён';
+
+
+    if order_status=1 then begin
+      form_Details_Order.label_status.Caption := 'Заказ обрабатывается';
     end
     else if order_status=2 then begin
-      form_Details_Order.label_status.Caption := 'Заказ распределён водителю';
+      form_Details_Order.label_status.Caption := 'Заказ ожидает курьера';
     end
     else if order_status=3 then begin
-      form_Details_Order.label_status.Caption := 'Заказ просмотрен водителем';
+      form_Details_Order.label_status.Caption := 'Заказ доставляется';
     end
     else if order_status=4 then begin
-      form_Details_Order.label_status.Caption := 'Водитель приступил к выполнению заказа';
+      form_Details_Order.label_status.Caption := 'Заказ доставлен';
     end
+    {
     else if order_status=5 then begin
       form_Details_Order.label_status.Caption := 'Водитель прибыл на место';
     end
@@ -176,7 +187,7 @@ begin
     end
     else if order_status=8 then begin
       form_Details_Order.label_status.Caption := 'Заказ отменён';
-    end
+    end }
     else begin
       form_Details_Order.label_status.Caption := 'Ошибка со статусом заказа';
     end;
@@ -186,7 +197,7 @@ begin
     end
     else begin
         BitBtn1.Visible:=false;
-    end;     }
+    end;
 end;
 
 end.

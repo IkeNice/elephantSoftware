@@ -139,6 +139,9 @@ with dm_add.spAdd_Order do
    Params[7].Value := Date;
    Params[8].Value := TimeOfDelivery;
    Params[9].Value := TotalPrice;
+  //if Courier is not defined sets NULL-Value in DB
+  if CourierID = 0 then
+   Params[5].Clear;
 
   // Execute the procedure
   if not Transaction.InTransaction then
