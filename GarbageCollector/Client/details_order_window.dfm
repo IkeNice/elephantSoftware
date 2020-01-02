@@ -19,7 +19,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 47
     Top = 168
     Width = 300
-    Height = 21
+    Height = 18
     Caption = 'label_customer_surname_and_name'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -32,7 +32,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 47
     Top = 193
     Width = 185
-    Height = 21
+    Height = 18
     Caption = 'label_customer_phone'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -45,7 +45,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 47
     Top = 217
     Width = 141
-    Height = 21
+    Height = 18
     Caption = 'label_to_address'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -58,7 +58,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 47
     Top = 241
     Width = 80
-    Height = 21
+    Height = 18
     Caption = 'label_dod'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -71,7 +71,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 32
     Top = 77
     Width = 96
-    Height = 21
+    Height = 18
     Caption = 'label_driver'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -83,8 +83,8 @@ object form_Details_Order: Tform_Details_Order
   object label_operator: TLabel
     Left = 32
     Top = 101
-    Width = 124
-    Height = 21
+    Width = 119
+    Height = 18
     Caption = 'label_operator'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -97,7 +97,7 @@ object form_Details_Order: Tform_Details_Order
     Left = 47
     Top = 265
     Width = 89
-    Height = 21
+    Height = 18
     Caption = 'label_price'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -109,7 +109,7 @@ object form_Details_Order: Tform_Details_Order
   object label_id: TLabel
     Left = 32
     Top = 15
-    Width = 66
+    Width = 65
     Height = 18
     Caption = 'label_id'
     Font.Charset = DEFAULT_CHARSET

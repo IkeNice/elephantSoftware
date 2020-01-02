@@ -121,7 +121,7 @@ begin
 
     form_Details_Order.label_customer_surname_and_name.Caption := 'Заказчик: ' + dm.QOrder_By_Id.FieldByName('CLIENT_NAME').AsString;
     customer_address_id := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
-    form_Details_Order.label_customer_phone.Caption := 'Номер заказчика: ' + dm.QOrder_By_Id.FieldByName('PHONE_NUMBER').Value;
+    form_Details_Order.label_customer_phone.Caption := 'Телефон заказчика: ' + dm.QOrder_By_Id.FieldByName('PHONE_NUMBER').Value;
     dm.QCustomer_By_Id.Close;
     dm.QOrder_By_Id.Close;
 
