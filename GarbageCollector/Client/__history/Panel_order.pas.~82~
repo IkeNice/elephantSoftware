@@ -3,7 +3,7 @@
 interface
  uses Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, IBX.IBTable, Vcl.Forms, Vcl.Dialogs, colored_panel_class,Vcl.StdCtrls,
-  Vcl.ExtCtrls, order_class,order_interface, details_order_window;
+  Vcl.ExtCtrls, order_class, order_interface, details_order_window;
 
 type TPanel_order = Class(TColoredPanel,TOrder_Interface,IInterface)
   private
@@ -27,6 +27,7 @@ type TPanel_order = Class(TColoredPanel,TOrder_Interface,IInterface)
 
 
   function get_driver_id : integer;
+  function get_date_delivery : tdatetime;
 
 
   constructor Create(AOwner: TComponent;Porder : TOrder);
@@ -44,6 +45,11 @@ end;
 function TPanel_order.get_status;
 begin
   get_status := order.get_status;
+end;
+
+function TPanel_order.get_date_delivery;
+begin
+  get_date_delivery := order.get_date_delivery;
 end;
 
 procedure TPanel_order.update_order(updated_order : TOrder);
@@ -73,7 +79,7 @@ begin
      d_length := length(dod);
      //dod := copy(dod, 2, d_length-1);
      dod := copy(dod, 1, d_length-3);
-     caption := order.get_customer + ' ' + dod;
+     caption := 'Заказ номер ' + IntToStr(order.get_id) + '. Доставить к ' + dod;
      if (order.get_status = 0) then begin
          color := RGB(102, 205, 170); //LawnGreen (Green)
      end
@@ -84,10 +90,10 @@ begin
           color := RGB(250, 128, 114); //Salmon (Red)
      end
      else if (order.get_status = 4) then begin
-          color := RGB(255, 0, 0); //Salmon (Red)
+          color := RGB(220, 20, 60); //Crimson (Red)
      end
      else if (order.get_status = 5) then begin
-          color := RGB(250, 128, 114); //Salmon (Red)
+          color := RGB(139, 0, 0); //DarkRed
      end
      else if (order.get_status = 6) then begin
          color := RGB(238, 130, 238); //Violet (Purple)
@@ -137,6 +143,7 @@ begin
   form_Details_Order := Tform_Details_Order.Create(Application);
   form_Details_Order.id_order := order.get_id;
   form_Details_Order.showmodal;
+  getParentForm(self).Update;
 end;
 
 

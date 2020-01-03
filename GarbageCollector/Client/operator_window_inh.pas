@@ -102,7 +102,6 @@ begin
       for I := 0 to order_list.Count - 1 do begin
         order_p := (order_list[i] as TPanel_order);
         buff_id := order_p.get_driver_id;
-
         // if order have a driver
         if buff_id <> 0 then  begin
           j := 0;
@@ -115,11 +114,9 @@ begin
         else
           order_p.Parent := panel_orders;
       end;
-
       // Bind panel_drivers
       for I := 0 to driver_list.Count - 1 do
           (driver_list[i]  as TPanel_driver).parent := panel_drivers;
-
     redraw;
 
 end;
@@ -207,7 +204,7 @@ end;
 procedure TForm_inh_operator.PanelDragOver(Sender, Source: TObject; X,
   Y: Integer; State: TDragState; var Accept: Boolean);
 begin
-     accept := (source is TPanel_order ){and  (sender is TPanel_driver)};
+     accept := (source is TPanel_order ){ and  (sender is TPanel_driver)};
 end;
 
 

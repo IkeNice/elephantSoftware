@@ -19,6 +19,7 @@ type
     procedure MENU_UPDATEClick(Sender: TObject);
     procedure ADD_ORDERClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
 
   private
   const maxOrdersCount = 5;
@@ -44,6 +45,7 @@ type
 
 var
   Form_inh_operator: TForm_inh_operator;
+  orderNum :integer = 0;
 
 implementation
 
@@ -87,16 +89,9 @@ begin
   form_add_order := TForm_add_order.Create(Application);
   form_add_order.showmodal;
   if form_add_order.ModalResult = mrOk then  begin
-      dm_add.add_order(dm.QCustomers.FieldByName('ID').Value,
-                       StrtoInt(form_add_order.label_weight.Text),
-                       dm.TAddress_In.FieldByName('ID').Value,
-                       dm.TAddress_Out.FieldByName('ID').Value,
-                       form_add_order.dtp_delivery.DateTime,
-                       dm.user.get_id,
-                       strToInt(form_add_order.label_stevedore.Text),
-                       strToInt(form_add_order.label_price.Text));
-   end;
-   update;
+//     dm_add.add_order();
+  end;
+  update;
 end;
 
 procedure TForm_inh_operator.update_interface(elem : TElem);
@@ -124,7 +119,6 @@ begin
       // Bind panel_drivers
       for I := 0 to driver_list.Count - 1 do
           (driver_list[i]  as TPanel_driver).parent := panel_drivers;
-
     redraw;
 
 end;
@@ -132,19 +126,10 @@ end;
 procedure TForm_inh_operator.redraw;
 var
   i : integer;
-  dodList : TList;
 begin
-        with panel_orders do begin
-          for I := 0 to  ControlCount - 1 do begin
-           dodList.Add((controls[i] as Tpanel_order).get_date_delivery);
-          end
-        end;
-
-        Sort(panel_orders.Controls);
         // redraw every child of panels
         with panel_orders do begin
           for I := 0 to  ControlCount - 1 do begin
-           (controls[i] as Tpanel_order).get_date_delivery;
             controls[i].Left := 0;
             controls[i].Width := Panel_orders.Width;
             controls[i].Top := I * 50;
@@ -183,6 +168,12 @@ begin
 end;
 
 
+procedure TForm_inh_operator.FormActivate(Sender: TObject);
+begin
+  inherited;
+//  orderNum := dm_add.add_order(0, 1, '', '', 4, 4, 3, Now, '', 0);
+end;
+
 procedure TForm_inh_operator.FormCreate(Sender: TObject);
 var i:integer;
 begin
@@ -215,7 +206,7 @@ end;
 procedure TForm_inh_operator.PanelDragOver(Sender, Source: TObject; X,
   Y: Integer; State: TDragState; var Accept: Boolean);
 begin
-     accept := (source is TPanel_order ){and  (sender is TPanel_driver)};
+     accept := (source is TPanel_order ){ and  (sender is TPanel_driver)};
 end;
 
 

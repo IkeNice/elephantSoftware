@@ -80,7 +80,7 @@ begin
      //dod := copy(dod, 2, d_length-1);
      dod := copy(dod, 1, d_length-3);
      caption := 'Заказ номер ' + IntToStr(order.get_id) + '. Доставить к ' + dod;
-     if (order.get_status = 0) then begin
+     if (order.get_status = 1{0}) then begin
          color := RGB(102, 205, 170); //LawnGreen (Green)
      end
      else if (order.get_status = 2) then begin

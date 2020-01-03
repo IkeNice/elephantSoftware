@@ -74,13 +74,13 @@ end;
 
 procedure TOrder.update_driver(id_driver : integer);
 begin
-     driver_id := id_driver;
-     //3 - доставляется
-     //2 - ожидает курьера
-     if driver_id = 0 then
-     status := 1
-     else
-      status := 2;
+   driver_id := id_driver;
+   //3 - доставляется
+   //2 - ожидает курьера
+   if driver_id = 0 then
+    status := 1
+   else
+    status := 2;
    push;
 end;
 

@@ -128,7 +128,6 @@ begin
     visible := true;
 
     ondblClick := doubleClick;
-
   end;
 
 
