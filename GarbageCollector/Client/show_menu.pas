@@ -39,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses data_module;
+uses data_module, operator_window_inh;
 
 procedure TfmMenu.btnChooseClick(Sender: TObject);
 var

@@ -45,7 +45,7 @@ type
 
 var
   Form_inh_operator: TForm_inh_operator;
-  orderNum :integer = 0;
+  orderNum :integer;
 
 implementation
 
@@ -90,6 +90,14 @@ begin
   form_add_order.showmodal;
   if form_add_order.ModalResult = mrOk then  begin
 //     dm_add.add_order();
+    try
+      dm_add.add_Order(orderNum, 1, form_add_order.edClientName.Text, form_add_order.edPhone.Text, addrID, 0, dm.spLogin.ParamByName('OUT_EMP_ID').value, Now, time, 0);
+    except
+      MessageDlg('Ошибка при добавлении заказа', mtError, [mbOk], 0)
+    end;
+  end
+  else begin
+    dm.smDeleteOrder(orderNum);
   end;
   update;
 end;

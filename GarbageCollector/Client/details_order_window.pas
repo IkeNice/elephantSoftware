@@ -94,7 +94,11 @@ begin
 //    customer_id := dm.QOrder_By_Id.FieldByName('ID_CUSTOMER').Value;
     customer_name := dm.QOrder_By_Id.FieldByName('CLIENT_NAME').AsString;
 //    form_Details_Order.label_weight.Caption := 'Вес груза: ' + IntToStr(dm.QOrder_By_Id.FieldByName('WEIGHT').Value) + ' грамм';
-    address_id_to := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
+    if not VarIsNull(dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value) then
+    begin
+      customer_address_id := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
+      address_id_to := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
+    end;
     form_Details_Order.label_dod.Caption := 'Время доставки: ' + dm.QOrder_By_Id.FieldByName('TIME_OF_DELIVERY').Value;
     form_Details_Order.label_customer_phone.Caption := dm.QOrder_By_Id.FieldByName('PHONE_NUMBER').Value;
     order_sum := dm.QOrder_By_Id.FieldByName('TOTAL_PRICE').Value;
@@ -120,21 +124,25 @@ begin
 
 
     form_Details_Order.label_customer_surname_and_name.Caption := 'Заказчик: ' + dm.QOrder_By_Id.FieldByName('CLIENT_NAME').AsString;
-    customer_address_id := dm.QOrder_By_Id.FieldByName('ADDRESS_ID').Value;
     form_Details_Order.label_customer_phone.Caption := 'Телефон заказчика: ' + dm.QOrder_By_Id.FieldByName('PHONE_NUMBER').Value;
     dm.QCustomer_By_Id.Close;
     dm.QOrder_By_Id.Close;
-
-    dm.QAddress_By_Id.ParamByName('ADDRESS_ID').Value := address_id_to;
-    dm.QAddress_By_Id.Open;
-//          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value));
-    if dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0 then begin
-      form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
+//addresses
+    if address_id_to <> 0 then
+    begin
+      dm.QAddress_By_Id.ParamByName('ADDRESS_ID').Value := address_id_to;
+      dm.QAddress_By_Id.Open;
+  //          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value));
+      if dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0 then begin
+        form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
+      end
+      else begin
+        form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value) + ', кв. ' + IntToStr(dm.QAddress_By_Id.FieldByName('APARTMENT').Value);
+      end;
+      dm.QAddress_By_Id.Close;
     end
-    else begin
-      form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value) + ', кв. ' + IntToStr(dm.QAddress_By_Id.FieldByName('APARTMENT').Value);
-    end;
-    dm.QAddress_By_Id.Close;
+    else
+      form_Details_Order.label_to_address.Caption := 'Адрес: <не указан>';
 
     if check_driver then begin
         dm.QWorker_By_Id.ParamByName('EMP_ID').Value := driver_id;

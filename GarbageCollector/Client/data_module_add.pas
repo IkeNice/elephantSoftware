@@ -143,6 +143,9 @@ with dm_add.spAdd_Order do
   if CourierID = 0 then
    Params[5].Clear;
 
+  if AddressID = 0 then
+   Params[4].Clear;
+
   // Execute the procedure
   if not Transaction.InTransaction then
     Transaction.StartTransaction;

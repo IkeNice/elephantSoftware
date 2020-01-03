@@ -94,7 +94,7 @@ object Form_add_order: TForm_add_order
     ParentFont = False
   end
   object DBGrid_from_address: TDBGrid
-    Left = 24
+    Left = 26
     Top = 110
     Width = 329
     Height = 120
@@ -105,6 +105,7 @@ object Form_add_order: TForm_add_order
     Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
+    ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -173,6 +174,7 @@ object Form_add_order: TForm_add_order
     Top = 481
     Width = 75
     Height = 25
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -222,6 +224,7 @@ object Form_add_order: TForm_add_order
     Width = 185
     Height = 21
     TabOrder = 5
+    OnChange = edClientNameChange
   end
   object edPhone: TEdit
     Left = 168
@@ -229,6 +232,7 @@ object Form_add_order: TForm_add_order
     Width = 185
     Height = 21
     TabOrder = 6
+    OnChange = edClientNameChange
   end
   object BitBtn2: TBitBtn
     Left = 280
@@ -277,6 +281,7 @@ object Form_add_order: TForm_add_order
     OnClick = btnRefreshClick
   end
   object DataSource_Goods: TDataSource
+    OnDataChange = DataSource_GoodsDataChange
     Left = 240
     Top = 160
   end

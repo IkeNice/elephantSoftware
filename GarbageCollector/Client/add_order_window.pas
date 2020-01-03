@@ -38,6 +38,8 @@ type
     procedure edSearchChange(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure edClientNameChange(Sender: TObject);
+    procedure DataSource_GoodsDataChange(Sender: TObject; Field: TField);
 
   private
     { Private declarations }
@@ -47,7 +49,7 @@ type
 
 var
   Form_add_order: TForm_add_order;
-  orderNum: integer;
+  //orderNum: integer;
   addrID :integer;
   addressString, time: string;
 
@@ -55,7 +57,7 @@ implementation
 
 {$R *.dfm}
 
-uses add_address_window, show_menu, login_window;
+uses add_address_window, show_menu, login_window, operator_window_inh;
 
 procedure TForm_add_order.BitBtn1Click(Sender: TObject);
 begin
@@ -150,6 +152,17 @@ begin
   tpTimeOfDelivery.Time := IncHour(Now);
 end;
 
+procedure TForm_add_order.DataSource_GoodsDataChange(Sender: TObject;
+  Field: TField);
+begin
+  BitBtn1.Enabled := (edClientName.Text <> '') and (edPhone.Text <> '') and (DBGrid_from_address.DataSource.DataSet <> nil);
+end;
+
+procedure TForm_add_order.edClientNameChange(Sender: TObject);
+begin
+  BitBtn1.Enabled := (edClientName.Text <> '') and (edPhone.Text <> '') and (DBGrid_from_address.DataSource.DataSet.RecordCount <> 0);
+end;
+
 procedure TForm_add_order.edSearchChange(Sender: TObject);
 var SQL_Line: string;
 begin
@@ -174,11 +187,13 @@ begin
 end;
 
 procedure TForm_add_order.FormActivate(Sender: TObject);
+var i : integer;
+ SQL_Line: string;
 begin
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
-  orderNum := dm_add.Add_Order(0, 1, '', '', 4, 4, 3, Now, time, 0);
+  orderNum := dm_add.Add_Order(0, 1, '', '', 0, 0, dm.spLogin.ParamByName('OUT_EMP_ID').value, Now, time, 0);
   Caption := Caption + ' №' + orderNum.ToString;
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
@@ -202,7 +217,52 @@ begin
   DBGrid_to_address.Fields[2].DisplayWidth := 10;
 
   DBGrid_to_address.Refresh;
+
+//  for I := 0 to ComponentCount - 1 do begin
+//    if Components[i] is TEdit then begin
+//      (Components[i] as TEdit).Text := '';
+//      BitBtn1.Enabled := false;
+//    end;
+//  end;
+
+{===================================================}
+
+ SQL_Line := 'select menu.name, categories.name, order_info.quantity, order_info.price, order_info.order_id' +
+               ' from order_info join menu ON order_info.product_id = menu.product_id' +
+               ' join categories ON menu.category_id= categories.category_id where order_id = ' + orderNum.ToString;
+
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+    dm.qOrderInfo.Close;
+    dm.qOrderInfo.SQL.Clear;
+    dm.qOrderInfo.SQL.Add(SQL_Line);
+
+    dm.qOrderInfo.Open;
+    if dm.qOrderInfo.Transaction.InTransaction then
+      dm.qOrderInfo.Transaction.Commit;
+
+    DataSource_Goods.DataSet := dm.qOrderInfo;
+    DataSource_Goods.DataSet.Open;
+
+    //Настройка dbgrid
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 17;
+
+    Form_add_order.DBGrid_from_address.Fields[1].DisplayLabel := 'Категория';
+    Form_add_order.DBGrid_from_address.Fields[1].DisplayWidth := 10;
+
+    Form_add_order.DBGrid_from_address.Fields[2].DisplayLabel := 'Количество';
+    Form_add_order.DBGrid_from_address.Fields[2].DisplayWidth := 5;
+
+    Form_add_order.DBGrid_from_address.Fields[3].DisplayLabel := 'Цена';
+    Form_add_order.DBGrid_from_address.Fields[3].DisplayWidth := 6;
+    Form_add_order.DBGrid_from_address.Fields[4].Visible := false;
+
+    Form_add_order.DBGrid_from_address.Refresh;
+
+
 end;
+
 procedure TForm_add_order.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 //  dm.smDeleteOrder(orderNum);
