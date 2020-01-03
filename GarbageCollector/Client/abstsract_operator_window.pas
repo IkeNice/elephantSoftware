@@ -10,7 +10,7 @@ uses
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-  ignore_status = [status_done, 3, 2];
+  ignore_status = [status_done{, 3, 2}];
 type
   TElem = (Order,Vehicle,Driver);
   TForm_abstract_operator = class(TForm)
@@ -181,7 +181,9 @@ var i,j,count : integer;
    new_vehicle : Tvehicle;
    queue : TList<Tvehicle_Interface>;
    id_driver : integer;
-begin        {
+begin
+//!!!!!!!!!!
+ {
     // Refresh table
     dm.Tvehicle.Refresh;
 
@@ -199,7 +201,7 @@ begin        {
 
       //  DB request to obtain driver info
       // Date is setted
-      {
+
       with  dm.QDriver_id_from_vehicle_day do begin
         ParamByName('IN_ID_VEHICLE').Value :=
         dm.Tvehicle.FieldByName('ID').AsInteger;
@@ -208,8 +210,8 @@ begin        {
         close;
         open;
       end;
-      }
-      {
+
+
       if VarIsNull(dm.QDriver_id_from_vehicle_day.FieldByName('ID_DRIVER').Value) then
         id_driver := 0
       else
@@ -250,7 +252,8 @@ begin        {
 
     queue.Destroy;
     update_interface(vehicle);
-end;               }
+end;}
+//  !!!!!!!!!!
 end;
 
 procedure TForm_abstract_operator.FormClose(Sender: TObject;
@@ -274,7 +277,6 @@ begin
   case recieve[1] of
   '1' : if order_updatable then
         update_orders;
-
   '2' : if driver_updatable  then
           update_drivers;
   '3' : if vehicle_updatable then

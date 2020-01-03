@@ -74,10 +74,13 @@ end;
 
 procedure TOrder.update_driver(id_driver : integer);
 begin
-     driver_id := id_driver;
-     //3 - доставляется
-     //2 - ожидает курьера
-     status := 2;
+   driver_id := id_driver;
+   //3 - доставляется
+   //2 - ожидает курьера
+   if driver_id = 0 then
+    status := 1
+   else
+    status := 2;
    push;
 end;
 
@@ -86,9 +89,10 @@ begin
   // push himself to db
      // Fill db procedure parametrs with form valut
     dm.spEDIT_ORDER_SET_DRIVER.ParamByName('INORDERID').AsInteger := id;
-//    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('ID_WORKERS').AsInteger:= driver_id ;
+    dm.spEDIT_ORDER_SET_DRIVER.ParamByName('INDRIVERID').AsInteger:= driver_id ;
     dm.spEDIT_ORDER_SET_DRIVER.ParamByName('INNEWSTATUS').AsInteger:= status;
-
+    if driver_id = 0 then
+      dm.spEDIT_ORDER_SET_DRIVER.ParamByName('INDRIVERID').Clear;
     // Execute the procedure
     if not dm.spEDIT_ORDER_SET_DRIVER.Transaction.InTransaction then
       dm.spEDIT_ORDER_SET_DRIVER.Transaction.StartTransaction;
