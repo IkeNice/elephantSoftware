@@ -122,7 +122,7 @@ var SQL_Line: string;
 
     //Настройка dbgrid
     Form_add_order.DBGrid_from_address.Fields[0].DisplayLabel := 'Наименование';
-    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 25;
+    Form_add_order.DBGrid_from_address.Fields[0].DisplayWidth := 17;
 
     Form_add_order.DBGrid_from_address.Fields[1].DisplayLabel := 'Категория';
     Form_add_order.DBGrid_from_address.Fields[1].DisplayWidth := 10;
@@ -131,7 +131,7 @@ var SQL_Line: string;
     Form_add_order.DBGrid_from_address.Fields[2].DisplayWidth := 5;
 
     Form_add_order.DBGrid_from_address.Fields[3].DisplayLabel := 'Цена';
-    Form_add_order.DBGrid_from_address.Fields[3].DisplayWidth := 5;
+    Form_add_order.DBGrid_from_address.Fields[3].DisplayWidth := 6;
     Form_add_order.DBGrid_from_address.Fields[4].Visible := false;
 
     Form_add_order.DBGrid_from_address.Refresh;

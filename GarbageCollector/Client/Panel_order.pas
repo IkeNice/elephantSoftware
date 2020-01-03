@@ -78,7 +78,9 @@ begin
      dod := DateTimeToStr(order.get_date_delivery);
      d_length := length(dod);
      //dod := copy(dod, 2, d_length-1);
-     dod := copy(dod, 1, d_length-3);
+//     dod := copy(dod, 1, d_length-3);
+     Delete(dod, d_length-2, d_length);
+     Delete(dod, 1, d_length-8);
      caption := 'Заказ номер ' + IntToStr(order.get_id) + '. Доставить к ' + dod;
      if (order.get_status = 1{0}) then begin
          color := RGB(102, 205, 170); //LawnGreen (Green)

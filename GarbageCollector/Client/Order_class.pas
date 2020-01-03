@@ -49,7 +49,7 @@ end;
 
 function TOrder.get_date_delivery;
 begin
-//  get_date_delivery := StrToDateTime(date_delivery);
+  get_date_delivery := StrToDateTime(date_delivery);
 end;
 
 constructor TOrder.Create(row : TIBTable);
@@ -58,7 +58,7 @@ begin
     status := row.FieldByName('STATUS_ID').AsInteger;
     driver_id := row.FieldByName('COURIER_ID').AsInteger; // — ›“»Ã Õ≈ œŒ ¿«€¬¿ﬁ“—ﬂ «¿ ¿«€
     customer := row.FieldByName('CLIENT_NAME').AsString;
-//    date_delivery := row.FieldByName('TIME_OF_DELIVERY').Value;
+    date_delivery := row.FieldByName('TIME_OF_DELIVERY').Value;
 end;
 
 
