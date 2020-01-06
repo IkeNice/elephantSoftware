@@ -54,9 +54,9 @@ begin
     with dm.spEdit_Order_Status do
     begin
 
-    ParamByName('INORDERID').AsInteger := id_order;
+    ParamByName('ID_ORDER').AsInteger := id_order;
 //    ParamByName('COURIER_ID').AsInteger:= who_driver;
-    ParamByName('INNEWSTATUS').AsInteger:=  status;
+    ParamByName('NEW_STATUS').AsInteger:=  status;
 
     // Execute the procedure
     if not Transaction.InTransaction then

@@ -340,18 +340,18 @@ object dm: Tdm
   object spEdit_Order_Status: TIBStoredProc
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
-    StoredProcName = 'UPDATE_ORDERS_STATUS'
+    StoredProcName = 'EDIT_ORDER_SET_STATUS'
     Left = 408
     Top = 88
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INORDERID'
+        Name = 'ID_ORDER'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INNEWSTATUS'
+        Name = 'NEW_STATUS'
         ParamType = ptInput
       end>
   end
