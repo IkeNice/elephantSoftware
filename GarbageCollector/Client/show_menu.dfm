@@ -86,11 +86,11 @@ object fmMenu: TfmMenu
       OnClick = miAllMenuClick
     end
     object miDrink: TMenuItem
-      Caption = #1053#1072#1087#1080#1090#1082#1080
+      Caption = #1044#1077#1089#1077#1088#1090#1099
       OnClick = miAllMenuClick
     end
     object miDessert: TMenuItem
-      Caption = #1044#1077#1089#1077#1088#1090#1099
+      Caption = #1053#1072#1087#1080#1090#1082#1080
       OnClick = miAllMenuClick
     end
   end

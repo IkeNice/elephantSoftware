@@ -10,7 +10,7 @@ uses
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-  ignore_status = [status_done, status_cancel{, 3, 2}];
+  ignore_status = [status_done, status_cancel, status_forming];
 type
   TElem = (Order,Vehicle,Driver);
   TForm_abstract_operator = class(TForm)
@@ -106,10 +106,10 @@ begin
     end;
 
     // Delete orders wich not found in db
-    {for i := 0 to queue.Count - 1 do begin
+    for i := 0 to queue.Count - 1 do begin
       order_list.Remove(queue[i]);
       queue[i].destroy_from_interface;
-    end; }
+    end;
 
 
     queue.Destroy;

@@ -193,7 +193,7 @@ begin
   time := TimeToStr(tpTimeOfDelivery.Time);
   Delete(time, length(TimeToStr(tpTimeOfDelivery.Time))-2,length(TimeToStr(tpTimeOfDelivery.Time)));
 
-  orderNum := dm_add.Add_Order(0, 1, '', '', 0, 0, dm.spLogin.ParamByName('OUT_EMP_ID').value, Now, time, 0);
+  orderNum := dm_add.Add_Order(0, 0, '', '', 0, 0, dm.spLogin.ParamByName('OUT_EMP_ID').value, Now, time, 0);
   Caption := Caption + ' №' + orderNum.ToString;
   if cbTimeOfDelivery.Checked = true then begin
     tpTimeOfDelivery.Time := IncHour(Now);
