@@ -10,7 +10,7 @@ uses
   Vcl.ExtCtrls,Panel_vehicle,vehicle_class,vehicle_interface,statuses;
  const
  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
-  ignore_status = [status_done{, 3, 2}];
+  ignore_status = [status_done, status_cancel{, 3, 2}];
 type
   TElem = (Order,Vehicle,Driver);
   TForm_abstract_operator = class(TForm)

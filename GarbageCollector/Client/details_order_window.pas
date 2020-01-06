@@ -133,7 +133,10 @@ begin
       dm.QAddress_By_Id.ParamByName('ADDRESS_ID').Value := address_id_to;
       dm.QAddress_By_Id.Open;
   //          ShowMessage((dm.QAddress_By_Id.FieldByName('APARTMENT').Value));
-      if dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0 then begin
+      if (VarIsNull(dm.QAddress_By_Id.FieldByName('APARTMENT').Value)
+          or
+          (dm.QAddress_By_Id.FieldByName('APARTMENT').Value = 0)) then
+      begin
         form_Details_Order.label_to_address.Caption := 'Адрес:' + ' ул. ' + dm.QAddress_By_Id.FieldByName('STREET').Value + ', д. ' + IntToStr(dm.QAddress_By_Id.FieldByName('BUILDING').Value)
       end
       else begin
@@ -172,18 +175,17 @@ begin
 
 
     if order_status=1 then begin
-      form_Details_Order.label_status.Caption := 'Заказ обрабатывается';
+      form_Details_Order.label_status.Caption := 'Заказ принят оператором';
     end
     else if order_status=2 then begin
-      form_Details_Order.label_status.Caption := 'Заказ ожидает курьера';
+      form_Details_Order.label_status.Caption := 'Заказ распределен водителю';
     end
     else if order_status=3 then begin
-      form_Details_Order.label_status.Caption := 'Заказ доставляется';
+      form_Details_Order.label_status.Caption := 'Просмотрен водителем';
     end
     else if order_status=4 then begin
-      form_Details_Order.label_status.Caption := 'Заказ доставлен';
+      form_Details_Order.label_status.Caption := 'Заказ доставляется';
     end
-    {
     else if order_status=5 then begin
       form_Details_Order.label_status.Caption := 'Водитель прибыл на место';
     end
@@ -195,7 +197,7 @@ begin
     end
     else if order_status=8 then begin
       form_Details_Order.label_status.Caption := 'Заказ отменён';
-    end }
+    end
     else begin
       form_Details_Order.label_status.Caption := 'Ошибка со статусом заказа';
     end;

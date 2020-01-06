@@ -133,7 +133,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    Text = '127.0.0.1'
+    Text = '172.20.10.13'
   end
   object Edit_path: TEdit
     Left = 40
@@ -148,7 +148,7 @@ object Login_Form: TLogin_Form
     ParentFont = False
     TabOrder = 4
     Text = 
-      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
-      'NTSOFTWARE.FDB'
+      'D:\'#1057#1080#1089#1090#1077#1084#1085#1072#1103'\Desktop\elephantSoftware-combingingAllShitTogether\' +
+      'ELEPHANTSOFTWARE1.FDB'
   end
 end

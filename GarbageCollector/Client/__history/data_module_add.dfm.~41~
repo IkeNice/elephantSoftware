@@ -137,7 +137,7 @@ object dm_add: Tdm_add
   object spAdd_Order: TIBStoredProc
     Database = dm_db.IBDatabase_edit
     Transaction = dm_db.IBTransaction_edit
-    StoredProcName = 'UPDATE_ORDER1'
+    StoredProcName = 'UPDATE_ORDER'
     Left = 80
     Top = 64
     ParamData = <

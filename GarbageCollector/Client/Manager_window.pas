@@ -261,7 +261,7 @@ begin
                       StrToInt(form_Add_Car.label_price.Text));
    end;
 
-   dm.TVehicle.Refresh;
+   update;
 end;
 
 
