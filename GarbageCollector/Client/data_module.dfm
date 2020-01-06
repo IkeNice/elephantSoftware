@@ -64,7 +64,7 @@ object dm: Tdm
         ParamType = ptInput
       end
       item
-        DataType = ftInteger
+        DataType = ftSmallint
         Name = 'ID_WORKERS'
         ParamType = ptInput
       end>
@@ -355,7 +355,7 @@ object dm: Tdm
         ParamType = ptInput
       end
       item
-        DataType = ftInteger
+        DataType = ftSmallint
         Name = 'ID_WORKERS'
         ParamType = ptInput
         Value = -1
