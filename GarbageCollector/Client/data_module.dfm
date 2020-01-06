@@ -49,23 +49,23 @@ object dm: Tdm
   object spEDIT_ORDER_SET_DRIVER: TIBStoredProc
     Database = dm_db.IBDatabase_read
     Transaction = dm_db.IBTransaction_read
-    StoredProcName = 'UPDATE_ORDERS_COURIER'
+    StoredProcName = 'EDIT_ORDER_SET_STATUS'
     Left = 272
     Top = 88
     ParamData = <
       item
         DataType = ftInteger
-        Name = 'INORDERID'
+        Name = 'ID_ORDER'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INNEWSTATUS'
+        Name = 'NEW_STATUS'
         ParamType = ptInput
       end
       item
         DataType = ftInteger
-        Name = 'INDRIVERID'
+        Name = 'ID_WORKERS'
         ParamType = ptInput
       end>
   end
@@ -353,6 +353,12 @@ object dm: Tdm
         DataType = ftInteger
         Name = 'NEW_STATUS'
         ParamType = ptInput
+      end
+      item
+        DataType = ftInteger
+        Name = 'ID_WORKERS'
+        ParamType = ptInput
+        Value = -1
       end>
   end
   object QWorker_By_Id: TIBQuery
