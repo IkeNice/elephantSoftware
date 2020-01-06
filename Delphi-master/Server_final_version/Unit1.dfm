@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 126
-  ClientWidth = 315
+  ClientHeight = 193
+  ClientWidth = 371
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -39,7 +39,9 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object IBDatabase1: TIBDatabase
-    DatabaseName = 'D:\'#1057#1080#1089#1090#1077#1084#1085#1072#1103'\Desktop\elephantSoftware\ELEPHANTSOFTWARE.FDB'
+    DatabaseName = 
+      'D:\'#1057#1080#1089#1090#1077#1084#1085#1072#1103'\Desktop\elephantSoftware-combingingAllShitTogether\' +
+      'ELEPHANTSOFTWARE1.FDB'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'

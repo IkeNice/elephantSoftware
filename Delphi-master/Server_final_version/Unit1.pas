@@ -36,6 +36,7 @@ type
       EventCount: Integer; var CancelAlerts: Boolean);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Button1Click(Sender: TObject);
+//    procedure Button2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -335,7 +336,7 @@ begin
 
       updateStatusOrder.ParamByName('ID_ORDER').AsInteger := StrToInt(toChangeStatus.GetValue('order_id').ToString);
       updateStatusOrder.ParamByName('NEW_STATUS').AsInteger := StrToInt(toChangeStatus.GetValue('new_status').ToString);
-//      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
+      updateStatusOrder.ParamByName('ID_WORKERS').AsInteger := -1;
       updateStatusOrder.ExecProc;
 
       if Transaction.InTransaction then Transaction.Commit;
@@ -356,10 +357,11 @@ begin
   host := Edit1.Text;
 end;
 
+
 //procedure TForm1.Button2Click(Sender: TObject);
 //var Title,Body,token: String;
 //begin
-//  Title := 'Изменение информации';
+// Title := 'Изменение информации';
 //  Body := 'Изменена информация о заказе';
 //  showmessage(token);
 //  token := ttt;
@@ -383,19 +385,16 @@ end;
 procedure TForm1.IBEvents1EventAlert(Sender: TObject; EventName: string;
   EventCount: Integer; var CancelAlerts: Boolean);
 begin
-//  ShowMessage(EventName);
-//  host := '192.168.43.255';
-
-  if (EventName = 'ADD_WORKER') then
-      IdUDPServer1.Send(host,11000,'2');
+//  if (EventName = 'ADD_WORKER') then
+//      IdUDPServer1.Send(host,11000,'2');
   if (EventName = 'EDIT_WORKER') then
       IdUDPServer1.Send(host,11000,'2');
   if (EventName = 'DELETE_WORKER') then
       IdUDPServer1.Send(host,11000,'2');
   if (EventName = 'BEGIN_DAY_DRIVER') then
       IdUDPServer1.Send(host,11000,'3');
-  if (EventName = 'EDIT_DRIVER_SET_CAR') then
-      IdUDPServer1.Send(host,11000,'1');    //............
+//  if (EventName = 'EDIT_DRIVER_SET_CAR') then
+//      IdUDPServer1.Send(host,11000,'1');    //............
   if (EventName = 'EDIT_DRIVER_SET_SCHEDULE') then
       IdUDPServer1.Send(host,11000,'1');    //............
 end;
@@ -440,6 +439,7 @@ begin
     Transaction.Free;
   end;
   Result := Result1;
+//  showmessage(Result);
 end;
 
 procedure TForm1.IBEvents2EventAlert(Sender: TObject; EventName: string;
@@ -451,6 +451,7 @@ var
   JSONObject: TJSONObject;
 begin
 //  host := '192.168.43.255';
+//     showmessage(EventName);
   if (EventName = 'UPDATE_STATUS') then
     begin
 //    showmessage('hfjdj');
@@ -459,10 +460,12 @@ begin
       for i := 0 to ArrToken.Count-1 do
         begin
           JSONObject := ArrToken.Items[i] as TJSONObject;
+ //         showmessage(normalizationString(JSONObject.GetValue('new_status').ToString));
           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '2') then
             begin
               Title := 'Новая информация';
               Body := 'Вам назначен новый заказ';
+ //             showmessage(normalizationString(JSONObject.GetValue('new_status').ToString));
               SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
                 Title,Body);
               if (normalizationString(JSONObject.GetValue('old_token').ToString) <> '') then
@@ -473,10 +476,11 @@ begin
                     Title,Body);
                 end;
             end;
-          if (normalizationString(JSONObject.GetValue('new_status').ToString) = '0') then
+          if (normalizationString(JSONObject.GetValue('new_status').ToString) = '8') then
             begin
               Title := 'Новая информация';
               Body := 'У вас отменен заказ';
+//              showmessage(normalizationString(JSONObject.GetValue('new_status').ToString));
               SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
                 Title,Body);
             end;
@@ -487,14 +491,15 @@ begin
 
   if (EventName = 'ADD_ADDRESS') then
       IdUDPServer1.Send(host,11000,'1');
-  if (EventName = 'ADD_CUSTOMER') then
-      IdUDPServer1.Send(host,11000,'1');
-  if (EventName = 'ADD_CAR') then
-      IdUDPServer1.Send(host,11000,'3');
+//  if (EventName = 'ADD_CUSTOMER') then
+//      IdUDPServer1.Send(host,11000,'1');
+//  if (EventName = 'ADD_CAR') then
+//      IdUDPServer1.Send(host,11000,'3');
   if (EventName = 'ADD_ORDER') then
       IdUDPServer1.Send(host,11000,'1');
   if (EventName = 'EDIT_ORDER') then
     begin
+//    showmessage(EventName);
       FCS.Enter;
       ArrToken := Get_Token();
       for i := 0 to ArrToken.Count-1 do
@@ -507,6 +512,7 @@ begin
         end;
       IdUDPServer1.Send(host,11000,'1');
       FCS.Leave;
+ //     showmessage(EventName);
     end;
 end;
 
@@ -556,12 +562,17 @@ begin
   jsonGetQuery := TJSONObject.ParseJSONValue(s) as TJSONObject;
   id_order := StrToInt(jsonGetQuery.GetValue('id_order').ToString);
   new_status := StrToInt(jsonGetQuery.GetValue('new_status').ToString);
+  showmessage(IntToStr(id_worker));
   id_worker := StrToInt(jsonGetQuery.GetValue('id_worker').ToString);
 
-  if(id_worker = -1) then
+
+  if(id_worker = null) then
     begin
       if (new_status = 0) then
-        IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' не распределен',IndyTextEncoding_UTF8);
+        IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' формируется',IndyTextEncoding_UTF8);
+      if (new_status = 1) then
+        IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' принят оператором '+
+          IntToStr(id_worker),IndyTextEncoding_UTF8);
       if (new_status = 7) then
         IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' выполнен',IndyTextEncoding_UTF8);
       if (new_status = 8) then
@@ -569,15 +580,13 @@ begin
     end
   else
     begin
-      if (new_status = 1) then
-        IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' присвоен оператором '+
-          IntToStr(id_worker),IndyTextEncoding_UTF8);
       if (new_status = 2) then
         begin
           IdUDPClient1.Send('Заказ '+IntToStr(id_order)+' распределен водителю '+
             IntToStr(id_worker),IndyTextEncoding_UTF8);
-//          SendFirebaseMessage(id_worker,'Новая информация','Вам назначен новый заказ');
+//           SendFirebaseMessage(id_worker,'Новая информация','Вам назначен новый заказ');
         end;
+//    showmessage(IntToStr(id_worker));
     end;
 end;
 
