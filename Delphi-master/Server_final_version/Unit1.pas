@@ -148,15 +148,17 @@ begin
       idDriver := SQLQuery.FieldByName('EMP_ID').Value;
       keyWord := generationKeyWord();
       tokenDevice := normalizationString(toLogInJSON.GetValue('token').ToString);
-
+//       showmessage(tokenDevice);
       ResultJSON.AddPair('status','OK');
       ResultJSON.AddPair('id',idDriver.ToString);
       ResultJSON.AddPair('keyword',keyWord);
       //=============УСТАНОВКА НОВОГО КЛЮЧЕВОГО СЛОВА=================
+
       if Transaction.InTransaction then Transaction.Commit;
       SQLQuery.Active := false;
       SQLQuery.SQL.Clear;
 
+//      SQLQuery.SQL.Add('insert into drivers_info values (''' + idDriver.ToString + ''',null,null)');
       SQLQuery.SQL.Add('UPDATE DRIVERS_INFO ');
       SQLQuery.SQL.Add('SET KEYWORD = ''' + keyWord + '''');
       SQLQuery.SQL.Add(', TOKEN_DEVICE = ''' + tokenDevice + '''');
@@ -385,18 +387,18 @@ end;
 procedure TForm1.IBEvents1EventAlert(Sender: TObject; EventName: string;
   EventCount: Integer; var CancelAlerts: Boolean);
 begin
-//  if (EventName = 'ADD_WORKER') then
-//      IdUDPServer1.Send(host,11000,'2');
-  if (EventName = 'EDIT_WORKER') then
+  if (EventName = 'ADD_WORKER') then
       IdUDPServer1.Send(host,11000,'2');
+//  if (EventName = 'EDIT_WORKER') then
+//      IdUDPServer1.Send(host,11000,'2');
   if (EventName = 'DELETE_WORKER') then
       IdUDPServer1.Send(host,11000,'2');
-  if (EventName = 'BEGIN_DAY_DRIVER') then
-      IdUDPServer1.Send(host,11000,'3');
+//  if (EventName = 'BEGIN_DAY_DRIVER') then
+//      IdUDPServer1.Send(host,11000,'3');
 //  if (EventName = 'EDIT_DRIVER_SET_CAR') then
 //      IdUDPServer1.Send(host,11000,'1');    //............
-  if (EventName = 'EDIT_DRIVER_SET_SCHEDULE') then
-      IdUDPServer1.Send(host,11000,'1');    //............
+//  if (EventName = 'EDIT_DRIVER_SET_SCHEDULE') then
+//      IdUDPServer1.Send(host,11000,'1');    //............
 end;
 
 function Get_Token(): TJSONArray;
@@ -423,6 +425,9 @@ begin
       jsonBuffer := TJSONObject.Create;
       if Transaction.InTransaction then Transaction.Commit;
       GetTokenProc.ExecProc;
+
+       if (VarToStr(GetTokenProc.ParamByName('REST').Value) = '') then  res_ := 0
+      else
       res_ := StrToInt(VarToStr(GetTokenProc.ParamByName('REST').Value));
       jsonBuffer.AddPair('new_status',
         VarToStr(GetTokenProc.ParamByName('NEW_STATUS').Value));
@@ -450,7 +455,7 @@ var
   i: Integer;
   JSONObject: TJSONObject;
 begin
-//  host := '192.168.43.255';
+  host := '192.168.43.255';
 //     showmessage(EventName);
   if (EventName = 'UPDATE_STATUS') then
     begin
@@ -472,16 +477,32 @@ begin
                 begin
                   Title := 'Новая информация';
                   Body := 'У вас отменен заказ';
-                  SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
+                  SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
                     Title,Body);
                 end;
+            end;
+           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '1') then
+             if (normalizationString(JSONObject.GetValue('old_token').ToString) <> '') then
+                begin
+                  Title := 'Новая информация';
+                  Body := 'У вас отменен заказ';
+                  SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
+                    Title,Body);
+                end;
+           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '7') then
+            begin
+              Title := 'Новая информация';
+              Body := 'Ваш заказ подтвержден';
+
+//             showmessage(normalizationString(JSONObject.GetValue('token').ToString));
+              SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
+                Title,Body);
             end;
           if (normalizationString(JSONObject.GetValue('new_status').ToString) = '8') then
             begin
               Title := 'Новая информация';
               Body := 'У вас отменен заказ';
-//              showmessage(normalizationString(JSONObject.GetValue('new_status').ToString));
-              SendFirebaseMessage(normalizationString(JSONObject.GetValue('old_token').ToString),
+              SendFirebaseMessage(normalizationString(JSONObject.GetValue('token').ToString),
                 Title,Body);
             end;
         end;
@@ -562,7 +583,7 @@ begin
   jsonGetQuery := TJSONObject.ParseJSONValue(s) as TJSONObject;
   id_order := StrToInt(jsonGetQuery.GetValue('id_order').ToString);
   new_status := StrToInt(jsonGetQuery.GetValue('new_status').ToString);
-  showmessage(IntToStr(id_worker));
+//  showmessage(IntToStr(id_worker));
   id_worker := StrToInt(jsonGetQuery.GetValue('id_worker').ToString);
 
 
