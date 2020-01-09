@@ -73,7 +73,8 @@ end;
 
 procedure Tform_Details_Order.BitBtn1Click(Sender: TObject);
 begin
-    set_status(status_done);
+  form_Details_Order.Close;
+  set_status(status_done);
 end;
 
 procedure Tform_Details_Order.FormCreate(Sender: TObject);
@@ -115,7 +116,7 @@ begin
       check_operator:=false;
     end
     else begin
-      check_operator:=true;
+      check_operator := true;
       operator_id := dm.QOrder_By_Id.FieldByName('OPERATOR_ID').Value;
     end;
 //    form_Details_Order.label_stevedors.Caption := 'Кол-во грузчиков: ' + IntToStr(dm.QOrder_By_Id.FieldByName('NUMBER_STEVEDORE').Value) + ' человек';

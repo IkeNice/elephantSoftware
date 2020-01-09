@@ -1,6 +1,6 @@
 object dm: Tdm
   OldCreateOrder = False
-  OnCreate = DataModuleCreate
+  OnCreate = a
   Height = 472
   Width = 716
   object Torders: TIBTable

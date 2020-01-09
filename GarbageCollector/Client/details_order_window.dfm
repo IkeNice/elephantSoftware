@@ -147,7 +147,7 @@ object form_Details_Order: Tform_Details_Order
   end
   object BitBtn1: TBitBtn
     Left = 8
-    Top = 311
+    Top = 306
     Width = 153
     Height = 25
     Caption = #1055#1086#1076#1090#1074#1077#1088#1076#1080#1090#1100' '#1079#1072#1082#1072#1079

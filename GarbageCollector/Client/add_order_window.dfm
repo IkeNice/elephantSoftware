@@ -94,7 +94,7 @@ object Form_add_order: TForm_add_order
     ParentFont = False
   end
   object DBGrid_from_address: TDBGrid
-    Left = 26
+    Left = 24
     Top = 110
     Width = 329
     Height = 120
@@ -106,7 +106,7 @@ object Form_add_order: TForm_add_order
     Font.Style = []
     ParentFont = False
     ReadOnly = True
-    TabOrder = 0
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -125,7 +125,7 @@ object Form_add_order: TForm_add_order
     Font.Name = 'Verdana'
     Font.Style = []
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -183,7 +183,7 @@ object Form_add_order: TForm_add_order
     Kind = bkOK
     NumGlyphs = 2
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 4
     OnClick = BitBtn1Click
   end
   object cbTimeOfDelivery: TCheckBox
@@ -201,7 +201,7 @@ object Form_add_order: TForm_add_order
     Font.Style = []
     ParentFont = False
     State = cbChecked
-    TabOrder = 3
+    TabOrder = 5
     OnClick = cbTimeOfDeliveryClick
   end
   object tpTimeOfDelivery: TTimePicker
@@ -214,7 +214,7 @@ object Form_add_order: TForm_add_order
     Font.Height = -16
     Font.Name = 'Segoe UI'
     Font.Style = []
-    TabOrder = 4
+    TabOrder = 6
     Time = 43825.554466203710000000
     TimeFormat = 'HH:mm'
   end
@@ -223,7 +223,7 @@ object Form_add_order: TForm_add_order
     Top = 8
     Width = 185
     Height = 21
-    TabOrder = 5
+    TabOrder = 0
     OnChange = edClientNameChange
   end
   object edPhone: TEdit
@@ -231,7 +231,7 @@ object Form_add_order: TForm_add_order
     Top = 61
     Width = 185
     Height = 21
-    TabOrder = 6
+    TabOrder = 1
     OnChange = edClientNameChange
   end
   object BitBtn2: TBitBtn

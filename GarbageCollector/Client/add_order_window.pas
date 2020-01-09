@@ -83,21 +83,28 @@ end;
 procedure TForm_add_order.btnAddAddressClick(Sender: TObject);
 var tmp: integer;
 begin
+  dm.TAddress_Out.Open;
   form_Add_Address := Tform_Add_Address.Create(Application);
   form_Add_Address.ShowModal;
   if form_Add_Address.ModalResult = mrOk then
   begin
-      if form_add_address.label_flat.text = '' then
-        tmp := 0
-      else
-        tmp := StrToInt(form_add_address.label_flat.text);
-      dm_add.add_address(form_Add_Address.label_street.Text,
-                         form_Add_Address.label_building.Text,
-                         tmp);
+    if form_add_address.label_flat.text = '' then
+      tmp := 0
+    else
+      tmp := StrToInt(form_add_address.label_flat.text);
+
+    dm_add.add_address(form_Add_Address.label_street.Text,
+                        form_Add_Address.label_building.Text,
+                        tmp);
+//    dm.TAddress_Out.Close;
   end;
   update;
   dm.TAddress_Out.Refresh;
-  dm.open_all;
+  Form_add_order.btnRefreshClick(Self)
+//  dm.qOrderInfo.Open;
+//  dm.qOrderInfo.Close;
+//  dm.open_all;
+
 end;
 
 procedure TForm_add_order.btnRefreshClick(Sender: TObject);

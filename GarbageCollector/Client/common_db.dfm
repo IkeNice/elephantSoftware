@@ -3,10 +3,9 @@ object dm_db: Tdm_db
   Height = 253
   Width = 308
   object IBDatabase_read: TIBDatabase
-    Connected = True
     DatabaseName = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE12.fdb'
+      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
+      'NTSOFTWARE12.fdb'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'
@@ -18,7 +17,6 @@ object dm_db: Tdm_db
     Top = 56
   end
   object IBTransaction_read: TIBTransaction
-    Active = True
     DefaultDatabase = IBDatabase_read
     Params.Strings = (
       'read_committed'
@@ -33,8 +31,8 @@ object dm_db: Tdm_db
   end
   object IBDatabase_edit: TIBDatabase
     DatabaseName = 
-      'E:\General\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\Unity\elephantSoftware\ELEPHANTSOFTW' +
-      'ARE12.fdb'
+      'C:\Users\hieut\OneDrive\'#1044#1086#1082#1091#1084#1077#1085#1090#1099'\GitHub\elephantSoftware\ELEPHA' +
+      'NTSOFTWARE12.fdb'
     Params.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'

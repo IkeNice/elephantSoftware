@@ -57,6 +57,7 @@ object form_Add_Address: Tform_Add_Address
     Top = 150
     Width = 75
     Height = 25
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -79,6 +80,7 @@ object form_Add_Address: Tform_Add_Address
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    OnChange = label_streetChange
   end
   object label_building: TEdit
     Left = 184
@@ -92,6 +94,7 @@ object form_Add_Address: Tform_Add_Address
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    OnChange = label_streetChange
   end
   object label_flat: TEdit
     Left = 184

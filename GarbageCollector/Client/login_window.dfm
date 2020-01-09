@@ -90,7 +90,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    Text = 'oplog'
+    Text = 'Operator'
   end
   object Edit_password: TEdit
     Left = 192
@@ -104,7 +104,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'oppass'
+    Text = 'qwerty123'
   end
   object Button_log_in: TButton
     Left = 114
@@ -133,7 +133,7 @@ object Login_Form: TLogin_Form
     Font.Style = []
     ParentFont = False
     TabOrder = 3
-    Text = '172.20.10.13'
+    Text = '192.168.43.113'
   end
   object Edit_path: TEdit
     Left = 40

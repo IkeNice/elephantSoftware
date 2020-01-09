@@ -35,7 +35,7 @@ type
     spUpdateOrderInfo: TIBStoredProc;
     qOrderInfo: TIBQuery;
     QCustomers: TIBQuery;
-    procedure DataModuleCreate(Sender: TObject);
+    procedure a(Sender: TObject);
     procedure smSQLClear; safecall;
     procedure smSQLAddString(const s: WideString); safecall;
     procedure smSQLExecute; safecall;
@@ -61,7 +61,7 @@ implementation
 
 {$R *.dfm}
 
-procedure Tdm.DataModuleCreate(Sender: TObject);
+procedure Tdm.a(Sender: TObject);
 begin
   open_all;
 end;

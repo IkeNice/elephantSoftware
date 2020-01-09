@@ -16,6 +16,7 @@ type
     Label4: TLabel;
     label_flat: TEdit;
     BitBtn2: TBitBtn;
+    procedure label_streetChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,5 +29,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tform_Add_Address.label_streetChange(Sender: TObject);
+begin
+  BitBtn1.Enabled := (label_street.Text <> '') and (label_building.Text <> '');
+end;
 
 end.
